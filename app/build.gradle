@@ -4,6 +4,7 @@ android {
     compileSdkVersion 28
     buildToolsVersion "29.0.0"
     defaultConfig {
+        vectorDrawables.useSupportLibrary = true
         applicationId "com.warehousemanager"
         minSdkVersion 20
         targetSdkVersion 28
