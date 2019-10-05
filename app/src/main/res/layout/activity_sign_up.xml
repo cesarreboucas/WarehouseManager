@@ -128,6 +128,7 @@
     android:textColor="@android:color/white"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="@+id/guideline3" />
+    app:layout_constraintTop_toTopOf="@+id/guideline3"
+    android:onClick="onSignUp"/>
 
 </android.support.constraint.ConstraintLayout>

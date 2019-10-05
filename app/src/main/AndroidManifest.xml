@@ -3,6 +3,7 @@
   package="com.warehousemanager">
 
     <application
+      android:name=".AppController"
       android:allowBackup="true"
       android:fullBackupContent="false"
       android:icon="@mipmap/ic_launcher"
@@ -10,7 +11,10 @@
       android:roundIcon="@mipmap/ic_launcher_round"
       android:supportsRtl="true"
       android:theme="@style/AppTheme">
-        <activity android:name=".ui.ForgotPasswordActivity"></activity>
+        <activity android:name=".ui.HomeActivity"></activity>
+
+        <activity android:name=".ui.ForgotPasswordActivity" />
+
         <activity android:name=".ui.SignUpActivity" />
         <activity android:name=".ui.SignInActivity">
             <intent-filter>
@@ -22,6 +26,9 @@
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter>
         </activity>
+        <meta-data
+          android:name="com.google.android.geo.API_KEY"
+          android:value="AIzaSyD2Eev0c77OFKLPbby3DGHGqwCKXm9GJ-U" />
     </application>
 
 </manifest>

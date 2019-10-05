@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "44232713919",
+    "firebase_url": "https://warehousemanager-2f311.firebaseio.com",
+    "project_id": "warehousemanager-2f311",
+    "storage_bucket": "warehousemanager-2f311.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:44232713919:android:425ddc8b2c183ccee2880a",
+        "android_client_info": {
+          "package_name": "com.warehousemanager"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "44232713919-49849id75fkvnp5svf00qu247mqsalgi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyARHZvV1OCG63KnTjkgWLb5rR4-k16o_LM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "44232713919-49849id75fkvnp5svf00qu247mqsalgi.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
