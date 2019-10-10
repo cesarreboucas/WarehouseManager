@@ -11,4 +11,7 @@
   <string name="txtRepeatPassword">R e p e a t&#160;&#160;P a s s w o r d</string>
   <string name="txtName">N a m e</string>
   <string name="btnResetPassword">R E S E T&#160;&#160;P A S S W O R D</string>
+    <string name="products_menu">Products</string>
+  <string name="users_menu">Users</string>
+  <string name="home_menu">Home</string>
 </resources>
