@@ -1,17 +1,20 @@
 <resources>
-  <string name="app_name">WarehouseManager</string>
-  <string name="storeimg">StoreImg</string>
-  <string name="signInWarehouse">Warehouse</string>
-  <string name="signInManager">M A N A G E R</string>
-  <string name="txtUsername">U s e r n a m e</string>
-  <string name="txtPassword">P a s s w o r d</string>
-  <string name="btnSignIn">S I G N&#160;&#160;I N</string>
-  <string name="btnSignUp">S I G N&#160;&#160;U P</string>
-  <string name="btnForgotPassword">F O R G O T&#160;&#160;P A S S W O R D</string>
-  <string name="txtRepeatPassword">R e p e a t&#160;&#160;P a s s w o r d</string>
-  <string name="txtName">N a m e</string>
-  <string name="btnResetPassword">R E S E T&#160;&#160;P A S S W O R D</string>
+    <string name="app_name">WarehouseManager</string>
+    <string name="storeimg">StoreImg</string>
+    <string name="signInWarehouse">Warehouse</string>
+    <string name="signInManager">M A N A G E R</string>
+    <string name="txtUsername">U s e r n a m e</string>
+    <string name="txtPassword">P a s s w o r d</string>
+    <string name="btnSignIn">S I G N&#160;&#160;I N</string>
+    <string name="btnSignUp">S I G N&#160;&#160;U P</string>
+    <string name="btnForgotPassword">F O R G O T&#160;&#160;P A S S W O R D</string>
+    <string name="txtRepeatPassword">R e p e a t&#160;&#160;P a s s w o r d</string>
+    <string name="txtName">N a m e</string>
+    <string name="btnResetPassword">R E S E T&#160;&#160;P A S S W O R D</string>
     <string name="products_menu">Products</string>
-  <string name="users_menu">Users</string>
-  <string name="home_menu">Home</string>
+    <string name="users_menu">Users</string>
+    <string name="home_menu">Home</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
