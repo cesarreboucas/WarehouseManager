@@ -3,6 +3,8 @@ package com.warehousemanager.ui.admin;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Message;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -14,6 +16,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.warehousemanager.R;
 import com.warehousemanager.data.internal.JsonReader;
@@ -26,12 +29,14 @@ import javax.inject.Inject;
 import dagger.android.AndroidInjection;
 import dagger.android.support.DaggerFragment;
 
-public class UsersFragment extends DaggerFragment {
+public class UsersFragment extends DaggerFragment
+  implements FragmentInteraction, View.OnClickListener {
 
-    private OnFragmentInteractionListener mListener;
+    private FragmentInteraction mListener;
 
     private RecyclerView usersList;
     private Toolbar toolbar;
+    private FloatingActionButton floatingActionButton;
 
     @Inject
     JsonReader jsonReader;
@@ -48,9 +53,14 @@ public class UsersFragment extends DaggerFragment {
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(getChildFragmentManager().getFragments().size() == 1) {
+                    floatingActionButton.setVisibility(View.VISIBLE);
+                }
                 getChildFragmentManager().popBackStack();
             }
         });
+        floatingActionButton = view.findViewById(R.id.floatingActionButton);
+        floatingActionButton.setOnClickListener(this);
 
         usersList.setLayoutManager(new LinearLayoutManager(getActivity()));
         List<UserRow> userRows = jsonReader.getUserRows();
@@ -62,17 +72,17 @@ public class UsersFragment extends DaggerFragment {
     }
 
     // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
+    public void onButtonPressed(Message message) {
         if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
+            mListener.sendMessage(message);
         }
     }
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
+        if (context instanceof FragmentInteraction) {
+            mListener = (FragmentInteraction) context;
         } else {
             throw new RuntimeException(context.toString()
                     + " must implement OnFragmentInteractionListener");
@@ -85,8 +95,27 @@ public class UsersFragment extends DaggerFragment {
         mListener = null;
     }
 
-    public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
+    @Override
+    public void sendMessage(Message message) {
+
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.floatingActionButton:
+                onFloatingActionButtonClicked(v);
+                break;
+        }
+    }
+
+    private void onFloatingActionButtonClicked(View v) {
+        v.setVisibility(View.GONE);
+        AddUserFragment addUserFragment = new AddUserFragment();
+        getChildFragmentManager()
+          .beginTransaction()
+          .addToBackStack(null)
+          .add(R.id.usersFragmentContainer, addUserFragment)
+          .commit();
     }
 }

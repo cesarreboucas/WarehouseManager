@@ -1,14 +1,103 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-  xmlns:tools="http://schemas.android.com/tools"
+<ScrollView
   android:layout_width="match_parent"
   android:layout_height="match_parent"
-  tools:context=".ui.admin.AddUserFragment">
-
-  <!-- TODO: Update blank fragment layout -->
-  <TextView
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:background="@android:color/white"
+  android:clickable="true"
+  android:focusable="true">
+  <RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:text="@string/hello_blank_fragment" />
+    tools:context=".ui.admin.AddUserFragment">
 
-</FrameLayout>
+    <TextView
+      android:id="@+id/txtName"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_alignParentStart="true"
+      android:layout_alignParentTop="true"
+      android:layout_marginStart="50dp"
+      android:layout_marginTop="58dp"
+      android:text="@string/txtName" />
+
+    <EditText
+      android:id="@+id/editName"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_alignParentStart="true"
+      android:layout_alignParentTop="true"
+      android:layout_marginStart="50dp"
+      android:layout_marginTop="90dp"
+      android:ems="10"
+      android:inputType="textPersonName" />
+
+    <TextView
+      android:id="@+id/txtUsername"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_alignParentStart="true"
+      android:layout_alignParentTop="true"
+      android:layout_marginStart="50dp"
+      android:layout_marginTop="153dp"
+      android:text="@string/txtUsername" />
+
+    <EditText
+      android:id="@+id/editUsername"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_alignParentStart="true"
+      android:layout_alignParentTop="true"
+      android:layout_marginStart="50dp"
+      android:layout_marginTop="187dp"
+      android:ems="10"
+      android:inputType="textPersonName" />
+
+    <TextView
+      android:id="@+id/txtRole"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_alignParentStart="true"
+      android:layout_alignParentTop="true"
+      android:layout_marginStart="50dp"
+      android:layout_marginTop="257dp"
+      android:text="Select the user tole:" />
+
+    <Spinner
+      android:id="@+id/spinner"
+      android:layout_width="290dp"
+      android:layout_height="wrap_content"
+      android:layout_alignParentTop="true"
+      android:layout_centerHorizontal="true"
+      android:layout_marginTop="291dp"
+      android:entries="@array/roles_entries"/>
+
+    <de.hdodenhof.circleimageview.CircleImageView
+      android:id="@+id/imgPicture"
+      android:layout_width="125dp"
+      android:layout_height="125dp"
+      android:layout_alignParentStart="true"
+      android:layout_alignParentTop="true"
+      android:layout_marginStart="156dp"
+      android:layout_marginTop="398dp"
+      android:src="@drawable/ic_person_black_24dp"
+      app:civ_border_color="#DEDEDE"
+      app:civ_border_width="2dp"/>
+
+    <Button
+      android:id="@+id/btnTakePicture"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_alignParentStart="true"
+      android:layout_alignParentTop="true"
+      android:layout_alignParentEnd="true"
+      android:layout_marginStart="154dp"
+      android:layout_marginTop="326dp"
+      android:layout_marginEnd="126dp"
+      android:stateListAnimator="@null"
+      android:text="Take a picture" />
+
+  </RelativeLayout>
+</ScrollView>

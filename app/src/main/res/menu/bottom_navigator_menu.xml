@@ -12,7 +12,7 @@
         android:title="@string/users_menu" />
     <item
         android:id="@+id/productMenu"
-        android:icon="@drawable/ic_shopping_basket_black_24dp"
+        android:icon="@drawable/ic_box"
         android:title="@string/products_menu" />
     <item
         android:id="@+id/warehouseMenu"
