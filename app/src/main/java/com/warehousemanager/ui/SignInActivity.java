@@ -12,6 +12,7 @@ import com.warehousemanager.data.db.WarehouseDatabase;
 import com.warehousemanager.data.db.entities.UserEntity;
 import com.warehousemanager.data.services.FirebaseService;
 import com.warehousemanager.data.services.FirebaseUserCallback;
+import com.warehousemanager.ui.admin.AdminHomeActivity;
 
 import javax.inject.Inject;
 
@@ -86,7 +87,7 @@ public class SignInActivity extends AppCompatActivity implements FirebaseUserCal
             if(userEntity.getPassword().equals(password)) {
                 Toast.makeText(this, "Logged successfully", Toast.LENGTH_SHORT).show();
                 warehouseDatabase.userDao().insertUser(userEntity);
-                Intent it = new Intent(this, HomeActivity.class);
+                Intent it = new Intent(this, AdminHomeActivity.class);
                 startActivity(it);
             }
         }

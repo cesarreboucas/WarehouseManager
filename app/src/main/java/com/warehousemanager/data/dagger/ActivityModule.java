@@ -1,9 +1,10 @@
 package com.warehousemanager.data.dagger;
 
 import com.warehousemanager.ui.ForgotPasswordActivity;
-import com.warehousemanager.ui.HomeActivity;
+import com.warehousemanager.ui.admin.AdminHomeActivity;
 import com.warehousemanager.ui.SignInActivity;
 import com.warehousemanager.ui.SignUpActivity;
+import com.warehousemanager.ui.admin.UsersFragment;
 
 import dagger.Module;
 import dagger.android.ContributesAndroidInjector;
@@ -21,6 +22,9 @@ public abstract class ActivityModule {
   abstract ForgotPasswordActivity contributeForgotPasswordActivity();
 
   @ContributesAndroidInjector()
-  abstract HomeActivity contributeHomeActivity();
+  abstract AdminHomeActivity contributeAdminHomeActivity();
+
+  @ContributesAndroidInjector
+  abstract UsersFragment contributeUsersFragment();
 
 }

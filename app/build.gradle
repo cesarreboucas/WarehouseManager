@@ -46,9 +46,11 @@ dependencies {
     implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
     implementation 'com.squareup.okhttp3:logging-interceptor:3.9.1'
 
-
-    /* Picasso lib for image loading  */
+    /* Picasso - library for loading and caching images - https://github.com/square/picasso */
     implementation 'com.squareup.picasso:picasso:2.71828'
+
+    /* CircleImageView */
+    implementation 'de.hdodenhof:circleimageview:3.0.1'
 
     /* Android Architecture Component - ConstraintLayout  */
     implementation 'com.android.support.constraint:constraint-layout:1.1.3'

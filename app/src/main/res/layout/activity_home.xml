@@ -4,21 +4,8 @@
   xmlns:tools="http://schemas.android.com/tools"
   android:layout_width="match_parent"
   android:layout_height="match_parent"
-  tools:context=".ui.HomeActivity">
+  tools:context=".ui.admin.AdminHomeActivity">
 
-  <android.support.v7.widget.Toolbar
-    android:id="@+id/homeToolbar"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="?attr/colorPrimary"
-    android:minHeight="?attr/actionBarSize"
-    android:theme="?attr/actionBarTheme"
-    app:title="Home"
-    app:titleTextAppearance="@style/ActionBar.nameText"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="parent"
-    app:navigationIcon="@drawable/back_arrow_clipart"  />
 
   <android.support.design.widget.BottomNavigationView
       android:id="@+id/bottomNavigationView"
@@ -30,13 +17,13 @@
       app:menu="@menu/bottom_navigator_menu" />
 
   <FrameLayout
-      android:id="@+id/fragmentContainer"
-      android:layout_width="0dp"
-      android:layout_height="0dp"
-      app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@+id/homeToolbar">
+    android:id="@+id/fragmentContainer"
+    android:layout_width="0dp"
+    android:layout_height="0dp"
+    app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent">
 
   </FrameLayout>
 </android.support.constraint.ConstraintLayout>

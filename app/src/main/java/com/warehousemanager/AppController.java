@@ -3,7 +3,6 @@ package com.warehousemanager;
 import android.app.Activity;
 import android.app.Application;
 
-import com.warehousemanager.data.dagger.AppComponent;
 import com.warehousemanager.data.dagger.DaggerAppComponent;
 
 import javax.inject.Inject;

@@ -6,48 +6,57 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.warehousemanager.R;
+import com.warehousemanager.data.internal.JsonReader;
+import com.warehousemanager.data.internal.model.UserRow;
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link UsersFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- */
-public class UsersFragment extends Fragment {
+import java.util.List;
+
+import javax.inject.Inject;
+
+import dagger.android.AndroidInjection;
+import dagger.android.support.DaggerFragment;
+
+public class UsersFragment extends DaggerFragment {
 
     private OnFragmentInteractionListener mListener;
 
-    private FragmentManager fragmentManager;
+    private RecyclerView usersList;
+    private Toolbar toolbar;
+
+    @Inject
+    JsonReader jsonReader;
 
     public UsersFragment() {
-        // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_admin_users, container, false);
-
-        fragmentManager = getFragmentManager();
-
-        final Button button = view.findViewById(R.id.button);
-        button.setOnClickListener(new View.OnClickListener() {
+        usersList = view.findViewById(R.id.usersList);
+        toolbar = view.findViewById(R.id.toolbar);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                UserDetail userDetail = new UserDetail();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.addToBackStack(null);
-                fragmentTransaction.add(R.id.secondFragmentContainer, userDetail);
-                fragmentTransaction.commit();
+                getChildFragmentManager().popBackStack();
             }
         });
+
+        usersList.setLayoutManager(new LinearLayoutManager(getActivity()));
+        List<UserRow> userRows = jsonReader.getUserRows();
+        UsersListAdapter usersListAdapter = new UsersListAdapter(userRows);
+        usersList.setAdapter(usersListAdapter);
+        usersList.setItemAnimator(new DefaultItemAnimator());
 
         return view;
     }

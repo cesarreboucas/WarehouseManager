@@ -1,4 +1,4 @@
-package com.warehousemanager.ui;
+package com.warehousemanager.ui.admin;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -23,16 +23,15 @@ import com.warehousemanager.ui.admin.UsersFragment;
 import javax.inject.Inject;
 
 import dagger.android.AndroidInjection;
+import dagger.android.support.DaggerAppCompatActivity;
 
-public class HomeActivity extends AppCompatActivity
-implements UsersFragment.OnFragmentInteractionListener,
- UserDetail.OnFragmentInteractionListener{
+public class AdminHomeActivity extends DaggerAppCompatActivity
+implements UsersFragment.OnFragmentInteractionListener{
 
   @Inject
   WarehouseDatabase warehouseDatabase;
 
   BottomNavigationView bottomNavigationView;
-  Toolbar toolbar;
 
   FragmentManager fragmentManager;
 
@@ -42,14 +41,6 @@ implements UsersFragment.OnFragmentInteractionListener,
 
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_home);
-
-    toolbar = findViewById(R.id.homeToolbar);
-    toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View v) {
-        fragmentManager.popBackStack();
-      }
-    });
 
     fragmentManager = getSupportFragmentManager();
 
@@ -66,10 +57,8 @@ implements UsersFragment.OnFragmentInteractionListener,
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
       switch (menuItem.getItemId()) {
         case R.id.homeMenu:
-          toolbar.setTitle("Home");
           break;
         case R.id.userMenu:
-          toolbar.setTitle("Users");
           UsersFragment usersFragment = new UsersFragment();
           FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
           fragmentTransaction.add(R.id.fragmentContainer, usersFragment);
@@ -77,10 +66,8 @@ implements UsersFragment.OnFragmentInteractionListener,
           fragmentTransaction.commit();
           break;
         case R.id.productMenu:
-          toolbar.setTitle("Products");
           break;
         case R.id.warehouseMenu:
-          toolbar.setTitle("Warehouses");
           break;
       }
       return true;

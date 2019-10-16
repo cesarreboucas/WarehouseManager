@@ -1,8 +1,14 @@
 package com.warehousemanager.data.dagger;
 
+import android.app.Application;
+import android.content.Context;
+
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.warehousemanager.data.internal.ImageHelper;
+import com.warehousemanager.data.internal.ImageHelperImpl;
+import com.warehousemanager.data.internal.JsonReader;
 import com.warehousemanager.data.services.FirebaseService;
 
 import javax.inject.Singleton;
@@ -29,6 +35,16 @@ public class ApiModule {
   @Provides
   FirebaseService provideFirebaseService(FirebaseFirestore firebaseFirestore) {
     return new FirebaseService(firebaseFirestore);
+  }
+
+  @Provides
+  ImageHelper provideImageHelper() {
+    return new ImageHelperImpl();
+  }
+
+  @Provides
+  JsonReader provideJsonReader(Application application, Gson gson) {
+    return new JsonReader(gson, application);
   }
 
 }
