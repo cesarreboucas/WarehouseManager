@@ -72,7 +72,7 @@ public class AdminHomeActivity extends DaggerAppCompatActivity
 
   @Override
   public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-    detachAllFragments();
+    detachAllFragments(getSupportFragmentManager());
     Fragment fragment = new Fragment();
     FragmentTransaction fragmentTransactionAttach = fragmentManager.beginTransaction();
 
@@ -93,14 +93,14 @@ public class AdminHomeActivity extends DaggerAppCompatActivity
     return true;
   }
 
-  public void detachAllFragments() {
-    List<Fragment> fragments = getSupportFragmentManager().getFragments();
+  public void detachAllFragments(FragmentManager fragmentManager) {
+    //TODO move to a static class
+    List<Fragment> fragments = fragmentManager.getFragments();
     for(Fragment f: fragments) {
       if(f.isVisible()) {
         Log.d("Fragments", f.getTag() + " Detached");
         fragmentManager.beginTransaction().detach(f).commit();
       }
-
     }
   }
 
