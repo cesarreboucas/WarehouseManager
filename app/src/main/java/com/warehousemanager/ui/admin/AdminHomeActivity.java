@@ -23,6 +23,8 @@ import com.warehousemanager.data.db.entities.UserEntity;
 import com.warehousemanager.ui.admin.UserDetail;
 import com.warehousemanager.ui.admin.UsersFragment;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import dagger.android.AndroidInjection;
@@ -52,6 +54,15 @@ public class AdminHomeActivity extends DaggerAppCompatActivity
 
     UserEntity user = warehouseDatabase.userDao().getUser();
     Log.i("USER", user.toString());
+
+    UsersFragment usersFragment = new UsersFragment();
+    ProductsFragment productsFragment = new ProductsFragment();
+    getSupportFragmentManager().beginTransaction()
+            .add(R.id.fragmentContainer, usersFragment, UsersFragment.class.getName())
+            .detach(usersFragment)
+            .add(R.id.fragmentContainer, productsFragment, ProductsFragment.class.getName())
+            .detach(productsFragment)
+            .commit();
   }
 
   @Override
@@ -61,25 +72,36 @@ public class AdminHomeActivity extends DaggerAppCompatActivity
 
   @Override
   public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+    detachAllFragments();
+    Fragment fragment = new Fragment();
+    FragmentTransaction fragmentTransactionAttach = fragmentManager.beginTransaction();
+
     switch (menuItem.getItemId()) {
       case R.id.homeMenu:
         break;
       case R.id.userMenu:
-        Fragment fragment = getSupportFragmentManager().findFragmentByTag(UsersFragment.class.getName());
-        if(fragment == null) {
-          Toast.makeText(this, "ADDED FRAGMENT", Toast.LENGTH_LONG).show();
-          UsersFragment usersFragment = new UsersFragment();
-          FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-          fragmentTransaction.add(R.id.fragmentContainer, usersFragment, UsersFragment.class.getName());
-          fragmentTransaction.addToBackStack(null);
-          fragmentTransaction.commit();
-        }
+          fragment = getSupportFragmentManager().findFragmentByTag(UsersFragment.class.getName());
         break;
       case R.id.productMenu:
+          fragment = getSupportFragmentManager().findFragmentByTag(ProductsFragment.class.getName());
         break;
       case R.id.warehouseMenu:
         break;
     }
+    fragmentTransactionAttach.attach(fragment);
+    fragmentTransactionAttach.commit();
     return true;
   }
+
+  public void detachAllFragments() {
+    List<Fragment> fragments = getSupportFragmentManager().getFragments();
+    for(Fragment f: fragments) {
+      if(f.isVisible()) {
+        Log.d("Fragments", f.getTag() + " Detached");
+        fragmentManager.beginTransaction().detach(f).commit();
+      }
+
+    }
+  }
+
 }
