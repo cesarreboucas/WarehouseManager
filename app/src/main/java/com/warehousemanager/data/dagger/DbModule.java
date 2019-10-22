@@ -4,7 +4,7 @@ import android.app.Application;
 import android.arch.persistence.room.Room;
 import android.support.annotation.NonNull;
 
-import com.warehousemanager.data.db.UserDao;
+import com.warehousemanager.data.db.dao.UserDao;
 import com.warehousemanager.data.db.WarehouseDatabase;
 
 import javax.inject.Singleton;

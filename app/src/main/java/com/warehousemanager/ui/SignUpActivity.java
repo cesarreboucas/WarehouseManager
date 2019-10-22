@@ -9,7 +9,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.warehousemanager.R;
-import com.warehousemanager.data.db.entities.UserEntity;
+import com.warehousemanager.data.db.entities.User;
 import com.warehousemanager.data.services.FirebaseService;
 import com.warehousemanager.data.services.FirebaseUserCallback;
 
@@ -54,8 +54,8 @@ public class SignUpActivity extends AppCompatActivity implements FirebaseUserCal
     String username = editUsername.getText().toString();
     String password = editPassword.getText().toString();
     String name = editName.getText().toString();
-    UserEntity userEntity = new UserEntity(name, username, password, "client");
-    firebaseService.addUser(userEntity);
+    User user = new User(name, username, password, "client");
+    firebaseService.addUser(user);
   }
 
   @Override
@@ -69,7 +69,7 @@ public class SignUpActivity extends AppCompatActivity implements FirebaseUserCal
   }
 
   @Override
-  public void onUserFetchComplete(UserEntity userEntity) {
+  public void onUserFetchComplete(User user) {
 
   }
 

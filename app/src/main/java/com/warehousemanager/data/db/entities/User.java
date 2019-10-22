@@ -7,8 +7,10 @@ import android.support.annotation.NonNull;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.ArrayList;
+
 @Entity(tableName = "user_table")
-public class UserEntity {
+public class User {
 
   private static final long CURRENT_USER = 0;
 
@@ -28,7 +30,11 @@ public class UserEntity {
   @SerializedName("role")
   private String role;
 
-  public UserEntity(String name, String username, String password, String role) {
+  private String email;
+  private ArrayList<Product> shoppingCart;
+
+
+  public User(String name, String username, String password, String role) {
     this.name = name;
     this.username = username;
     this.password = password;
@@ -73,6 +79,22 @@ public class UserEntity {
 
   public void setRole(String role) {
     this.role = role;
+  }
+
+  public String getEmail() {
+    return email;
+  }
+
+  public void setEmail(String email) {
+    this.email = email;
+  }
+
+  public ArrayList<Product> getShoppingCart() {
+    return shoppingCart;
+  }
+
+  public void setShoppingCart(ArrayList<Product> shoppingCart) {
+    this.shoppingCart = shoppingCart;
   }
 
   @NonNull

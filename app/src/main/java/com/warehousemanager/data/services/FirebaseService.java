@@ -1,17 +1,13 @@
 package com.warehousemanager.data.services;
 
 import android.support.annotation.NonNull;
-import android.util.Log;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.warehousemanager.data.db.entities.UserEntity;
-
-import java.util.List;
+import com.warehousemanager.data.db.entities.User;
 
 public class FirebaseService {
 
@@ -27,10 +23,10 @@ public class FirebaseService {
     this.firebaseUserCallback = firebaseUserCallback;
   }
 
-  public void addUser(UserEntity userEntity) {
+  public void addUser(User user) {
     firebaseFirestore.collection("users")
-      .document(userEntity.getUsername())
-      .set(userEntity)
+      .document(user.getUsername())
+      .set(user)
       .addOnSuccessListener(new OnSuccessListener<Void>() {
         @Override
         public void onSuccess(Void aVoid) {
@@ -56,13 +52,13 @@ public class FirebaseService {
       .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
         @Override
         public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-          UserEntity user = null;
+          User user = null;
           for (DocumentSnapshot document : queryDocumentSnapshots.getDocuments()) {
             String name = document.get("name").toString();
             String username = document.get("username").toString();
             String password = document.get("password").toString();
             String role = document.get("role").toString();
-            user = new UserEntity(name, username, password, role);
+            user = new User(name, username, password, role);
           }
           if(firebaseUserCallback != null) {
             firebaseUserCallback.onUserFetchComplete(user);
