@@ -18,7 +18,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
-        android:text="@string/products_fragment" />
+        android:layout_below="@id/toolbar2"
+        android:text="SOMETHING" />
 
 </RelativeLayout>

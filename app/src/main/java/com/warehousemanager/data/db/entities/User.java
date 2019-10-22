@@ -30,9 +30,6 @@ public class User {
   @SerializedName("role")
   private String role;
 
-  private String email;
-  private ArrayList<Product> shoppingCart;
-
 
   public User(String name, String username, String password, String role) {
     this.name = name;
@@ -79,22 +76,6 @@ public class User {
 
   public void setRole(String role) {
     this.role = role;
-  }
-
-  public String getEmail() {
-    return email;
-  }
-
-  public void setEmail(String email) {
-    this.email = email;
-  }
-
-  public ArrayList<Product> getShoppingCart() {
-    return shoppingCart;
-  }
-
-  public void setShoppingCart(ArrayList<Product> shoppingCart) {
-    this.shoppingCart = shoppingCart;
   }
 
   @NonNull

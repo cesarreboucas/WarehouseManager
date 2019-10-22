@@ -19,7 +19,6 @@ import dagger.android.AndroidInjection;
 
 public class SignUpActivity extends AppCompatActivity implements FirebaseUserCallback {
 
-  @Inject
   FirebaseService firebaseService;
 
   EditText editPassword;
@@ -28,11 +27,11 @@ public class SignUpActivity extends AppCompatActivity implements FirebaseUserCal
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
-    AndroidInjection.inject(this);
-    firebaseService.setUserCallback(this);
-
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_sign_up);
+
+    firebaseService = new FirebaseService();
+    firebaseService.setUserCallback(this);
 
     Toolbar toolbar = findViewById(R.id.signUpToolBar);
 

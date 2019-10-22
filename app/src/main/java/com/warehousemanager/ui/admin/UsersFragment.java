@@ -18,6 +18,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
 import com.warehousemanager.R;
 import com.warehousemanager.data.internal.JsonReader;
 import com.warehousemanager.data.internal.model.UserRow;
@@ -29,7 +30,7 @@ import javax.inject.Inject;
 import dagger.android.AndroidInjection;
 import dagger.android.support.DaggerFragment;
 
-public class UsersFragment extends DaggerFragment
+public class UsersFragment extends Fragment
   implements FragmentInteraction, View.OnClickListener {
 
     private FragmentInteraction mListener;
@@ -38,7 +39,7 @@ public class UsersFragment extends DaggerFragment
     private Toolbar toolbar;
     private FloatingActionButton floatingActionButton;
 
-    @Inject
+    Gson gson;
     JsonReader jsonReader;
 
     public UsersFragment() {
@@ -47,6 +48,11 @@ public class UsersFragment extends DaggerFragment
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        // Dependencies
+        gson = new Gson();
+        jsonReader = new JsonReader(gson, getContext());
+
         View view = inflater.inflate(R.layout.fragment_admin_users, container, false);
         usersList = view.findViewById(R.id.usersList);
         toolbar = view.findViewById(R.id.toolbar);

@@ -13,7 +13,7 @@ public interface UserDao {
   @Insert(onConflict = OnConflictStrategy.REPLACE)
   long insertUser(User user);
 
-  @Query("SELECT * FROM User WHERE id = 0")
+  @Query("SELECT * FROM user_table WHERE id = 0")
   User getUser();
 
 }

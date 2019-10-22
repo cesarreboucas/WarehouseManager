@@ -15,8 +15,8 @@ public class FirebaseService {
 
   private FirebaseUserCallback firebaseUserCallback = null;
 
-  public FirebaseService(FirebaseFirestore firebaseFirestore) {
-    this.firebaseFirestore = firebaseFirestore;
+  public FirebaseService() {
+    this.firebaseFirestore = FirebaseFirestore.getInstance();
   }
 
   public void setUserCallback(FirebaseUserCallback firebaseUserCallback) {

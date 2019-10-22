@@ -1,5 +1,6 @@
 package com.warehousemanager.ui;
 
+import android.arch.persistence.room.Room;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -19,12 +20,9 @@ import javax.inject.Inject;
 import dagger.android.AndroidInjection;
 
 public class SignInActivity extends AppCompatActivity implements FirebaseUserCallback {
-
-    @Inject
-    WarehouseDatabase warehouseDatabase;
-
-    @Inject
     FirebaseService firebaseService;
+
+    WarehouseDatabase warehouseDatabase;
 
     String username, password;
 
@@ -32,11 +30,12 @@ public class SignInActivity extends AppCompatActivity implements FirebaseUserCal
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        AndroidInjection.inject(this);
-        firebaseService.setUserCallback(this);
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
+
+        firebaseService = new FirebaseService();
+        firebaseService.setUserCallback(this);
+        warehouseDatabase = WarehouseDatabase.getAppDatabase(this.getApplicationContext());
 
         editUsername = findViewById(R.id.editUsername);
         editPassword = findViewById(R.id.editPassword);
