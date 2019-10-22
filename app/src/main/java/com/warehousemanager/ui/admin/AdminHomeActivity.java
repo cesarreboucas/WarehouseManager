@@ -1,27 +1,19 @@
 package com.warehousemanager.ui.admin;
 
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Message;
 import android.support.annotation.NonNull;
-import android.support.design.internal.BottomNavigationMenuView;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Toast;
 
 import com.warehousemanager.R;
 import com.warehousemanager.data.db.WarehouseDatabase;
 import com.warehousemanager.data.db.entities.UserEntity;
-import com.warehousemanager.ui.admin.UserDetail;
-import com.warehousemanager.ui.admin.UsersFragment;
 
 import javax.inject.Inject;
 
@@ -62,7 +54,7 @@ public class AdminHomeActivity extends DaggerAppCompatActivity
   @Override
   public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
     switch (menuItem.getItemId()) {
-      case R.id.homeMenu:
+      case R.id.summaryMenu:
         break;
       case R.id.userMenu:
         Fragment fragment = getSupportFragmentManager().findFragmentByTag(UsersFragment.class.getName());

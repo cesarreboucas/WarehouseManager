@@ -3,10 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/homeMenu"
-        android:icon="@drawable/ic_home_black_24dp"
-        android:title="@string/home_menu" />
-    <item
         android:id="@+id/userMenu"
         android:icon="@drawable/ic_person_black_24dp"
         android:title="@string/users_menu" />
@@ -18,4 +14,12 @@
         android:id="@+id/warehouseMenu"
         android:icon="@drawable/ic_store_mall_directory_black_24dp"
         android:title="@string/signInWarehouse" />
+    <item
+        android:id="@+id/summaryMenu"
+        android:icon="@drawable/ic_attach_money_black_24dp"
+        android:title="@string/summaryMenu" />
+    <item
+        android:title="Reports"
+        android:id="@+id/reportsMenu"
+        android:icon="@drawable/ic_warning_black_24dp" />
 </menu>
