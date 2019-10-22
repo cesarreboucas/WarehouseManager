@@ -68,7 +68,7 @@ public class AdminHomeActivity extends DaggerAppCompatActivity
     FragmentTransaction fragmentTransactionAttach = fragmentManager.beginTransaction();
 
     switch (menuItem.getItemId()) {
-      case R.id.homeMenu:
+      case R.id.summaryMenu:
         break;
       case R.id.userMenu:
           fragment = getSupportFragmentManager().findFragmentByTag(UsersFragment.class.getName());
