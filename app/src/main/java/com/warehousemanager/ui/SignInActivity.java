@@ -9,7 +9,7 @@ import android.widget.Toast;
 
 import com.warehousemanager.R;
 import com.warehousemanager.data.db.WarehouseDatabase;
-import com.warehousemanager.data.db.entities.UserEntity;
+import com.warehousemanager.data.db.entities.User;
 import com.warehousemanager.data.services.FirebaseService;
 import com.warehousemanager.data.services.FirebaseUserCallback;
 import com.warehousemanager.ui.admin.AdminHomeActivity;
@@ -80,13 +80,13 @@ public class SignInActivity extends AppCompatActivity implements FirebaseUserCal
     }
 
     @Override
-    public void onUserFetchComplete(UserEntity userEntity) {
-        if(userEntity == null) {
+    public void onUserFetchComplete(User user) {
+        if(user == null) {
             Toast.makeText(this, "This user dont exist", Toast.LENGTH_SHORT).show();
         } else {
-            if(userEntity.getPassword().equals(password)) {
+            if(user.getPassword().equals(password)) {
                 Toast.makeText(this, "Logged successfully", Toast.LENGTH_SHORT).show();
-                warehouseDatabase.userDao().insertUser(userEntity);
+                warehouseDatabase.userDao().insertUser(user);
                 Intent it = new Intent(this, AdminHomeActivity.class);
                 startActivity(it);
             }

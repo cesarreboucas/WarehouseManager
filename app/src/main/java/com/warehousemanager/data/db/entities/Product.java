@@ -1,11 +1,24 @@
 package com.warehousemanager.data.db.entities;
 
-public class ProductEntity {
+import android.arch.persistence.room.Entity;
 
+@Entity(tableName = "product_table")
+public class Product {
+
+    private String name;
     private String description;
     private double cost;
     private double price;
     private String barcode;
+    private int quantity;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public String getDescription() {
         return description;
@@ -37,5 +50,13 @@ public class ProductEntity {
 
     public void setBarcode(String barcode) {
         this.barcode = barcode;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 }
