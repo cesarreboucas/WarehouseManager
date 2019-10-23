@@ -8,7 +8,7 @@
   android:background="@android:color/white">
   <RelativeLayout
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="800dp"
     tools:context=".ui.admin.user.AddUserFragment">
 
     <TextView
@@ -72,30 +72,16 @@
       android:layout_marginTop="291dp"
       android:entries="@array/roles_entries"/>
 
-    <de.hdodenhof.circleimageview.CircleImageView
-      android:id="@+id/imgPicture"
-      android:layout_width="125dp"
-      android:layout_height="125dp"
-      android:layout_alignParentStart="true"
-      android:layout_alignParentTop="true"
-      android:layout_marginStart="156dp"
-      android:layout_marginTop="398dp"
-      android:src="@drawable/ic_person_black_24dp"
-      app:civ_border_color="#DEDEDE"
-      app:civ_border_width="2dp"/>
-
     <Button
-      android:id="@+id/btnTakePicture"
-      android:layout_width="wrap_content"
+      android:id="@+id/btnCreateUser"
+      android:layout_width="321dp"
       android:layout_height="wrap_content"
       android:layout_alignParentStart="true"
       android:layout_alignParentTop="true"
-      android:layout_alignParentEnd="true"
-      android:layout_marginStart="154dp"
-      android:layout_marginTop="326dp"
-      android:layout_marginEnd="126dp"
-      android:stateListAnimator="@null"
-      android:text="Take a picture" />
+      android:layout_marginStart="51dp"
+      android:layout_marginTop="353dp"
+      android:text="CREATE USER" />
+
 
   </RelativeLayout>
 </ScrollView>
