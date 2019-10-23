@@ -4,7 +4,7 @@
   android:layout_width="match_parent"
   android:layout_height="match_parent"
   xmlns:app="http://schemas.android.com/apk/res-auto"
-  tools:context=".ui.admin.UsersFragment">
+  tools:context=".ui.admin.user.UsersFragment">
 
 
     <android.support.v7.widget.Toolbar
@@ -17,27 +17,6 @@
       app:navigationIcon="@drawable/back_arrow_clipart"
       app:title="Users"
       app:titleTextAppearance="@style/ActionBar.nameText"/>
-
-    <android.support.v7.widget.RecyclerView
-      android:id="@+id/usersList"
-      android:layout_width="match_parent"
-      android:layout_height="match_parent"
-      android:layout_below="@+id/toolbar"
-      android:layout_alignParentStart="true"
-      android:layout_alignParentEnd="true"
-      android:layout_centerHorizontal="true" />
-
-    <android.support.design.widget.FloatingActionButton
-      android:id="@+id/floatingActionButton"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_alignParentEnd="true"
-      android:layout_alignParentBottom="true"
-      android:layout_marginEnd="27dp"
-      android:layout_marginBottom="19dp"
-      android:clickable="true"
-      android:focusable="true"
-      android:src="@android:drawable/ic_input_add" />
 
     <FrameLayout
       android:id="@+id/usersFragmentContainer"

@@ -18,8 +18,8 @@ public class JsonReader {
   Gson gson;
   Context context;
 
-  public JsonReader(Gson gson, Context context) {
-    this.gson = gson;
+  public JsonReader(Context context) {
+    this.gson = new Gson();
     this.context = context;
   }
 

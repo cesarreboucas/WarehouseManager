@@ -3,31 +3,23 @@ package com.warehousemanager.ui.admin;
 import android.os.Message;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.MenuItem;
 
 import com.warehousemanager.R;
 import com.warehousemanager.data.db.WarehouseDatabase;
-import com.warehousemanager.data.db.entities.User;
+import com.warehousemanager.data.internal.BottomNavigatorManager;
 import com.warehousemanager.data.internal.FragmentManagerHelper;
+import com.warehousemanager.data.internal.IFragmentManagerHelper;
+import com.warehousemanager.ui.admin.product.ProductsFragment;
+import com.warehousemanager.ui.admin.user.UsersFragment;
 
-import java.util.List;
-
-import javax.inject.Inject;
-
-import dagger.android.AndroidInjection;
-import dagger.android.support.DaggerAppCompatActivity;
-
-public class AdminHomeActivity extends AppCompatActivity
+public class HomeActivity extends AppCompatActivity
   implements FragmentInteraction, BottomNavigationView.OnNavigationItemSelectedListener{
 
   WarehouseDatabase warehouseDatabase;
-  FragmentManagerHelper fragmentManagerHelper;
+  IFragmentManagerHelper fragmentManagerHelper;
 
   BottomNavigationView bottomNavigationView;
 
@@ -39,7 +31,8 @@ public class AdminHomeActivity extends AppCompatActivity
     // Dependencies
     warehouseDatabase = WarehouseDatabase.getAppDatabase(getApplicationContext());
     fragmentManagerHelper =
-            new FragmentManagerHelper(getSupportFragmentManager(), R.id.fragmentContainer);
+            new BottomNavigatorManager(getSupportFragmentManager(), R.id.fragmentContainer);
+    fragmentManagerHelper.attach(UsersFragment.class);
 
     bottomNavigationView = findViewById(R.id.bottomNavigationView);
     bottomNavigationView.setOnNavigationItemSelectedListener(this);
@@ -56,10 +49,10 @@ public class AdminHomeActivity extends AppCompatActivity
       case R.id.summaryMenu:
         break;
       case R.id.userMenu:
-        fragmentManagerHelper.attachFragment(UsersFragment.class);
+        fragmentManagerHelper.attach(UsersFragment.class);
         break;
       case R.id.productMenu:
-        fragmentManagerHelper.attachFragment(ProductsFragment.class);
+        fragmentManagerHelper.attach(ProductsFragment.class);
         break;
       case R.id.warehouseMenu:
         break;

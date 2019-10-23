@@ -1,4 +1,4 @@
-package com.warehousemanager.ui.admin;
+package com.warehousemanager.ui.admin.user;
 
 import android.graphics.Bitmap;
 import android.support.annotation.NonNull;

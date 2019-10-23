@@ -1,7 +1,6 @@
-package com.warehousemanager.ui.admin;
+package com.warehousemanager.ui.admin.product;
 
 import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.Message;
 import android.support.v4.app.Fragment;
@@ -10,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.warehousemanager.R;
+import com.warehousemanager.ui.admin.FragmentInteraction;
 
 public class ProductsFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
