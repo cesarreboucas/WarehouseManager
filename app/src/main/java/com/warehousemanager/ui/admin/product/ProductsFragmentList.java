@@ -36,7 +36,7 @@ public class ProductsFragmentList extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable final ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_admin_products_list, container, false);
+        final View view = inflater.inflate(R.layout.fragment_admin_products_list, container, false);
         productsListRecyclerView = view.findViewById(R.id.productsList);
         fragmentManagerHelper = new FragmentManagerHelper(getFragmentManager(), R.id.productsFragmentContainer);
 
@@ -44,7 +44,7 @@ public class ProductsFragmentList extends Fragment {
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(container.getContext(), "Clicked", Toast.LENGTH_SHORT).show();
+                fragmentManagerHelper.attach(AddProductsFragment.class);
             }
         });
 

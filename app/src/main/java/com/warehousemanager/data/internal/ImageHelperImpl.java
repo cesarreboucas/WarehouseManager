@@ -21,7 +21,14 @@ public class ImageHelperImpl implements ImageHelper {
   public String convertBitmapToBase64(Bitmap image) {
     ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
     image.compress(Bitmap.CompressFormat.PNG, 100, outputStream);
+    return Base64.encodeToString(outputStream.toByteArray(), Base64.DEFAULT);
+  }
 
+  @Override
+  public String convertBitmapToBase64Resized(Bitmap image) {
+    Bitmap resized = Bitmap.createScaledBitmap(image,150,150,false);
+    ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+    resized.compress(Bitmap.CompressFormat.PNG, 100, outputStream);
     return Base64.encodeToString(outputStream.toByteArray(), Base64.DEFAULT);
   }
 }
