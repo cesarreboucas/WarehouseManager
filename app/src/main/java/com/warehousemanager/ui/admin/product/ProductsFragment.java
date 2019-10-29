@@ -1,82 +1,41 @@
 package com.warehousemanager.ui.admin.product;
 
-import android.content.Context;
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.os.Message;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.warehousemanager.R;
+import com.warehousemanager.data.internal.FragmentManagerHelper;
+import com.warehousemanager.data.internal.IFragmentManagerHelper;
 import com.warehousemanager.ui.admin.FragmentInteraction;
 
-public class ProductsFragment extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+public class ProductsFragment extends Fragment implements FragmentInteraction {
 
     private FragmentInteraction mListener;
+    private IFragmentManagerHelper fragmentManagerHelper;
 
-    public ProductsFragment() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment ProductsFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static ProductsFragment newInstance(String param1, String param2) {
-        ProductsFragment fragment = new ProductsFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
+    public ProductsFragment() {}
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_admin_products, container, false);
-    }
+        View view =  inflater.inflate(R.layout.fragment_admin_products, container, false);
+        fragmentManagerHelper = new FragmentManagerHelper(getChildFragmentManager(), R.id.productsFragmentContainer);
+        fragmentManagerHelper.attach(ProductsFragmentList.class);
 
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Message message) {
-        if (mListener != null) {
-            mListener.sendMessage(message);
-        }
-    }
-
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        if (context instanceof FragmentInteraction) {
-            mListener = (FragmentInteraction) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
-        }
+        Toolbar toolbar = view.findViewById(R.id.toolbarProdMain);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                fragmentManagerHelper.goBack();
+            }
+        });
+        return view;
     }
 
     @Override
@@ -84,4 +43,7 @@ public class ProductsFragment extends Fragment {
         super.onDetach();
         mListener = null;
     }
+
+    @Override
+    public void sendMessage(Message message) {   }
 }

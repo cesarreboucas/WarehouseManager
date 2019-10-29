@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.warehousemanager.data.db.entities.Product;
 import com.warehousemanager.data.internal.model.UserRow;
 
 import java.io.IOException;
@@ -39,5 +40,22 @@ public class JsonReader {
       return userRows;
     }
     return userRows;
+  }
+
+  public List<Product> getProducts() {
+    List<Product> products = new ArrayList<>();
+    try {
+      InputStream is = context.getAssets().open("products_list_template.json");
+      int size = is.available();
+      byte[] buffer = new byte[size];
+      is.read(buffer);
+      is.close();
+      String json = new String(buffer, StandardCharsets.UTF_8);
+      products = gson.fromJson(json, new TypeToken<List<Product>>(){}.getType());
+
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+    return products;
   }
 }

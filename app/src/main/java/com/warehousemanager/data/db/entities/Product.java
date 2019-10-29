@@ -10,7 +10,8 @@ public class Product {
     private double cost;
     private double price;
     private String barcode;
-    private int quantity;
+    private String picture;
+    //private int quantity;
 
     public String getName() {
         return name;
@@ -52,11 +53,19 @@ public class Product {
         this.barcode = barcode;
     }
 
-    public int getQuantity() {
+    /*public int getQuantity() {
         return quantity;
+    }*/
+
+    /*public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }*/
+
+    public String getPicture() {
+        return picture;
     }
 
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
+    public void setPicture(String picture) {
+        this.picture = picture;
     }
 }

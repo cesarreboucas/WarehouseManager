@@ -39,8 +39,8 @@ public class SignInActivity extends AppCompatActivity implements FirebaseUserCal
         findViewById(R.id.imageView).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                editUsername.setText("teste@teste.com");
-                editPassword.setText("teste");
+                editUsername.setText("cesar");
+                editPassword.setText("1234");
             }
         });
 
