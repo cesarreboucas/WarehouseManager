@@ -30,12 +30,20 @@ public class User {
   @SerializedName("role")
   private String role;
 
+  @SerializedName("question")
+  private String question;
 
-  public User(String name, String username, String password, String role) {
+  @SerializedName("answer")
+  private String answer;
+
+
+  public User(String name, String username, String password, String role, String question, String answer) {
     this.name = name;
     this.username = username;
     this.password = password;
     this.role = role;
+    this.question = question;
+    this.answer = answer;
   }
 
   public Long getId() {
@@ -77,6 +85,14 @@ public class User {
   public void setRole(String role) {
     this.role = role;
   }
+
+  public String getQuestion() { return question; }
+
+  public void setQuestion(String question) { this.question = question; }
+
+  public String getAnswer() { return answer; }
+
+  public void setAnswer(String answer) { this.answer = answer; }
 
   @NonNull
   @Override
