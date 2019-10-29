@@ -10,6 +10,7 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -59,6 +60,12 @@ public class UsersFragmentList extends Fragment implements View.OnClickListener 
     usersList.setItemAnimator(new DefaultItemAnimator());
 
     return view;
+  }
+
+  @Override
+  public void onResume() {
+    super.onResume();
+    Log.d("USERS", "RESUME");
   }
 
   @Override
