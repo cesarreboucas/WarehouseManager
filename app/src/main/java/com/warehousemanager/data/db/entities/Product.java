@@ -11,7 +11,7 @@ public class Product {
     private double price;
     private String barcode;
     private String picture;
-    private int quantity;
+    //private int quantity;
 
     public String getName() {
         return name;
@@ -53,13 +53,13 @@ public class Product {
         this.barcode = barcode;
     }
 
-    public int getQuantity() {
+    /*public int getQuantity() {
         return quantity;
-    }
+    }*/
 
-    public void setQuantity(int quantity) {
+    /*public void setQuantity(int quantity) {
         this.quantity = quantity;
-    }
+    }*/
 
     public String getPicture() {
         return picture;

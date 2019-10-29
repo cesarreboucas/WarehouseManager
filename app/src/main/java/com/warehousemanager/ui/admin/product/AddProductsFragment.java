@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
 import com.vansuita.pickimage.bean.PickResult;
 import com.vansuita.pickimage.bundle.PickSetup;
 import com.vansuita.pickimage.dialog.PickImageDialog;
@@ -22,6 +24,12 @@ import com.warehousemanager.R;
 import com.warehousemanager.data.db.entities.Product;
 import com.warehousemanager.data.internal.ImageHelper;
 import com.warehousemanager.data.internal.ImageHelperImpl;
+import com.warehousemanager.data.network.IWarehouseService;
+import com.warehousemanager.data.network.WarehouseService;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class AddProductsFragment extends Fragment implements View.OnClickListener {
 
@@ -37,6 +45,7 @@ public class AddProductsFragment extends Fragment implements View.OnClickListene
         Button btnAdd = view.findViewById(R.id.btnAdd);
         picture = view.findViewById(R.id.picture);
         btnLoadImage.setOnClickListener(this);
+        btnAdd.setOnClickListener(this);
         return view;
     }
 
@@ -56,7 +65,6 @@ public class AddProductsFragment extends Fragment implements View.OnClickListene
                         String pic = imageHelper.convertBitmapToBase64Resized(r.getBitmap());
                         p.setPicture(pic);
                         picture.setImageBitmap(r.getBitmap());
-                        //TODO validate fields end execute add.
                     }
                 })
                 .setOnPickCancel(new IPickCancel() {
@@ -65,6 +73,28 @@ public class AddProductsFragment extends Fragment implements View.OnClickListene
                     }
                 }).show(getFragmentManager());
             break;
+            case R.id.btnAdd:
+                Product product = new Product();
+                product.setName("Prod Namee");
+                product.setDescription("Some Description");
+                product.setCost(15);
+                product.setPrice(25);
+                product.setBarcode(String.valueOf(System.currentTimeMillis()));
+                product.setPicture("picture");
+
+                IWarehouseService warehouseService = WarehouseService.getInstance().create(IWarehouseService.class);
+                warehouseService.createProduct(product).enqueue(new Callback<Product>() {
+                    @Override
+                    public void onResponse(Call<Product> call, Response<Product> response) {
+                        Log.d("AAA", "AAAAA");
+                    }
+
+                    @Override
+                    public void onFailure(Call<Product> call, Throwable t) {
+                        Log.d("BBB", "BBBBBBB");
+                    }
+                });
         }
     }
 }
+
