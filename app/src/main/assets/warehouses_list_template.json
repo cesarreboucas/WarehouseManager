@@ -1,0 +1,23 @@
+[
+    {
+        "id": "1",
+        "name":"Vancouver Warehouse",
+        "capacity":"0",
+        "location":""
+    } , {
+        "id": "2",
+        "name":"Burnaby Warehouse",
+        "capacity":"0",
+        "location":""
+    } , {
+        "id": "3",
+        "name":"Surrey Warehouse",
+        "capacity":"0",
+        "location":""
+    } , {
+        "id": "4",
+        "name":"Richmond Warehouse",
+        "capacity":"0",
+        "location":""
+    }
+]

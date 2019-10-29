@@ -9,7 +9,7 @@
     </style>
 
     <style name="toolbarMenuTheme" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
-        <item name="android:colorBackground">@color/colorPrimaryDark</item>
+        <item name="android:colorBackground">@color/colorToolbarBackground</item>
         <item name="android:textColor">@android:color/white</item>
         <item name="android:textSize">10sp</item>
         <item name="android:textStyle">bold</item>

@@ -58,7 +58,9 @@ public class FirebaseService {
             String username = document.get("username").toString();
             String password = document.get("password").toString();
             String role = document.get("role").toString();
-            user = new User(name, username, password, role);
+            String question = document.get("question").toString();
+            String answer = document.get("answer").toString();
+            user = new User(name, username, password, role, question, answer);
           }
           if(firebaseUserCallback != null) {
             firebaseUserCallback.onUserFetchComplete(user);

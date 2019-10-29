@@ -11,9 +11,8 @@
     android:id="@+id/signUpToolBar"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="?attr/colorPrimary"
     android:minHeight="?attr/actionBarSize"
-    android:theme="?attr/actionBarTheme"
+    android:background="@color/colorToolbarBackground"
     app:title="Sign up"
     app:titleTextAppearance="@style/ActionBar.nameText"
     app:layout_constraintEnd_toEndOf="parent"
@@ -29,49 +28,60 @@
     app:layout_constraintGuide_percent="0.16" />
 
   <EditText
-    android:textColor="@android:color/white"
-    android:id="@+id/editPassword"
-    android:layout_width="325dp"
-    android:layout_height="46dp"
-    android:layout_marginTop="220dp"
-    android:background="@drawable/edit_background"
-    android:drawableStart="@drawable/hide_password_clipart"
-    android:ems="10"
-    android:inputType="textPassword"
-    android:paddingStart="@dimen/editPaddingLeftRightIcon"
-    android:paddingEnd="@dimen/editPaddingLeftRightIcon"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintHorizontal_bias="0.465"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="@+id/fieldsGuideline" />
+      android:id="@+id/editPassword"
+      android:layout_width="325dp"
+      android:layout_height="43dp"
+      android:layout_marginTop="180dp"
+      android:background="@drawable/edit_background"
+      android:drawableStart="@drawable/hide_password_clipart"
+      android:ems="10"
+      android:inputType="textPassword"
+      android:paddingStart="@dimen/editPaddingLeftRightIcon"
+      android:paddingEnd="@dimen/editPaddingLeftRightIcon"
+      android:fontFamily="@font/montserrat"
+      android:textColor="@android:color/white"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="@+id/fieldsGuideline" />
 
   <TextView
-    android:id="@+id/txtPassword"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:fontFamily="@font/montserrat"
-    android:text="@string/txtPassword"
-    android:textColor="@android:color/white"
-    android:textSize="@dimen/txtInput"
-    app:layout_constraintBottom_toTopOf="@+id/editPassword"
-    app:layout_constraintStart_toStartOf="@+id/editPassword" />
+      android:id="@+id/txtPassword"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:fontFamily="@font/montserrat"
+      android:text="@string/txtPassword"
+      android:textColor="@android:color/white"
+      android:textSize="@dimen/txtInput"
+      app:layout_constraintBottom_toTopOf="@+id/editPassword"
+      app:layout_constraintStart_toStartOf="@+id/editPassword" />
+
+  <TextView
+      android:id="@+id/txtQuestion"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:fontFamily="@font/montserrat"
+      android:text="@string/txtQuestion"
+      android:textColor="@android:color/white"
+      android:textSize="@dimen/txtInput"
+      app:layout_constraintBottom_toTopOf="@+id/spinnerQuestions"
+      app:layout_constraintStart_toStartOf="@+id/spinnerQuestions" />
 
   <EditText
-    android:textColor="@android:color/white"
-    android:id="@+id/editUsername"
-    android:layout_width="325dp"
-    android:layout_height="43dp"
-    android:layout_marginTop="132dp"
-    android:background="@drawable/edit_background"
-    android:drawableStart="@drawable/email_white_clipart"
-    android:ems="10"
-    android:inputType="textEmailAddress"
-    android:paddingStart="@dimen/editPaddingLeftRightIcon"
-    android:paddingEnd="@dimen/editPaddingLeftRightIcon"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintHorizontal_bias="0.465"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="@+id/fieldsGuideline" />
+      android:id="@+id/editUsername"
+      android:layout_width="325dp"
+      android:layout_height="43dp"
+      android:layout_marginTop="90dp"
+      android:background="@drawable/edit_background"
+      android:drawableStart="@drawable/email_white_clipart"
+      android:ems="10"
+      android:inputType="textEmailAddress"
+      android:paddingStart="@dimen/editPaddingLeftRightIcon"
+      android:paddingEnd="@dimen/editPaddingLeftRightIcon"
+      android:fontFamily="@font/montserrat"
+      android:textColor="@android:color/white"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="@+id/fieldsGuideline" />
 
   <TextView
     android:id="@+id/txtUsername"
@@ -85,11 +95,11 @@
     app:layout_constraintStart_toStartOf="@+id/editUsername" />
 
   <android.support.constraint.Guideline
-    android:id="@+id/guideline3"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    app:layout_constraintGuide_percent="0.68" />
+      android:id="@+id/guideline3"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:orientation="horizontal"
+      app:layout_constraintGuide_end="100dp" />
 
   <TextView
     android:id="@+id/textView3"
@@ -103,21 +113,20 @@
     app:layout_constraintStart_toStartOf="@+id/editName" />
 
   <EditText
-    android:id="@+id/editName"
-    android:layout_width="325dp"
-    android:layout_height="43dp"
-    android:layout_marginTop="40dp"
-    android:background="@drawable/edit_background"
-    android:drawableStart="@drawable/name_white_clipart"
-    android:ems="10"
-    android:inputType="textPersonName"
-    android:onClick="onSignUp"
-    android:paddingStart="@dimen/editPaddingLeftRightIcon"
-    android:paddingEnd="@dimen/editPaddingLeftRightIcon"
-    android:textColor="@android:color/white"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="@+id/fieldsGuideline" />
+      android:id="@+id/editName"
+      android:layout_width="325dp"
+      android:layout_height="43dp"
+      android:background="@drawable/edit_background"
+      android:drawableStart="@drawable/name_white_clipart"
+      android:ems="10"
+      android:inputType="textPersonName"
+      android:onClick="onSignUp"
+      android:paddingStart="@dimen/editPaddingLeftRightIcon"
+      android:paddingEnd="@dimen/editPaddingLeftRightIcon"
+      android:textColor="@android:color/white"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="@+id/fieldsGuideline" />
 
   <Button
     android:id="@+id/btnSignUp"
@@ -130,5 +139,47 @@
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toTopOf="@+id/guideline3"
     android:onClick="onSignUp"/>
+
+  <Spinner
+      android:id="@+id/spinnerQuestions"
+      android:layout_width="325dp"
+      android:layout_height="43dp"
+      android:layout_marginStart="8dp"
+      android:layout_marginTop="270dp"
+      android:layout_marginEnd="8dp"
+      android:background="@drawable/edit_background"
+      android:popupBackground="@color/colorGradient2"
+      android:textColor="@android:color/white"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="@+id/editName" />
+
+  <TextView
+      android:id="@+id/txtAnswer"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:fontFamily="@font/montserrat"
+      android:text="@string/txtAnswer"
+      android:textColor="@android:color/white"
+      android:textSize="@dimen/txtInput"
+      app:layout_constraintBottom_toTopOf="@+id/editAnswer"
+      app:layout_constraintStart_toStartOf="@+id/editAnswer" />
+
+  <EditText
+      android:id="@+id/editAnswer"
+      android:layout_width="325dp"
+      android:layout_height="43dp"
+      android:layout_marginTop="360dp"
+      android:fontFamily="@font/montserrat"
+      android:background="@drawable/edit_background"
+      android:ems="10"
+      android:inputType="textPersonName"
+      android:onClick="onSignUp"
+      android:paddingStart="15dp"
+      android:paddingEnd="@dimen/editPaddingLeftRightIcon"
+      android:textColor="@android:color/white"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="@+id/fieldsGuideline" />
 
 </android.support.constraint.ConstraintLayout>

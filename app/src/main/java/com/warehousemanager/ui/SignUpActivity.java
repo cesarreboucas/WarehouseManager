@@ -5,7 +5,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.warehousemanager.R;
@@ -24,6 +26,9 @@ public class SignUpActivity extends AppCompatActivity implements FirebaseUserCal
   EditText editPassword;
   EditText editUsername;
   EditText editName;
+  Spinner spinnerQuestions;
+  EditText editAnswer;
+
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +44,14 @@ public class SignUpActivity extends AppCompatActivity implements FirebaseUserCal
     editUsername = findViewById(R.id.editUsername);
     editPassword = findViewById(R.id.editPassword);
 
+    spinnerQuestions = findViewById(R.id.spinnerQuestions);
+    ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+            R.layout.spinner_item,
+            getResources().getStringArray(R.array.questions_entries));
+    spinnerQuestions.setAdapter(adapter);
+
+    editAnswer = findViewById(R.id.editAnswer);
+
     toolbar.setNavigationOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
@@ -53,7 +66,10 @@ public class SignUpActivity extends AppCompatActivity implements FirebaseUserCal
     String username = editUsername.getText().toString();
     String password = editPassword.getText().toString();
     String name = editName.getText().toString();
-    User user = new User(name, username, password, "client");
+    String question = spinnerQuestions.getSelectedItem().toString();
+    String answer = editAnswer.getText().toString();
+
+    User user = new User(name, username, password, "client", question, answer);
     firebaseService.addUser(user);
   }
 
