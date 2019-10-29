@@ -63,8 +63,8 @@
       android:text="@string/txtQuestion"
       android:textColor="@android:color/white"
       android:textSize="@dimen/txtInput"
-      app:layout_constraintBottom_toTopOf="@+id/spinnerQuestions"
-      app:layout_constraintStart_toStartOf="@+id/spinnerQuestions" />
+      app:layout_constraintBottom_toTopOf="@+id/spinnerRoles"
+      app:layout_constraintStart_toStartOf="@+id/spinnerRoles" />
 
   <EditText
       android:id="@+id/editUsername"
@@ -141,7 +141,7 @@
     android:onClick="onSignUp"/>
 
   <Spinner
-      android:id="@+id/spinnerQuestions"
+      android:id="@+id/spinnerRoles"
       android:layout_width="325dp"
       android:layout_height="43dp"
       android:layout_marginStart="8dp"

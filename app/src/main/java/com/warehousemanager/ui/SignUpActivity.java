@@ -15,10 +15,6 @@ import com.warehousemanager.data.db.entities.User;
 import com.warehousemanager.data.services.FirebaseService;
 import com.warehousemanager.data.services.FirebaseUserCallback;
 
-import javax.inject.Inject;
-
-import dagger.android.AndroidInjection;
-
 public class SignUpActivity extends AppCompatActivity implements FirebaseUserCallback {
 
   FirebaseService firebaseService;
@@ -44,7 +40,7 @@ public class SignUpActivity extends AppCompatActivity implements FirebaseUserCal
     editUsername = findViewById(R.id.editUsername);
     editPassword = findViewById(R.id.editPassword);
 
-    spinnerQuestions = findViewById(R.id.spinnerQuestions);
+    spinnerQuestions = findViewById(R.id.spinnerRoles);
     ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
             R.layout.spinner_item,
             getResources().getStringArray(R.array.questions_entries));
