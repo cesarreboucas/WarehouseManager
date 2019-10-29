@@ -14,11 +14,7 @@ public class WarehouseService {
 
     public static Retrofit getInstance() {
         if(retrofit==null) {
-            HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
-            interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
-            OkHttpClient client = new OkHttpClient.Builder().addInterceptor(interceptor).build();
-
-
+            OkHttpClient client = new OkHttpClient.Builder().build();
             retrofit = new Retrofit.Builder()
                     .baseUrl("http://10.0.2.2:8000")
                     .addConverterFactory(GsonConverterFactory.create())

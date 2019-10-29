@@ -1,7 +1,11 @@
 package com.warehousemanager.ui.admin.product;
 
+import android.content.Context;
+import android.os.Message;
 import android.support.annotation.NonNull;
+import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +15,7 @@ import com.warehousemanager.R;
 import com.warehousemanager.data.db.entities.Product;
 import com.warehousemanager.data.internal.ImageHelper;
 import com.warehousemanager.data.internal.ImageHelperImpl;
+import com.warehousemanager.ui.admin.FragmentInteraction;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,9 +26,11 @@ public class ProductsListAdapter extends RecyclerView.Adapter<ProductsListAdapte
 
     List<Product> products;
     ImageHelper imageHelper = new ImageHelperImpl();
+    private Fragment context;
 
-    public ProductsListAdapter(List<Product> products) {
+    public ProductsListAdapter(List<Product> products, Fragment context) {
         this.products = products;
+        this.context = context;
     }
 
     @NonNull
@@ -36,11 +43,20 @@ public class ProductsListAdapter extends RecyclerView.Adapter<ProductsListAdapte
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ProductsViewHolder productsViewHolder, int i) {
+    public void onBindViewHolder(@NonNull ProductsViewHolder productsViewHolder, final int i) {
         productsViewHolder.name.setText(products.get(i).getName());
         productsViewHolder.description.setText(products.get(i).getDescription());
         productsViewHolder.cost.setText(String.format("%.2f",products.get(i).getCost()));
         productsViewHolder.picture.setImageBitmap(imageHelper.convertBase64ToBitmap(products.get(i).getPicture()));
+        productsViewHolder.view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d("AAA", "AAA");
+                Message m = new Message();
+                m.obj = products.get(i).getName();
+                ((FragmentInteraction)context).sendMessage(m);
+            }
+        });
 
     }
 
@@ -54,13 +70,15 @@ public class ProductsListAdapter extends RecyclerView.Adapter<ProductsListAdapte
         TextView description;
         TextView cost;
         CircleImageView picture;
+        View view;
+
         public ProductsViewHolder(@NonNull View itemView) {
             super(itemView);
+            view = itemView;
             name = itemView.findViewById(R.id.name);
             description = itemView.findViewById(R.id.description);
             cost = itemView.findViewById(R.id.cost);
             picture = itemView.findViewById(R.id.profile_image);
-
         }
     }
 

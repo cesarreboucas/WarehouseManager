@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
@@ -34,18 +35,33 @@ import retrofit2.Response;
 public class AddProductsFragment extends Fragment implements View.OnClickListener {
 
     private static int RESULT_LOAD_IMAGE = 1;
+    Product product = new Product();
+
     ImageView picture;
-    Product p = new Product();
+    TextView txtName;
+    TextView txtDescription;
+    TextView txtCost;
+    TextView txtPrice;
+    TextView txtBarcode;
+
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_admin_products_add,container,false);
+
         Button btnLoadImage = view.findViewById(R.id.buttonLoadPicture);
         Button btnAdd = view.findViewById(R.id.btnAdd);
-        picture = view.findViewById(R.id.picture);
         btnLoadImage.setOnClickListener(this);
         btnAdd.setOnClickListener(this);
+
+        picture = view.findViewById(R.id.picture);
+        txtName = view.findViewById(R.id.txtName);
+        txtDescription = view.findViewById(R.id.txtDescription);
+        txtPrice = view.findViewById(R.id.txtPrice);
+        txtCost = view.findViewById(R.id.txtCost);
+        txtBarcode = view.findViewById(R.id.txtBarcode);
+
         return view;
     }
 
@@ -55,7 +71,7 @@ public class AddProductsFragment extends Fragment implements View.OnClickListene
     }
 
     @Override
-    public void onClick(View v) {
+    public void onClick(final View v) {
         switch (v.getId()) {
             case R.id.buttonLoadPicture:
                 PickImageDialog.build(new PickSetup()).setOnPickResult(new IPickResult() {
@@ -63,7 +79,7 @@ public class AddProductsFragment extends Fragment implements View.OnClickListene
                     public void onPickResult(PickResult r) {
                         ImageHelper imageHelper = new ImageHelperImpl();
                         String pic = imageHelper.convertBitmapToBase64Resized(r.getBitmap());
-                        p.setPicture(pic);
+                        product.setPicture(pic);
                         picture.setImageBitmap(r.getBitmap());
                     }
                 })
@@ -74,24 +90,31 @@ public class AddProductsFragment extends Fragment implements View.OnClickListene
                 }).show(getFragmentManager());
             break;
             case R.id.btnAdd:
-                Product product = new Product();
-                product.setName("Prod Namee");
-                product.setDescription("Some Description");
-                product.setCost(15);
-                product.setPrice(25);
-                product.setBarcode(String.valueOf(System.currentTimeMillis()));
-                product.setPicture("picture");
+                //product = new Product();
+                try{
+                    product.setName(txtName.getText().toString());
+                    product.setDescription(txtDescription.getText().toString());
+                    product.setCost(Double.parseDouble(txtCost.getText().toString()));
+                    product.setPrice(Double.parseDouble(txtPrice.getText().toString()));
+                    product.setBarcode(txtBarcode.getText().toString());
+                    //product.setPicture("picture");
 
-                IWarehouseService warehouseService = WarehouseService.getInstance().create(IWarehouseService.class);
+                } catch (Exception e) {
+
+                }
+
+
+                IWarehouseService warehouseService = WarehouseService.getInstance()
+                        .create(IWarehouseService.class);
                 warehouseService.createProduct(product).enqueue(new Callback<Product>() {
                     @Override
                     public void onResponse(Call<Product> call, Response<Product> response) {
-                        Log.d("AAA", "AAAAA");
+                        Toast.makeText(v.getContext(), "Product Created", Toast.LENGTH_SHORT).show();
                     }
 
                     @Override
                     public void onFailure(Call<Product> call, Throwable t) {
-                        Log.d("BBB", "BBBBBBB");
+                        Toast.makeText(v.getContext(), "Error creating product", Toast.LENGTH_SHORT).show();
                     }
                 });
         }
