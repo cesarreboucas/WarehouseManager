@@ -4,4 +4,7 @@
     <color name="colorAccentDark">#52de97</color>
     <color name="colorPrimary">#3c9d9b</color>
     <color name="colorPrimaryDark">#394a6d</color>
+    <color name="colorGradient1">#52de97</color>
+    <color name="colorGradient2">#41B178</color>
+    <color name="colorToolbarBackground">#348D60</color>
 </resources>
