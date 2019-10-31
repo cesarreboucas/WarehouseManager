@@ -7,7 +7,6 @@ import com.google.gson.reflect.TypeToken;
 import com.warehousemanager.data.db.entities.Product;
 import com.warehousemanager.data.db.entities.User;
 import com.warehousemanager.data.db.entities.Warehouse;
-import com.warehousemanager.data.internal.model.UserRow;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -36,7 +35,7 @@ public class JsonReader {
       is.close();
       String json = new String(buffer, StandardCharsets.UTF_8);
 
-      userRows = gson.fromJson(json, new TypeToken<List<UserRow>>() {
+      userRows = gson.fromJson(json, new TypeToken<List<User>>() {
       }.getType());
     } catch (IOException ex) {
       ex.printStackTrace();
