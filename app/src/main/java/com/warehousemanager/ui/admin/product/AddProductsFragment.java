@@ -23,6 +23,7 @@ import com.vansuita.pickimage.listeners.IPickCancel;
 import com.vansuita.pickimage.listeners.IPickResult;
 import com.warehousemanager.R;
 import com.warehousemanager.data.db.entities.Product;
+import com.warehousemanager.data.internal.FragmentManagerHelper;
 import com.warehousemanager.data.internal.ImageHelper;
 import com.warehousemanager.data.internal.ImageHelperImpl;
 import com.warehousemanager.data.network.IWarehouseService;
@@ -43,6 +44,7 @@ public class AddProductsFragment extends Fragment implements View.OnClickListene
     TextView txtCost;
     TextView txtPrice;
     TextView txtBarcode;
+    FragmentManagerHelper fragmentManagerHelper;
 
 
     @Nullable
@@ -54,6 +56,7 @@ public class AddProductsFragment extends Fragment implements View.OnClickListene
         Button btnAdd = view.findViewById(R.id.btnAdd);
         btnLoadImage.setOnClickListener(this);
         btnAdd.setOnClickListener(this);
+        fragmentManagerHelper = new FragmentManagerHelper(getFragmentManager(), R.id.productsFragmentContainer);
 
         picture = view.findViewById(R.id.picture);
         txtName = view.findViewById(R.id.txtName);
@@ -97,7 +100,6 @@ public class AddProductsFragment extends Fragment implements View.OnClickListene
                     product.setCost(Double.parseDouble(txtCost.getText().toString()));
                     product.setPrice(Double.parseDouble(txtPrice.getText().toString()));
                     product.setBarcode(txtBarcode.getText().toString());
-                    //product.setPicture("picture");
 
                 } catch (Exception e) {
 
@@ -110,6 +112,7 @@ public class AddProductsFragment extends Fragment implements View.OnClickListene
                     @Override
                     public void onResponse(Call<Product> call, Response<Product> response) {
                         Toast.makeText(v.getContext(), "Product Created", Toast.LENGTH_SHORT).show();
+                        fragmentManagerHelper.goBack();
                     }
 
                     @Override
