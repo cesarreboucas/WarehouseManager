@@ -32,14 +32,14 @@ public class WarehousesListAdapter extends RecyclerView.Adapter<WarehousesListAd
   @Override
   public void onBindViewHolder(@NonNull WarehouseListViewHolder warehouseListViewHolder, int i) {
     String name = warehouseList.get(i).getName();
-    LatLng location = warehouseList.get(i).getLocation();
+    String location = warehouseList.get(i).getLocation();
     int workerCount = warehouseList.get(i).getWorkerCount();
     int capacity = warehouseList.get(i).getCapacity();
 
     warehouseListViewHolder.txtWarehouseName.setText(name);
-    warehouseListViewHolder.txtLocationGeo.setText("LatLng: " + location.getLatitude() + location.getLongitude());
-    warehouseListViewHolder.txtWorkerCount.setText(workerCount);
-    warehouseListViewHolder.txtCapacity.setText(capacity);
+    warehouseListViewHolder.txtLocationGeo.setText(location);
+    warehouseListViewHolder.txtWorkerCount.setText(String.valueOf(workerCount));
+    warehouseListViewHolder.txtCapacity.setText(String.valueOf(capacity));
   }
 
   @Override

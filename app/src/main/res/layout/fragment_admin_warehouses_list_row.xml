@@ -38,42 +38,36 @@
       android:id="@+id/txtWorkerCount"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:layout_marginStart="26dp"
       android:layout_marginTop="10dp"
-      android:layout_marginEnd="124dp"
+      android:layout_marginEnd="120dp"
       android:layout_marginBottom="15dp"
       android:text="txtWorkerCount"
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintStart_toEndOf="@+id/txtLocationGeo"
       app:layout_constraintTop_toBottomOf="@+id/txtCapacity" />
 
   <TextView
       android:id="@+id/txtCapacity"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:layout_marginStart="40dp"
       android:layout_marginTop="60dp"
-      android:layout_marginEnd="24dp"
+      android:layout_marginEnd="120dp"
       android:layout_marginBottom="10dp"
       android:text="txtCapacity"
       android:textSize="16sp"
       app:layout_constraintBottom_toTopOf="@+id/txtWorkerCount"
-      app:layout_constraintEnd_toStartOf="@+id/btnEdit"
-      app:layout_constraintStart_toEndOf="@+id/txtLocationGeo"
+      app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintTop_toTopOf="parent" />
 
   <Button
       android:id="@+id/btnEdit"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:layout_marginStart="24dp"
       android:layout_marginTop="40dp"
       android:layout_marginEnd="20dp"
       android:layout_marginBottom="40dp"
       android:text="Edit"
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintStart_toEndOf="@+id/txtCapacity"
       app:layout_constraintTop_toTopOf="parent" />
 </android.support.constraint.ConstraintLayout>

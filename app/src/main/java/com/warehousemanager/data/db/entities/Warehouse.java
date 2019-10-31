@@ -2,6 +2,7 @@ package com.warehousemanager.data.db.entities;
 
 import android.arch.persistence.room.Entity;
 
+import com.google.gson.annotations.SerializedName;
 import com.google.type.LatLng;
 
 import java.util.ArrayList;
@@ -9,11 +10,22 @@ import java.util.ArrayList;
 @Entity(tableName = "warehouse_table")
 public class Warehouse {
 
+    @SerializedName("name")
     private String name;
+
+    @SerializedName("capacity")
     private int capacity;
-    private LatLng location;
-    private ArrayList<User> workerList;
-    private ArrayList<Product> productList;
+
+    @SerializedName("location")
+    private String location;
+
+    @SerializedName("workerList")
+    private ArrayList<User> workerList = new ArrayList<>();
+
+    @SerializedName("productList")
+    private ArrayList<Product> productList = new ArrayList<>();
+
+    private int workerCount;
 
     public int getCapacity() {
         return capacity;
@@ -23,11 +35,11 @@ public class Warehouse {
         this.capacity = capacity;
     }
 
-    public LatLng getLocation() {
+    public String getLocation() {
         return location;
     }
 
-    public void setLocation(LatLng location) {
+    public void setLocation(String location) {
         this.location = location;
     }
 
@@ -55,15 +67,11 @@ public class Warehouse {
         this.productList = productList;
     }
 
-    public int getWorkerCount()
-    {
-        ArrayList<User> users = getWorkerList();
-        int i = 0;
-        for (User u: users)
-        {
-            if (u.getAssignment().equals(getName()))
-            i++;
-        }
-        return i;
+    public int getWorkerCount() {
+        return workerList.size();
+    }
+
+    public void setWorkerCount(int workerCount) {
+        this.workerCount = workerCount;
     }
 }

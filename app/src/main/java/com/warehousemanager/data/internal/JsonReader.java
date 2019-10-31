@@ -65,13 +65,13 @@ public class JsonReader {
   public List<Warehouse> getWarehouse() {
     List<Warehouse> Warehouse = new ArrayList<>();
     try {
-      InputStream is = context.getAssets().open("products_list_template.json");
+      InputStream is = context.getAssets().open("warehouses_list_template.json");
       int size = is.available();
       byte[] buffer = new byte[size];
       is.read(buffer);
       is.close();
       String json = new String(buffer, StandardCharsets.UTF_8);
-      Warehouse = gson.fromJson(json, new TypeToken<List<Product>>() {
+      Warehouse = gson.fromJson(json, new TypeToken<List<Warehouse>>() {
       }.getType());
 
     } catch (IOException e) {
