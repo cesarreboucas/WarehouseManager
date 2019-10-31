@@ -5,7 +5,8 @@ import android.content.Context;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.warehousemanager.data.db.entities.Product;
-import com.warehousemanager.data.internal.model.UserRow;
+import com.warehousemanager.data.db.entities.User;
+import com.warehousemanager.data.db.entities.Warehouse;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -24,8 +25,8 @@ public class JsonReader {
     this.context = context;
   }
 
-  public List<UserRow> getUserRows() {
-    List<UserRow> userRows = new ArrayList<>();
+  public List<User> getUser() {
+    List<User> userRows = new ArrayList<>();
     try {
       InputStream is = context.getAssets().open("user_list_template.json");
       int size = is.available();
@@ -34,7 +35,8 @@ public class JsonReader {
       is.close();
       String json = new String(buffer, StandardCharsets.UTF_8);
 
-      userRows = gson.fromJson(json, new TypeToken<List<UserRow>>(){}.getType());
+      userRows = gson.fromJson(json, new TypeToken<List<User>>() {
+      }.getType());
     } catch (IOException ex) {
       ex.printStackTrace();
       return userRows;
@@ -51,11 +53,30 @@ public class JsonReader {
       is.read(buffer);
       is.close();
       String json = new String(buffer, StandardCharsets.UTF_8);
-      products = gson.fromJson(json, new TypeToken<List<Product>>(){}.getType());
+      products = gson.fromJson(json, new TypeToken<List<Product>>() {
+      }.getType());
 
     } catch (IOException e) {
       e.printStackTrace();
     }
     return products;
+  }
+
+  public List<Warehouse> getWarehouse() {
+    List<Warehouse> Warehouse = new ArrayList<>();
+    try {
+      InputStream is = context.getAssets().open("products_list_template.json");
+      int size = is.available();
+      byte[] buffer = new byte[size];
+      is.read(buffer);
+      is.close();
+      String json = new String(buffer, StandardCharsets.UTF_8);
+      Warehouse = gson.fromJson(json, new TypeToken<List<Product>>() {
+      }.getType());
+
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+    return Warehouse;
   }
 }

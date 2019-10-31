@@ -17,7 +17,6 @@ import com.warehousemanager.R;
 import com.warehousemanager.data.internal.FragmentManagerHelper;
 import com.warehousemanager.data.internal.IFragmentManagerHelper;
 import com.warehousemanager.data.internal.JsonReader;
-import com.warehousemanager.data.internal.model.UserRow;
 import com.warehousemanager.ui.admin.FragmentInteraction;
 
 import java.util.List;

@@ -12,6 +12,7 @@ public class Warehouse {
     private String name;
     private int capacity;
     private LatLng location;
+    private ArrayList<User> workerList;
     private ArrayList<Product> productList;
 
     public int getCapacity() {
@@ -38,11 +39,31 @@ public class Warehouse {
         this.name = name;
     }
 
+    public ArrayList<User> getWorkerList() {
+        return workerList;
+    }
+
+    public void setWorkerList(ArrayList<User> workerList) {
+        this.workerList = workerList;
+    }
+
     public ArrayList<Product> getProductList() {
         return productList;
     }
 
     public void setProductList(ArrayList<Product> productList) {
         this.productList = productList;
+    }
+
+    public int getWorkerCount()
+    {
+        ArrayList<User> users = getWorkerList();
+        int i = 0;
+        for (User u: users)
+        {
+            if (u.getAssignment().equals(getName()))
+            i++;
+        }
+        return i;
     }
 }

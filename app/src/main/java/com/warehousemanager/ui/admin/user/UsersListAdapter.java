@@ -9,9 +9,9 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.warehousemanager.R;
+import com.warehousemanager.data.db.entities.User;
 import com.warehousemanager.data.internal.ImageHelper;
 import com.warehousemanager.data.internal.ImageHelperImpl;
-import com.warehousemanager.data.internal.model.UserRow;
 
 import java.util.List;
 
@@ -19,7 +19,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class UsersListAdapter extends RecyclerView.Adapter<UsersListAdapter.UserViewHolder>{
 
-  private List<UserRow> userRows;
+  private List<User> userRows;
   private ImageHelper imageHelper = new ImageHelperImpl();
 
   public static class UserViewHolder extends RecyclerView.ViewHolder {
@@ -35,7 +35,7 @@ public class UsersListAdapter extends RecyclerView.Adapter<UsersListAdapter.User
     }
   }
 
-  public UsersListAdapter(List<UserRow> userRows) {
+  public UsersListAdapter(List<User> userRows) {
     this.userRows = userRows;
   }
 
