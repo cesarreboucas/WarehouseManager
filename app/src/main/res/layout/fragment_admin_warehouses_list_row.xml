@@ -1,81 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-  xmlns:app="http://schemas.android.com/apk/res-auto"
-  xmlns:tools="http://schemas.android.com/tools"
-  android:layout_width="match_parent"
-  android:layout_height="125dp">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="125dp">
 
   <TextView
-      android:id="@+id/textView"
+      android:id="@+id/txtWarehouseName"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:layout_marginStart="24dp"
+      android:layout_marginStart="20dp"
       android:layout_marginTop="20dp"
-      android:layout_marginEnd="174dp"
-      android:layout_marginBottom="20dp"
+      android:layout_marginEnd="74dp"
+      android:layout_marginBottom="8dp"
       android:text="txtWarehouseName"
       android:textSize="24sp"
       android:textStyle="bold"
-      app:layout_constraintBottom_toTopOf="@+id/txtLocationName"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toTopOf="parent" />
-
-  <TextView
-      android:id="@+id/txtLocationName"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_marginStart="24dp"
-      android:layout_marginTop="50dp"
-      android:layout_marginEnd="50dp"
-      android:layout_marginBottom="40dp"
-      android:text="txtLocationName"
-      android:textSize="18sp"
-      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintBottom_toTopOf="@+id/txtCapacity"
       app:layout_constraintEnd_toStartOf="@+id/btnEdit"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toTopOf="parent" />
 
   <TextView
-      android:id="@+id/textView5"
+      android:id="@+id/txtLocationGeo"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:layout_marginStart="35dp"
-      android:layout_marginTop="10dp"
-      android:layout_marginEnd="278dp"
-      android:layout_marginBottom="5dp"
+      android:layout_marginStart="40dp"
+      android:layout_marginTop="24dp"
+      android:layout_marginBottom="25dp"
       android:text="txtLocationGeo"
+      android:textSize="18sp"
       app:layout_constraintBottom_toBottomOf="parent"
-      app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@+id/txtLocationName" />
+      app:layout_constraintTop_toBottomOf="@+id/txtWarehouseName" />
 
   <TextView
-      android:id="@+id/textView6"
+      android:id="@+id/txtWorkerCount"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:layout_marginStart="75dp"
-      android:layout_marginTop="24dp"
-      android:layout_marginEnd="17dp"
-      android:layout_marginBottom="80dp"
-      android:text="txtCapacity"
-      android:textSize="16sp"
+      android:layout_marginStart="26dp"
+      android:layout_marginTop="10dp"
+      android:layout_marginEnd="124dp"
+      android:layout_marginBottom="15dp"
+      android:text="txtWorkerCount"
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintStart_toEndOf="@+id/textView"
+      app:layout_constraintStart_toEndOf="@+id/txtLocationGeo"
+      app:layout_constraintTop_toBottomOf="@+id/txtCapacity" />
+
+  <TextView
+      android:id="@+id/txtCapacity"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginStart="40dp"
+      android:layout_marginTop="60dp"
+      android:layout_marginEnd="24dp"
+      android:layout_marginBottom="10dp"
+      android:text="txtCapacity"
+      android:textSize="16sp"
+      app:layout_constraintBottom_toTopOf="@+id/txtWorkerCount"
+      app:layout_constraintEnd_toStartOf="@+id/btnEdit"
+      app:layout_constraintStart_toEndOf="@+id/txtLocationGeo"
       app:layout_constraintTop_toTopOf="parent" />
 
   <Button
       android:id="@+id/btnEdit"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:layout_marginStart="100dp"
-      android:layout_marginTop="20dp"
-      android:layout_marginEnd="12dp"
-      android:layout_marginBottom="12dp"
+      android:layout_marginStart="24dp"
+      android:layout_marginTop="40dp"
+      android:layout_marginEnd="20dp"
+      android:layout_marginBottom="40dp"
       android:text="Edit"
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintStart_toEndOf="@+id/txtLocationName"
-      app:layout_constraintTop_toBottomOf="@+id/textView6" />
+      app:layout_constraintStart_toEndOf="@+id/txtCapacity"
+      app:layout_constraintTop_toTopOf="parent" />
 </android.support.constraint.ConstraintLayout>

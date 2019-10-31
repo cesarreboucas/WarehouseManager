@@ -7,15 +7,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.google.type.LatLng;
 import com.warehousemanager.R;
+import com.warehousemanager.data.db.entities.Warehouse;
 
 import java.util.List;
 
 public class WarehousesListAdapter extends RecyclerView.Adapter<WarehousesListAdapter.WarehouseListViewHolder> {
 
-  private List<String> warehouseList;
+  private List<Warehouse> warehouseList;
 
-  public WarehousesListAdapter(List<String> warehouseList) {
+  public WarehousesListAdapter(List<Warehouse> warehouseList) {
     this.warehouseList = warehouseList;
   }
 
@@ -29,7 +31,15 @@ public class WarehousesListAdapter extends RecyclerView.Adapter<WarehousesListAd
 
   @Override
   public void onBindViewHolder(@NonNull WarehouseListViewHolder warehouseListViewHolder, int i) {
-    warehouseListViewHolder.textView.setText(warehouseList.get(i));
+    String name = warehouseList.get(i).getName();
+    LatLng location = warehouseList.get(i).getLocation();
+    int workerCount = warehouseList.get(i).getWorkerCount();
+    int capacity = warehouseList.get(i).getCapacity();
+
+    warehouseListViewHolder.txtWarehouseName.setText(name);
+    warehouseListViewHolder.txtLocationGeo.setText("LatLng: " + location.getLatitude() + location.getLongitude());
+    warehouseListViewHolder.txtWorkerCount.setText(workerCount);
+    warehouseListViewHolder.txtCapacity.setText(capacity);
   }
 
   @Override
@@ -38,11 +48,17 @@ public class WarehousesListAdapter extends RecyclerView.Adapter<WarehousesListAd
   }
 
   public class WarehouseListViewHolder extends RecyclerView.ViewHolder {
-    TextView textView;
+    TextView txtWarehouseName;
+    TextView txtLocationGeo;
+    TextView txtWorkerCount;
+    TextView txtCapacity;
 
     public WarehouseListViewHolder(@NonNull View itemView) {
       super(itemView);
-      textView = itemView.findViewById(R.id.textView);
+      txtWarehouseName = itemView.findViewById(R.id.txtWarehouseName);
+      txtLocationGeo = itemView.findViewById(R.id.txtLocationGeo);
+      txtWorkerCount = itemView.findViewById(R.id.txtWorkerCount);
+      txtCapacity = itemView.findViewById(R.id.txtCapacity);
     }
   }
 

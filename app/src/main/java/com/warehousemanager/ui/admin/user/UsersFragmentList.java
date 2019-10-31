@@ -16,10 +16,10 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.warehousemanager.R;
+import com.warehousemanager.data.db.entities.User;
 import com.warehousemanager.data.internal.FragmentManagerHelper;
 import com.warehousemanager.data.internal.IFragmentManagerHelper;
 import com.warehousemanager.data.internal.JsonReader;
-import com.warehousemanager.data.internal.model.UserRow;
 import com.warehousemanager.ui.admin.FragmentInteraction;
 
 import java.util.List;
@@ -54,7 +54,7 @@ public class UsersFragmentList extends Fragment implements View.OnClickListener 
     floatingActionButton.setOnClickListener(this);
 
     usersList.setLayoutManager(new LinearLayoutManager(getActivity()));
-    List<UserRow> userRows = jsonReader.getUserRows();
+    List<User> userRows = jsonReader.getUser();
     UsersListAdapter usersListAdapter = new UsersListAdapter(userRows);
     usersList.setAdapter(usersListAdapter);
     usersList.setItemAnimator(new DefaultItemAnimator());

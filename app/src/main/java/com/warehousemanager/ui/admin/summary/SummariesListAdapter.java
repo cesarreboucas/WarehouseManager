@@ -44,7 +44,7 @@ public class SummariesListAdapter extends RecyclerView.Adapter<SummariesListAdap
 
     public SummariesListViewHolder(@NonNull View itemView) {
       super(itemView);
-      textView = itemView.findViewById(R.id.textView);
+      textView = itemView.findViewById(R.id.txtWarehouseName);
     }
   }
 }
