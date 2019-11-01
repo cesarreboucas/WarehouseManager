@@ -46,10 +46,7 @@ public class ProductsFragmentList extends Fragment implements FragmentInteractio
     IWarehouseService warehouseService = WarehouseService.getInstance()
             .create(IWarehouseService.class);
 
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
+
 
     @Nullable
     @Override
@@ -96,8 +93,10 @@ public class ProductsFragmentList extends Fragment implements FragmentInteractio
 
     @Override
     public void sendMessage(Message message) {
-        
-        Log.d("AAA", message.obj.toString());
+        Product product = (Product) message.obj;
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("product", product);
+        fragmentManagerHelper.attach(AddProductsFragment.class,bundle);
 
     }
 
@@ -109,5 +108,13 @@ public class ProductsFragmentList extends Fragment implements FragmentInteractio
                 swipeRefreshLayout.setRefreshing(false);
             }
         }, 2000); // Delay in millis
+    }
+
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        if(!hidden) {
+            getData();
+        }
     }
 }
