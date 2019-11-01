@@ -6,20 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".ui.client.account.AccountFragment">
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbarAccountMain"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="?attr/colorPrimary"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:navigationIcon="@drawable/back_arrow_clipart"
-        app:title="Account"
-        app:titleTextAppearance="@style/ActionBar.nameText" />
-
     <TextView
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
@@ -35,18 +21,18 @@
         android:layout_width="0dp"
         android:layout_height="43dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="50dp"
         android:layout_marginEnd="8dp"
         android:background="@drawable/edit_background_dark"
         android:ems="10"
         android:focusable="false"
         android:fontFamily="@font/montserrat"
         android:inputType="textPersonName"
-        android:paddingLeft="10dp"
+        android:paddingStart="10dp"
         android:paddingEnd="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbarAccountMain" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView5"
@@ -63,16 +49,16 @@
         android:layout_width="0dp"
         android:layout_height="43dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="120dp"
+        android:layout_marginTop="140dp"
         android:layout_marginEnd="8dp"
         android:background="@drawable/edit_background_dark"
         android:ems="10"
         android:focusable="false"
         android:fontFamily="@font/montserrat"
-        android:inputType="textPersonName"
-        android:paddingLeft="10dp"
+        android:inputType="textEmailAddress"
+        android:paddingStart="10dp"
         android:paddingEnd="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbarAccountMain" />
+        app:layout_constraintTop_toTopOf="parent" />
 </android.support.constraint.ConstraintLayout>

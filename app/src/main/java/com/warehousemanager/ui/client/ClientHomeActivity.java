@@ -12,6 +12,9 @@ import com.warehousemanager.data.internal.BottomNavigatorManager;
 import com.warehousemanager.data.internal.IFragmentManagerHelper;
 import com.warehousemanager.ui.admin.FragmentInteraction;
 import com.warehousemanager.ui.client.account.AccountFragment;
+import com.warehousemanager.ui.client.orders.OrdersClientFragment;
+import com.warehousemanager.ui.client.products.ProductsClientFragment;
+import com.warehousemanager.ui.client.shopping_cart.ShoppingCartFragment;
 
 public class ClientHomeActivity extends AppCompatActivity
         implements FragmentInteraction, BottomNavigationView.OnNavigationItemSelectedListener{
@@ -25,7 +28,7 @@ public class ClientHomeActivity extends AppCompatActivity
         setContentView(R.layout.activity_client_home);
 
         fragmentManagerHelper = new BottomNavigatorManager(getSupportFragmentManager(), R.id.fragmentContainerClient);
-        fragmentManagerHelper.attach(AccountFragment.class);
+        fragmentManagerHelper.attach(ProductsClientFragment.class);
 
         bottomNavigationView = findViewById(R.id.bottomNavigationClientView);
         bottomNavigationView.setOnNavigationItemSelectedListener(this);
@@ -38,10 +41,13 @@ public class ClientHomeActivity extends AppCompatActivity
                 fragmentManagerHelper.attach(AccountFragment.class);
                 break;
             case R.id.productClientMenu:
+                fragmentManagerHelper.attach(ProductsClientFragment.class);
                 break;
             case R.id.orderClientMenu:
+                fragmentManagerHelper.attach(OrdersClientFragment.class);
                 break;
             case R.id.shoppingCartMenu:
+                fragmentManagerHelper.attach(ShoppingCartFragment.class);
                 break;
         }
         return true;
