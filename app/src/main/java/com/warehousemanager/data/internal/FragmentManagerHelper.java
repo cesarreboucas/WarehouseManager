@@ -19,7 +19,7 @@ public class FragmentManagerHelper implements IFragmentManagerHelper {
     }
 
     @Override
-    public void attach(Class<? extends Fragment> newClass) {
+    public void attach(Class<AccountFragment> newClass) {
         try {
             detachFragments();
             Constructor<? extends Fragment> constructor = newClass.getConstructor();
