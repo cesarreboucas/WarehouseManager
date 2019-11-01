@@ -1,5 +1,6 @@
 package com.warehousemanager.data.internal;
 
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -34,6 +35,11 @@ public class BottomNavigatorManager implements IFragmentManagerHelper {
     } catch (Exception ex) {
       Log.d("EXCEPTION", ex.getMessage());
     }
+  }
+
+  @Override
+  public void attach(Class<? extends Fragment> newClass, Bundle bundle) {
+
   }
 
   @Override

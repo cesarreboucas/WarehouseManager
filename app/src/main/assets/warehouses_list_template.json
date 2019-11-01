@@ -3,21 +3,21 @@
         "id": "1",
         "name":"Vancouver Warehouse",
         "capacity":"0",
-        "location":""
+        "location":"34.2352345234, 54.23452345"
     } , {
         "id": "2",
         "name":"Burnaby Warehouse",
         "capacity":"0",
-        "location":""
+        "location":"87.1241234, 32.75634"
     } , {
         "id": "3",
         "name":"Surrey Warehouse",
         "capacity":"0",
-        "location":""
+        "location":"78.12341234, 97.35634"
     } , {
         "id": "4",
         "name":"Richmond Warehouse",
         "capacity":"0",
-        "location":""
+        "location":"45.1246634, 35.4574"
     }
 ]

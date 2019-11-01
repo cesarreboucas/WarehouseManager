@@ -44,20 +44,23 @@ public class ProductsListAdapter extends RecyclerView.Adapter<ProductsListAdapte
 
     @Override
     public void onBindViewHolder(@NonNull ProductsViewHolder productsViewHolder, final int i) {
-        productsViewHolder.name.setText(products.get(i).getName());
-        productsViewHolder.description.setText(products.get(i).getDescription());
+        productsViewHolder.name.setText(fitString(products.get(i).getName(),30));
+        productsViewHolder.description.setText(fitString(products.get(i).getDescription(),30));
         productsViewHolder.cost.setText(String.format("%.2f",products.get(i).getCost()));
         productsViewHolder.picture.setImageBitmap(imageHelper.convertBase64ToBitmap(products.get(i).getPicture()));
         productsViewHolder.view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d("AAA", "AAA");
                 Message m = new Message();
-                m.obj = products.get(i).getName();
+                m.obj = products.get(i);
                 ((FragmentInteraction)context).sendMessage(m);
             }
         });
+    }
 
+    public String fitString(String text, int maxsize) {
+        return text.length()>maxsize?text.substring(0,maxsize)+"...":
+                text;
     }
 
     @Override

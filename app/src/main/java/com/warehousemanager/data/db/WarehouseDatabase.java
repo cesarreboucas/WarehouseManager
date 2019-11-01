@@ -13,7 +13,7 @@ import javax.inject.Singleton;
 @Singleton
 @Database(entities = {
   User.class
-}, version = 2, exportSchema = false)
+}, version = 3, exportSchema = false)
 public abstract class WarehouseDatabase extends RoomDatabase {
 
   private static WarehouseDatabase INSTANCE;

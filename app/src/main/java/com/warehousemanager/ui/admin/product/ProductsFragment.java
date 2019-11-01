@@ -26,7 +26,9 @@ public class ProductsFragment extends Fragment implements FragmentInteraction {
                              Bundle savedInstanceState) {
         View view =  inflater.inflate(R.layout.fragment_admin_products, container, false);
         fragmentManagerHelper = new FragmentManagerHelper(getChildFragmentManager(), R.id.productsFragmentContainer);
-        fragmentManagerHelper.attach(ProductsFragmentList.class);
+        Bundle bundle = new Bundle();
+        bundle.putString("test", "Testando arguments");
+        fragmentManagerHelper.attach(ProductsFragmentList.class, bundle);
 
         Toolbar toolbar = view.findViewById(R.id.toolbarProdMain);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {

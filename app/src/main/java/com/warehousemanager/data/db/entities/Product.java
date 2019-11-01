@@ -2,8 +2,10 @@ package com.warehousemanager.data.db.entities;
 
 import android.arch.persistence.room.Entity;
 
+import java.io.Serializable;
+
 @Entity(tableName = "product_table")
-public class Product {
+public class Product implements Serializable {
 
     private String name;
     private String description;

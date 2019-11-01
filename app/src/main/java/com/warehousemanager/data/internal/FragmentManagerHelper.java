@@ -1,5 +1,6 @@
 package com.warehousemanager.data.internal;
 
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -28,6 +29,26 @@ public class FragmentManagerHelper implements IFragmentManagerHelper {
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             if(searchFragment == null) {
                 fragmentTransaction.add(fragmentContainer, fragment, newClass.getName());
+            } else {
+                fragmentTransaction.show(searchFragment);
+            }
+            fragmentTransaction.commit();
+        } catch (Exception ex) {
+            Log.d("EXCEPTION", ex.getMessage());
+        }
+    }
+
+    @Override
+    public void attach(Class<? extends Fragment> newClass, Bundle bundle) {
+        try {
+            detachFragments();
+            Constructor<? extends Fragment> constructor = newClass.getConstructor();
+            Fragment fragment = constructor.newInstance();
+            Fragment searchFragment = fragmentManager.findFragmentByTag(newClass.getName());
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            if(searchFragment == null) {
+                fragmentTransaction.add(fragmentContainer, fragment, newClass.getName());
+                fragment.setArguments(bundle);
             } else {
                 fragmentTransaction.show(searchFragment);
             }

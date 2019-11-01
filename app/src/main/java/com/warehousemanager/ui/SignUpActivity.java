@@ -65,7 +65,8 @@ public class SignUpActivity extends AppCompatActivity implements FirebaseUserCal
     String question = spinnerQuestions.getSelectedItem().toString();
     String answer = editAnswer.getText().toString();
 
-    User user = new User(name, username, password, "client", question, answer);
+    //TODO handle unassigned and noImage
+    User user = new User(name, username, password, "client", "unAssigned", question, answer, "NoImage");
     firebaseService.addUser(user);
   }
 

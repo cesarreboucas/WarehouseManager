@@ -58,9 +58,11 @@ public class FirebaseService {
             String username = document.get("username") == null ? "" : document.get("username").toString();
             String password = document.get("password") == null ? "" : document.get("password").toString();
             String role = document.get("role") == null ? "" : document.get("role").toString();
+            String assignment = document.get("assignment") == null ? "" : document.get("assignment").toString();
             String question = document.get("question") == null ? "" : document.get("question").toString();
             String answer = document.get("answer") == null ? "" : document.get("answer").toString();
-            user = new User(name, username, password, role, question, answer);
+            String profileImage = document.get("profileImage") == null ? "" : document.get("profileImage").toString();
+            user = new User(name, username, password, role,assignment, question, answer, profileImage);
           }
           if(firebaseUserCallback != null) {
             firebaseUserCallback.onUserFetchComplete(user);

@@ -23,6 +23,7 @@ import com.vansuita.pickimage.listeners.IPickCancel;
 import com.vansuita.pickimage.listeners.IPickResult;
 import com.warehousemanager.R;
 import com.warehousemanager.data.db.entities.Product;
+import com.warehousemanager.data.internal.FragmentManagerHelper;
 import com.warehousemanager.data.internal.ImageHelper;
 import com.warehousemanager.data.internal.ImageHelperImpl;
 import com.warehousemanager.data.network.IWarehouseService;
@@ -43,7 +44,14 @@ public class AddProductsFragment extends Fragment implements View.OnClickListene
     TextView txtCost;
     TextView txtPrice;
     TextView txtBarcode;
+    Button btnAction;
+    FragmentManagerHelper fragmentManagerHelper;
 
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        product = (Product) getArguments().getSerializable("product");
+    }
 
     @Nullable
     @Override
@@ -51,9 +59,10 @@ public class AddProductsFragment extends Fragment implements View.OnClickListene
         View view = inflater.inflate(R.layout.fragment_admin_products_add,container,false);
 
         Button btnLoadImage = view.findViewById(R.id.buttonLoadPicture);
-        Button btnAdd = view.findViewById(R.id.btnAdd);
+        btnAction = view.findViewById(R.id.btnAdd);
         btnLoadImage.setOnClickListener(this);
-        btnAdd.setOnClickListener(this);
+        btnAction.setOnClickListener(this);
+        fragmentManagerHelper = new FragmentManagerHelper(getFragmentManager(), R.id.productsFragmentContainer);
 
         picture = view.findViewById(R.id.picture);
         txtName = view.findViewById(R.id.txtName);
@@ -68,6 +77,18 @@ public class AddProductsFragment extends Fragment implements View.OnClickListene
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        if(product.getBarcode()!="") {
+            txtName.setText(product.getName());
+            txtDescription.setText(product.getDescription());
+            txtPrice.setText(String.valueOf(product.getPrice()));
+            txtCost.setText(String.valueOf(product.getCost()));
+            txtBarcode.setText(product.getBarcode());
+            ImageHelper imageHelper = new ImageHelperImpl();
+            Bitmap pic = imageHelper.convertBase64ToBitmap(product.getPicture());
+            picture.setImageBitmap(pic);
+            btnAction.setText("Save");
+        }
+
     }
 
     @Override
@@ -97,12 +118,10 @@ public class AddProductsFragment extends Fragment implements View.OnClickListene
                     product.setCost(Double.parseDouble(txtCost.getText().toString()));
                     product.setPrice(Double.parseDouble(txtPrice.getText().toString()));
                     product.setBarcode(txtBarcode.getText().toString());
-                    //product.setPicture("picture");
 
                 } catch (Exception e) {
 
                 }
-
 
                 IWarehouseService warehouseService = WarehouseService.getInstance()
                         .create(IWarehouseService.class);
@@ -110,6 +129,7 @@ public class AddProductsFragment extends Fragment implements View.OnClickListene
                     @Override
                     public void onResponse(Call<Product> call, Response<Product> response) {
                         Toast.makeText(v.getContext(), "Product Created", Toast.LENGTH_SHORT).show();
+                        fragmentManagerHelper.goBack();
                     }
 
                     @Override
