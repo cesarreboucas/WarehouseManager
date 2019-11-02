@@ -128,7 +128,7 @@ public class AddProductsFragment extends Fragment implements View.OnClickListene
                 warehouseService.createProduct(product).enqueue(new Callback<Product>() {
                     @Override
                     public void onResponse(Call<Product> call, Response<Product> response) {
-                        Toast.makeText(v.getContext(), "Product Created", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(v.getContext(), "Done", Toast.LENGTH_SHORT).show();
                         fragmentManagerHelper.goBack();
                     }
 

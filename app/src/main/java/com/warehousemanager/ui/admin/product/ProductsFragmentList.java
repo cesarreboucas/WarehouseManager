@@ -82,7 +82,7 @@ public class ProductsFragmentList extends Fragment implements FragmentInteractio
                 products.clear();
                 products.addAll(response.body());
                 productsListAdapter.notifyDataSetChanged();
-                Log.d("DBG", "Data Changed");
+                //Log.d("DBG", "Data Changed");
             }
             @Override
             public void onFailure(Call<List<Product>> call, Throwable t) {
@@ -114,7 +114,7 @@ public class ProductsFragmentList extends Fragment implements FragmentInteractio
     public void onHiddenChanged(boolean hidden) {
         super.onHiddenChanged(hidden);
         if(!hidden) {
-            getData();
+            onRefresh();
         }
     }
 }
