@@ -16,7 +16,8 @@ public class WarehouseService {
         if(retrofit==null) {
             OkHttpClient client = new OkHttpClient.Builder().build();
             retrofit = new Retrofit.Builder()
-                    .baseUrl("http://10.0.2.2:8000")
+                    //.baseUrl("http://10.0.2.2:8000")
+                    .baseUrl("http://140.161.89.19:8000")
                     .addConverterFactory(GsonConverterFactory.create())
                     .client(client)
                     .build();
