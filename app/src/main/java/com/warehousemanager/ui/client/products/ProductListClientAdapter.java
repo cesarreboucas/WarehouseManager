@@ -49,13 +49,17 @@ public class ProductListClientAdapter extends RecyclerView.Adapter<ProductListCl
         productsViewHolder.view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d("AAA", "AAA");
                 Message m = new Message();
-                m.obj = products.get(i).getName();
+                m.obj = products.get(i);
                 ((FragmentInteraction)context).sendMessage(m);
             }
         });
 
+    }
+
+    public String fitString(String text, int maxsize) {
+        return text.length()>maxsize?text.substring(0,maxsize)+"...":
+                text;
     }
 
     @Override

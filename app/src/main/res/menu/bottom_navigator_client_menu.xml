@@ -3,10 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/userClientMenu"
-        android:icon="@drawable/ic_person_black_24dp"
-        android:title="@string/client_user_menu" />
-    <item
         android:id="@+id/productClientMenu"
         android:icon="@drawable/ic_box"
         android:title="@string/products_menu" />
@@ -18,4 +14,8 @@
         android:id="@+id/shoppingCartMenu"
         android:icon="@drawable/ic_shopping_cart_black_24dp"
         android:title="@string/client_shoppingCart" />
+    <item
+        android:id="@+id/userClientMenu"
+        android:icon="@drawable/ic_person_black_24dp"
+        android:title="@string/client_user_menu" />
 </menu>
