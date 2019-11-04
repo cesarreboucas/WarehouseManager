@@ -47,6 +47,7 @@
     <string name="title_reports">Reports</string>
     <string name="txtUserRole">S e l e c t&#160;&#160;t h e&#160;&#160;u s e r&#160;&#160;r o l e</string>
     <string name="btnCreateUser">C R E A T E&#160;&#160;U S E R</string>
+    <string name="btnEditUser">E D I T&#160;&#160;U S E R</string>
 
     <string name="client_user_menu">Account</string>
     <string name="client_orders">Orders</string>

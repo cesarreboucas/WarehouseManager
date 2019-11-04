@@ -8,7 +8,7 @@
   android:background="@android:color/white">
   <RelativeLayout
     android:layout_width="match_parent"
-    android:layout_height="800dp"
+    android:layout_height="wrap_content"
     tools:context=".ui.admin.user.AddUserFragment">
 
     <TextView
@@ -90,8 +90,9 @@
       android:layout_marginStart="52dp"
       android:layout_marginTop="218dp"
       android:background="@drawable/edit_background_dark"
-      android:popupBackground="@color/colorPrimaryDark"
-      android:textColor="@android:color/white" />
+      android:entries="@array/roles_entries"
+      android:popupBackground="@android:color/white"
+      android:textColor="@color/colorPrimaryDark" />
 
     <Button
       android:id="@+id/btnCreateUser"
@@ -100,7 +101,7 @@
       android:layout_alignParentStart="true"
       android:layout_alignParentTop="true"
       android:layout_marginStart="52dp"
-      android:layout_marginTop="545dp"
+      android:layout_marginTop="468dp"
       android:background="@color/colorPrimaryDark"
       android:text="@string/btnCreateUser"
       android:textColor="@android:color/white" />
@@ -125,7 +126,8 @@
       android:layout_marginStart="50dp"
       android:layout_marginTop="307dp"
       android:background="@drawable/edit_background_dark"
-      android:popupBackground="@color/colorPrimaryDark"
+      android:entries="@array/questions_entries"
+      android:popupBackground="@android:color/white"
       android:textColor="@android:color/white" />
 
     <EditText

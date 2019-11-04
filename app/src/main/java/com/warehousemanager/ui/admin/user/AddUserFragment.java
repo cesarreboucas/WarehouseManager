@@ -11,6 +11,10 @@ import android.widget.EditText;
 import android.widget.Spinner;
 
 import com.warehousemanager.R;
+import com.warehousemanager.data.db.entities.User;
+
+import java.lang.reflect.Array;
+import java.util.Arrays;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -25,7 +29,12 @@ public class AddUserFragment extends Fragment implements View.OnClickListener {
   Spinner spinnerRoles;
   Spinner spinnerQuestions;
 
+  ArrayAdapter<String> rolesAdapter;
+  ArrayAdapter<String> questionsAdapter;
+
   Button btnCreateUser;
+
+  private User user;
 
   public AddUserFragment() {
   }
@@ -33,6 +42,7 @@ public class AddUserFragment extends Fragment implements View.OnClickListener {
   @Override
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
+    this.user = (User) getArguments().getSerializable("USER");
   }
 
   @Override
@@ -48,18 +58,45 @@ public class AddUserFragment extends Fragment implements View.OnClickListener {
     editName = view.findViewById(R.id.editName);
 
     spinnerRoles = view.findViewById(R.id.spinnerRoles);
-    ArrayAdapter<String> rolesAdapter = new ArrayAdapter<String>(
+    rolesAdapter = new ArrayAdapter<String>(
             getContext(),
             R.layout.spinner_item,
             getResources().getStringArray(R.array.roles_entries));
     spinnerRoles.setAdapter(rolesAdapter);
 
     spinnerQuestions  = view.findViewById(R.id.spinnerQuestions);
-    ArrayAdapter<String> questionsAdapter = new ArrayAdapter<String>(
+    questionsAdapter = new ArrayAdapter<String>(
             getContext(),
             R.layout.spinner_item,
             getResources().getStringArray(R.array.questions_entries));
     spinnerQuestions.setAdapter(questionsAdapter);
+
+    if(user != null) {
+      editUsername.setText(user.getUsername());
+      editName.setText(user.getName());
+
+      String[] roles = getResources().getStringArray(R.array.roles_entries);
+      int index = 0;
+      for (int i = 0; i < roles.length; i++) {
+        if(roles[i].toLowerCase().equals(user.getRole().toLowerCase())) {
+          index = i;
+          break;
+        }
+      }
+      spinnerRoles.setSelection(index);
+      String[] questions = getResources().getStringArray(R.array.questions_entries);
+      index = 0;
+      for (int i = 0; i < questions.length; i++) {
+        if(questions[i].toLowerCase().equals(user.getQuestion().toLowerCase())) {
+          index = i;
+          break;
+        }
+      }
+      spinnerQuestions.setSelection(index);
+
+      editAnswer.setText(user.getAnswer());
+      btnCreateUser.setText(getContext().getString(R.string.btnEditUser));
+    }
 
     btnCreateUser.setOnClickListener(this);
     return view;
