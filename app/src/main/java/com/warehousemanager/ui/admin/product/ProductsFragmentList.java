@@ -16,6 +16,7 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.warehousemanager.R;
@@ -37,6 +38,7 @@ import retrofit2.Response;
 public class ProductsFragmentList extends Fragment implements FragmentInteraction,
         SwipeRefreshLayout.OnRefreshListener{
 
+    private ProgressBar progressBar;
     RecyclerView productsListRecyclerView;
     IFragmentManagerHelper fragmentManagerHelper;
     private FloatingActionButton floatingActionButton;
@@ -56,6 +58,7 @@ public class ProductsFragmentList extends Fragment implements FragmentInteractio
         swipeRefreshLayout = view.findViewById(R.id.swipe_container_admin_products);
         swipeRefreshLayout.setOnRefreshListener(this);
         fragmentManagerHelper = new FragmentManagerHelper(getFragmentManager(), R.id.productsFragmentContainer);
+        progressBar = view.findViewById(R.id.progress_loader);
 
         floatingActionButton = view.findViewById(R.id.floatingActionButton);
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
@@ -75,13 +78,14 @@ public class ProductsFragmentList extends Fragment implements FragmentInteractio
     }
 
     public void getData() {
-
+        progressBar.setVisibility(View.VISIBLE);
         warehouseService.getAllProducts().enqueue(new Callback<List<Product>>() {
             @Override
             public void onResponse(Call<List<Product>> call, Response<List<Product>> response) {
                 products.clear();
                 products.addAll(response.body());
                 productsListAdapter.notifyDataSetChanged();
+                progressBar.setVisibility(View.INVISIBLE);
                 //Log.d("DBG", "Data Changed");
             }
             @Override

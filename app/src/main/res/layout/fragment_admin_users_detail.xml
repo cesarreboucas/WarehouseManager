@@ -1,17 +1,201 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.admin.user.UserDetail"
-    android:background="@android:color/holo_red_dark"
-    android:clickable="true"
-    android:focusable="true">
+<ScrollView
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:background="@android:color/white">
+    <RelativeLayout
+      android:layout_width="match_parent"
+      android:layout_height="700dp"
+      tools:context=".ui.admin.user.UserAddFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        <TextView
+          android:id="@+id/txtName"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_alignParentStart="true"
+          android:layout_alignParentTop="true"
+          android:layout_marginStart="50dp"
+          android:layout_marginTop="21dp"
+          android:fontFamily="@font/montserrat"
+          android:text="@string/txtName"
+          android:textColor="@color/colorPrimaryDark"
+          android:textSize="@dimen/txtInput" />
 
-</FrameLayout>
+        <EditText
+          android:id="@+id/editName"
+          android:layout_width="325dp"
+          android:layout_height="43dp"
+          android:layout_alignParentStart="true"
+          android:layout_alignParentTop="true"
+          android:layout_marginStart="50dp"
+          android:layout_marginTop="47dp"
+          android:background="@drawable/edit_background_dark"
+          android:ems="10"
+          android:fontFamily="@font/montserrat"
+          android:inputType="text"
+          android:paddingStart="@dimen/editPaddingLeftRightIcon"
+          android:paddingEnd="@dimen/editPaddingLeftRightIcon"
+          android:textColor="@color/colorPrimaryDark" />
+
+        <TextView
+          android:id="@+id/txtUsername"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_alignParentStart="true"
+          android:layout_alignParentTop="true"
+          android:layout_marginStart="50dp"
+          android:layout_marginTop="104dp"
+          android:fontFamily="@font/montserrat"
+          android:text="@string/txtUsername"
+          android:textColor="@color/colorPrimaryDark"
+          android:textSize="@dimen/txtInput" />
+
+        <EditText
+          android:id="@+id/editUsername"
+          android:layout_width="325dp"
+          android:layout_height="43dp"
+          android:layout_alignParentStart="true"
+          android:layout_alignParentTop="true"
+          android:layout_marginStart="50dp"
+          android:layout_marginTop="129dp"
+          android:background="@drawable/edit_background_dark"
+          android:ems="10"
+          android:fontFamily="@font/montserrat"
+          android:inputType="textPersonName"
+          android:paddingStart="@dimen/editPaddingLeftRightIcon"
+          android:paddingEnd="@dimen/editPaddingLeftRightIcon"
+          android:textColor="@color/colorPrimaryDark" />
+
+        <TextView
+          android:id="@+id/txtRole"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_alignParentStart="true"
+          android:layout_alignParentTop="true"
+          android:layout_marginStart="50dp"
+          android:layout_marginTop="268dp"
+          android:fontFamily="@font/montserrat"
+          android:text="@string/txtUserRole"
+          android:textColor="@color/colorPrimaryDark"
+          android:textSize="@dimen/txtInput" />
+
+        <Spinner
+          android:id="@+id/spinnerRoles"
+          android:layout_width="325dp"
+          android:layout_height="43dp"
+          android:layout_alignParentTop="true"
+          android:layout_marginStart="50dp"
+          android:layout_marginTop="294dp"
+          android:background="@drawable/edit_background_dark"
+          android:entries="@array/roles_entries"
+          android:popupBackground="@android:color/white"
+          android:textColor="@color/colorPrimaryDark" />
+
+        <Button
+          android:id="@+id/btnEditUser"
+          android:layout_width="325dp"
+          android:layout_height="52dp"
+          android:layout_alignParentStart="true"
+          android:layout_alignParentTop="true"
+          android:layout_marginStart="50dp"
+          android:layout_marginTop="525dp"
+          android:background="@color/colorPrimaryDark"
+          android:text="@string/btnEditUser"
+          android:textColor="@android:color/white" />
+
+        <TextView
+          android:id="@+id/txtQuestions"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_alignParentStart="true"
+          android:layout_alignParentTop="true"
+          android:layout_marginStart="50dp"
+          android:layout_marginTop="348dp"
+          android:text="@string/txtQuestion"
+          android:textColor="@color/colorPrimaryDark" />
+
+        <Spinner
+          android:id="@+id/spinnerQuestions"
+          android:layout_width="325dp"
+          android:layout_height="43dp"
+          android:layout_alignParentStart="true"
+          android:layout_alignParentTop="true"
+          android:layout_marginStart="50dp"
+          android:layout_marginTop="372dp"
+          android:background="@drawable/edit_background_dark"
+          android:entries="@array/questions_entries"
+          android:popupBackground="@android:color/white"
+          android:textColor="@android:color/white" />
+
+        <EditText
+          android:id="@+id/editAnswer"
+          android:layout_width="325dp"
+          android:layout_height="43dp"
+          android:layout_alignParentStart="true"
+          android:layout_alignParentTop="true"
+          android:layout_marginStart="50dp"
+          android:layout_marginTop="449dp"
+          android:background="@drawable/edit_background_dark"
+          android:ems="10"
+          android:fontFamily="@font/montserrat"
+          android:inputType="textPersonName"
+          android:paddingStart="@dimen/editPaddingLeftRightIcon"
+          android:paddingEnd="@dimen/editPaddingLeftRightIcon"
+          android:textColor="@color/colorPrimaryDark" />
+
+        <TextView
+          android:id="@+id/txtAnswer"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_alignParentStart="true"
+          android:layout_alignParentTop="true"
+          android:layout_marginStart="50dp"
+          android:layout_marginTop="426dp"
+          android:text="@string/txtAnswer"
+          android:textColor="@color/colorPrimaryDark" />
+
+        <TextView
+          android:id="@+id/txtPassword"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_alignParentStart="true"
+          android:layout_alignParentTop="true"
+          android:layout_marginStart="50dp"
+          android:layout_marginTop="186dp"
+          android:text="@string/txtPassword"
+          android:textColor="@color/colorPrimaryDark"/>
+
+        <EditText
+          android:id="@+id/editPassword"
+          android:layout_width="325dp"
+          android:layout_height="43dp"
+          android:layout_alignParentStart="true"
+          android:layout_alignParentTop="true"
+          android:layout_marginStart="50dp"
+          android:layout_marginTop="209dp"
+          android:background="@drawable/edit_background_dark"
+          android:ems="10"
+          android:fontFamily="@font/montserrat"
+          android:inputType="textPersonName"
+          android:paddingStart="@dimen/editPaddingLeftRightIcon"
+          android:paddingEnd="@dimen/editPaddingLeftRightIcon"
+          android:textColor="@color/colorPrimaryDark" />
+
+        <Button
+          android:id="@+id/btnRemoveUser"
+          android:layout_width="325dp"
+          android:layout_height="52dp"
+          android:layout_alignParentStart="true"
+          android:layout_alignParentTop="true"
+          android:layout_marginStart="50dp"
+          android:layout_marginTop="587dp"
+          android:background="@color/colorPrimaryDark"
+          android:text="@string/btnRemoveUser"
+          android:textColor="@android:color/white" />
+
+
+    </RelativeLayout>
+</ScrollView>

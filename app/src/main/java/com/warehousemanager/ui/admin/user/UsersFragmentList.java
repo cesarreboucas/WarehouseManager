@@ -1,7 +1,5 @@
 package com.warehousemanager.ui.admin.user;
 
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.Message;
 import android.support.design.widget.FloatingActionButton;
@@ -10,18 +8,17 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.warehousemanager.R;
 import com.warehousemanager.data.db.entities.User;
 import com.warehousemanager.data.internal.FragmentManagerHelper;
 import com.warehousemanager.data.internal.IFragmentManagerHelper;
-import com.warehousemanager.data.internal.JsonReader;
 import com.warehousemanager.data.network.IWarehouseService;
 import com.warehousemanager.data.network.WarehouseService;
 import com.warehousemanager.ui.admin.FragmentInteraction;
@@ -43,6 +40,7 @@ public class UsersFragmentList extends Fragment
   private UsersListAdapter usersListAdapter;
   private FloatingActionButton floatingActionButton;
   private SwipeRefreshLayout swipeRefreshLayout;
+  private ProgressBar progressBar;
 
   IFragmentManagerHelper fragmentManagerHelper;
 
@@ -57,7 +55,7 @@ public class UsersFragmentList extends Fragment
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
                            Bundle savedInstanceState) {
     // Inflate the layout for this fragment
-    View view = inflater.inflate(R.layout.fragment_admin_users_fragment_list, container, false);
+    View view = inflater.inflate(R.layout.fragment_admin_users_list, container, false);
     usersList = view.findViewById(R.id.usersList);
 
     fragmentManagerHelper = new FragmentManagerHelper(
@@ -67,6 +65,7 @@ public class UsersFragmentList extends Fragment
     floatingActionButton.setOnClickListener(this);
     swipeRefreshLayout = view.findViewById(R.id.usersListRefresh);
     swipeRefreshLayout.setOnRefreshListener(this);
+    progressBar = view.findViewById(R.id.progress_loader);
 
     users = new ArrayList<>();
     usersList.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -80,6 +79,7 @@ public class UsersFragmentList extends Fragment
   }
 
   private void getData() {
+    progressBar.setVisibility(View.VISIBLE);
     warehouseService.getUsers().enqueue(new Callback<List<User>>() {
       @Override
       public void onResponse(Call<List<User>> call, Response<List<User>> response) {
@@ -88,6 +88,7 @@ public class UsersFragmentList extends Fragment
           users.addAll(response.body());
           usersListAdapter.notifyDataSetChanged();
           swipeRefreshLayout.setRefreshing(false);
+          progressBar.setVisibility(View.INVISIBLE);
         }
       }
 
@@ -115,7 +116,7 @@ public class UsersFragmentList extends Fragment
   }
 
   private void onFloatingActionButtonClicked(View v) {
-    fragmentManagerHelper.attach(AddUserFragment.class);
+    fragmentManagerHelper.attach(UserAddFragment.class);
   }
 
   @Override
@@ -136,6 +137,6 @@ public class UsersFragmentList extends Fragment
     User user = (User) message.obj;
     Bundle bundle = new Bundle();
     bundle.putSerializable("USER", user);
-    fragmentManagerHelper.attach(AddUserFragment.class, bundle);
+    fragmentManagerHelper.attach(UserDetailFragment.class, bundle);
   }
 }
