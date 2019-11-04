@@ -15,7 +15,6 @@ import com.warehousemanager.data.internal.FragmentManagerHelper;
 import com.warehousemanager.data.internal.IFragmentManagerHelper;
 import com.warehousemanager.data.internal.JsonReader;
 
-import java.util.Arrays;
 import java.util.List;
 
 public class WarehousesFragmentList extends Fragment {
@@ -32,7 +31,7 @@ public class WarehousesFragmentList extends Fragment {
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
                            Bundle savedInstanceState) {
 
-    View view = inflater.inflate(R.layout.fragment_admin_warehouses_fragment_list, container, false);
+    View view = inflater.inflate(R.layout.fragment_admin_warehouses_list, container, false);
     jsonReader = new JsonReader(getContext());
     warehousesList = view.findViewById(R.id.warehousesList);
 
