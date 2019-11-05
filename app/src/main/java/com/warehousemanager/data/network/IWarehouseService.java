@@ -8,6 +8,7 @@ import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
@@ -19,16 +20,22 @@ public interface IWarehouseService {
 
     @GET("products")
     Call<List<Product>> getAllProducts();
-
+  
     @POST("warehouses")
     Call<Warehouse> createWarehouse(@Body Warehouse warehouse);
 
     @GET ("warehouses")
     Call<List<Warehouse>> getAllWarehouse();
+  
+    @GET("users")
+    Call<List<User>> getAllUsers();
 
     @POST("users")
     Call<User> createUser(@Body User user);
+  
+    @PUT("users")
+    Call<User> editUser();
 
-    @GET("users")
-    Call<List<User>> getAllUsers();
+    @DELETE("users")
+    Call<User> deleteUser(@Body String username);
 }

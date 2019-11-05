@@ -39,4 +39,16 @@
     android:text="Something Anything"
     android:textSize="20sp"/>
 
+  <ImageButton
+      android:id="@+id/btnMoreOptions"
+      android:layout_width="50dp"
+      android:layout_height="50dp"
+      android:layout_alignParentTop="true"
+      android:layout_alignParentEnd="true"
+      android:layout_marginTop="39dp"
+      android:layout_marginEnd="16dp"
+      android:scaleType="fitXY"
+      android:background="@android:color/transparent"
+      app:srcCompat="@drawable/ic_more_vert_black_24dp" />
+
 </RelativeLayout>
