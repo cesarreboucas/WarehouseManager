@@ -4,7 +4,6 @@ import android.os.Message;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -44,7 +43,7 @@ public class ProductListClientAdapter extends RecyclerView.Adapter<ProductListCl
     public void onBindViewHolder(@NonNull ProductListClientAdapter.ProductsViewHolder productsViewHolder, final int i) {
         productsViewHolder.name.setText(products.get(i).getName());
         productsViewHolder.description.setText(products.get(i).getDescription());
-        productsViewHolder.price.setText(String.format("%.2f",products.get(i).getPrice()));
+        productsViewHolder.price.setText(String.format("%.2f",products.get(i).getSalePrice()));
         productsViewHolder.picture.setImageBitmap(imageHelper.convertBase64ToBitmap(products.get(i).getPicture()));
         productsViewHolder.view.setOnClickListener(new View.OnClickListener() {
             @Override

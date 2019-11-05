@@ -5,20 +5,24 @@ import android.arch.persistence.room.Room;
 import android.arch.persistence.room.RoomDatabase;
 import android.content.Context;
 
+import com.warehousemanager.data.db.dao.ProductDao;
 import com.warehousemanager.data.db.dao.UserDao;
+import com.warehousemanager.data.db.entities.Product;
 import com.warehousemanager.data.db.entities.User;
 
 import javax.inject.Singleton;
 
 @Singleton
 @Database(entities = {
-  User.class
-}, version = 3, exportSchema = false)
+  User.class,
+  Product.class
+}, version = 5, exportSchema = false)
 public abstract class WarehouseDatabase extends RoomDatabase {
 
   private static WarehouseDatabase INSTANCE;
 
   public abstract UserDao userDao();
+  public abstract ProductDao productDao();
 
   public static WarehouseDatabase getAppDatabase(Context context) {
     if (INSTANCE == null) {

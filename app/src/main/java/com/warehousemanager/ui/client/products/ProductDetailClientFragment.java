@@ -14,22 +14,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.vansuita.pickimage.bean.PickResult;
-import com.vansuita.pickimage.bundle.PickSetup;
-import com.vansuita.pickimage.dialog.PickImageDialog;
-import com.vansuita.pickimage.listeners.IPickCancel;
-import com.vansuita.pickimage.listeners.IPickResult;
 import com.warehousemanager.R;
+import com.warehousemanager.data.db.WarehouseDatabase;
 import com.warehousemanager.data.db.entities.Product;
 import com.warehousemanager.data.internal.FragmentManagerHelper;
 import com.warehousemanager.data.internal.ImageHelper;
 import com.warehousemanager.data.internal.ImageHelperImpl;
-import com.warehousemanager.data.network.IWarehouseService;
-import com.warehousemanager.data.network.WarehouseService;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 
 public class ProductDetailClientFragment extends Fragment {
@@ -41,12 +32,16 @@ public class ProductDetailClientFragment extends Fragment {
     TextView txtName;
     TextView txtDescription;
     TextView txtPrice;
+    Button btnAddToCart;
     FragmentManagerHelper fragmentManagerHelper;
+
+    WarehouseDatabase warehouseDatabase;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         product = (Product) getArguments().getSerializable("product");
+        product.setQuantity(1);
     }
 
     @Nullable
@@ -55,6 +50,18 @@ public class ProductDetailClientFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_client_product_detail,container,false);
 
         fragmentManagerHelper = new FragmentManagerHelper(getFragmentManager(), R.id.productsClientContainer);
+
+        warehouseDatabase = WarehouseDatabase.getAppDatabase(getActivity().getApplicationContext());
+
+        btnAddToCart = view.findViewById(R.id.btnAddCart);
+        btnAddToCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                warehouseDatabase.productDao().insertProduct(product);
+                Toast.makeText(getContext(), "Product added to the shopping cart.", Toast.LENGTH_SHORT).show();
+
+            }
+        });
 
         picture = view.findViewById(R.id.picture);
         txtName = view.findViewById(R.id.txtName);
@@ -70,11 +77,10 @@ public class ProductDetailClientFragment extends Fragment {
         if(product.getBarcode()!="") {
             txtName.setText(product.getName());
             txtDescription.setText(product.getDescription());
-            txtPrice.setText(String.valueOf(product.getPrice()));
+            txtPrice.setText(String.valueOf(product.getSalePrice()));
             ImageHelper imageHelper = new ImageHelperImpl();
             Bitmap pic = imageHelper.convertBase64ToBitmap(product.getPicture());
             picture.setImageBitmap(pic);
         }
-
     }
 }

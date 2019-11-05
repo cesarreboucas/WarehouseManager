@@ -53,5 +53,7 @@
     <string name="client_user_menu">Account</string>
     <string name="client_orders">Orders</string>
     <string name="client_shoppingCart">Shopping Cart</string>
+    <string name="btnAddToCart">A D D&#160;&#160;T O&#160;&#160;C A R T</string>
+    <string name="btnPlaceOrder">P L A C E&#160;&#160;O R D E R</string>
 
 </resources>
