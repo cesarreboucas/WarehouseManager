@@ -6,7 +6,7 @@
     android:layout_height="125dp">
 
   <TextView
-      android:id="@+id/txtWarehouseName"
+      android:id="@+id/txtWarehouseGeo"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:layout_marginStart="20dp"

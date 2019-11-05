@@ -1,12 +1,9 @@
 package com.warehousemanager.ui.admin.product;
 
-import android.content.Intent;
-import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,7 +12,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.gson.Gson;
 import com.vansuita.pickimage.bean.PickResult;
 import com.vansuita.pickimage.bundle.PickSetup;
 import com.vansuita.pickimage.dialog.PickImageDialog;
@@ -60,7 +56,7 @@ public class AddProductsFragment extends Fragment implements View.OnClickListene
 
         picture = view.findViewById(R.id.picture);
         txtName = view.findViewById(R.id.txtName);
-        txtDescription = view.findViewById(R.id.txtDescription);
+        txtDescription = view.findViewById(R.id.txtWarehouseName);
         txtPrice = view.findViewById(R.id.txtPrice);
         txtCost = view.findViewById(R.id.txtCost);
         txtBarcode = view.findViewById(R.id.txtBarcode);

@@ -1,6 +1,7 @@
 package com.warehousemanager.data.network;
 
 import com.warehousemanager.data.db.entities.Product;
+import com.warehousemanager.data.db.entities.Warehouse;
 
 import java.util.List;
 
@@ -16,4 +17,10 @@ public interface IWarehouseService {
 
     @GET("products")
     Call<List<Product>> getAllProducts();
+
+    @POST("warehouses")
+    Call<Warehouse> createWarehouse(@Body Warehouse warehouse);
+
+    @GET ("warehouses")
+    Call<List<Warehouse>> getAllWarehouse();
 }
