@@ -62,6 +62,8 @@
     <string name="btnRemoveWarehouse">R E M O V E&#160;&#160;W A R E H O U S E</string>
 
     <string name="title_completed">Completed Orders</string>
+    <string name="completedBy">Order Completed By&#160;&#160;  </string>
     <string name="title_pending">Pending Orders</string>
+    <string name="reportedBy">Report Sent By&#160;&#160; </string>
     <string name="title_todo">Todo Orders</string>
 </resources>

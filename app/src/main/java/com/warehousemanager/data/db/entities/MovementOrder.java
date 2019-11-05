@@ -16,6 +16,8 @@ public class MovementOrder
 
     private ArrayList<Product> itemsList;
 
+    private User username;
+
     public int getKEY() {
         return KEY;
     }
@@ -42,5 +44,13 @@ public class MovementOrder
 
     public void setItemsList(ArrayList<Product> itemsList) {
         this.itemsList = itemsList;
+    }
+
+    public User getUsername() {
+        return username;
+    }
+
+    public void setUsername(User username) {
+        this.username = username;
     }
 }
