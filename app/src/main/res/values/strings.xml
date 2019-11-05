@@ -1,51 +1,57 @@
 <resources>
-  <string name="app_name">WarehouseManager</string>
-  <string name="storeimg">StoreImg</string>
-  <string name="signInWarehouse">Warehouse</string>
-  <string name="signInManager">M A N A G E R</string>
-  <string name="txtUsername">U s e r n a m e</string>
-  <string name="txtPassword">P a s s w o r d</string>
-  <string name="btnSignIn">S I G N&#160;&#160;I N</string>
-  <string name="btnSignUp">S I G N&#160;&#160;U P</string>
-  <string name="btnForgotPassword">F O R G O T&#160;&#160;P A S S W O R D</string>
-  <string name="txtRepeatPassword">R e p e a t&#160;&#160;P a s s w o r d</string>
-  <string name="txtName">N a m e</string>
-  <string name="btnResetPassword">R E S E T&#160;&#160;P A S S W O R D</string>
-  <string name="products_menu">Products</string>
-  <string name="users_menu">Users</string>
-  <string name="home_menu">Home</string>
-  <string name="txtQuestion">S e l e c t&#160;&#160;a&#160;&#160;S e c u r i t y&#160;&#160;Q u e s t i o n</string>
+    <string name="app_name">WarehouseManager</string>
+    <string name="storeimg">StoreImg</string>
+    <string name="signInWarehouse">Warehouses</string>
+    <string name="signInManager">M A N A G E R</string>
+    <string name="txtUsername">U s e r n a m e</string>
+    <string name="txtPassword">P a s s w o r d</string>
+    <string name="btnSignIn">S I G N&#160;&#160;I N</string>
+    <string name="btnSignUp">S I G N&#160;&#160;U P</string>
+    <string name="btnForgotPassword">F O R G O T&#160;&#160;P A S S W O R D</string>
+    <string name="txtRepeatPassword">R e p e a t&#160;&#160;P a s s w o r d</string>
+    <string name="txtName">N a m e</string>
+    <string name="btnResetPassword">R E S E T&#160;&#160;P A S S W O R D</string>
+    <string name="products_menu">Products</string>
+    <string name="users_menu">Users</string>
+    <string name="home_menu">Home</string>
+    <string name="txtQuestion">S e l e c t&#160;&#160;a&#160;&#160;S e c u r i t y&#160;&#160;Q u e s t i o n</string>
 
-  <string-array name="roles_entries">
-    <item>Admin</item>
-    <item>Worker</item>
-    <item>Client</item>
-  </string-array>
+    <string-array name="roles_entries">
+        <item>Admin</item>
+        <item>Worker</item>
+        <item>Client</item>
+    </string-array>
 
-  <string-array name="questions_entries">
-    <item>What was my first pet&#96;s name?</item>
-    <item>What make of car did I first drive?</item>
-    <item>What was my favorite toy as a child?</item>
-    <item>What was my favorite game as a child?</item>
-    <item>What was the last name of my childhood best friend?</item>
-    <item>Where did I first meet my significant other?</item>
-    <item>Who was my most memorable school teacher?</item>
-    <item>What was my favorite subject in school?</item>
-    <item>What was the first organization I worked for?</item>
-    <item>What was the first city outside my country that I visited?</item>
-  </string-array>
+    <string-array name="questions_entries">
+        <item>What was my first pet&#96;s name?</item>
+        <item>What make of car did I first drive?</item>
+        <item>What was my favorite toy as a child?</item>
+        <item>What was my favorite game as a child?</item>
+        <item>What was the last name of my childhood best friend?</item>
+        <item>Where did I first meet my significant other?</item>
+        <item>Who was my most memorable school teacher?</item>
+        <item>What was my favorite subject in school?</item>
+        <item>What was the first organization I worked for?</item>
+        <item>What was the first city outside my country that I visited?</item>
+    </string-array>
 
 
-  <!-- TODO: Remove or change this placeholder text -->
-  <string name="hello_blank_fragment">Hello blank fragment</string>
-  <string name="summaryMenu">Summary</string>
-  <string name="txtAnswer">A n s w e r</string>
-  <string name="load_picture">LOAD PICTURE</string>
-  <string name="add">ADD</string>
-  <string name="title_warehouses">Warehouses</string>
-  <string name="title_summary">Summary</string>
-  <string name="title_reports">Reports</string>
-  <string name="txtUserRole">S e l e c t&#160;&#160;t h e&#160;&#160;u s e r&#160;&#160;r o l e</string>
-  <string name="btnCreateUser">C R E A T E&#160;&#160;U S E R</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="summaryMenu">Summary</string>
+    <string name="txtAnswer">A n s w e r</string>
+    <string name="load_picture">LOAD PICTURE</string>
+    <string name="add">ADD</string>
+    <string name="title_warehouses">Warehouses</string>
+    <string name="title_summary">Summary</string>
+    <string name="title_reports">Reports</string>
+    <string name="txtUserRole">S e l e c t&#160;&#160;t h e&#160;&#160;u s e r&#160;&#160;r o l e</string>
+    <string name="btnCreateUser">C R E A T E&#160;&#160;U S E R</string>
+    <string name="btnEditUser">E D I T&#160;&#160;U S E R</string>
+    <string name="btnRemoveUser">R E M O V E&#160;&#160;U S E R</string>
+
+    <string name="client_user_menu">Account</string>
+    <string name="client_orders">Orders</string>
+    <string name="client_shoppingCart">Shopping Cart</string>
 
 </resources>

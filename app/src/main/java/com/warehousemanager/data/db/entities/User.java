@@ -7,10 +7,11 @@ import android.support.annotation.NonNull;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 @Entity(tableName = "user_table")
-public class User {
+public class User implements Serializable {
 
   private static final long CURRENT_USER = 0;
 

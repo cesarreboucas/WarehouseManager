@@ -10,7 +10,6 @@ import android.view.MenuItem;
 import com.warehousemanager.R;
 import com.warehousemanager.data.db.WarehouseDatabase;
 import com.warehousemanager.data.internal.BottomNavigatorManager;
-import com.warehousemanager.data.internal.FragmentManagerHelper;
 import com.warehousemanager.data.internal.IFragmentManagerHelper;
 import com.warehousemanager.ui.admin.product.ProductsFragment;
 import com.warehousemanager.ui.admin.report.ReportsFragment;
@@ -29,7 +28,7 @@ public class HomeActivity extends AppCompatActivity
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    setContentView(R.layout.activity_home);
+    setContentView(R.layout.activity_admin_home);
 
     // Dependencies
     warehouseDatabase = WarehouseDatabase.getAppDatabase(getApplicationContext());

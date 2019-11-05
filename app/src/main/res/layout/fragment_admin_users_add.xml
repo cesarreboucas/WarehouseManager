@@ -8,8 +8,8 @@
   android:background="@android:color/white">
   <RelativeLayout
     android:layout_width="match_parent"
-    android:layout_height="800dp"
-    tools:context=".ui.admin.user.AddUserFragment">
+    android:layout_height="600dp"
+    tools:context=".ui.admin.user.UserAddFragment">
 
     <TextView
       android:id="@+id/txtWarehouseName"
@@ -30,7 +30,7 @@
       android:layout_height="43dp"
       android:layout_alignParentStart="true"
       android:layout_alignParentTop="true"
-      android:layout_marginStart="49dp"
+      android:layout_marginStart="50dp"
       android:layout_marginTop="47dp"
       android:background="@drawable/edit_background_dark"
       android:ems="10"
@@ -59,7 +59,7 @@
       android:layout_height="43dp"
       android:layout_alignParentStart="true"
       android:layout_alignParentTop="true"
-      android:layout_marginStart="49dp"
+      android:layout_marginStart="50dp"
       android:layout_marginTop="129dp"
       android:background="@drawable/edit_background_dark"
       android:ems="10"
@@ -75,8 +75,8 @@
       android:layout_height="wrap_content"
       android:layout_alignParentStart="true"
       android:layout_alignParentTop="true"
-      android:layout_marginStart="48dp"
-      android:layout_marginTop="195dp"
+      android:layout_marginStart="50dp"
+      android:layout_marginTop="268dp"
       android:fontFamily="@font/montserrat"
       android:text="@string/txtUserRole"
       android:textColor="@color/colorPrimaryDark"
@@ -87,11 +87,12 @@
       android:layout_width="325dp"
       android:layout_height="43dp"
       android:layout_alignParentTop="true"
-      android:layout_marginStart="52dp"
-      android:layout_marginTop="218dp"
+      android:layout_marginStart="50dp"
+      android:layout_marginTop="294dp"
       android:background="@drawable/edit_background_dark"
-      android:popupBackground="@color/colorPrimaryDark"
-      android:textColor="@android:color/white" />
+      android:entries="@array/roles_entries"
+      android:popupBackground="@android:color/white"
+      android:textColor="@color/colorPrimaryDark" />
 
     <Button
       android:id="@+id/btnCreateUser"
@@ -99,8 +100,8 @@
       android:layout_height="52dp"
       android:layout_alignParentStart="true"
       android:layout_alignParentTop="true"
-      android:layout_marginStart="52dp"
-      android:layout_marginTop="545dp"
+      android:layout_marginStart="50dp"
+      android:layout_marginTop="525dp"
       android:background="@color/colorPrimaryDark"
       android:text="@string/btnCreateUser"
       android:textColor="@android:color/white" />
@@ -112,7 +113,7 @@
       android:layout_alignParentStart="true"
       android:layout_alignParentTop="true"
       android:layout_marginStart="50dp"
-      android:layout_marginTop="284dp"
+      android:layout_marginTop="348dp"
       android:text="@string/txtQuestion"
       android:textColor="@color/colorPrimaryDark" />
 
@@ -123,9 +124,10 @@
       android:layout_alignParentStart="true"
       android:layout_alignParentTop="true"
       android:layout_marginStart="50dp"
-      android:layout_marginTop="307dp"
+      android:layout_marginTop="372dp"
       android:background="@drawable/edit_background_dark"
-      android:popupBackground="@color/colorPrimaryDark"
+      android:entries="@array/questions_entries"
+      android:popupBackground="@android:color/white"
       android:textColor="@android:color/white" />
 
     <EditText
@@ -134,8 +136,8 @@
       android:layout_height="43dp"
       android:layout_alignParentStart="true"
       android:layout_alignParentTop="true"
-      android:layout_marginStart="49dp"
-      android:layout_marginTop="384dp"
+      android:layout_marginStart="50dp"
+      android:layout_marginTop="449dp"
       android:background="@drawable/edit_background_dark"
       android:ems="10"
       android:fontFamily="@font/montserrat"
@@ -150,9 +152,36 @@
       android:layout_height="wrap_content"
       android:layout_alignParentStart="true"
       android:layout_alignParentTop="true"
-      android:layout_marginStart="52dp"
-      android:layout_marginTop="362dp"
+      android:layout_marginStart="50dp"
+      android:layout_marginTop="426dp"
       android:text="@string/txtAnswer"
+      android:textColor="@color/colorPrimaryDark" />
+
+    <TextView
+      android:id="@+id/txtPassword"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_alignParentStart="true"
+      android:layout_alignParentTop="true"
+      android:layout_marginStart="50dp"
+      android:layout_marginTop="186dp"
+      android:text="@string/txtPassword"
+      android:textColor="@color/colorPrimaryDark"/>
+
+    <EditText
+      android:id="@+id/editPassword"
+      android:layout_width="325dp"
+      android:layout_height="43dp"
+      android:layout_alignParentStart="true"
+      android:layout_alignParentTop="true"
+      android:layout_marginStart="50dp"
+      android:layout_marginTop="209dp"
+      android:background="@drawable/edit_background_dark"
+      android:ems="10"
+      android:fontFamily="@font/montserrat"
+      android:inputType="textPersonName"
+      android:paddingStart="@dimen/editPaddingLeftRightIcon"
+      android:paddingEnd="@dimen/editPaddingLeftRightIcon"
       android:textColor="@color/colorPrimaryDark" />
 
 
