@@ -134,9 +134,31 @@ public class UsersFragmentList extends Fragment
 
   @Override
   public void sendMessage(Message message) {
-    User user = (User) message.obj;
-    Bundle bundle = new Bundle();
-    bundle.putSerializable("USER", user);
-    fragmentManagerHelper.attach(UserDetailFragment.class, bundle);
+    Bundle bundle;
+    switch (message.what) {
+      case UsersListAdapter.CHANGE_USER_ROLE:
+        bundle = (Bundle) message.obj;
+        String username = bundle.getString("USERNAME");
+        String role = bundle.getString("ROLE");
+        progressBar.setVisibility(View.VISIBLE);
+        warehouseService.editUser().enqueue(new Callback<User>() {
+          @Override
+          public void onResponse(Call<User> call, Response<User> response) {
+            progressBar.setVisibility(View.INVISIBLE);
+          }
+
+          @Override
+          public void onFailure(Call<User> call, Throwable t) {
+            progressBar.setVisibility(View.INVISIBLE);
+          }
+        });
+        break;
+      default:
+        User user = (User) message.obj;
+        bundle = new Bundle();
+        bundle.putSerializable("USER", user);
+        fragmentManagerHelper.attach(UserDetailFragment.class, bundle);
+        break;
+    }
   }
 }
