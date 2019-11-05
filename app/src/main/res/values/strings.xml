@@ -56,4 +56,10 @@
     <string name="btnAddToCart">A D D&#160;&#160;T O&#160;&#160;C A R T</string>
     <string name="btnPlaceOrder">P L A C E&#160;&#160;O R D E R</string>
 
+    <string name="txtLocation">Location</string>
+    <string name="txtCapacity">Capacity</string>
+    <string name="btnEditWarehouse">E D I T&#160;&#160;W A R E H O U S E</string>
+    <string name="btnRemoveWarehouse">R E M O V E&#160;&#160;W A R E H O U S E</string>
+
+
 </resources>
