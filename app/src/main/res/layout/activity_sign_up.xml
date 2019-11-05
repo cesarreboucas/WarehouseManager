@@ -28,7 +28,7 @@
     app:layout_constraintGuide_percent="0.16" />
 
   <EditText
-      android:id="@+id/editPassword"
+      android:id="@+id/editCapacity"
       android:layout_width="325dp"
       android:layout_height="43dp"
       android:layout_marginTop="180dp"
@@ -45,7 +45,7 @@
       app:layout_constraintTop_toTopOf="@+id/fieldsGuideline" />
 
   <TextView
-      android:id="@+id/txtPassword"
+      android:id="@+id/txtCapacity"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:fontFamily="@font/montserrat"
@@ -67,7 +67,7 @@
       app:layout_constraintStart_toStartOf="@+id/spinnerRoles" />
 
   <EditText
-      android:id="@+id/editUsername"
+      android:id="@+id/editLocation"
       android:layout_width="325dp"
       android:layout_height="43dp"
       android:layout_marginTop="90dp"
@@ -84,7 +84,7 @@
       app:layout_constraintTop_toTopOf="@+id/fieldsGuideline" />
 
   <TextView
-    android:id="@+id/txtUsername"
+    android:id="@+id/txtLocation"
     android:layout_width="121dp"
     android:layout_height="24dp"
     android:fontFamily="@font/montserrat"

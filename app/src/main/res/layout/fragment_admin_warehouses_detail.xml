@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@android:color/white">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="700dp"
+        tools:context=".ui.admin.user.UserAddFragment">
+
+        <TextView
+            android:id="@+id/txtName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="21dp"
+            android:fontFamily="@font/montserrat"
+            android:text="@string/txtName"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="@dimen/txtInput" />
+
+        <EditText
+            android:id="@+id/editName"
+            android:layout_width="325dp"
+            android:layout_height="43dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="47dp"
+            android:background="@drawable/edit_background_dark"
+            android:ems="10"
+            android:fontFamily="@font/montserrat"
+            android:inputType="text"
+            android:paddingStart="@dimen/editPaddingLeftRightIcon"
+            android:paddingEnd="@dimen/editPaddingLeftRightIcon"
+            android:textColor="@color/colorPrimaryDark" />
+
+        <TextView
+            android:id="@+id/txtLocation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="104dp"
+            android:fontFamily="@font/montserrat"
+            android:text="@string/txtLocation"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="@dimen/txtInput" />
+
+        <EditText
+            android:id="@+id/editLocation"
+            android:layout_width="325dp"
+            android:layout_height="43dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="129dp"
+            android:background="@drawable/edit_background_dark"
+            android:ems="10"
+            android:fontFamily="@font/montserrat"
+            android:inputType="textPersonName"
+            android:paddingStart="@dimen/editPaddingLeftRightIcon"
+            android:paddingEnd="@dimen/editPaddingLeftRightIcon"
+            android:textColor="@color/colorPrimaryDark" />
+
+        <Button
+            android:id="@+id/btnEditWarehouse"
+            android:layout_width="325dp"
+            android:layout_height="52dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="525dp"
+            android:background="@color/colorPrimaryDark"
+            android:text="@string/btnEditWarehouse"
+            android:textColor="@android:color/white" />
+
+        <TextView
+            android:id="@+id/txtCapacity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="186dp"
+            android:text="@string/txtCapacity"
+            android:textColor="@color/colorPrimaryDark" />
+
+        <EditText
+            android:id="@+id/editCapacity"
+            android:layout_width="325dp"
+            android:layout_height="43dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="209dp"
+            android:background="@drawable/edit_background_dark"
+            android:ems="10"
+            android:fontFamily="@font/montserrat"
+            android:inputType="textPersonName"
+            android:paddingStart="@dimen/editPaddingLeftRightIcon"
+            android:paddingEnd="@dimen/editPaddingLeftRightIcon"
+            android:textColor="@color/colorPrimaryDark" />
+
+        <Button
+            android:id="@+id/btnRemoveWarehouse"
+            android:layout_width="325dp"
+            android:layout_height="52dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="587dp"
+            android:background="@color/colorPrimaryDark"
+            android:text="@string/btnRemoveWarehouse"
+            android:textColor="@android:color/white" />
+
+
+    </RelativeLayout>
+</ScrollView>

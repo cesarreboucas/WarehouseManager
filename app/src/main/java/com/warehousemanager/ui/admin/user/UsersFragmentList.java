@@ -80,7 +80,7 @@ public class UsersFragmentList extends Fragment
 
   private void getData() {
     progressBar.setVisibility(View.VISIBLE);
-    warehouseService.getUsers().enqueue(new Callback<List<User>>() {
+    warehouseService.getAllUsers().enqueue(new Callback<List<User>>() {
       @Override
       public void onResponse(Call<List<User>> call, Response<List<User>> response) {
         if(response.body() != null) {

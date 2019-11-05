@@ -29,5 +29,5 @@ public interface IWarehouseService {
     Call<User> createUser(@Body User user);
 
     @GET("users")
-    Call<List<User>> getUsers();
+    Call<List<User>> getAllUsers();
 }

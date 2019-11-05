@@ -11,17 +11,9 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.vansuita.pickimage.bean.PickResult;
-import com.vansuita.pickimage.bundle.PickSetup;
-import com.vansuita.pickimage.dialog.PickImageDialog;
-import com.vansuita.pickimage.listeners.IPickCancel;
-import com.vansuita.pickimage.listeners.IPickResult;
 import com.warehousemanager.R;
-import com.warehousemanager.data.db.entities.Product;
 import com.warehousemanager.data.db.entities.Warehouse;
 import com.warehousemanager.data.internal.FragmentManagerHelper;
-import com.warehousemanager.data.internal.ImageHelper;
-import com.warehousemanager.data.internal.ImageHelperImpl;
 import com.warehousemanager.data.network.IWarehouseService;
 import com.warehousemanager.data.network.WarehouseService;
 
@@ -29,7 +21,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class AddWarehouseFragment extends Fragment implements View.OnClickListener {
+public class WarehouseAddFragment extends Fragment implements View.OnClickListener {
     Warehouse warehouse = new Warehouse();
 
     TextView txtWarehouseName;
@@ -42,7 +34,7 @@ public class AddWarehouseFragment extends Fragment implements View.OnClickListen
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_admin_warehouse_add, container, false);
+        View view = inflater.inflate(R.layout.fragment_admin_warehouses_add, container, false);
 
         Button btnAdd = view.findViewById(R.id.btnAdd);
         btnAdd.setOnClickListener(this);

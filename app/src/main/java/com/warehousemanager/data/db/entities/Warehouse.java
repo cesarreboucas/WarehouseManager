@@ -5,10 +5,11 @@ import android.arch.persistence.room.Entity;
 import com.google.gson.annotations.SerializedName;
 import com.google.type.LatLng;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 @Entity(tableName = "warehouse_table")
-public class Warehouse {
+public class Warehouse implements Serializable {
 
     @SerializedName("name")
     private String name;
