@@ -20,12 +20,18 @@ public interface IWarehouseService {
 
     @GET("products")
     Call<List<Product>> getAllProducts();
+
+    @DELETE("products")
+    Call<Product> deleteProduct(@Body String barcode);
   
     @POST("warehouses")
     Call<Warehouse> createWarehouse(@Body Warehouse warehouse);
 
     @GET ("warehouses")
     Call<List<Warehouse>> getAllWarehouse();
+
+    @DELETE("warehouses")
+    Call<Warehouse> deleteWarehouse(@Body String warehouseName);
   
     @GET("users")
     Call<List<User>> getAllUsers();
