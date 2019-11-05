@@ -57,7 +57,7 @@
       app:layout_constraintGuide_percent="0.25" />
 
     <TextView
-      android:id="@+id/txtLocation"
+      android:id="@+id/txtUsername"
       android:layout_width="121dp"
       android:layout_height="24dp"
       android:fontFamily="@font/montserrat"
@@ -68,7 +68,7 @@
       app:layout_constraintStart_toStartOf="@+id/editUsername" />
 
     <EditText
-      android:id="@+id/txtUsername"
+      android:id="@+id/editUsername"
       android:layout_width="325dp"
       android:layout_height="43dp"
       android:layout_marginTop="52dp"
@@ -85,7 +85,7 @@
       app:layout_constraintTop_toTopOf="@+id/fieldsGuideline" />
 
     <TextView
-      android:id="@+id/txtCapacity_add"
+      android:id="@+id/editPassword"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:fontFamily="@font/montserrat"

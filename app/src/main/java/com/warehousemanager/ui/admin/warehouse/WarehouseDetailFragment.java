@@ -97,10 +97,10 @@ public class WarehouseDetailFragment extends Fragment
 
     private void onBtnEditWarehouseClicked(View v) {
         try{
-            warehouse.setName(txtWarehouseName.getText().toString());
-            warehouse.setLocation(txtLocationGeo.getText().toString());
+            warehouse.setName(editName.getText().toString());
+            warehouse.setLocation(editLocation.getText().toString());
             warehouse.setWorkerCount(0);
-            warehouse.setCapacity(Integer.parseInt(txtCapacity.getText().toString()));
+            warehouse.setCapacity(Integer.parseInt(editCapacity.getText().toString()));
 
         } catch (Exception e) {
             Log.d("ERROR", e.getMessage());
@@ -112,15 +112,14 @@ public class WarehouseDetailFragment extends Fragment
         warehouseService.createWarehouse(warehouse).enqueue(new Callback<Warehouse>() {
             @Override
             public void onResponse(Call<Warehouse> call, Response<Warehouse> response) {
-                Toast.makeText(v.getContext(), "warehouse Created", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "warehouse Created", Toast.LENGTH_SHORT).show();
                 fragmentManagerHelper.goBack();
             }
 
             @Override
             public void onFailure(Call<Warehouse> call, Throwable t) {
-                Toast.makeText(v.getContext(), "Error creating warehouse", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "Error creating warehouse", Toast.LENGTH_SHORT).show();
             }
         });
-    }
     }
 }
