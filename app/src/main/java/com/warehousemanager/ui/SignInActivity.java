@@ -81,8 +81,8 @@ public class SignInActivity extends AppCompatActivity implements FirebaseUserCal
             if(user.getPassword().equals(password)) {
                 Toast.makeText(this, "Logged successfully", Toast.LENGTH_SHORT).show();
                 warehouseDatabase.userDao().insertUser(user);
-                Intent it = new Intent(this, HomeActivity.class);
-                //Intent it = new Intent(this, ClientHomeActivity.class);
+                //Intent it = new Intent(this, HomeActivity.class);
+                Intent it = new Intent(this, ClientHomeActivity.class);
                 startActivity(it);
             }
         }
