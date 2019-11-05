@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,7 +39,7 @@ public class WarehouseAddFragment extends Fragment implements View.OnClickListen
 
         Button btnAdd = view.findViewById(R.id.btnAdd);
         btnAdd.setOnClickListener(this);
-        fragmentManagerHelper = new FragmentManagerHelper(getFragmentManager(), R.id.productsFragmentContainer);
+        fragmentManagerHelper = new FragmentManagerHelper(getFragmentManager(), R.id.warehousesFragmentContainer);
 
         txtWarehouseName = view.findViewById(R.id.txtWarehouseName_add);
         txtLocationGeo = view.findViewById(R.id.txtWarehouseGeo_add);
@@ -58,11 +59,11 @@ public class WarehouseAddFragment extends Fragment implements View.OnClickListen
         try{
             warehouse.setName(txtWarehouseName.getText().toString());
             warehouse.setLocation(txtLocationGeo.getText().toString());
-            warehouse.setWorkerCount(Integer.parseInt(txtWorkerCount.getText().toString()));
+            warehouse.setWorkerCount(0);
             warehouse.setCapacity(Integer.parseInt(txtCapacity.getText().toString()));
 
         } catch (Exception e) {
-
+            Log.d("ERROR", e.getMessage());
         }
 
 

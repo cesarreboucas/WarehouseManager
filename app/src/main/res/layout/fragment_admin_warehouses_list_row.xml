@@ -6,7 +6,7 @@
     android:layout_height="125dp">
 
   <TextView
-      android:id="@+id/txtWarehouseGeo"
+      android:id="@+id/txtWarehouseName"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:layout_marginStart="20dp"
@@ -16,7 +16,7 @@
       android:text="txtWarehouseName"
       android:textSize="24sp"
       android:textStyle="bold"
-      app:layout_constraintBottom_toTopOf="@+id/txtCapacity"
+      app:layout_constraintBottom_toTopOf="@+id/txtCapacity_add"
       app:layout_constraintEnd_toStartOf="@+id/btnEdit"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toTopOf="parent" />
@@ -44,10 +44,10 @@
       android:text="txtWorkerCount"
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintTop_toBottomOf="@+id/txtCapacity" />
+      app:layout_constraintTop_toBottomOf="@+id/txtCapacity_add" />
 
   <TextView
-      android:id="@+id/txtCapacity"
+      android:id="@+id/txtCapacity_add"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:layout_marginTop="60dp"

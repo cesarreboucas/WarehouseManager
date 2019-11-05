@@ -82,7 +82,7 @@
             android:textColor="@android:color/white" />
 
         <TextView
-            android:id="@+id/txtCapacity"
+            android:id="@+id/txtCapacity_add"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"

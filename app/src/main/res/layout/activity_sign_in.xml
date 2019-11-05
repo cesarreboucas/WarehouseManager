@@ -85,7 +85,7 @@
       app:layout_constraintTop_toTopOf="@+id/fieldsGuideline" />
 
     <TextView
-      android:id="@+id/txtCapacity"
+      android:id="@+id/txtCapacity_add"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:fontFamily="@font/montserrat"

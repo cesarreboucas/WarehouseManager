@@ -3,6 +3,7 @@ package com.warehousemanager.ui.admin.warehouse;
 
 import android.os.Bundle;
 import android.os.Message;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
@@ -40,6 +41,7 @@ public class WarehousesFragmentList extends Fragment
 
   List<Warehouse> warehouses;
   WarehousesListAdapter warehouseListAdapter;
+  private FloatingActionButton floatingActionButton;
   private RecyclerView warehousesList;
 
   private SwipeRefreshLayout swipeRefreshLayout;
@@ -62,6 +64,8 @@ public class WarehousesFragmentList extends Fragment
     fragmentManagerHelper = new FragmentManagerHelper(
             getFragmentManager(), R.id.warehousesFragmentContainer);
 
+    floatingActionButton = view.findViewById(R.id.floatingActionButton);
+    floatingActionButton.setOnClickListener(this);
     swipeRefreshLayout = view.findViewById(R.id.warehousesListRefresh);
     swipeRefreshLayout.setOnRefreshListener(this);
 
@@ -69,7 +73,7 @@ public class WarehousesFragmentList extends Fragment
 
     warehousesList.setLayoutManager(new LinearLayoutManager(getContext()));
     warehouses = new ArrayList<>();
-    warehouseListAdapter = new WarehousesListAdapter(warehouses);
+    warehouseListAdapter = new WarehousesListAdapter(warehouses, this);
 
     warehousesList.setAdapter(warehouseListAdapter);
 
@@ -134,8 +138,10 @@ public class WarehousesFragmentList extends Fragment
 
   @Override
   public void sendMessage(Message message) {
-    Warehouse warehouse = (Warehouse) message.obj;
-    Bundle bundle = new Bundle();
+    Warehouse warehouse;
+    Bundle bundle;
+    warehouse = (Warehouse) message.obj;
+    bundle = new Bundle();
     bundle.putSerializable("WAREHOUSE", warehouse);
     fragmentManagerHelper.attach(WarehouseDetailFragment.class, bundle);
   }

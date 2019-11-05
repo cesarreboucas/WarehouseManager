@@ -2,18 +2,24 @@ package com.warehousemanager.ui.admin.warehouse;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.warehousemanager.R;
 import com.warehousemanager.data.db.entities.Warehouse;
 import com.warehousemanager.data.internal.FragmentManagerHelper;
 import com.warehousemanager.data.network.IWarehouseService;
 import com.warehousemanager.data.network.WarehouseService;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class WarehouseDetailFragment extends Fragment
         implements View.OnClickListener {
@@ -37,9 +43,10 @@ public class WarehouseDetailFragment extends Fragment
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        try {if(getArguments().getSerializable("WAREHOUSE") != null) {
-            this.warehouse = (Warehouse) getArguments().getSerializable("WAREHOUSE");
-        }
+        try {
+            if(getArguments().getSerializable("WAREHOUSE") != null) {
+                this.warehouse = (Warehouse) getArguments().getSerializable("WAREHOUSE");
+            }
         } catch (NullPointerException ex) {
 
         }
@@ -70,7 +77,7 @@ public class WarehouseDetailFragment extends Fragment
 
         editName.setText(warehouse.getName());
         editLocation.setText(warehouse.getLocation());
-        editCapacity.setText(warehouse.getCapacity());
+        editCapacity.setText(String.valueOf(warehouse.getCapacity()));
     }
 
     @Override
@@ -89,5 +96,31 @@ public class WarehouseDetailFragment extends Fragment
     }
 
     private void onBtnEditWarehouseClicked(View v) {
+        try{
+            warehouse.setName(txtWarehouseName.getText().toString());
+            warehouse.setLocation(txtLocationGeo.getText().toString());
+            warehouse.setWorkerCount(0);
+            warehouse.setCapacity(Integer.parseInt(txtCapacity.getText().toString()));
+
+        } catch (Exception e) {
+            Log.d("ERROR", e.getMessage());
+        }
+
+
+        IWarehouseService warehouseService = WarehouseService.getInstance()
+                .create(IWarehouseService.class);
+        warehouseService.createWarehouse(warehouse).enqueue(new Callback<Warehouse>() {
+            @Override
+            public void onResponse(Call<Warehouse> call, Response<Warehouse> response) {
+                Toast.makeText(v.getContext(), "warehouse Created", Toast.LENGTH_SHORT).show();
+                fragmentManagerHelper.goBack();
+            }
+
+            @Override
+            public void onFailure(Call<Warehouse> call, Throwable t) {
+                Toast.makeText(v.getContext(), "Error creating warehouse", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
     }
 }
