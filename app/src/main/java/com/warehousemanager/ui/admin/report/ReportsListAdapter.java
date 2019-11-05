@@ -43,7 +43,7 @@ public class ReportsListAdapter extends RecyclerView.Adapter<ReportsListAdapter.
 
     public ReportsListViewHolder(@NonNull View itemView) {
       super(itemView);
-      textView = itemView.findViewById(R.id.txtWarehouseName);
+      textView = itemView.findViewById(R.id.txtName);
     }
   }
 }

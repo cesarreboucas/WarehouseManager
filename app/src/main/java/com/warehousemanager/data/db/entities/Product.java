@@ -1,19 +1,28 @@
 package com.warehousemanager.data.db.entities;
 
 import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.PrimaryKey;
+import android.support.annotation.NonNull;
+
+import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
 
 @Entity(tableName = "product_table")
 public class Product implements Serializable {
 
+    @NonNull
+    @PrimaryKey
+    private String barcode;
+
     private String name;
     private String description;
     private double cost;
-    private double price;
-    private String barcode;
+
+    @SerializedName("sale_price")
+    private double salePrice;
     private String picture;
-    //private int quantity;
+    private int quantity;
 
     public String getName() {
         return name;
@@ -39,12 +48,12 @@ public class Product implements Serializable {
         this.cost = cost;
     }
 
-    public double getPrice() {
-        return price;
+    public double getSalePrice() {
+        return salePrice;
     }
 
-    public void setPrice(double price) {
-        this.price = price;
+    public void setSalePrice(double price) {
+        this.salePrice = price;
     }
 
     public String getBarcode() {
@@ -55,13 +64,9 @@ public class Product implements Serializable {
         this.barcode = barcode;
     }
 
-    /*public int getQuantity() {
-        return quantity;
-    }*/
+    public int getQuantity() { return quantity; }
 
-    /*public void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }*/
+    public void setQuantity(int quantity) { this.quantity = quantity; }
 
     public String getPicture() {
         return picture;
@@ -70,4 +75,7 @@ public class Product implements Serializable {
     public void setPicture(String picture) {
         this.picture = picture;
     }
+
+    public double getTotal() { return quantity * salePrice; }
+
 }

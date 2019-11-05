@@ -22,7 +22,7 @@ public class SignInActivity extends AppCompatActivity implements FirebaseUserCal
 
     String username, password;
 
-    EditText editPassword, editUsername;
+    EditText txtPassword, txtUsername;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,15 +33,15 @@ public class SignInActivity extends AppCompatActivity implements FirebaseUserCal
         firebaseService.setUserCallback(this);
         warehouseDatabase = WarehouseDatabase.getAppDatabase(this.getApplicationContext());
 
-        editUsername = findViewById(R.id.editUsername);
-        editPassword = findViewById(R.id.editPassword);
+        txtUsername = findViewById(R.id.txtUsername);
+        txtPassword = findViewById(R.id.txtPassword);
 
         // TODO REMOVE LATER
         findViewById(R.id.imageView).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                editUsername.setText("cesar");
-                editPassword.setText("1234");
+                txtUsername.setText("cesar");
+                txtPassword.setText("1234");
             }
         });
 
@@ -53,8 +53,8 @@ public class SignInActivity extends AppCompatActivity implements FirebaseUserCal
     }
 
     public void onSignIn(View view) {
-        username = editUsername.getText().toString();
-        password = editPassword.getText().toString();
+        username = txtUsername.getText().toString();
+        password = txtPassword.getText().toString();
         firebaseService.getUser(username);
     }
 
