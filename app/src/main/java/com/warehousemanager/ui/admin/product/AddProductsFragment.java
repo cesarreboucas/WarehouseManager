@@ -1,5 +1,6 @@
 package com.warehousemanager.ui.admin.product;
 
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -62,7 +63,7 @@ public class AddProductsFragment extends Fragment implements View.OnClickListene
 
         picture = view.findViewById(R.id.picture);
         txtName = view.findViewById(R.id.txtName);
-        txtDescription = view.findViewById(R.id.txtWarehouseName);
+        txtDescription = view.findViewById(R.id.txtName);
         txtPrice = view.findViewById(R.id.txtPrice);
         txtCost = view.findViewById(R.id.txtCost);
         txtBarcode = view.findViewById(R.id.txtBarcode);

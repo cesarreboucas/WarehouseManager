@@ -7,7 +7,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.google.type.LatLng;
 import com.warehousemanager.R;
 import com.warehousemanager.data.db.entities.Warehouse;
 
@@ -55,7 +54,7 @@ public class WarehousesListAdapter extends RecyclerView.Adapter<WarehousesListAd
 
     public WarehouseListViewHolder(@NonNull View itemView) {
       super(itemView);
-      txtWarehouseName = itemView.findViewById(R.id.txtWarehouseName);
+      txtWarehouseName = itemView.findViewById(R.id.txtName);
       txtLocationGeo = itemView.findViewById(R.id.txtLocationGeo);
       txtWorkerCount = itemView.findViewById(R.id.txtWorkerCount);
       txtCapacity = itemView.findViewById(R.id.txtCapacity);
