@@ -6,6 +6,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -19,6 +20,7 @@ import com.warehousemanager.R;
 import com.warehousemanager.data.db.entities.User;
 import com.warehousemanager.data.internal.FragmentManagerHelper;
 import com.warehousemanager.data.internal.IFragmentManagerHelper;
+import com.warehousemanager.data.internal.What;
 import com.warehousemanager.data.network.IWarehouseService;
 import com.warehousemanager.data.network.WarehouseService;
 import com.warehousemanager.ui.admin.FragmentInteraction;
@@ -30,21 +32,21 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class UsersFragmentList extends Fragment
+public class UserFragmentList extends Fragment
   implements View.OnClickListener,  SwipeRefreshLayout.OnRefreshListener, FragmentInteraction {
 
   IWarehouseService warehouseService = WarehouseService.getInstance().create(IWarehouseService.class);
   List<User> users;
 
   private RecyclerView usersList;
-  private UsersListAdapter usersListAdapter;
+  private UserListAdapter usersListAdapter;
   private FloatingActionButton floatingActionButton;
   private SwipeRefreshLayout swipeRefreshLayout;
   private ProgressBar progressBar;
 
   IFragmentManagerHelper fragmentManagerHelper;
 
-  public UsersFragmentList() { }
+  public UserFragmentList() { }
 
   @Override
   public void onCreate(Bundle savedInstanceState) {
@@ -68,10 +70,15 @@ public class UsersFragmentList extends Fragment
     progressBar = view.findViewById(R.id.progress_loader);
 
     users = new ArrayList<>();
-    usersList.setLayoutManager(new LinearLayoutManager(getContext()));
-    usersListAdapter = new UsersListAdapter(users, this);
+    LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+    usersList.setLayoutManager(linearLayoutManager);
+    usersListAdapter = new UserListAdapter(users, this);
     usersList.setAdapter(usersListAdapter);
     usersList.setItemAnimator(new DefaultItemAnimator());
+
+    DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(usersList.getContext(),
+            linearLayoutManager.getOrientation());
+    usersList.addItemDecoration(dividerItemDecoration);
 
     getData();
 
@@ -95,6 +102,7 @@ public class UsersFragmentList extends Fragment
       @Override
       public void onFailure(Call<List<User>> call, Throwable t) {
         Toast.makeText(getContext(), "Failed to reach the server", Toast.LENGTH_LONG).show();
+        progressBar.setVisibility(View.INVISIBLE);
         Log.d("ERROR", t.getMessage());
       }
     });
@@ -135,29 +143,54 @@ public class UsersFragmentList extends Fragment
   @Override
   public void sendMessage(Message message) {
     Bundle bundle;
+    final User user;
+    final String username;
+    progressBar.setVisibility(View.VISIBLE);
     switch (message.what) {
-      case UsersListAdapter.CHANGE_USER_ROLE:
+      case What.REMOVE:
         bundle = (Bundle) message.obj;
-        String username = bundle.getString("USERNAME");
-        String role = bundle.getString("ROLE");
-        progressBar.setVisibility(View.VISIBLE);
-        warehouseService.editUser().enqueue(new Callback<User>() {
+        username = bundle.getString("USERNAME");
+        user = new User();
+        user.setUsername(username);
+        warehouseService.deleteUser(user).enqueue(new Callback<User>() {
           @Override
           public void onResponse(Call<User> call, Response<User> response) {
             progressBar.setVisibility(View.INVISIBLE);
+            usersListAdapter.refreshRemovedUser(user.getUsername());
           }
 
           @Override
           public void onFailure(Call<User> call, Throwable t) {
             progressBar.setVisibility(View.INVISIBLE);
+            Toast.makeText(getContext(), "Failed to remove " + username,
+                    Toast.LENGTH_LONG).show();
           }
         });
         break;
-      default:
-        User user = (User) message.obj;
-        bundle = new Bundle();
-        bundle.putSerializable("USER", user);
-        fragmentManagerHelper.attach(UserDetailFragment.class, bundle);
+      case What.CREATE:
+        break;
+      case What.UPDATE:
+        bundle = (Bundle) message.obj;
+        user = new User();
+        username = bundle.getString("USERNAME");
+        String role = bundle.getString("ROLE");
+
+        user.setRole(role);
+        user.setUsername(username);
+        warehouseService.editUser(user).enqueue(new Callback<User>() {
+          @Override
+          public void onResponse(Call<User> call, Response<User> response) {
+            progressBar.setVisibility(View.INVISIBLE);
+            usersListAdapter.refreshUserRole(user.getRole(), user.getUsername());
+          }
+
+          @Override
+          public void onFailure(Call<User> call, Throwable t) {
+            progressBar.setVisibility(View.INVISIBLE);
+            Toast.makeText(getContext(), "Failed to edit " + username + " role",
+                    Toast.LENGTH_LONG).show();
+          }
+        });
         break;
     }
   }
