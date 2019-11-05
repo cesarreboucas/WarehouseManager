@@ -77,7 +77,7 @@ public class AddProductsFragment extends Fragment implements View.OnClickListene
         if(product.getBarcode()!="") {
             txtName.setText(product.getName());
             txtDescription.setText(product.getDescription());
-            txtPrice.setText(String.valueOf(product.getPrice()));
+            txtPrice.setText(String.valueOf(product.getSalePrice()));
             txtCost.setText(String.valueOf(product.getCost()));
             txtBarcode.setText(product.getBarcode());
             ImageHelper imageHelper = new ImageHelperImpl();
@@ -113,7 +113,7 @@ public class AddProductsFragment extends Fragment implements View.OnClickListene
                     product.setName(txtName.getText().toString());
                     product.setDescription(txtDescription.getText().toString());
                     product.setCost(Double.parseDouble(txtCost.getText().toString()));
-                    product.setPrice(Double.parseDouble(txtPrice.getText().toString()));
+                    product.setSalePrice(Double.parseDouble(txtPrice.getText().toString()));
                     product.setBarcode(txtBarcode.getText().toString());
 
                 } catch (Exception e) {

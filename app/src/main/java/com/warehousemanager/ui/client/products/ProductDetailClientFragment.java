@@ -70,7 +70,7 @@ public class ProductDetailClientFragment extends Fragment {
         if(product.getBarcode()!="") {
             txtName.setText(product.getName());
             txtDescription.setText(product.getDescription());
-            txtPrice.setText(String.valueOf(product.getPrice()));
+            txtPrice.setText(String.valueOf(product.getSalePrice()));
             ImageHelper imageHelper = new ImageHelperImpl();
             Bitmap pic = imageHelper.convertBase64ToBitmap(product.getPicture());
             picture.setImageBitmap(pic);

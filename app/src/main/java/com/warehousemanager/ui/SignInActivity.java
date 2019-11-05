@@ -13,7 +13,6 @@ import com.warehousemanager.data.db.entities.User;
 import com.warehousemanager.data.services.FirebaseService;
 import com.warehousemanager.data.services.FirebaseUserCallback;
 import com.warehousemanager.ui.admin.HomeActivity;
-import com.warehousemanager.ui.client.ClientHomeActivity;
 
 public class SignInActivity extends AppCompatActivity implements FirebaseUserCallback {
     FirebaseService firebaseService;
@@ -22,7 +21,7 @@ public class SignInActivity extends AppCompatActivity implements FirebaseUserCal
 
     String username, password;
 
-    EditText txtPassword, txtUsername;
+    EditText editPasssword, editUsername;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,15 +32,15 @@ public class SignInActivity extends AppCompatActivity implements FirebaseUserCal
         firebaseService.setUserCallback(this);
         warehouseDatabase = WarehouseDatabase.getAppDatabase(this.getApplicationContext());
 
-        txtUsername = findViewById(R.id.txtUsername);
-        txtPassword = findViewById(R.id.txtPassword);
+        editUsername = findViewById(R.id.editUsername);
+        editPasssword = findViewById(R.id.editPassword);
 
         // TODO REMOVE LATER
         findViewById(R.id.imageView).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                txtUsername.setText("cesar");
-                txtPassword.setText("1234");
+                editUsername.setText("cesar");
+                editPasssword.setText("1234");
             }
         });
 
@@ -53,8 +52,8 @@ public class SignInActivity extends AppCompatActivity implements FirebaseUserCal
     }
 
     public void onSignIn(View view) {
-        username = txtUsername.getText().toString();
-        password = txtPassword.getText().toString();
+        username = editUsername.getText().toString();
+        password = editPasssword.getText().toString();
         firebaseService.getUser(username);
     }
 
