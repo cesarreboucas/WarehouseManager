@@ -25,8 +25,11 @@ public interface IWarehouseService {
     @POST("warehouses")
     Call<Warehouse> createWarehouse(@Body Warehouse warehouse);
 
-    @GET ("warehouses")
+    @GET("warehouses")
     Call<List<Warehouse>> getAllWarehouse();
+
+    @POST("users/auth")
+    Call<User> authenticate(@Body User user);
   
     @GET("users")
     Call<List<User>> getAllUsers();

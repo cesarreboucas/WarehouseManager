@@ -90,11 +90,16 @@ public class UserFragmentList extends Fragment
     warehouseService.getAllUsers().enqueue(new Callback<List<User>>() {
       @Override
       public void onResponse(Call<List<User>> call, Response<List<User>> response) {
-        if(response.body() != null) {
-          users.clear();
-          users.addAll(response.body());
-          usersListAdapter.notifyDataSetChanged();
-          swipeRefreshLayout.setRefreshing(false);
+        if(response.code() == 200) {
+          if(response.body() != null) {
+            users.clear();
+            users.addAll(response.body());
+            usersListAdapter.notifyDataSetChanged();
+            swipeRefreshLayout.setRefreshing(false);
+            progressBar.setVisibility(View.INVISIBLE);
+          }
+        } else {
+          Toast.makeText(getContext(), response.message(), Toast.LENGTH_LONG).show();
           progressBar.setVisibility(View.INVISIBLE);
         }
       }
