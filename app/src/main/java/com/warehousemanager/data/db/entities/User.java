@@ -1,6 +1,7 @@
 package com.warehousemanager.data.db.entities;
 
 import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.NonNull;
 
@@ -43,6 +44,9 @@ public class User implements Serializable {
 
   @SerializedName("image")
   private String profileImage;
+
+  @Ignore
+  public User() { }
 
   public User(String name, String username, String password, String role, String assignment, String question, String answer, String profileImage) {
     this.name = name;

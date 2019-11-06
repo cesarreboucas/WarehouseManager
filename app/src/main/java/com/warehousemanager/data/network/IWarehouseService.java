@@ -10,6 +10,7 @@ import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
 import retrofit2.http.GET;
+import retrofit2.http.HTTP;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 
@@ -24,8 +25,11 @@ public interface IWarehouseService {
     @POST("warehouses")
     Call<Warehouse> createWarehouse(@Body Warehouse warehouse);
 
-    @GET ("warehouses")
+    @GET("warehouses")
     Call<List<Warehouse>> getAllWarehouse();
+
+    @POST("users/auth")
+    Call<User> authenticate(@Body User user);
   
     @GET("users")
     Call<List<User>> getAllUsers();
@@ -34,8 +38,8 @@ public interface IWarehouseService {
     Call<User> createUser(@Body User user);
   
     @PUT("users")
-    Call<User> editUser();
+    Call<User> editUser(@Body User user);
 
-    @DELETE("users")
-    Call<User> deleteUser(@Body String username);
+    @HTTP(method = "DELETE", path = "users", hasBody = true)
+    Call<User> deleteUser(@Body User user);
 }

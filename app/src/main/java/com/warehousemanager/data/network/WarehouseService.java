@@ -18,9 +18,9 @@ public class WarehouseService {
     private static String username;
     private static String password;
 
-    public static void setCredentials(String username, String password) {
-        username = username;
-        password = password;
+    public static void setCredentials(String newUsername, String newPassword) {
+        username = newUsername;
+        password = newPassword;
     }
 
     public static void clearCredentials() {
@@ -29,20 +29,18 @@ public class WarehouseService {
     }
 
     public static Retrofit getInstance() {
-        if(retrofit==null) {
-            BasicAuthInterceptor basicAuthInterceptor = new BasicAuthInterceptor(username, password);
-            OkHttpClient client = new OkHttpClient
-              .Builder()
-              .addInterceptor(basicAuthInterceptor)
-              .build();
+        BasicAuthInterceptor basicAuthInterceptor = new BasicAuthInterceptor(username, password);
+        OkHttpClient client = new OkHttpClient
+                .Builder()
+                .addInterceptor(basicAuthInterceptor)
+                .build();
 
-            retrofit = new Retrofit.Builder()
-                    //.baseUrl("http://10.0.2.2:8000")
-                    .baseUrl("http://140.161.82.15:8000")
-                    .addConverterFactory(GsonConverterFactory.create())
-                    .client(client)
-                    .build();
-        }
+        retrofit = new Retrofit.Builder()
+                .baseUrl("http://10.0.2.2:8000")
+                //.baseUrl("http://140.161.82.15:8000")
+                .addConverterFactory(GsonConverterFactory.create())
+                .client(client)
+                .build();
         return retrofit;
     }
 

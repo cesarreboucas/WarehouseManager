@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.google.api.Http;
 import com.warehousemanager.R;
 import com.warehousemanager.data.db.entities.User;
 import com.warehousemanager.data.internal.FragmentManagerHelper;
@@ -91,14 +92,20 @@ public class UserAddFragment extends Fragment implements View.OnClickListener {
     warehouseService.createUser(newUser).enqueue(new Callback<User>() {
       @Override
       public void onResponse(Call<User> call, Response<User> response) {
-        if(response.body() != null) {
-          Toast.makeText(getContext(), "User created", Toast.LENGTH_LONG).show();
+        if(response.code() == 200) {
+          if(response.body() != null) {
+            Toast.makeText(getContext(), "User created", Toast.LENGTH_LONG).show();
+          }
+        } else {
+          Toast.makeText(getContext(), "This email has already been used"
+                  , Toast.LENGTH_LONG).show();
         }
       }
 
       @Override
       public void onFailure(Call<User> call, Throwable t) {
-
+        Toast.makeText(getContext(), "Something wnet wrong when trying to reach the server"
+                , Toast.LENGTH_LONG).show();
       }
     });
   }
