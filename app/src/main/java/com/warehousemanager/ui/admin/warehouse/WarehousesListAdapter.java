@@ -91,6 +91,7 @@ public class WarehousesListAdapter extends RecyclerView.Adapter<WarehousesListAd
       txtLocationGeo = itemView.findViewById(R.id.txtLocationGeo);
       txtWorkerCount = itemView.findViewById(R.id.txtWorkerCount);
       txtCapacity = itemView.findViewById(R.id.txtCapacity_add);
+
       btnEdit = itemView.findViewById(R.id.btnEdit);
     }
   }

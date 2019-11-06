@@ -13,10 +13,10 @@ public class MovementOrder
 
     private Warehouse originLocation;
     private Warehouse destinationLocation;
-
     private ArrayList<Product> itemsList;
-
+    private Product item;
     private User username;
+    private String transferType;
 
     public int getKEY() {
         return KEY;
@@ -52,5 +52,21 @@ public class MovementOrder
 
     public void setUsername(User username) {
         this.username = username;
+    }
+
+    public String getTransferType() {
+        return transferType;
+    }
+
+    public void setTransferType(String transferType) {
+        this.transferType = transferType;
+    }
+
+    public Product getItem() {
+        return item;
+    }
+
+    public void setItem(Product item) {
+        this.item = item;
     }
 }

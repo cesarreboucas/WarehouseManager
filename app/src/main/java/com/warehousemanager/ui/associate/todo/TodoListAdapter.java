@@ -7,9 +7,12 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TextView;
 
 import com.warehousemanager.R;
 import com.warehousemanager.data.db.entities.MovementOrder;
+import com.warehousemanager.data.db.entities.Product;
 import com.warehousemanager.ui.admin.FragmentInteraction;
 import com.warehousemanager.ui.associate.pending.PendingListAdapter;
 
@@ -68,7 +71,19 @@ public class TodoListAdapter extends RecyclerView.Adapter<TodoListAdapter.TodoLi
 
     @Override
     public void onBindViewHolder(@NonNull TodoListAdapter.TodoListViewHolder todoListViewHolder, int i) {
+        String transferType = todoList.get(i).getTransferType();
+        Product item = todoList.get(i).getItem();
+        String itemName = item.getName();
+        int itemCount = item.getQuantity();
 
+        todoListViewHolder.btnScan.setOnClickListener(this);
+        todoListViewHolder.btnScan.setTag(i);
+        todoListViewHolder.btnReport.setOnClickListener(this);
+        todoListViewHolder.btnReport.setTag(i);
+
+        todoListViewHolder.txtTransferType.setText(transferType);
+        todoListViewHolder.txtItemCount.setText(itemCount);
+        todoListViewHolder.txtItemName.setText(itemName);
     }
 
     @Override
@@ -77,10 +92,21 @@ public class TodoListAdapter extends RecyclerView.Adapter<TodoListAdapter.TodoLi
     }
 
     public class TodoListViewHolder extends RecyclerView.ViewHolder {
+        TextView txtTransferType;
+        TextView txtItemCount;
+        TextView txtItemName;
+
+        Button btnReport;
+        Button btnScan;
 
         public TodoListViewHolder(@NonNull View itemView) {
             super(itemView);
+            txtTransferType = itemView.findViewById(R.id.txtTransferType);
+            txtItemCount = itemView.findViewById(R.id.txtItemCount);
+            txtItemName = itemView.findViewById(R.id.txtItem);
 
+            btnReport = itemView.findViewById(R.id.btnReport);
+            btnScan = itemView.findViewById(R.id.btnScan);
         }
     }
 }

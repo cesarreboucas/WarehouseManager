@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.warehousemanager.R;
 import com.warehousemanager.data.db.entities.MovementOrder;
+import com.warehousemanager.data.db.entities.Product;
 import com.warehousemanager.data.db.entities.Warehouse;
 import com.warehousemanager.ui.admin.FragmentInteraction;
 import com.warehousemanager.ui.admin.warehouse.WarehousesListAdapter;
@@ -45,7 +46,16 @@ public class CompletedListAdapter extends RecyclerView.Adapter<CompletedListAdap
 
     @Override
     public void onBindViewHolder(@NonNull CompletedListViewHolder completedListViewHolder, int i) {
+        String transferType = completedList.get(i).getTransferType();
+        Product item = completedList.get(i).getItem();
+        String itemName = item.getName();
+        int itemCount = item.getQuantity();
+        String user = completedList.get(i).getUsername().toString();
 
+        completedListViewHolder.txtTransferType.setText(transferType);
+        completedListViewHolder.txtItemCount.setText(itemCount);
+        completedListViewHolder.txtItemName.setText(itemName);
+        completedListViewHolder.txtUser.setText(user);
     }
 
     @Override
@@ -54,9 +64,17 @@ public class CompletedListAdapter extends RecyclerView.Adapter<CompletedListAdap
     }
 
     public class CompletedListViewHolder extends RecyclerView.ViewHolder {
+        TextView txtTransferType;
+        TextView txtItemCount;
+        TextView txtItemName;
+        TextView txtUser;
 
         public CompletedListViewHolder(@NonNull View itemView) {
             super(itemView);
+            txtTransferType = itemView.findViewById(R.id.txtTransferType);
+            txtItemCount = itemView.findViewById(R.id.txtAmount);
+            txtItemName = itemView.findViewById(R.id.txtItem);
+            txtUser = itemView.findViewById(R.id.txtUser);
 
         }
     }
