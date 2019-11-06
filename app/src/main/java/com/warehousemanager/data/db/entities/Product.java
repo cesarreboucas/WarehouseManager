@@ -77,5 +77,6 @@ public class Product implements Serializable {
     }
 
     public double getTotal() { return quantity * salePrice; }
+    public double getTotalCost() { return quantity * cost; }
 
 }
