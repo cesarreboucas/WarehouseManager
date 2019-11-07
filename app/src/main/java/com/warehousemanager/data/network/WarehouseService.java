@@ -12,7 +12,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class WarehouseService {
 
 
-    final static String IPADDRESS = "http://140.161.82.15:8000";
+    //final static String IPADDRESS = "http://140.161.82.15:8000";
     public static Retrofit retrofit;
 
     private static String username;

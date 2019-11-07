@@ -29,7 +29,7 @@ public class BottomNavigatorManager implements IFragmentManagerHelper {
       if(searchFragment == null) {
         fragmentTransaction.add(fragmentContainer, newFragment, fragment.getName());
       } else {
-        fragmentTransaction.show(searchFragment);
+        fragmentTransaction.attach(searchFragment);
       }
       fragmentTransaction.commit();
     } catch (Exception ex) {
@@ -52,7 +52,7 @@ public class BottomNavigatorManager implements IFragmentManagerHelper {
     FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
     for (Fragment fragment : fragmentManager.getFragments()) {
       if(fragment.isVisible()) {
-        fragmentTransaction.hide(fragment);
+        fragmentTransaction.detach(fragment);
       }
     }
     fragmentTransaction.commit();
