@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.warehousemanager.R;
@@ -33,6 +34,8 @@ public class SignInActivity extends AppCompatActivity {
 
     EditText editPasssword, editUsername;
 
+    TextView txtWarehouse;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,6 +44,15 @@ public class SignInActivity extends AppCompatActivity {
 
         editUsername = findViewById(R.id.editUsername);
         editPasssword = findViewById(R.id.editPassword);
+
+        txtWarehouse = findViewById(R.id.txtWarehouse);
+        txtWarehouse.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                editUsername.setText("chancox9@google.pl");
+                editPasssword.setText("1234");
+            }
+        });
 
         // TODO REMOVE LATER
         findViewById(R.id.imageView).setOnClickListener(new View.OnClickListener() {

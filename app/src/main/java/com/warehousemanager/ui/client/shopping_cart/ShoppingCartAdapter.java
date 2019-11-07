@@ -17,6 +17,7 @@ import com.warehousemanager.data.db.WarehouseDatabase;
 import com.warehousemanager.data.db.entities.Product;
 import com.warehousemanager.data.internal.ImageHelper;
 import com.warehousemanager.data.internal.ImageHelperImpl;
+import com.warehousemanager.data.internal.What;
 import com.warehousemanager.ui.admin.FragmentInteraction;
 
 import java.util.List;
@@ -54,6 +55,7 @@ public class ShoppingCartAdapter extends RecyclerView.Adapter<ShoppingCartAdapte
             public void onClick(View v) {
                 Message m = new Message();
                 m.obj = products.get(i);
+                m.what = What.CREATE;
                 ((FragmentInteraction)fragment).sendMessage(m);
             }
         });
@@ -67,6 +69,7 @@ public class ShoppingCartAdapter extends RecyclerView.Adapter<ShoppingCartAdapte
 
                 Message m = new Message();
                 m.obj = product;
+                m.what = What.UPDATE;
                 ((FragmentInteraction)fragment).sendMessage(m);
             }
         });
@@ -81,6 +84,7 @@ public class ShoppingCartAdapter extends RecyclerView.Adapter<ShoppingCartAdapte
 
                     Message m = new Message();
                     m.obj = product;
+                    m.what = What.UPDATE;
                     ((FragmentInteraction)fragment).sendMessage(m);
                 }
             }
@@ -93,7 +97,10 @@ public class ShoppingCartAdapter extends RecyclerView.Adapter<ShoppingCartAdapte
 
                 Message m = new Message();
                 m.obj = product;
+                m.what = What.REMOVE;
                 ((FragmentInteraction)fragment).sendMessage(m);
+                products.remove(product);
+                notifyDataSetChanged();
             }
         });
     }
