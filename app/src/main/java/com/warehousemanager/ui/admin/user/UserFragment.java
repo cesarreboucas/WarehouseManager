@@ -1,13 +1,8 @@
 package com.warehousemanager.ui.admin.user;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.os.Message;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,12 +11,9 @@ import android.view.ViewGroup;
 import com.warehousemanager.R;
 import com.warehousemanager.data.internal.FragmentManagerHelper;
 import com.warehousemanager.data.internal.IFragmentManagerHelper;
-import com.warehousemanager.data.internal.JsonReader;
 import com.warehousemanager.ui.admin.FragmentInteraction;
 
-import java.util.List;
-
-public class UsersFragment extends Fragment implements FragmentInteraction {
+public class UserFragment extends Fragment implements FragmentInteraction {
 
   private FragmentInteraction mListener;
 
@@ -29,7 +21,7 @@ public class UsersFragment extends Fragment implements FragmentInteraction {
 
   private IFragmentManagerHelper fragmentManagerHelper;
 
-  public UsersFragment() {
+  public UserFragment() {
   }
 
   @Override
@@ -38,7 +30,7 @@ public class UsersFragment extends Fragment implements FragmentInteraction {
     View view = inflater.inflate(R.layout.fragment_admin_users, container, false);
 
     fragmentManagerHelper = new FragmentManagerHelper(getChildFragmentManager(), R.id.usersFragmentContainer);
-    fragmentManagerHelper.attach(UsersFragmentList.class);
+    fragmentManagerHelper.attach(UserFragmentList.class);
 
     toolbar = view.findViewById(R.id.toolbar);
     toolbar.setNavigationOnClickListener(new View.OnClickListener() {

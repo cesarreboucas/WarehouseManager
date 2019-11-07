@@ -14,7 +14,7 @@ import com.warehousemanager.data.internal.IFragmentManagerHelper;
 import com.warehousemanager.ui.admin.product.ProductsFragment;
 import com.warehousemanager.ui.admin.report.ReportsFragment;
 import com.warehousemanager.ui.admin.summary.SummariesFragment;
-import com.warehousemanager.ui.admin.user.UsersFragment;
+import com.warehousemanager.ui.admin.user.UserFragment;
 import com.warehousemanager.ui.admin.warehouse.WarehousesFragment;
 
 public class HomeActivity extends AppCompatActivity
@@ -34,7 +34,7 @@ public class HomeActivity extends AppCompatActivity
     warehouseDatabase = WarehouseDatabase.getAppDatabase(getApplicationContext());
     fragmentManagerHelper =
             new BottomNavigatorManager(getSupportFragmentManager(), R.id.fragmentContainer);
-    fragmentManagerHelper.attach(UsersFragment.class);
+    fragmentManagerHelper.attach(UserFragment.class);
 
     bottomNavigationView = findViewById(R.id.bottomNavigationView);
     bottomNavigationView.setOnNavigationItemSelectedListener(this);
@@ -52,7 +52,7 @@ public class HomeActivity extends AppCompatActivity
         fragmentManagerHelper.attach(SummariesFragment.class);
         break;
       case R.id.userMenu:
-        fragmentManagerHelper.attach(UsersFragment.class);
+        fragmentManagerHelper.attach(UserFragment.class);
         break;
       case R.id.productMenu:
         fragmentManagerHelper.attach(ProductsFragment.class);

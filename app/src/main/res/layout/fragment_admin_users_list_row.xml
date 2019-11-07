@@ -17,27 +17,26 @@
     app:civ_border_width="2dp" />
 
   <TextView
-    android:id="@+id/txtUsername"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_alignParentStart="true"
-    android:layout_alignParentTop="true"
-    android:layout_marginStart="132dp"
-    android:layout_marginTop="31dp"
-    android:text="something@something.com"
-    android:fontFamily="@font/montserrat"/>
+      android:id="@+id/txtUsername"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_alignParentTop="true"
+      android:layout_marginStart="118dp"
+      android:layout_marginTop="25dp"
+      android:fontFamily="@font/montserrat"
+      android:text="something@something.com" />
 
   <TextView
-    android:id="@+id/txtName"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_alignParentStart="true"
-    android:layout_alignParentBottom="true"
-    android:layout_marginStart="136dp"
-    android:layout_marginBottom="49dp"
-    android:fontFamily="@font/montserrat"
-    android:text="Something Anything"
-    android:textSize="20sp"/>
+      android:id="@+id/txtName"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_alignParentStart="true"
+      android:layout_alignParentBottom="true"
+      android:layout_marginStart="117dp"
+      android:layout_marginBottom="65dp"
+      android:fontFamily="@font/montserrat"
+      android:text="Something Anything"
+      android:textSize="20sp" />
 
   <ImageButton
       android:id="@+id/btnMoreOptions"
@@ -45,10 +44,36 @@
       android:layout_height="50dp"
       android:layout_alignParentTop="true"
       android:layout_alignParentEnd="true"
-      android:layout_marginTop="39dp"
-      android:layout_marginEnd="16dp"
-      android:scaleType="fitXY"
+      android:layout_marginTop="12dp"
+      android:layout_marginEnd="15dp"
       android:background="@android:color/transparent"
+      android:scaleType="fitXY"
       app:srcCompat="@drawable/ic_more_vert_black_24dp" />
+
+  <TextView
+      android:id="@+id/txtRole"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_alignParentStart="true"
+      android:layout_alignParentTop="true"
+      android:layout_marginStart="116dp"
+      android:layout_marginTop="101dp"
+      android:fontFamily="@font/montserrat"
+      android:textSize="14sp"
+      android:text="Role" />
+
+  <ImageButton
+      android:id="@+id/btnRemoveUser"
+      android:layout_width="50dp"
+      android:layout_height="50dp"
+      android:layout_alignParentStart="true"
+      android:layout_alignParentTop="true"
+      android:layout_alignParentEnd="true"
+      android:layout_marginStart="349dp"
+      android:layout_marginTop="77dp"
+      android:layout_marginEnd="14dp"
+      android:background="@android:color/transparent"
+      android:scaleType="fitCenter"
+      app:srcCompat="@drawable/ic_delete_black_24dp" />
 
 </RelativeLayout>
