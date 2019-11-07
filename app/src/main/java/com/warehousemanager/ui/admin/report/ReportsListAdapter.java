@@ -8,14 +8,15 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.warehousemanager.R;
+import com.warehousemanager.data.db.entities.Report;
 
 import java.util.List;
 
 public class ReportsListAdapter extends RecyclerView.Adapter<ReportsListAdapter.ReportsListViewHolder> {
 
-  List<String> reportsList;
+  List<Report> reportsList;
 
-  public ReportsListAdapter(List<String> reportsList) {
+  public ReportsListAdapter(List<Report> reportsList) {
     this.reportsList = reportsList;
   }
 
@@ -30,7 +31,9 @@ public class ReportsListAdapter extends RecyclerView.Adapter<ReportsListAdapter.
 
   @Override
   public void onBindViewHolder(@NonNull ReportsListViewHolder reportsListViewHolder, int i) {
-    reportsListViewHolder.textView.setText(reportsList.get(i));
+    reportsListViewHolder.txtWarehouseName.setText(reportsList.get(i).getWarehouseName());
+    reportsListViewHolder.txtAssociateName.setText(reportsList.get(i).getAssociateName());
+    reportsListViewHolder.txtProductName.setText(reportsList.get(i).getProductName());
   }
 
   @Override
@@ -39,11 +42,15 @@ public class ReportsListAdapter extends RecyclerView.Adapter<ReportsListAdapter.
   }
 
   public class ReportsListViewHolder extends RecyclerView.ViewHolder {
-    TextView textView;
+    TextView txtWarehouseName;
+    TextView txtAssociateName;
+    TextView txtProductName;
 
     public ReportsListViewHolder(@NonNull View itemView) {
       super(itemView);
-      textView = itemView.findViewById(R.id.txtName);
+      txtWarehouseName = itemView.findViewById(R.id.txtWarehouseName);
+      txtAssociateName = itemView.findViewById(R.id.txtAssociateName);
+      txtProductName = itemView.findViewById(R.id.txtProductName);
     }
   }
 }

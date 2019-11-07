@@ -64,12 +64,13 @@ public class ProductsFragmentList extends Fragment implements FragmentInteractio
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                fragmentManagerHelper.attach(AddProductsFragment.class);
+                //Message message = new Message();
+                Product product = new Product();
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("product", product);
+                fragmentManagerHelper.attach(AddProductsFragment.class,bundle);
             }
         });
-
-        //JsonReader jsonReader = new JsonReader(getContext());
-        //products = jsonReader.getProducts();
 
         getData();
         productsListRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
