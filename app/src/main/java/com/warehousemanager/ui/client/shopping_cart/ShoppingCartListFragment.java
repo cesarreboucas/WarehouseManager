@@ -63,7 +63,7 @@ public class ShoppingCartListFragment extends Fragment implements FragmentIntera
 
     public void getData() {
         products.clear();
-        warehouseDatabase.productDao().getProducts();
+        products.addAll(warehouseDatabase.productDao().getProducts());
         shoppingCartAdapter.notifyDataSetChanged();
     }
 

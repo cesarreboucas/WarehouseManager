@@ -43,7 +43,7 @@ public class ProductListClientAdapter extends RecyclerView.Adapter<ProductListCl
     public void onBindViewHolder(@NonNull ProductListClientAdapter.ProductsViewHolder productsViewHolder, final int i) {
         productsViewHolder.name.setText(products.get(i).getName());
         productsViewHolder.description.setText(products.get(i).getDescription());
-        productsViewHolder.price.setText(String.format("%.2f",products.get(i).getSalePrice()));
+        productsViewHolder.price.setText(String.format("$%.2f",products.get(i).getSalePrice()));
         productsViewHolder.picture.setImageBitmap(imageHelper.convertBase64ToBitmap(products.get(i).getPicture()));
         productsViewHolder.view.setOnClickListener(new View.OnClickListener() {
             @Override
