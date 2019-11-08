@@ -64,7 +64,6 @@ public class ProductsFragmentList extends Fragment implements FragmentInteractio
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Message message = new Message();
                 Product product = new Product();
                 Bundle bundle = new Bundle();
                 bundle.putSerializable("product", product);
@@ -101,7 +100,15 @@ public class ProductsFragmentList extends Fragment implements FragmentInteractio
         Product product = (Product) message.obj;
         Bundle bundle = new Bundle();
         bundle.putSerializable("product", product);
-        fragmentManagerHelper.attach(AddProductsFragment.class,bundle);
+        switch (message.what) {
+            case 1: // Add/Edit Product
+                fragmentManagerHelper.attach(AddProductsFragment.class,bundle);
+                break;
+            case 2:
+                fragmentManagerHelper.attach(MoveProductsFragment.class,bundle);
+                break;
+        }
+
 
     }
 
