@@ -8,8 +8,12 @@ import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -45,14 +49,18 @@ public class UserListAdapter extends RecyclerView.Adapter<UserListAdapter.UserVi
     notifyDataSetChanged();
   }
 
-  public void refreshRemovedUser(String username) {
+  public void removeUser(int position) {
+    users.remove(position);
+    notifyItemRemoved(position);
+  }
+
+  public int getUserPostion(String username) {
     for (int i = 0; i < users.size(); i++) {
       if(users.get(i).getUsername().equals(username)) {
-        users.remove(i);
-        break;
+        return i;
       }
     }
-    notifyDataSetChanged();
+    return -1;
   }
 
   @NonNull
@@ -89,19 +97,63 @@ public class UserListAdapter extends RecyclerView.Adapter<UserListAdapter.UserVi
       userViewHolder.profileImage.setImageResource(R.drawable.ic_person_black_24dp);
     }
 
+    userViewHolder.btnRemoveUser.setOnTouchListener(new View.OnTouchListener() {
+      @Override
+      public boolean onTouch(View v, MotionEvent event) {
+        switch (event.getAction()) {
+          case MotionEvent.ACTION_DOWN:
+            v.setAnimation(AnimationUtils.loadAnimation(fragment.getContext(), R.anim.fade_in));
+            v.setAlpha(0.6F);
+            break;
+          case MotionEvent.ACTION_UP:
+            v.setAlpha(1F);
+            break;
+        }
+        return false;
+      }
+    });
     userViewHolder.btnRemoveUser.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
-        User user = users.get(userViewHolder.getAdapterPosition());
-        Message m = new Message();
-        m.what = What.REMOVE;
-        Bundle bundle = new Bundle();
-        bundle.putString("USERNAME", user.getUsername());
-        m.obj = bundle;
-        ((FragmentInteraction)fragment).sendMessage(m);
+        final User user = users.get(userViewHolder.getAdapterPosition());
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(fragment.getContext());
+        builder.setTitle("Are you sure you want to delete " + user.getUsername() + "?");
+        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+          @Override
+          public void onClick(DialogInterface dialog, int which) {
+
+          }
+        });
+        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+          @Override
+          public void onClick(DialogInterface dialog, int which) {
+            Message m = new Message();
+            m.what = What.REMOVE;
+            Bundle bundle = new Bundle();
+            bundle.putString("USERNAME", user.getUsername());
+            m.obj = bundle;
+            ((FragmentInteraction)fragment).sendMessage(m);
+          }
+        });
+        builder.show();
       }
     });
 
+    userViewHolder.btnMoreOptions.setOnTouchListener(new View.OnTouchListener() {
+      @Override
+      public boolean onTouch(View v, MotionEvent event) {
+        switch (event.getAction()) {
+          case MotionEvent.ACTION_DOWN:
+            v.setAlpha(0.6F);
+            break;
+          case MotionEvent.ACTION_UP:
+            v.setAlpha(1F);
+            break;
+        }
+        return false;
+      }
+    });
     userViewHolder.btnMoreOptions.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
