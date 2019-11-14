@@ -72,7 +72,7 @@ public class CompletedListAdapter extends RecyclerView.Adapter<CompletedListAdap
         public CompletedListViewHolder(@NonNull View itemView) {
             super(itemView);
             txtTransferType = itemView.findViewById(R.id.txtTransferType);
-            txtItemCount = itemView.findViewById(R.id.txtAmount);
+            txtItemCount = itemView.findViewById(R.id.txtItemCount);
             txtItemName = itemView.findViewById(R.id.txtItem);
             txtUser = itemView.findViewById(R.id.txtUser);
 

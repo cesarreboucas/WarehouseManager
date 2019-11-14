@@ -63,6 +63,7 @@ public class PendingListAdapter extends RecyclerView.Adapter<PendingListAdapter.
         Product item = pendingList.get(i).getItem();
         String itemName = item.getName();
         int itemCount = item.getQuantity();
+        String reportType = pendingList.get(i).getReportType();
         String user = pendingList.get(i).getUsername().toString();
 
         pendingListViewHolder.btnViewReport.setOnClickListener(this);
@@ -71,6 +72,7 @@ public class PendingListAdapter extends RecyclerView.Adapter<PendingListAdapter.
         pendingListViewHolder.txtTransferType.setText(transferType);
         pendingListViewHolder.txtItemCount.setText(itemCount);
         pendingListViewHolder.txtItemName.setText(itemName);
+        pendingListViewHolder.txtReportType.setText(reportType);
         pendingListViewHolder.txtUser.setText(user);
     }
 
@@ -83,6 +85,7 @@ public class PendingListAdapter extends RecyclerView.Adapter<PendingListAdapter.
         TextView txtTransferType;
         TextView txtItemCount;
         TextView txtItemName;
+        TextView txtReportType;
         TextView txtUser;
 
         Button btnViewReport;
@@ -92,6 +95,7 @@ public class PendingListAdapter extends RecyclerView.Adapter<PendingListAdapter.
             txtTransferType = itemView.findViewById(R.id.txtTransferType);
             txtItemCount = itemView.findViewById(R.id.txtItemCount);
             txtItemName = itemView.findViewById(R.id.txtItem);
+            txtReportType = itemView.findViewById(R.id.txtReportType);
             txtUser = itemView.findViewById(R.id.txtUser);
 
             btnViewReport = itemView.findViewById(R.id.btnViewReport);

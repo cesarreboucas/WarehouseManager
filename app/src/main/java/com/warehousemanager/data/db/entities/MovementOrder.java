@@ -17,6 +17,16 @@ public class MovementOrder
     private Product item;
     private User username;
     private String transferType;
+    //Here on in, Report Type will also be - STATUS
+    private String reportType;
+    private String problem;
+
+    public MovementOrder()
+    {
+        this.reportType = "No Report";
+        this.problem = "Null";
+    }
+
 
     public int getKEY() {
         return KEY;
@@ -38,6 +48,8 @@ public class MovementOrder
         this.destinationLocation = destinationLocation;
     }
 
+
+
     public ArrayList<Product> getItemsList() {
         return itemsList;
     }
@@ -45,6 +57,16 @@ public class MovementOrder
     public void setItemsList(ArrayList<Product> itemsList) {
         this.itemsList = itemsList;
     }
+
+    public Product getItem() {
+        return item;
+    }
+
+    public void setItem(Product item) {
+        this.item = item;
+    }
+
+
 
     public User getUsername() {
         return username;
@@ -62,11 +84,19 @@ public class MovementOrder
         this.transferType = transferType;
     }
 
-    public Product getItem() {
-        return item;
+    public String getReportType() {
+        return reportType;
     }
 
-    public void setItem(Product item) {
-        this.item = item;
+    public void setReportType(String reportType) {
+        this.reportType = reportType;
+    }
+
+    public String getProblem() {
+        return problem;
+    }
+
+    public void setProblem(String problem) {
+        this.problem = problem;
     }
 }

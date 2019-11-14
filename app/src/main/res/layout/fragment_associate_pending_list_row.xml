@@ -7,25 +7,47 @@
 
 
     <TextView
+        android:id="@+id/finalTxtOrder"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:text="@string/order_number"
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txtOrderNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:text="txtOrderNumber"
+        android:textSize="12sp"
+        app:layout_constraintStart_toEndOf="@+id/finalTxtOrder"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
         android:id="@+id/txtTransferType"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="25dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="33dp"
         android:text="txtTransferType"
-        android:textSize="24dp"
+        android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/txtAmount"
+        android:id="@+id/txtItemCount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="15dp"
         android:layout_marginBottom="39dp"
-        android:text="txtAmount"
+        android:text="txtItemCount"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtTransferType" />
@@ -39,18 +61,17 @@
         android:layout_marginBottom="39dp"
         android:text="txtItem"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/txtAmount"
+        app:layout_constraintStart_toEndOf="@+id/txtItemCount"
         app:layout_constraintTop_toBottomOf="@+id/txtTransferType" />
 
     <TextView
         android:id="@+id/txtCompletedBy"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="200dp"
-        android:layout_marginTop="33dp"
-        android:layout_marginEnd="27dp"
+        android:layout_marginStart="235dp"
+        android:layout_marginTop="25dp"
         android:text="@string/reportedBy"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:textSize="12sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -58,13 +79,10 @@
         android:id="@+id/txtUser"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="225dp"
-        android:layout_marginTop="33dp"
-        android:layout_marginEnd="65dp"
-        android:layout_marginBottom="21dp"
+        android:layout_marginStart="240dp"
+        android:layout_marginTop="15dp"
         android:text="txtUser"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:textSize="12sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtCompletedBy" />
 
@@ -72,11 +90,21 @@
         android:id="@+id/btnViewReport"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="67dp"
+        android:layout_marginTop="50dp"
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="15dp"
         android:src="@drawable/ic_description_black_24dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txtReportType"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="235dp"
+        android:layout_marginTop="88dp"
+        android:text="txtReportType"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 </android.support.constraint.ConstraintLayout>

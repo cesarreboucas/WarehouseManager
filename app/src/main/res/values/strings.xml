@@ -62,6 +62,10 @@
     <string name="btnRemoveWarehouse">R E M O V E&#160;&#160;W A R E H O U S E</string>
 
     <string name="title_completed">Completed Orders</string>
+    <string name="order_number">Order Number&#160;&#160; </string>
+    <string name="description">Description&#160;&#160;</string>
+    <string name="reason">Reason&#160;&#160;</string>
+    <string name="btnsubmit">S U B M I T</string>
     <string name="completedBy">Order Completed By&#160;&#160;  </string>
     <string name="title_pending">Pending Orders</string>
     <string name="reportedBy">Report Sent By&#160;&#160; </string>
