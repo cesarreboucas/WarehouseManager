@@ -18,6 +18,8 @@ import com.warehousemanager.data.internal.FragmentManagerHelper;
 import com.warehousemanager.data.network.IWarehouseService;
 import com.warehousemanager.data.network.WarehouseService;
 
+import java.util.HashMap;
+
 public class UserDetailFragment extends Fragment
     implements View.OnClickListener {
 

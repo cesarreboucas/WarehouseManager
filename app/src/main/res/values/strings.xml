@@ -17,9 +17,9 @@
     <string name="txtQuestion">S e l e c t&#160;&#160;a&#160;&#160;S e c u r i t y&#160;&#160;Q u e s t i o n</string>
 
     <string-array name="roles_entries">
-        <item>Admin</item>
-        <item>Worker</item>
-        <item>Client</item>
+        <item>admin</item>
+        <item>associate</item>
+        <item>client</item>
     </string-array>
 
     <string-array name="questions_entries">
