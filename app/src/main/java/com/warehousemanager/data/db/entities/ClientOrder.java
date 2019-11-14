@@ -3,31 +3,33 @@ package com.warehousemanager.data.db.entities;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-@Entity(tableName = "transaction_table")
-public class Transaction
+@Entity(tableName = "clientOrder_table")
+public class ClientOrder implements Serializable
 {
     @PrimaryKey(autoGenerate = true)
     private int KEY;
 
-    private String client;
+    private User client;
     private ArrayList <Product> productList;
     private Warehouse pickupLocation;
     private enum Status
     {
-        INTRANSIT,ARRIVED,PAID,CANCLED,ERROR
+        AVAILABLE, DELIVERED, PAID, CANCELED, ERROR
+        //INTRANSIT,ARRIVED,PAID,CANCLED,ERROR
     }
 
     public int getKEY() {
         return KEY;
     }
 
-    public String getClient() {
+    public User getClient() {
         return client;
     }
 
-    public void setClient(String client) {
+    public void setClient(User client) {
         this.client = client;
     }
 
