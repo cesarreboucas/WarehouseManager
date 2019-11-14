@@ -40,7 +40,7 @@ public class PendingFragment extends Fragment implements FragmentInteraction {
                 fragmentManagerHelper.goBack();
             }
         });
-        fragmentManagerHelper.attach(WarehousesFragmentList.class);
+        fragmentManagerHelper.attach(PendingFragmentList.class);
         return view;
     }
 

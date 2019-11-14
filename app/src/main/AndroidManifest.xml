@@ -16,8 +16,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.client.ClientHomeActivity"></activity>
-        <activity android:name=".ui.admin.HomeActivity" />
+        <activity android:name=".ui.client.ClientHomeActivity"/>
+        <activity android:name=".ui.admin.AdminHomeActivity" />
+        <activity android:name=".ui.associate.AssociateHomeActivity"/>
         <activity android:name=".ui.ForgotPasswordActivity" />
         <activity android:name=".ui.SignUpActivity" />
         <activity android:name=".ui.SignInActivity">

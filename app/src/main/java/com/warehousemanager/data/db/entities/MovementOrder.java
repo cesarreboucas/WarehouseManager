@@ -5,98 +5,95 @@ import android.arch.persistence.room.PrimaryKey;
 
 import java.util.ArrayList;
 
-@Entity(tableName = "movementOrder_table")
-public class MovementOrder
-{
-    @PrimaryKey(autoGenerate = true)
-    private int KEY;
 
-    private Warehouse originLocation;
-    private Warehouse destinationLocation;
-    private ArrayList<Product> itemsList;
-    private Product item;
-    private User username;
-    private String transferType;
-    //Here on in, Report Type will also be - STATUS
-    private String reportType;
-    private String problem;
+public class MovementOrder {
+    private int ID;
 
-    public MovementOrder()
-    {
-        this.reportType = "No Report";
-        this.problem = "Null";
+    private String warehouse_receiver;
+    private String Warehouse_sender;
+    private String user;
+    private String productKey;
+    private String productName;
+
+    private int quantity;
+
+    private boolean sent;
+    private boolean received;
+    private boolean error;
+
+    public int getID() {
+        return ID;
     }
 
-
-    public int getKEY() {
-        return KEY;
+    public String getWarehouse_receiver() {
+        return warehouse_receiver;
     }
 
-    public Warehouse getOriginLocation() {
-        return originLocation;
+    public void setWarehouse_receiver(String warehouse_receiver) {
+        this.warehouse_receiver = warehouse_receiver;
     }
 
-    public void setOriginLocation(Warehouse originLocation) {
-        this.originLocation = originLocation;
+    public String getWarehouse_sender() {
+        return Warehouse_sender;
     }
 
-    public Warehouse getDestinationLocation() {
-        return destinationLocation;
+    public void setWarehouse_sender(String warehouse_sender) {
+        Warehouse_sender = warehouse_sender;
     }
 
-    public void setDestinationLocation(Warehouse destinationLocation) {
-        this.destinationLocation = destinationLocation;
+    public String getUser() {
+        return user;
     }
 
-
-
-    public ArrayList<Product> getItemsList() {
-        return itemsList;
+    public void setUser(String user) {
+        this.user = user;
     }
 
-    public void setItemsList(ArrayList<Product> itemsList) {
-        this.itemsList = itemsList;
+    public String getProductKey() {
+        return productKey;
     }
 
-    public Product getItem() {
-        return item;
+    public void setProductKey(String productKey) {
+        this.productKey = productKey;
     }
 
-    public void setItem(Product item) {
-        this.item = item;
+    public String getProductName() {
+        return productName;
     }
 
-
-
-    public User getUsername() {
-        return username;
+    public void setProductName(String productName) {
+        this.productName = productName;
     }
 
-    public void setUsername(User username) {
-        this.username = username;
+    public int getQuantity() {
+        return quantity;
     }
 
-    public String getTransferType() {
-        return transferType;
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 
-    public void setTransferType(String transferType) {
-        this.transferType = transferType;
+    public boolean isSent() {
+        return sent;
     }
 
-    public String getReportType() {
-        return reportType;
+    public void setSent(boolean sent) {
+        this.sent = sent;
     }
 
-    public void setReportType(String reportType) {
-        this.reportType = reportType;
+    public boolean isReceived() {
+        return received;
     }
 
-    public String getProblem() {
-        return problem;
+    public void setReceived(boolean received) {
+        this.received = received;
     }
 
-    public void setProblem(String problem) {
-        this.problem = problem;
+    public boolean isError() {
+        return error;
+    }
+
+    public void setError(boolean error) {
+        this.error = error;
     }
 }

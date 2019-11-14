@@ -40,7 +40,7 @@ public class TodoFragment extends Fragment implements FragmentInteraction {
                 fragmentManagerHelper.goBack();
             }
         });
-        fragmentManagerHelper.attach(WarehousesFragmentList.class);
+        fragmentManagerHelper.attach(TodoFragmentList.class);
         return view;
     }
 

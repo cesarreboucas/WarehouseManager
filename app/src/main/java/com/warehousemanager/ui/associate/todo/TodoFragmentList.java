@@ -43,7 +43,6 @@ public class TodoFragmentList extends Fragment
     private SwipeRefreshLayout swipeRefreshLayout;
     private ProgressBar progressBar;
 
-    JsonReader jsonReader;
     IFragmentManagerHelper fragmentManagerHelper;
 
     public TodoFragmentList() { }
@@ -53,7 +52,6 @@ public class TodoFragmentList extends Fragment
                              Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_associate_todo_list, container, false);
-        jsonReader = new JsonReader(getContext());
         todoList = view.findViewById(R.id.todoList);
 
         fragmentManagerHelper = new FragmentManagerHelper(

@@ -40,7 +40,7 @@ public class CompletedFragment extends Fragment implements FragmentInteraction {
                 fragmentManagerHelper.goBack();
             }
         });
-        fragmentManagerHelper.attach(WarehousesFragmentList.class);
+        fragmentManagerHelper.attach(CompletedFragmentList.class);
         return view;
     }
 
