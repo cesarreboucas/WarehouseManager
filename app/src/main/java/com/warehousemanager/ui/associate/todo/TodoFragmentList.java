@@ -18,10 +18,9 @@ import com.warehousemanager.data.db.entities.MovementOrder;
 import com.warehousemanager.data.internal.FragmentManagerHelper;
 import com.warehousemanager.data.internal.IFragmentManagerHelper;
 import com.warehousemanager.data.internal.JsonReader;
-import com.warehousemanager.data.network.IMovementService;
-import com.warehousemanager.data.network.MovementService;
+import com.warehousemanager.data.network.IWarehouseService;
+import com.warehousemanager.data.network.WarehouseService;
 import com.warehousemanager.ui.admin.FragmentInteraction;
-import com.warehousemanager.ui.associate.todo.TodoListAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,7 +32,7 @@ import retrofit2.Response;
 public class TodoFragmentList extends Fragment
         implements View.OnClickListener,  SwipeRefreshLayout.OnRefreshListener, FragmentInteraction {
 
-    IMovementService movementService = MovementService.getInstance().create(IMovementService.class);
+    IWarehouseService movementService = WarehouseService.getInstance().create(IWarehouseService.class);
 
     List<MovementOrder> movementOrder;
 
@@ -78,7 +77,7 @@ public class TodoFragmentList extends Fragment
 
     private void getData() {
         progressBar.setVisibility(View.VISIBLE);
-        movementService.getAllMovementService().enqueue(new Callback<List<MovementOrder>>() {
+        movementService.getAllTodoOrders().enqueue(new Callback<List<MovementOrder>>() {
             @Override
             public void onResponse(Call<List<MovementOrder>> call, Response<List<MovementOrder>> response) {
                 if(response.body() != null) {

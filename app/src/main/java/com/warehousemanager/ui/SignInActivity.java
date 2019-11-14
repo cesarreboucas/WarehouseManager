@@ -13,6 +13,7 @@ import com.warehousemanager.data.db.entities.User;
 import com.warehousemanager.data.services.FirebaseService;
 import com.warehousemanager.data.services.FirebaseUserCallback;
 import com.warehousemanager.ui.admin.HomeActivity;
+import com.warehousemanager.ui.client.ClientHomeActivity;
 
 public class SignInActivity extends AppCompatActivity implements FirebaseUserCallback {
     FirebaseService firebaseService;

@@ -1,5 +1,6 @@
 package com.warehousemanager.data.network;
 
+import com.warehousemanager.data.db.entities.MovementOrder;
 import com.warehousemanager.data.db.entities.Product;
 import com.warehousemanager.data.db.entities.Warehouse;
 import com.warehousemanager.data.db.entities.User;
@@ -44,4 +45,32 @@ public interface IWarehouseService {
 
     @DELETE("users")
     Call<User> deleteUser(@Body String username);
+
+    @POST("movementOrder")
+    Call<MovementOrder> createCompletedOrder(@Body MovementOrder movementOrder);
+
+    @GET("movementOrder")
+    Call<List<MovementOrder>> getAllCompleteOrders();
+
+    @DELETE("movementOrder")
+    Call<MovementOrder> deleteCompletedOrder(@Body int key);
+
+    @POST("movementOrder")
+    Call<MovementOrder> createPendingOrder(@Body MovementOrder movementOrder);
+
+    @GET("movementOrder")
+    Call<List<MovementOrder>> getAllPendingOrders();
+
+    @DELETE("movementOrder")
+    Call<MovementOrder> deletePendingOrder(@Body int key);
+
+    @POST("movementOrder")
+    Call<MovementOrder> createTodoOrder(@Body MovementOrder movementOrder);
+
+    @GET("movementOrder")
+    Call<List<MovementOrder>> getAllTodoOrders();
+
+    @DELETE("movementOrder")
+    Call<MovementOrder> deleteTodoOrder(@Body int key);
+
 }
