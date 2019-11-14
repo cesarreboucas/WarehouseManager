@@ -3,7 +3,6 @@ package com.warehousemanager.ui;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -15,8 +14,8 @@ import com.warehousemanager.data.db.entities.User;
 import com.warehousemanager.data.network.IWarehouseService;
 import com.warehousemanager.data.network.WarehouseService;
 import com.warehousemanager.data.services.FirebaseService;
-import com.warehousemanager.data.services.FirebaseUserCallback;
-import com.warehousemanager.ui.admin.HomeActivity;
+import com.warehousemanager.ui.admin.AdminHomeActivity;
+import com.warehousemanager.ui.associate.AssociateHomeActivity;
 import com.warehousemanager.ui.client.ClientHomeActivity;
 
 import retrofit2.Call;
@@ -44,6 +43,15 @@ public class SignInActivity extends AppCompatActivity {
 
         editUsername = findViewById(R.id.editUsername);
         editPasssword = findViewById(R.id.editPassword);
+
+        TextView txtView2 = findViewById(R.id.textView2);
+        txtView2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                editUsername.setText("mgalbraethe@purevolume.com");
+                editPasssword.setText("1234");
+            }
+        });
 
         txtWarehouse = findViewById(R.id.txtWarehouse);
         txtWarehouse.setOnClickListener(new View.OnClickListener() {
@@ -86,10 +94,11 @@ public class SignInActivity extends AppCompatActivity {
                         User loggedUser = response.body();
                         WarehouseService.setCredentials(username, password);
                         if(loggedUser.getRole().equals("admin")) {
-                            Intent it = new Intent(getBaseContext(), HomeActivity.class);
+                            Intent it = new Intent(getBaseContext(), AdminHomeActivity.class);
                             startActivity(it);
                         } else if(loggedUser.getRole().equals("associate")) {
-
+                            Intent it = new Intent(getBaseContext(), AssociateHomeActivity.class);
+                            startActivity(it);
                         } else {
                             Intent it = new Intent(getBaseContext(), ClientHomeActivity.class);
                             startActivity(it);

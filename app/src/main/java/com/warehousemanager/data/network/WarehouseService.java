@@ -12,7 +12,9 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class WarehouseService {
 
 
-    //final static String IPADDRESS = "http://140.161.82.15:8000";
+
+    final static String IPADDRESS = "http://140.161.87.6:8000";
+
     public static Retrofit retrofit;
 
     private static String username;
@@ -29,6 +31,7 @@ public class WarehouseService {
     }
 
     public static Retrofit getInstance() {
+
         BasicAuthInterceptor basicAuthInterceptor = new BasicAuthInterceptor(username, password);
         OkHttpClient client = new OkHttpClient
                 .Builder()
@@ -36,7 +39,7 @@ public class WarehouseService {
                 .build();
 
         retrofit = new Retrofit.Builder()
-                .baseUrl("http://10.0.2.2:8000")
+                .baseUrl(IPADDRESS)
                 //.baseUrl("http://140.161.82.15:8000")
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(client)

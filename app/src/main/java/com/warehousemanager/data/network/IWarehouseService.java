@@ -1,5 +1,6 @@
 package com.warehousemanager.data.network;
 
+import com.warehousemanager.data.db.entities.MovementOrder;
 import com.warehousemanager.data.db.entities.Product;
 import com.warehousemanager.data.db.entities.Warehouse;
 import com.warehousemanager.data.db.entities.User;
@@ -21,12 +22,18 @@ public interface IWarehouseService {
 
     @GET("products")
     Call<List<Product>> getAllProducts();
+
+    @DELETE("products")
+    Call<Product> deleteProduct(@Body String barcode);
   
     @POST("warehouses")
     Call<Warehouse> createWarehouse(@Body Warehouse warehouse);
 
     @GET("warehouses")
     Call<List<Warehouse>> getAllWarehouse();
+
+    @DELETE("warehouses")
+    Call<Warehouse> deleteWarehouse(@Body String warehouseName);
 
     @POST("users/auth")
     Call<User> authenticate(@Body User user);
@@ -42,4 +49,31 @@ public interface IWarehouseService {
 
     @HTTP(method = "DELETE", path = "users", hasBody = true)
     Call<User> deleteUser(@Body User user);
+
+    @POST("movementOrder")
+    Call<MovementOrder> createCompletedOrder(@Body MovementOrder movementOrder);
+
+    @GET("movementOrder")
+    Call<List<MovementOrder>> getAllCompleteOrders();
+
+    @DELETE("movementOrder")
+    Call<MovementOrder> deleteCompletedOrder(@Body int key);
+
+    @POST("movementOrder")
+    Call<MovementOrder> createPendingOrder(@Body MovementOrder movementOrder);
+
+    @GET("movementOrder")
+    Call<List<MovementOrder>> getAllPendingOrders();
+
+    @DELETE("movementOrder")
+    Call<MovementOrder> deletePendingOrder(@Body int key);
+
+    @POST("movementOrder")
+    Call<MovementOrder> createTodoOrder(@Body MovementOrder movementOrder);
+
+    @GET("movementOrder")
+    Call<List<MovementOrder>> getAllTodoOrders();
+
+    @DELETE("movementOrder")
+    Call<MovementOrder> deleteTodoOrder(@Body int key);
 }
