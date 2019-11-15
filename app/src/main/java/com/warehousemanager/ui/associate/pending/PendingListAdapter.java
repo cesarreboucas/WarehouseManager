@@ -59,6 +59,7 @@ public class PendingListAdapter extends RecyclerView.Adapter<PendingListAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull PendingListViewHolder pendingListViewHolder, int i) {
+        /*
         String transferType = pendingList.get(i).getTransferType();
         Product item = pendingList.get(i).getItem();
         String itemName = item.getName();
@@ -74,6 +75,7 @@ public class PendingListAdapter extends RecyclerView.Adapter<PendingListAdapter.
         pendingListViewHolder.txtItemName.setText(itemName);
         pendingListViewHolder.txtReportType.setText(reportType);
         pendingListViewHolder.txtUser.setText(user);
+        */
     }
 
     @Override

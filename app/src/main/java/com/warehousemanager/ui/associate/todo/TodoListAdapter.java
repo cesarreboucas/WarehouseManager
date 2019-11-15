@@ -71,6 +71,7 @@ public class TodoListAdapter extends RecyclerView.Adapter<TodoListAdapter.TodoLi
 
     @Override
     public void onBindViewHolder(@NonNull TodoListAdapter.TodoListViewHolder todoListViewHolder, int i) {
+        /*
         String transferType = todoList.get(i).getTransferType();
         Product item = todoList.get(i).getItem();
         String itemName = item.getName();
@@ -84,6 +85,7 @@ public class TodoListAdapter extends RecyclerView.Adapter<TodoListAdapter.TodoLi
         todoListViewHolder.txtTransferType.setText(transferType);
         todoListViewHolder.txtItemCount.setText(itemCount);
         todoListViewHolder.txtItemName.setText(itemName);
+        */
     }
 
     @Override

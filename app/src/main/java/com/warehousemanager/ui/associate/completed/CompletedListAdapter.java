@@ -46,6 +46,7 @@ public class CompletedListAdapter extends RecyclerView.Adapter<CompletedListAdap
 
     @Override
     public void onBindViewHolder(@NonNull CompletedListViewHolder completedListViewHolder, int i) {
+        /*
         String transferType = completedList.get(i).getTransferType();
         Product item = completedList.get(i).getItem();
         String itemName = item.getName();
@@ -56,6 +57,7 @@ public class CompletedListAdapter extends RecyclerView.Adapter<CompletedListAdap
         completedListViewHolder.txtItemCount.setText(itemCount);
         completedListViewHolder.txtItemName.setText(itemName);
         completedListViewHolder.txtUser.setText(user);
+        */
     }
 
     @Override

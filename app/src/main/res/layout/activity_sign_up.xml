@@ -28,7 +28,7 @@
     app:layout_constraintGuide_percent="0.16" />
 
   <EditText
-      android:id="@+id/editCapacity"
+      android:id="@+id/editPassword"
       android:layout_width="325dp"
       android:layout_height="43dp"
       android:layout_marginTop="180dp"
@@ -67,7 +67,7 @@
       app:layout_constraintStart_toStartOf="@+id/spinnerRoles" />
 
   <EditText
-      android:id="@+id/editLocation"
+      android:id="@+id/editUsername"
       android:layout_width="325dp"
       android:layout_height="43dp"
       android:layout_marginTop="90dp"

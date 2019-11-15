@@ -17,6 +17,7 @@ import retrofit2.http.PUT;
 
 public interface IWarehouseService {
 
+    // PRODUCTS ENDPOINTS
     @POST("products")
     Call<Product> createProduct(@Body Product product);
 
@@ -25,7 +26,9 @@ public interface IWarehouseService {
 
     @DELETE("products")
     Call<Product> deleteProduct(@Body String barcode);
-  
+     //=========================
+
+    // WAREHOUSES ENDPOINTS
     @POST("warehouses")
     Call<Warehouse> createWarehouse(@Body Warehouse warehouse);
 
@@ -34,7 +37,10 @@ public interface IWarehouseService {
 
     @DELETE("warehouses")
     Call<Warehouse> deleteWarehouse(@Body String warehouseName);
+    // =========================
 
+
+    // USERS ENDPOINTS
     @POST("users/auth")
     Call<User> authenticate(@Body User user);
   
@@ -49,7 +55,9 @@ public interface IWarehouseService {
 
     @HTTP(method = "DELETE", path = "users", hasBody = true)
     Call<User> deleteUser(@Body User user);
+    // =========================
 
+    // MOVEMENTS ENDPOINTS
     @POST("movementOrder")
     Call<MovementOrder> createCompletedOrder(@Body MovementOrder movementOrder);
 
@@ -76,4 +84,5 @@ public interface IWarehouseService {
 
     @DELETE("movementOrder")
     Call<MovementOrder> deleteTodoOrder(@Body int key);
+    // =========================
 }
