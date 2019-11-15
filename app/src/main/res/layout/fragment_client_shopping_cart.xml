@@ -30,6 +30,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView1" />
 
+    <Spinner
+        android:id="@+id/spinnerWarehouses"
+        android:layout_width="194dp"
+        android:layout_height="29dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/shoppingCartContainer" />
+
     <TextView
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
@@ -63,14 +72,6 @@
         app:layout_constraintStart_toEndOf="@+id/textView1"
         app:layout_constraintTop_toBottomOf="@+id/spinnerWarehouses" />
 
-    <Spinner
-        android:id="@+id/spinnerWarehouses"
-        android:layout_width="194dp"
-        android:layout_height="29dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="24dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/shoppingCartContainer" />
 
     <TextView
         android:id="@+id/txtPickupPlace"
@@ -82,7 +83,7 @@
         android:text="Pickup location:"
         android:textColor="@android:color/black"
         android:textSize="18sp"
-        app:layout_constraintEnd_toStartOf="@+id/spinnerWarehouses"
+        app:layout_constraintEnd_toStartOf="@id/spinnerWarehouses"
         app:layout_constraintHorizontal_bias="0.833"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/shoppingCartContainer" />

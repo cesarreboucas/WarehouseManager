@@ -1,13 +1,11 @@
 package com.warehousemanager.data.network;
 
 
-import com.warehousemanager.data.db.entities.Order;
-
-
 import com.warehousemanager.data.db.entities.ClientOrder;
 import com.warehousemanager.data.db.entities.MovementOrder;
 
 import com.warehousemanager.data.db.entities.Product;
+import com.warehousemanager.data.db.entities.ProductHang;
 import com.warehousemanager.data.db.entities.Report;
 import com.warehousemanager.data.db.entities.Warehouse;
 import com.warehousemanager.data.db.entities.User;
@@ -30,6 +28,10 @@ public interface IWarehouseService {
 
     @GET("products")
     Call<List<Product>> getAllProducts();
+
+    @GET("products/hangs")
+    Call<List<ProductHang>> getAllProductsHangs();
+
 
     @DELETE("products")
     Call<Product> deleteProduct(@Body String barcode);
@@ -64,9 +66,6 @@ public interface IWarehouseService {
     Call<User> deleteUser(@Body User user);
 
 
-    @GET("orders")
-    Call<List<Order>> getAllOrders();
-
     @GET("reports")
     Call<List<Report>> getAllReports();
 
@@ -76,6 +75,9 @@ public interface IWarehouseService {
     // ORDERS ENDPOINTS
     @POST("orders")
     Call<List<Product>> createOrder(@Body ClientOrder clientOrder);
+
+    @GET("orders")
+    Call<List<ClientOrder>> getAllOrders();
     // =========================
 
 

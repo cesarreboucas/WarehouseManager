@@ -7,7 +7,10 @@ import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class ClientOrder implements Serializable
@@ -19,16 +22,19 @@ public class ClientOrder implements Serializable
     private String warehouseKey;
     private List<Product> products;
     private String ordertime;
-    private boolean done; // completed
-    private boolean ready; // available
+    private int done; // completed
+    private int ready; // available
+
+    private transient double total = 0;
+    private transient double profit = 0;
+    private transient boolean outOfStock = false;
+
 
     public ClientOrder(Long clientID, String warehouseKey, List<Product> products, String ordertime) {
         this.clientID = clientID;
         this.warehouseKey = warehouseKey;
         this.products = products;
         this.ordertime = ordertime;
-        this.done = false;
-        this.ready = false;
     }
 
     public int getId() {
@@ -71,19 +77,46 @@ public class ClientOrder implements Serializable
         this.ordertime = ordertime;
     }
 
-    public boolean isDone() {
+    public int getDone() {
         return done;
     }
 
-    public void setDone(boolean done) {
+    public void setDone(int done) {
         this.done = done;
     }
 
-    public boolean isReady() {
+    public int getReady() {
         return ready;
     }
 
-    public void setReady(boolean ready) {
+    public void setReady(int ready) {
         this.ready = ready;
     }
+
+    public double getTotal() {
+        return total;
+    }
+
+    public double getProfit() {
+        return profit;
+    }
+
+    public void updateTotals() {
+        this.total = 0;
+        this.profit = 0;
+
+        for(Product p : products) {
+            this.total += p.getTotal();
+            this.profit += p.getTotal()-p.getTotalCost();
+        }
+    }
+
+    public boolean isOutOfStock() {
+        return outOfStock;
+    }
+
+    public void setOutOfStock(boolean outOfStock) {
+        this.outOfStock = outOfStock;
+    }
+
 }
