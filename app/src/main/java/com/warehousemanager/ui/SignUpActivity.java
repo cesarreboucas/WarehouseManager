@@ -12,12 +12,18 @@ import android.widget.Toast;
 
 import com.warehousemanager.R;
 import com.warehousemanager.data.db.entities.User;
+import com.warehousemanager.data.network.IWarehouseService;
+import com.warehousemanager.data.network.WarehouseService;
 import com.warehousemanager.data.services.FirebaseService;
 import com.warehousemanager.data.services.FirebaseUserCallback;
 
-public class SignUpActivity extends AppCompatActivity implements FirebaseUserCallback {
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
-  FirebaseService firebaseService;
+public class SignUpActivity extends AppCompatActivity{
+
+  IWarehouseService warehouseService = WarehouseService.getInstance().create(IWarehouseService.class);
 
   EditText editPassword;
   EditText editUsername;
@@ -31,9 +37,6 @@ public class SignUpActivity extends AppCompatActivity implements FirebaseUserCal
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_sign_up);
 
-    firebaseService = new FirebaseService();
-    firebaseService.setUserCallback(this);
-
     Toolbar toolbar = findViewById(R.id.signUpToolBar);
 
     editName = findViewById(R.id.editName);
@@ -42,7 +45,7 @@ public class SignUpActivity extends AppCompatActivity implements FirebaseUserCal
 
     spinnerQuestions = findViewById(R.id.spinnerRoles);
     ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-            R.layout.spinner_item,
+            R.layout.spinner_item_white,
             getResources().getStringArray(R.array.questions_entries));
     spinnerQuestions.setAdapter(adapter);
 
@@ -51,8 +54,7 @@ public class SignUpActivity extends AppCompatActivity implements FirebaseUserCal
     toolbar.setNavigationOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
-        Intent it = new Intent(SignUpActivity.this, SignInActivity.class);
-        startActivity(it);
+        finish();
       }
     });
 
@@ -67,26 +69,20 @@ public class SignUpActivity extends AppCompatActivity implements FirebaseUserCal
 
     //TODO handle unassigned and noImage
     User user = new User(name, username, password, "client", "unAssigned", question, answer, "NoImage");
-    firebaseService.addUser(user);
-  }
+    warehouseService.createUser(user).enqueue(new Callback<User>() {
+      @Override
+      public void onResponse(Call<User> call, Response<User> response) {
+        if(response.code() == 200) {
+          Toast.makeText(SignUpActivity.this, "USER CREATED SUCCESSFULLY", Toast.LENGTH_SHORT).show();
+        } else {
+          Toast.makeText(SignUpActivity.this, "Your credentials are wrong", Toast.LENGTH_LONG).show();
+        }
+      }
 
-  @Override
-  public void onUserAddSuccess() {
-    Toast.makeText(this, "User added successfully!", Toast.LENGTH_LONG).show();
-  }
-
-  @Override
-  public void onUserAddFail(Exception ex) {
-    Toast.makeText(this, ex.getMessage(), Toast.LENGTH_SHORT).show();
-  }
-
-  @Override
-  public void onUserFetchComplete(User user) {
-
-  }
-
-  @Override
-  public void onUserFetchFail(Exception ex) {
-
+      @Override
+      public void onFailure(Call<User> call, Throwable t) {
+        Toast.makeText(SignUpActivity.this, "The server is down", Toast.LENGTH_SHORT).show();
+      }
+    });
   }
 }

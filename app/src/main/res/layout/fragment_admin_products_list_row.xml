@@ -22,18 +22,20 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/name"
-        android:layout_width="152dp"
-        android:layout_height="45dp"
-        android:text="TextView"
-        android:textColor="@color/common_google_signin_btn_text_dark_focused"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.10"
-        app:layout_constraintStart_toEndOf="@+id/profile_image"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.2" />
+      android:id="@+id/name"
+      android:layout_width="152dp"
+      android:layout_height="45dp"
+      android:text="TextView"
+      android:textStyle="bold"
+      android:fontFamily="@font/montserrat"
+      android:textColor="@color/colorAccentDark"
+      android:textSize="18sp"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintHorizontal_bias="0.06"
+      app:layout_constraintStart_toEndOf="@+id/profile_image"
+      app:layout_constraintTop_toTopOf="parent"
+      app:layout_constraintVertical_bias="0.194" />
 
     <TextView
         android:id="@+id/description"
@@ -42,7 +44,8 @@
         android:layout_marginStart="8dp"
         android:layout_marginBottom="8dp"
         android:text="TextView"
-        android:textColor="@color/common_google_signin_btn_text_dark_focused"
+      android:fontFamily="@font/montserrat"
+        android:textColor="@color/colorAccent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/profile_image"
         app:layout_constraintTop_toBottomOf="@+id/name"
@@ -56,6 +59,7 @@
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="8dp"
         android:text="TextView"
+        android:fontFamily="@font/montserrat"
         android:textAlignment="viewEnd"
         android:textColor="@color/colorPrimaryDark"
         android:textSize="18sp"
@@ -66,18 +70,27 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.20" />
 
-    <ImageButton
-        android:id="@+id/imgMove"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/description"
-        app:layout_constraintTop_toBottomOf="@+id/cost"
-        app:srcCompat="@drawable/ic_compare_arrows_black_24dp" />
+    <android.support.v7.widget.CardView
+      android:id="@+id/cardImgMove"
+      android:layout_width="52dp"
+      android:layout_height="52dp"
+      android:layout_marginStart="8dp"
+      android:layout_marginTop="8dp"
+      android:layout_marginEnd="8dp"
+      android:layout_marginBottom="8dp"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toEndOf="@+id/description"
+      app:layout_constraintTop_toBottomOf="@+id/cost"
+      android:shape="ring"
+      app:cardElevation="5dp"
+      app:cardCornerRadius="26dp">
+        <ImageButton
+          android:id="@+id/imgMove"
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:background="@drawable/order_button_background" />
+    </android.support.v7.widget.CardView>
+
 
 </android.support.constraint.ConstraintLayout>

@@ -19,7 +19,9 @@
         <android.support.v7.widget.RecyclerView
             android:id="@+id/productsList"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:paddingBottom="100dp"
+          android:clipToPadding="false"/>
     </android.support.v4.widget.SwipeRefreshLayout>
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/floatingActionButton"
