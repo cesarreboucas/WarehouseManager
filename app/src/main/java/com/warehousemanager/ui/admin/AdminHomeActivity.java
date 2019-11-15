@@ -17,7 +17,7 @@ import com.warehousemanager.ui.admin.summary.SummariesFragment;
 import com.warehousemanager.ui.admin.user.UserFragment;
 import com.warehousemanager.ui.admin.warehouse.WarehousesFragment;
 
-public class HomeActivity extends AppCompatActivity
+public class AdminHomeActivity extends AppCompatActivity
   implements FragmentInteraction, BottomNavigationView.OnNavigationItemSelectedListener{
 
   WarehouseDatabase warehouseDatabase;
