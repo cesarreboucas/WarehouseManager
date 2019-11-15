@@ -92,6 +92,7 @@ public class SignInActivity extends AppCompatActivity {
                 if(response.code() == 200) {
                     if(response.body() != null) {
                         User loggedUser = response.body();
+                        warehouseDatabase.userDao().insertUser(loggedUser);
                         WarehouseService.setCredentials(username, password);
                         if(loggedUser.getRole().equals("admin")) {
                             Intent it = new Intent(getBaseContext(), AdminHomeActivity.class);

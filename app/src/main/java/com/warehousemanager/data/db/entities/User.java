@@ -14,11 +14,11 @@ import java.util.ArrayList;
 @Entity(tableName = "user_table")
 public class User implements Serializable {
 
-  private static final long CURRENT_USER = 0;
+  //private static final long CURRENT_USER = 0;
 
   @SerializedName("id")
   @PrimaryKey(autoGenerate = false)
-  private Long id = CURRENT_USER;
+  private Long id; // = CURRENT_USER;
 
   @SerializedName("name")
   private String name;
