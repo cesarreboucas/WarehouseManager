@@ -192,15 +192,15 @@ public class UserFragmentList extends Fragment
 
         user.setRole(role);
         user.setUsername(username);
-        warehouseService.editUser(user).enqueue(new Callback<User>() {
+        warehouseService.editUserRole(user).enqueue(new Callback() {
           @Override
-          public void onResponse(Call<User> call, Response<User> response) {
+          public void onResponse(Call call, Response response) {
             progressBar.setVisibility(View.INVISIBLE);
             usersListAdapter.refreshUserRole(user.getRole(), user.getUsername());
           }
 
           @Override
-          public void onFailure(Call<User> call, Throwable t) {
+          public void onFailure(Call call, Throwable t) {
             progressBar.setVisibility(View.INVISIBLE);
             Toast.makeText(getContext(), "Failed to edit " + username + " role",
                     Toast.LENGTH_LONG).show();
