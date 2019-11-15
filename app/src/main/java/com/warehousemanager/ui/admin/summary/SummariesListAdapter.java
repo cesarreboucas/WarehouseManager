@@ -8,14 +8,15 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.warehousemanager.R;
+import com.warehousemanager.data.db.entities.Order;
 
 import java.util.List;
 
 public class SummariesListAdapter extends RecyclerView.Adapter<SummariesListAdapter.SummariesListViewHolder> {
 
-  List<String> summariesList;
+  List<Order> summariesList;
 
-  public SummariesListAdapter(List<String> summariesList) {
+  public SummariesListAdapter(List<Order> summariesList) {
     this.summariesList = summariesList;
   }
 
@@ -31,7 +32,11 @@ public class SummariesListAdapter extends RecyclerView.Adapter<SummariesListAdap
 
   @Override
   public void onBindViewHolder(@NonNull SummariesListViewHolder summariesListViewHolder, int i) {
-    summariesListViewHolder.textView.setText(summariesList.get(i));
+    summariesList.get(i).updateTotals();
+    summariesListViewHolder.txtWhKey.setText(summariesList.get(i).getWarehouse_key());
+    summariesListViewHolder.txtOrderTime.setText(summariesList.get(i).getFormatedOrderTime());
+    summariesListViewHolder.txtOrderTotal.setText(String.format("$ %.2f",summariesList.get(i).getTotal()));
+    summariesListViewHolder.txtProfit.setText(String.format("$ %.2f",summariesList.get(i).getProfit()));
   }
 
   @Override
@@ -40,11 +45,17 @@ public class SummariesListAdapter extends RecyclerView.Adapter<SummariesListAdap
   }
 
   public class SummariesListViewHolder extends RecyclerView.ViewHolder {
-    TextView textView;
+    TextView txtWhKey;
+    TextView txtOrderTime;
+    TextView txtOrderTotal;
+    TextView txtProfit;
 
     public SummariesListViewHolder(@NonNull View itemView) {
       super(itemView);
-      textView = itemView.findViewById(R.id.txtName);
+      txtWhKey = itemView.findViewById(R.id.txtWhkey);
+      txtOrderTime = itemView.findViewById(R.id.txtOrderTime);
+      txtOrderTotal = itemView.findViewById(R.id.txtOrderTotal);
+      txtProfit = itemView.findViewById(R.id.txtProfit);
     }
   }
 }

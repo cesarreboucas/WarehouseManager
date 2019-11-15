@@ -16,7 +16,7 @@ import javax.inject.Singleton;
 @Database(entities = {
   User.class,
   Product.class
-}, version = 5, exportSchema = false)
+}, version = 6, exportSchema = false)
 public abstract class WarehouseDatabase extends RoomDatabase {
 
   private static WarehouseDatabase INSTANCE;

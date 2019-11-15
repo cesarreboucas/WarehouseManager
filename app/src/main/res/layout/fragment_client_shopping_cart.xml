@@ -9,7 +9,7 @@
     <FrameLayout
         android:id="@+id/shoppingCartContainer"
         android:layout_width="0dp"
-        android:layout_height="460dp"
+        android:layout_height="420dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -18,7 +18,7 @@
     </FrameLayout>
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/btnPlaceOrder"
         android:layout_width="325dp"
         android:layout_height="52dp"
         android:layout_marginTop="10dp"
@@ -35,16 +35,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="8dp"
         android:fontFamily="@font/montserrat"
         android:text="Total before Tax:\nTax:\nTotal Order"
         android:textColor="@android:color/black"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.139"
+        app:layout_constraintHorizontal_bias="0.157"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/shoppingCartContainer" />
+        app:layout_constraintTop_toBottomOf="@+id/spinnerWarehouses" />
 
     <TextView
         android:id="@+id/txtTotals"
@@ -59,8 +59,32 @@
         android:textColor="@android:color/black"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.265"
+        app:layout_constraintHorizontal_bias="0.329"
         app:layout_constraintStart_toEndOf="@+id/textView1"
+        app:layout_constraintTop_toBottomOf="@+id/spinnerWarehouses" />
+
+    <Spinner
+        android:id="@+id/spinnerWarehouses"
+        android:layout_width="194dp"
+        android:layout_height="29dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/shoppingCartContainer" />
+
+    <TextView
+        android:id="@+id/txtPickupPlace"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="15dp"
+        android:fontFamily="@font/montserrat"
+        android:text="Pickup location:"
+        android:textColor="@android:color/black"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toStartOf="@+id/spinnerWarehouses"
+        app:layout_constraintHorizontal_bias="0.833"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/shoppingCartContainer" />
 
 </android.support.constraint.ConstraintLayout>

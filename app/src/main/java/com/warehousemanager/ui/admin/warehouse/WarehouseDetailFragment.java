@@ -1,5 +1,7 @@
 package com.warehousemanager.ui.admin.warehouse;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -93,6 +95,41 @@ public class WarehouseDetailFragment extends Fragment
     }
 
     private void onBtnRemoveWarehouseClicked(View v) {
+        new AlertDialog.Builder(v.getContext())
+                .setTitle("Delete Warehouse")
+                .setMessage("Are you sure you want to delete warehouse: " + warehouse.getName() + " ?")
+
+                // Specifying a listener allows you to take an action before dismissing the dialog.
+                // The dialog is automatically dismissed when a dialog button is clicked.
+                .setPositiveButton("DELETE", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        // Continue with delete operation
+
+                        warehouseService.deleteWarehouse(warehouse.getName()).enqueue(new Callback<Warehouse>() {
+                            @Override
+                            public void onResponse(Call<Warehouse> call, Response<Warehouse> response) {
+                                Toast.makeText(getContext(), "Warehouse " + warehouse.getName() + " Deleted", Toast.LENGTH_LONG).show();
+                                fragmentManagerHelper.goBack();
+                            }
+
+                            @Override
+                            public void onFailure(Call<Warehouse> call, Throwable t) {
+                                Toast.makeText(getContext(), "Error deleting warehouse", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                    }
+                })
+
+                // A null listener allows the button to dismiss the dialog and take no further action.
+                .setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        //set what should happen when negative button is clicked
+                        Toast.makeText(getContext(), "Operation Canceled", Toast.LENGTH_LONG).show();
+                    }
+                })
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .show();
     }
 
     private void onBtnEditWarehouseClicked(View v) {
@@ -106,9 +143,6 @@ public class WarehouseDetailFragment extends Fragment
             Log.d("ERROR", e.getMessage());
         }
 
-
-        IWarehouseService warehouseService = WarehouseService.getInstance()
-                .create(IWarehouseService.class);
         warehouseService.createWarehouse(warehouse).enqueue(new Callback<Warehouse>() {
             @Override
             public void onResponse(Call<Warehouse> call, Response<Warehouse> response) {
