@@ -1,9 +1,14 @@
 package com.warehousemanager.data.network;
 
 
+import com.warehousemanager.data.db.entities.Order;
+
+
 import com.warehousemanager.data.db.entities.ClientOrder;
 import com.warehousemanager.data.db.entities.MovementOrder;
+
 import com.warehousemanager.data.db.entities.Product;
+import com.warehousemanager.data.db.entities.Report;
 import com.warehousemanager.data.db.entities.Warehouse;
 import com.warehousemanager.data.db.entities.User;
 
@@ -57,6 +62,14 @@ public interface IWarehouseService {
 
     @HTTP(method = "DELETE", path = "users", hasBody = true)
     Call<User> deleteUser(@Body User user);
+
+
+    @GET("orders")
+    Call<List<Order>> getAllOrders();
+
+    @GET("reports")
+    Call<List<Report>> getAllReports();
+
     // =========================
 
 
@@ -94,4 +107,5 @@ public interface IWarehouseService {
     @DELETE("movementOrder")
     Call<MovementOrder> deleteTodoOrder(@Body int key);
     // =========================
+
 }
