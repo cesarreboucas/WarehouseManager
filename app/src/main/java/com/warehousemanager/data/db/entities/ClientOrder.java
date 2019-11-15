@@ -3,50 +3,87 @@ package com.warehousemanager.data.db.entities;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
 
-import java.io.Serializable;
-import java.util.ArrayList;
+import com.google.gson.annotations.SerializedName;
 
-@Entity(tableName = "clientOrder_table")
+import java.io.Serializable;
+import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
+
 public class ClientOrder implements Serializable
 {
-    @PrimaryKey(autoGenerate = true)
-    private int KEY;
+    private int id;
+    @SerializedName("user_id")
+    private Long clientID;
+    @SerializedName("warehouse_key")
+    private String warehouseKey;
+    private List<Product> products;
+    private String ordertime;
+    private boolean done; // completed
+    private boolean ready; // available
 
-    private User client;
-    private ArrayList <Product> productList;
-    private Warehouse pickupLocation;
-    private enum Status
-    {
-        AVAILABLE, DELIVERED, PAID, CANCELED, ERROR
-        //INTRANSIT,ARRIVED,PAID,CANCLED,ERROR
+    public ClientOrder(Long clientID, String warehouseKey, List<Product> products, String ordertime) {
+        this.clientID = clientID;
+        this.warehouseKey = warehouseKey;
+        this.products = products;
+        this.ordertime = ordertime;
+        this.done = false;
+        this.ready = false;
     }
 
-    public int getKEY() {
-        return KEY;
+    public int getId() {
+        return id;
     }
 
-    public User getClient() {
-        return client;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public void setClient(User client) {
-        this.client = client;
+    public Long getClientID() {
+        return clientID;
     }
 
-    public ArrayList<Product> getProductList() {
-        return productList;
+    public void setClientID(Long clientID) {
+        this.clientID = clientID;
     }
 
-    public void setProductList(ArrayList<Product> productList) {
-        this.productList = productList;
+    public String getWarehouseKey() {
+        return warehouseKey;
     }
 
-    public Warehouse getPickupLocation() {
-        return pickupLocation;
+    public void setWarehouseKey(String warehouseKey) {
+        this.warehouseKey = warehouseKey;
     }
 
-    public void setPickupLocation(Warehouse pickupLocation) {
-        this.pickupLocation = pickupLocation;
+    public List<Product> getProducts() {
+        return products;
     }
 
+    public void setProducts(List<Product> products) {
+        this.products = products;
+    }
+
+    public String getOrdertime() {
+        return ordertime;
+    }
+
+    public void setOrdertime(String ordertime) {
+        this.ordertime = ordertime;
+    }
+
+    public boolean isDone() {
+        return done;
+    }
+
+    public void setDone(boolean done) {
+        this.done = done;
+    }
+
+    public boolean isReady() {
+        return ready;
+    }
+
+    public void setReady(boolean ready) {
+        this.ready = ready;
+    }
 }

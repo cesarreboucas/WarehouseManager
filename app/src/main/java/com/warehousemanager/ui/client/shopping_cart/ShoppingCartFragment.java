@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import com.warehousemanager.R;
 import com.warehousemanager.data.db.WarehouseDatabase;
+import com.warehousemanager.data.db.entities.ClientOrder;
 import com.warehousemanager.data.db.entities.Product;
 import com.warehousemanager.data.db.entities.Warehouse;
 import com.warehousemanager.data.internal.FragmentManagerHelper;
@@ -24,7 +25,9 @@ import com.warehousemanager.data.network.IWarehouseService;
 import com.warehousemanager.data.network.WarehouseService;
 import com.warehousemanager.ui.admin.FragmentInteraction;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import retrofit2.Call;
@@ -82,7 +85,28 @@ public class ShoppingCartFragment extends Fragment implements FragmentInteractio
         btnPlaceOrder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Trans
+                long userId = warehouseDatabase.userDao().getUser().getId();
+                Log.d("Userid", String.valueOf(userId));
+                String selectedWarehouse = spinnerWarehouses.getSelectedItem().toString();
+                List<Product> productList = warehouseDatabase.productDao().getProducts();
+
+                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.000");
+                String currentDateTime = dateFormat.format(new Date());
+
+                ClientOrder clientOrder = new ClientOrder(userId, selectedWarehouse, productList, currentDateTime);
+                warehouseService.createOrder(clientOrder).enqueue(new Callback<List<Product>>() {
+                    @Override
+                    public void onResponse(Call<List<Product>> call, Response<List<Product>> response) {
+                        if(response.isSuccessful()) {
+                            Toast.makeText(getContext() , "Order placed", Toast.LENGTH_SHORT).show();
+                            //warehouseDatabase.productDao().deleteAllProducts();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<List<Product>> call, Throwable t) {
+                    }
+                });
             }
         });
 

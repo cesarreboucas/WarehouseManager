@@ -1,5 +1,6 @@
 package com.warehousemanager.data.network;
 
+import com.warehousemanager.data.db.entities.ClientOrder;
 import com.warehousemanager.data.db.entities.Product;
 import com.warehousemanager.data.db.entities.Warehouse;
 import com.warehousemanager.data.db.entities.User;
@@ -42,4 +43,7 @@ public interface IWarehouseService {
 
     @HTTP(method = "DELETE", path = "users", hasBody = true)
     Call<User> deleteUser(@Body User user);
+
+    @POST("orders")
+    Call<List<Product>> createOrder(@Body ClientOrder clientOrder);
 }
