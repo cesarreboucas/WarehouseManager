@@ -47,6 +47,5 @@ public class WarehousesFragment extends Fragment implements FragmentInteraction 
 
   @Override
   public void sendMessage(Message message) {
-
   }
 }

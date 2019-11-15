@@ -28,6 +28,7 @@ public class Warehouse implements Serializable {
 
     private int workerCount;
 
+
     public int getCapacity() {
         return capacity;
     }

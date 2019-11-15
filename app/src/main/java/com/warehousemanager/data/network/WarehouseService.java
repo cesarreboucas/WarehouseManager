@@ -11,7 +11,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class WarehouseService {
 
-
     final static String IPADDRESS = "http://140.161.215.16:8000";
     final static String IPADDRESS_NODE = "http://10.0.2.2:8000"; // This IP address doesn't change
 
@@ -31,6 +30,7 @@ public class WarehouseService {
     }
 
     public static Retrofit getInstance() {
+
         BasicAuthInterceptor basicAuthInterceptor = new BasicAuthInterceptor(username, password);
         OkHttpClient client = new OkHttpClient
                 .Builder()
@@ -44,5 +44,4 @@ public class WarehouseService {
                 .build();
         return retrofit;
     }
-
 }

@@ -5,42 +5,95 @@ import android.arch.persistence.room.PrimaryKey;
 
 import java.util.ArrayList;
 
-@Entity(tableName = "movementOrder_table")
-public class MovementOrder
-{
-    @PrimaryKey(autoGenerate = true)
-    private int KEY;
 
-    private Warehouse originLocation;
-    private Warehouse destinationLocation;
+public class MovementOrder {
+    private int ID;
 
-    private ArrayList<Product> itemsList;
+    private String warehouse_receiver;
+    private String Warehouse_sender;
+    private String user;
+    private String productKey;
+    private String productName;
 
-    public int getKEY() {
-        return KEY;
+    private int quantity;
+
+    private boolean sent;
+    private boolean received;
+    private boolean error;
+
+    public int getID() {
+        return ID;
     }
 
-    public Warehouse getOriginLocation() {
-        return originLocation;
+    public String getWarehouse_receiver() {
+        return warehouse_receiver;
     }
 
-    public void setOriginLocation(Warehouse originLocation) {
-        this.originLocation = originLocation;
+    public void setWarehouse_receiver(String warehouse_receiver) {
+        this.warehouse_receiver = warehouse_receiver;
     }
 
-    public Warehouse getDestinationLocation() {
-        return destinationLocation;
+    public String getWarehouse_sender() {
+        return Warehouse_sender;
     }
 
-    public void setDestinationLocation(Warehouse destinationLocation) {
-        this.destinationLocation = destinationLocation;
+    public void setWarehouse_sender(String warehouse_sender) {
+        Warehouse_sender = warehouse_sender;
     }
 
-    public ArrayList<Product> getItemsList() {
-        return itemsList;
+    public String getUser() {
+        return user;
     }
 
-    public void setItemsList(ArrayList<Product> itemsList) {
-        this.itemsList = itemsList;
+    public void setUser(String user) {
+        this.user = user;
+    }
+
+    public String getProductKey() {
+        return productKey;
+    }
+
+    public void setProductKey(String productKey) {
+        this.productKey = productKey;
+    }
+
+    public String getProductName() {
+        return productName;
+    }
+
+    public void setProductName(String productName) {
+        this.productName = productName;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    public boolean isSent() {
+        return sent;
+    }
+
+    public void setSent(boolean sent) {
+        this.sent = sent;
+    }
+
+    public boolean isReceived() {
+        return received;
+    }
+
+    public void setReceived(boolean received) {
+        this.received = received;
+    }
+
+    public boolean isError() {
+        return error;
+    }
+
+    public void setError(boolean error) {
+        this.error = error;
     }
 }

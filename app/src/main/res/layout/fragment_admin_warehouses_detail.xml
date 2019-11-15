@@ -9,7 +9,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="700dp"
-        tools:context=".ui.admin.user.UserAddFragment">
+        tools:context=".ui.admin.user.WarehouseDetailFragment">
 
         <TextView
             android:id="@+id/txtName"
