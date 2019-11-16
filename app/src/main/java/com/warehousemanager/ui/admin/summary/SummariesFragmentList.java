@@ -2,6 +2,7 @@ package com.warehousemanager.ui.admin.summary;
 
 
 import android.os.Bundle;
+import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -19,6 +20,8 @@ import com.warehousemanager.data.internal.FragmentManagerHelper;
 import com.warehousemanager.data.internal.IFragmentManagerHelper;
 import com.warehousemanager.data.network.IWarehouseService;
 import com.warehousemanager.data.network.WarehouseService;
+import com.warehousemanager.ui.admin.FragmentInteraction;
+import com.warehousemanager.ui.admin.product.AddProductsFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,13 +30,13 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class SummariesFragmentList extends Fragment {
+public class SummariesFragmentList extends Fragment implements FragmentInteraction {
 
   IFragmentManagerHelper fragmentManagerHelper;
 
   RecyclerView summariesList;
   final List<ClientOrder> ordersList = new ArrayList<>();
-  final SummariesListAdapter summariesListAdapter = new SummariesListAdapter(ordersList);
+  final SummariesListAdapter summariesListAdapter = new SummariesListAdapter(ordersList, this);
   final List<ProductHang> productsHangs = new ArrayList<>();
   boolean hangsDone = false;
 
@@ -52,30 +55,12 @@ public class SummariesFragmentList extends Fragment {
 
     IWarehouseService warehouseService = new WarehouseService().getInstance().create(IWarehouseService.class);
 
-
-    warehouseService.getAllProductsHangs().enqueue(new Callback<List<ProductHang>>() {
-      @Override
-      public void onResponse(Call<List<ProductHang>> call, Response<List<ProductHang>> response) {
-        productsHangs.clear();
-        productsHangs.addAll(response.body());
-        hangsDone = true;
-        SetHangsInOrders();
-
-      }
-
-      @Override
-      public void onFailure(Call<List<ProductHang>> call, Throwable t) {
-        Log.d("DBX", t.getMessage());
-      }
-    });
-
     warehouseService.getAllOrders().enqueue(new Callback<List<ClientOrder>>() {
       @Override
       public void onResponse(Call<List<ClientOrder>> call, Response<List<ClientOrder>> response) {
         ordersList.clear();
         ordersList.addAll(response.body());
-        SetHangsInOrders();
-
+        summariesListAdapter.notifyDataSetChanged();
       }
 
       @Override
@@ -89,45 +74,16 @@ public class SummariesFragmentList extends Fragment {
     return view;
   }
 
-  public void SetHangsInOrders() {
-    // Execute only when hangs are Done
-    if(ordersList.size() > 0 && productsHangs.size() > 0) {
-      for(int x=0; x < ordersList.size(); ++x) {
-        boolean outOfStock = false;
-        for(Product p : ordersList.get(x).getProducts()) {
-          Log.d("DBX", "Prod: "+p.getBarcode() + " WH: "+ordersList.get(x).getWarehouseKey());
-          for(ProductHang pHang : productsHangs) {
-            // Same Product
-            if(pHang.getBarcode().equals(p.getBarcode())) {
-              for(WarehouseHang whhang : pHang.getWarehouses()) {
-                // Same Product and Same Warehouse
-                if(whhang.getWarehouse_key().equals(ordersList.get(x).getWarehouseKey())) {
-                  if(whhang.getFreeQuantity() < p.getQuantity()) {
-                    ordersList.get(x).setOutOfStock(true);
-                    Log.d("DBX", "Set OOS to Order "+ordersList.get(x).getId());
-                    outOfStock = true;
-                    break;
-                  }
-                }
-              }
-              if(outOfStock) {
-                break;
-              }
-            }
-          }
-          if(outOfStock) {
-            break;
-          }
-        }
 
-      }
-      summariesListAdapter.notifyDataSetChanged();
-    } else if(ordersList.size() > 0 && hangsDone) { // hangs gotten but empty (no problems)
-      for(int x=0; x < ordersList.size(); ++x) {
-        ordersList.get(x).setOutOfStock(false);
-      }
-      summariesListAdapter.notifyDataSetChanged();
+  @Override
+  public void sendMessage(Message message) {
+    ClientOrder clientOrder = (ClientOrder) message.obj;
+    Bundle bundle = new Bundle();
+    bundle.putSerializable("clientOrder", clientOrder);
+    switch (message.what) {
+      case 1: // Add/Edit Product
+        fragmentManagerHelper.attach(OrderDatail.class, bundle);
+        break;
     }
   }
-
 }

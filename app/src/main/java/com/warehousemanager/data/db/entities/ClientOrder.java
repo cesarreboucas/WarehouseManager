@@ -27,7 +27,6 @@ public class ClientOrder implements Serializable
 
     private transient double total = 0;
     private transient double profit = 0;
-    private transient boolean outOfStock = false;
 
 
     public ClientOrder(Long clientID, String warehouseKey, List<Product> products, String ordertime) {
@@ -109,14 +108,6 @@ public class ClientOrder implements Serializable
             this.total += p.getTotal();
             this.profit += p.getTotal()-p.getTotalCost();
         }
-    }
-
-    public boolean isOutOfStock() {
-        return outOfStock;
-    }
-
-    public void setOutOfStock(boolean outOfStock) {
-        this.outOfStock = outOfStock;
     }
 
 }

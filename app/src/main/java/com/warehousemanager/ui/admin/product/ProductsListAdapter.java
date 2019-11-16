@@ -59,7 +59,7 @@ public class ProductsListAdapter extends RecyclerView.Adapter<ProductsListAdapte
                 m.obj = products.get(i);
                 m.what = 1;
                 ((FragmentInteraction)context).sendMessage(m);
-                //IFragmentManagerHelper fragmentManagerHelper = new FragmentManagerHelper(getFragmentManager(), R.id.productsFragmentContainer);;
+                //IFragmentManagerHelper fragmentManagerHelper = new FragmentManagerHelper(getFragmentManager(), R.id.productsFragmentContainer);
 
             }
         });
