@@ -10,6 +10,9 @@ import android.widget.TextView;
 import com.warehousemanager.R;
 import com.warehousemanager.data.db.entities.Order;
 
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 public class SummariesListAdapter extends RecyclerView.Adapter<SummariesListAdapter.SummariesListViewHolder> {
@@ -34,7 +37,7 @@ public class SummariesListAdapter extends RecyclerView.Adapter<SummariesListAdap
   public void onBindViewHolder(@NonNull SummariesListViewHolder summariesListViewHolder, int i) {
     summariesList.get(i).updateTotals();
     summariesListViewHolder.txtWhKey.setText(summariesList.get(i).getWarehouse_key());
-    summariesListViewHolder.txtOrderTime.setText(summariesList.get(i).getFormatedOrderTime());
+    summariesListViewHolder.txtOrderTime.setText(summariesList.get(i).getFormatedOrderTime().replace("-", "/"));
     summariesListViewHolder.txtOrderTotal.setText(String.format("$ %.2f",summariesList.get(i).getTotal()));
     summariesListViewHolder.txtProfit.setText(String.format("$ %.2f",summariesList.get(i).getProfit()));
   }
