@@ -32,18 +32,17 @@ import retrofit2.Response;
 public class TodoFragmentList extends Fragment
         implements View.OnClickListener,  SwipeRefreshLayout.OnRefreshListener, FragmentInteraction {
 
-    IWarehouseService movementService = WarehouseService.getInstance().create(IWarehouseService.class);
+    private IWarehouseService warehouseService = WarehouseService.getInstance().create(IWarehouseService.class);
 
-    List<MovementOrder> movementOrder;
-
-    TodoListAdapter todoListAdapter;
+    private List<MovementOrder> movementOrder;
 
     private RecyclerView todoList;
+    private TodoListAdapter todoListAdapter;
 
     private SwipeRefreshLayout swipeRefreshLayout;
     private ProgressBar progressBar;
 
-    IFragmentManagerHelper fragmentManagerHelper;
+    private IFragmentManagerHelper fragmentManagerHelper;
 
     public TodoFragmentList() { }
 
@@ -75,21 +74,20 @@ public class TodoFragmentList extends Fragment
 
     private void getData() {
         progressBar.setVisibility(View.VISIBLE);
-        movementService.getAllTodoOrders().enqueue(new Callback<List<MovementOrder>>() {
+        warehouseService.getAllMovementOrders().enqueue(new Callback<List<MovementOrder>>() {
             @Override
             public void onResponse(Call<List<MovementOrder>> call, Response<List<MovementOrder>> response) {
-                if(response.body() != null) {
-                    movementOrder.clear();
+                if(response.isSuccessful()) {
                     movementOrder.addAll(response.body());
                     todoListAdapter.notifyDataSetChanged();
-                    swipeRefreshLayout.setRefreshing(false);
-                    progressBar.setVisibility(View.INVISIBLE);
+                } else {
+                    Toast.makeText(getContext(), "Failed to get the movement orders", Toast.LENGTH_SHORT).show();
                 }
             }
+
             @Override
             public void onFailure(Call<List<MovementOrder>> call, Throwable t) {
-                Toast.makeText(getContext(), "Failed to reach the server", Toast.LENGTH_LONG).show();
-                Log.d("ERROR", t.getMessage());
+                Toast.makeText(getContext(), "There was a problem when trying to connect to the server", Toast.LENGTH_SHORT).show();
             }
         });
     }

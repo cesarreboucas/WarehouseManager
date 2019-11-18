@@ -11,6 +11,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -43,6 +44,8 @@ public class MoveProductsFragment extends Fragment implements View.OnClickListen
     ArrayAdapter<String> spnReceiverWarehouseAdapter;
     List<String> receiverWarehouseList = new ArrayList<>();
 
+    ProgressBar progressBar;
+
     EditText Quantity;
     Button btnMove;
 
@@ -66,6 +69,8 @@ public class MoveProductsFragment extends Fragment implements View.OnClickListen
         spnReceiverWarehouse = view.findViewById(R.id.spnReceiverWarehouse);
         spnReceiverWarehouseAdapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_1, receiverWarehouseList);
         spnReceiverWarehouse.setAdapter(spnReceiverWarehouseAdapter);
+
+        progressBar = new ProgressBar(getContext());
 
         warehouseService.getAllWarehouse().enqueue(new Callback<List<Warehouse>>() {
             @Override
@@ -147,6 +152,23 @@ public class MoveProductsFragment extends Fragment implements View.OnClickListen
         movementOrder.setSent(false);
         movementOrder.setUser("");
 
-        // TODO Send the movement order...
+        progressBar.setVisibility(View.VISIBLE);
+        warehouseService.createMovementOrder(movementOrder).enqueue(new Callback<MovementOrder>() {
+            @Override
+            public void onResponse(Call<MovementOrder> call, Response<MovementOrder> response) {
+                if(response.isSuccessful()) {
+                    Toast.makeText(getContext(), "Movement order create successfully", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(getContext(), "There was a problem when  trying to create a movement order", Toast.LENGTH_SHORT).show();
+                }
+                progressBar.setVisibility(View.INVISIBLE);
+            }
+
+            @Override
+            public void onFailure(Call<MovementOrder> call, Throwable t) {
+                Toast.makeText(getContext(), "There was a problem when trying to contact the server", Toast.LENGTH_SHORT).show();
+                progressBar.setVisibility(View.INVISIBLE);
+            }
+        });
     }
 }

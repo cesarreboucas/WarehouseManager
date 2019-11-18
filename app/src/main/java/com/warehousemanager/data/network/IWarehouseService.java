@@ -84,32 +84,14 @@ public interface IWarehouseService {
 
 
     // MOVEMENTS ENDPOINTS
-    @POST("movementOrder")
-    Call<MovementOrder> createCompletedOrder(@Body MovementOrder movementOrder);
+    @POST("movorders")
+    Call<MovementOrder> createMovementOrder(@Body MovementOrder movementOrder);
 
-    @GET("movementOrder")
-    Call<List<MovementOrder>> getAllCompleteOrders();
+    @GET("movorders")
+    Call<List<MovementOrder>> getAllMovementOrders();
 
-    @DELETE("movementOrder")
-    Call<MovementOrder> deleteCompletedOrder(@Body int key);
-
-    @POST("movementOrder")
-    Call<MovementOrder> createPendingOrder(@Body MovementOrder movementOrder);
-
-    @GET("movementOrder")
-    Call<List<MovementOrder>> getAllPendingOrders();
-
-    @DELETE("movementOrder")
-    Call<MovementOrder> deletePendingOrder(@Body int key);
-
-    @POST("movementOrder")
-    Call<MovementOrder> createTodoOrder(@Body MovementOrder movementOrder);
-
-    @GET("movementOrder")
-    Call<List<MovementOrder>> getAllTodoOrders();
-
-    @DELETE("movementOrder")
-    Call<MovementOrder> deleteTodoOrder(@Body int key);
+    @PUT("movorders")
+    Call<MovementOrder> editMovementOrder();
     // =========================
 
 }
