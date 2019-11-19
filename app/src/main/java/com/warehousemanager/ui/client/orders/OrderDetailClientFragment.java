@@ -2,6 +2,7 @@ package com.warehousemanager.ui.client.orders;
 
 
 import android.os.Bundle;
+import android.os.Message;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -20,6 +21,7 @@ import com.warehousemanager.data.db.entities.ClientOrder;
 import com.warehousemanager.data.db.entities.Product;
 import com.warehousemanager.data.internal.FragmentManagerHelper;
 import com.warehousemanager.data.internal.IFragmentManagerHelper;
+import com.warehousemanager.ui.admin.FragmentInteraction;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -27,9 +29,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class OrderDetailClientFragment extends Fragment {
 
@@ -57,7 +56,6 @@ public class OrderDetailClientFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_client_order_detail, container, false);
         fragmentManagerHelper = new FragmentManagerHelper(getChildFragmentManager(), R.id.ordersFragmentContainer);
-        fragmentManagerHelper.attach(OrderDetailClientFragment.class);
 
         ordernumber = view.findViewById(R.id.txtOrderNumberDetail);
         warehouse = view.findViewById(R.id.txtWarehouseOrderDetail);
@@ -89,7 +87,7 @@ public class OrderDetailClientFragment extends Fragment {
             for (Product p: products) {
                 totalPrice += p.getTotal();
             }
-            total.setText(String.format("$%.2f", totalPrice));
+            total.setText("Total: "+String.format("$%.2f", totalPrice));
 
             DateFormat outputFormat = new SimpleDateFormat("yyyy-MM-dd - HH:mm");
             DateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.000");
@@ -103,8 +101,8 @@ public class OrderDetailClientFragment extends Fragment {
             String outputDate = outputFormat.format(dateTime);
             date.setText(outputDate);
 
-            int done = clientOrder.isReady();
-            int ready = clientOrder.isDone();
+            int done = clientOrder.getDone();
+            int ready = clientOrder.getReady();
             if(done == 1) {
                 status.setText("Status: Completed");
             } else if(ready == 1 && done == 0) {

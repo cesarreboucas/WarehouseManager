@@ -12,7 +12,6 @@ import android.widget.TextView;
 import com.warehousemanager.R;
 import com.warehousemanager.data.db.entities.ClientOrder;
 import com.warehousemanager.data.db.entities.Product;
-import com.warehousemanager.data.internal.What;
 import com.warehousemanager.ui.admin.FragmentInteraction;
 
 import java.text.DateFormat;
@@ -64,8 +63,8 @@ public class OrdersListClientAdapter extends RecyclerView.Adapter<OrdersListClie
         String outputDate = outputFormat.format(date);
         ordersViewHolder.date.setText(outputDate);
 
-        int done = clientOrders.get(i).getReady();
-        int ready = clientOrders.get(i).getDone();
+        int done = clientOrders.get(i).getDone();
+        int ready = clientOrders.get(i).getReady();
         if(done == 1) {
             ordersViewHolder.status.setText("Completed");
         } else if(ready == 1 && done == 0) {

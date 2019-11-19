@@ -23,7 +23,6 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class OrderProductListDetailClientAdapter extends RecyclerView.Adapter<OrderProductListDetailClientAdapter.OrderProductsViewHolder> {
 
     List<Product> products;
-    ImageHelper imageHelper = new ImageHelperImpl();
     private Fragment context;
 
     public OrderProductListDetailClientAdapter(List<Product> products, Fragment context) {
@@ -35,7 +34,7 @@ public class OrderProductListDetailClientAdapter extends RecyclerView.Adapter<Or
     @Override
     public OrderProductListDetailClientAdapter.OrderProductsViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View view = LayoutInflater.from(viewGroup.getContext())
-                .inflate(R.layout.fragment_client_products_list_row, viewGroup, false);
+                .inflate(R.layout.fragment_client_order_product_list_row, viewGroup, false);
         OrderProductListDetailClientAdapter.OrderProductsViewHolder productsViewHolder = new OrderProductListDetailClientAdapter.OrderProductsViewHolder(view);
         return productsViewHolder;
     }
@@ -45,7 +44,6 @@ public class OrderProductListDetailClientAdapter extends RecyclerView.Adapter<Or
         productsViewHolder.name.setText(products.get(i).getName());
         productsViewHolder.qty.setText("Quantity: " + products.get(i).getQuantity());
         productsViewHolder.price.setText(String.format("$%.2f",products.get(i).getSalePrice()));
-        productsViewHolder.picture.setImageBitmap(imageHelper.convertBase64ToBitmap(products.get(i).getPicture()));
         productsViewHolder.view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -65,7 +63,6 @@ public class OrderProductListDetailClientAdapter extends RecyclerView.Adapter<Or
         TextView name;
         TextView qty;
         TextView price;
-        CircleImageView picture;
         View view;
 
         public OrderProductsViewHolder(@NonNull View itemView) {
@@ -74,7 +71,6 @@ public class OrderProductListDetailClientAdapter extends RecyclerView.Adapter<Or
             name = itemView.findViewById(R.id.name);
             qty = itemView.findViewById(R.id.description);
             price = itemView.findViewById(R.id.cost);
-            picture = itemView.findViewById(R.id.profile_image);
         }
     }
 }
