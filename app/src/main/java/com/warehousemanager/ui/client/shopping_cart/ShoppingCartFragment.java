@@ -99,7 +99,7 @@ public class ShoppingCartFragment extends Fragment implements FragmentInteractio
                     public void onResponse(Call<List<Product>> call, Response<List<Product>> response) {
                         if(response.isSuccessful()) {
                             Toast.makeText(getContext() , "Order placed", Toast.LENGTH_SHORT).show();
-                            //warehouseDatabase.productDao().deleteAllProducts();
+                            warehouseDatabase.productDao().deleteAllProducts();
                         }
                     }
 

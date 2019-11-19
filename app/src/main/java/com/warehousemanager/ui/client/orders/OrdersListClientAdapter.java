@@ -22,7 +22,7 @@ import java.util.List;
 
 public class OrdersListClientAdapter extends RecyclerView.Adapter<OrdersListClientAdapter.OrdersViewHolder> {
 
-    List<ClientOrder> clientOrders;
+    private List<ClientOrder> clientOrders;
     private Fragment context;
 
     public OrdersListClientAdapter(List<ClientOrder> clientOrders, Fragment context) {
@@ -63,8 +63,8 @@ public class OrdersListClientAdapter extends RecyclerView.Adapter<OrdersListClie
         String outputDate = outputFormat.format(date);
         ordersViewHolder.date.setText(outputDate);
 
-        int done = clientOrders.get(i).getReady();
-        int ready = clientOrders.get(i).getDone();
+        int done = clientOrders.get(i).getDone();
+        int ready = clientOrders.get(i).getReady();
         if(done == 1) {
             ordersViewHolder.status.setText("Completed");
         } else if(ready == 1 && done == 0) {
