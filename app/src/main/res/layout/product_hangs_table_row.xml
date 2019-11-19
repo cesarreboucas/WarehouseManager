@@ -1,42 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TableLayout
+<TableRow
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/product_hangs_table"
+    android:id="@+id/product_hangs_row"
     android:layout_height="match_parent"
     android:layout_width="match_parent"
     android:background="@drawable/border"
     >
-    <TableRow
-        android:id="@+id/product_hangs_row">
-        <TextView
-            android:id="@+id/txtWarehouse"
-            android:layout_weight="1"
-            android:text="Warehouse"
-            android:gravity="center"
-            android:background="@drawable/border"/>
-        <TextView
-            android:id="@+id/txtSold"
-            android:layout_weight="1"
-            android:text="Sold"
-            android:gravity="center"
-            android:background="@drawable/border"/>
-        <TextView
-            android:id="@+id/txtCompromised"
-            android:layout_weight="1"
-            android:text="Compromised"
-            android:gravity="center"
-            android:background="@drawable/border"/>
-        <TextView
-            android:id="@+id/txtFuture"
-            android:layout_weight="1"
-            android:text="Future"
-            android:gravity="center"
-            android:background="@drawable/border"/>
-        <TextView
-            android:id="@+id/txtInStock"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="In stock"
-            android:background="@drawable/border"/>
-    </TableRow>
-</TableLayout>
+    <TextView
+        android:id="@+id/txtWarehouse"
+        android:layout_weight="1"
+        android:text="Warehouse"
+        android:gravity="center"
+        android:background="@drawable/border"/>
+    <TextView
+        android:id="@+id/txtSold"
+        android:layout_weight="1"
+        android:text="Sold"
+        android:gravity="center"
+        android:background="@drawable/border"/>
+    <TextView
+        android:id="@+id/txtCompromised"
+        android:layout_weight="1"
+        android:text="Compromised"
+        android:gravity="center"
+        android:background="@drawable/border"/>
+    <TextView
+        android:id="@+id/txtFuture"
+        android:layout_weight="1"
+        android:text="Future"
+        android:gravity="center"
+        android:background="@drawable/border"/>
+    <TextView
+        android:id="@+id/txtInStock"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="In stock"
+        android:background="@drawable/border"/>
+</TableRow>
