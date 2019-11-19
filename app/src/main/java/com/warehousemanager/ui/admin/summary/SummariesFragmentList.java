@@ -51,7 +51,7 @@ public class SummariesFragmentList extends Fragment implements FragmentInteracti
 
     summariesList = view.findViewById(R.id.summariesList);
     final List<ClientOrder> ordersList = new ArrayList<>();
-    final SummariesListAdapter summariesListAdapter = new SummariesListAdapter(ordersList);
+    final SummariesListAdapter summariesListAdapter = new SummariesListAdapter(ordersList, this);
 
     IWarehouseService warehouseService = new WarehouseService().getInstance().create(IWarehouseService.class);
 

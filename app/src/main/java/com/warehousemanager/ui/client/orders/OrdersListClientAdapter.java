@@ -63,8 +63,8 @@ public class OrdersListClientAdapter extends RecyclerView.Adapter<OrdersListClie
         String outputDate = outputFormat.format(date);
         ordersViewHolder.date.setText(outputDate);
 
-        int done = clientOrders.get(i).isReady();
-        int ready = clientOrders.get(i).isDone();
+        int done = clientOrders.get(i).getReady();
+        int ready = clientOrders.get(i).getDone();
         if(done == 1) {
             ordersViewHolder.status.setText("Completed");
         } else if(ready == 1 && done == 0) {
