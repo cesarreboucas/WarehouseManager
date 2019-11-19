@@ -2,8 +2,10 @@ package com.warehousemanager.ui.admin.summary;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Message;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -23,8 +25,11 @@ import com.warehousemanager.data.db.entities.Product;
 import com.warehousemanager.data.db.entities.ProductHang;
 import com.warehousemanager.data.db.entities.WarehouseHang;
 import com.warehousemanager.data.internal.FragmentManagerHelper;
+import com.warehousemanager.data.internal.IFragmentManagerHelper;
 import com.warehousemanager.data.network.IWarehouseService;
 import com.warehousemanager.data.network.WarehouseService;
+import com.warehousemanager.ui.admin.FragmentInteraction;
+import com.warehousemanager.ui.admin.product.ProductsFragment;
 
 import java.util.List;
 
@@ -39,6 +44,7 @@ public class OrderDatail extends Fragment {
     TextView txtReady;
     TableLayout tableProducts;
     List<ProductHang> productHangList;
+    IFragmentManagerHelper fragmentManagerHelper;
     IWarehouseService warehouseService = WarehouseService.getInstance().create(IWarehouseService.class);
 
     public OrderDatail() {
@@ -50,6 +56,7 @@ public class OrderDatail extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         clientOrder = (ClientOrder) getArguments().getSerializable("clientOrder");
+        fragmentManagerHelper = new FragmentManagerHelper(getFragmentManager(), R.id.summariesFragmentContainer);
         Log.d("DBX", clientOrder.getId()+"");
     }
 
@@ -100,7 +107,7 @@ public class OrderDatail extends Fragment {
         headingRow.addView(txtAvailable);
         tableProducts.addView(headingRow);
 
-        for(Product orderProduct : clientOrder.getProducts()) {
+        for(final Product orderProduct : clientOrder.getProducts()) {
             for(ProductHang productHangs : productHangList) {
                 if(productHangs.getBarcode().equals(orderProduct.getBarcode())) {
                     TableRow row = getDefaultTableRow();
@@ -116,11 +123,26 @@ public class OrderDatail extends Fragment {
                         if(warehouseHang.getWarehouse_key().equals(clientOrder.getWarehouseKey())) {
                             tvQuantityAvailable.setText(String.valueOf(warehouseHang.getFreeQuantity()));
                             if(warehouseHang.getFreeQuantity()<orderProduct.getQuantity()) {
-                                row.setBackgroundColor(Color.parseColor("#e77fd5"));
+                                tvQuantityAvailable.setTextColor(Color.RED);
                             }
                         }
                     }
+
+                    row.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Message message = new Message();
+                            message.what = 2;
+                            message.obj = orderProduct;
+                            ((FragmentInteraction) getActivity()).sendMessage(message);
+
+                            //fragmentManagerHelper.attach(ProductsFragment.class);
+
+                        }
+                    });
+
                     row.addView(tvQuantityAvailable);
+
                     tableProducts.addView(row);
                 }
             }
@@ -139,6 +161,7 @@ public class OrderDatail extends Fragment {
         TextView tv = new TextView(getContext());
         tv.setGravity(Gravity.CENTER);
         tv.setTextSize(18);
+        tv.setBackground(getResources().getDrawable(R.drawable.border));
         tv.setTextColor(Color.BLACK);
         tv.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT,size));
         tv.setText(content);

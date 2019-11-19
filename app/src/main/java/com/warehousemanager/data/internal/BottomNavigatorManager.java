@@ -38,8 +38,23 @@ public class BottomNavigatorManager implements IFragmentManagerHelper {
   }
 
   @Override
-  public void attach(Class<? extends Fragment> newClass, Bundle bundle) {
-
+  public void attach(Class<? extends Fragment> fragment, Bundle bundle) {
+    try {
+      detachFragments();
+      Constructor<? extends Fragment> constructor = fragment.getConstructor();
+      Fragment newFragment = constructor.newInstance();
+      Fragment searchFragment = fragmentManager.findFragmentByTag(fragment.getName());
+      FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+      if(searchFragment == null) {
+        fragmentTransaction.add(fragmentContainer, newFragment, fragment.getName());
+      } else {
+        fragmentTransaction.attach(searchFragment);
+        searchFragment.setArguments(bundle);
+      }
+      fragmentTransaction.commit();
+    } catch (Exception ex) {
+      Log.d("EXCEPTION", ex.getMessage());
+    }
   }
 
   @Override
