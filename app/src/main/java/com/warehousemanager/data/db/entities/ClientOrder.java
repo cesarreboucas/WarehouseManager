@@ -25,15 +25,13 @@ public class ClientOrder implements Serializable
     private int done; // completed
     private int ready; // available
 
-    private transient double total = 0;
-    private transient double profit = 0;
-
-
     public ClientOrder(Long clientID, String warehouseKey, List<Product> products, String ordertime) {
         this.clientID = clientID;
         this.warehouseKey = warehouseKey;
         this.products = products;
         this.ordertime = ordertime;
+        this.done = 0;
+        this.ready = 0;
     }
 
     public int getId() {
@@ -76,6 +74,7 @@ public class ClientOrder implements Serializable
         this.ordertime = ordertime;
     }
 
+
     public int getDone() {
         return done;
     }
@@ -83,6 +82,7 @@ public class ClientOrder implements Serializable
     public void setDone(int done) {
         this.done = done;
     }
+
 
     public int getReady() {
         return ready;

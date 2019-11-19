@@ -16,4 +16,8 @@ public interface UserDao {
   @Query("SELECT * FROM user_table LIMIT 1")
   User getUser();
 
+  @Query("DELETE FROM user_table")
+  void deleteAllUsers();
+
+
 }

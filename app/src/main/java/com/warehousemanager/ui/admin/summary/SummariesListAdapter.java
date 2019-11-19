@@ -14,18 +14,14 @@ import android.widget.TextView;
 import com.warehousemanager.R;
 import com.warehousemanager.data.db.entities.ClientOrder;
 import com.warehousemanager.ui.admin.FragmentInteraction;
-
 import org.w3c.dom.Text;
 
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 public class SummariesListAdapter extends RecyclerView.Adapter<SummariesListAdapter.SummariesListViewHolder> {
 
   List<ClientOrder> summariesList;
-    Fragment context;
+  Fragment context;
 
   public SummariesListAdapter(List<ClientOrder> summariesList, Fragment context) {
     this.summariesList = summariesList;
