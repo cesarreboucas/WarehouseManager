@@ -1,9 +1,6 @@
 package com.warehousemanager.data.network;
 
 
-import com.warehousemanager.data.db.entities.Order;
-
-
 import com.warehousemanager.data.db.entities.ClientOrder;
 import com.warehousemanager.data.db.entities.MovementOrder;
 
@@ -22,6 +19,7 @@ import retrofit2.http.HTTP;
 import retrofit2.http.PATCH;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
+import retrofit2.http.Path;
 
 public interface IWarehouseService {
 
@@ -35,6 +33,7 @@ public interface IWarehouseService {
     @DELETE("products")
     Call<Product> deleteProduct(@Body String barcode);
      //=========================
+
 
     // WAREHOUSES ENDPOINTS
     @POST("warehouses")
@@ -74,8 +73,12 @@ public interface IWarehouseService {
     Call<List<Product>> createOrder(@Body ClientOrder clientOrder);
 
     @GET("orders")
-    Call<List<Order>> getAllOrders();
+    Call<List<ClientOrder>> getAllOrders();
+
+    @GET("orders/user/{id}")
+    Call<List<ClientOrder>> getOrdersByUser(@Path("id") long id);
     // =========================
+
 
     // REPORTS ENDPOINTS
     @GET("reports")
