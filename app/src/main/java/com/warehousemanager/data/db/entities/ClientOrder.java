@@ -7,7 +7,10 @@ import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class ClientOrder implements Serializable
@@ -21,6 +24,9 @@ public class ClientOrder implements Serializable
     private String ordertime;
     private int done; // completed
     private int ready; // available
+
+    private transient double total = 0;
+    private transient double profit = 0;
 
     public ClientOrder(Long clientID, String warehouseKey, List<Product> products, String ordertime) {
         this.clientID = clientID;
@@ -71,7 +77,8 @@ public class ClientOrder implements Serializable
         this.ordertime = ordertime;
     }
 
-    public int isDone() {
+
+    public int getDone() {
         return done;
     }
 
@@ -79,11 +86,31 @@ public class ClientOrder implements Serializable
         this.done = done;
     }
 
-    public int isReady() {
+
+    public int getReady() {
         return ready;
     }
 
     public void setReady(int ready) {
         this.ready = ready;
     }
+
+    public double getTotal() {
+        return total;
+    }
+
+    public double getProfit() {
+        return profit;
+    }
+
+    public void updateTotals() {
+        this.total = 0;
+        this.profit = 0;
+
+        for(Product p : products) {
+            this.total += p.getTotal();
+            this.profit += p.getTotal()-p.getTotalCost();
+        }
+    }
+
 }

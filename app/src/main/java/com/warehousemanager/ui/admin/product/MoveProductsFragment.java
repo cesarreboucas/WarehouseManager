@@ -23,6 +23,7 @@ import com.warehousemanager.data.network.IWarehouseService;
 import com.warehousemanager.data.network.WarehouseService;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import retrofit2.Call;
@@ -142,15 +143,9 @@ public class MoveProductsFragment extends Fragment implements View.OnClickListen
         String receiverWarehouse = spnReceiverWarehouse.getSelectedItem().toString();
         int quantity = Integer.parseInt(Quantity.getText().toString());
 
-        MovementOrder movementOrder = new MovementOrder();
-        movementOrder.setWarehouse_sender(senderWarehouse);
-        movementOrder.setWarehouse_receiver(receiverWarehouse);
-        movementOrder.setQuantity(quantity);
-        movementOrder.setProductKey(product.getBarcode());
-        movementOrder.setProductName(product.getName());
-        movementOrder.setError(false);
-        movementOrder.setSent(false);
-        movementOrder.setUser("");
+        MovementOrder movementOrder = new MovementOrder(receiverWarehouse, senderWarehouse,
+                product.getBarcode(), product.getName(), quantity, false, false,
+                new Date().getTime());
 
         progressBar.setVisibility(View.VISIBLE);
         warehouseService.createMovementOrder(movementOrder).enqueue(new Callback<MovementOrder>() {
