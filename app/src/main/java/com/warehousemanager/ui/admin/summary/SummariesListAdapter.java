@@ -15,6 +15,8 @@ import com.warehousemanager.R;
 import com.warehousemanager.data.db.entities.ClientOrder;
 import com.warehousemanager.ui.admin.FragmentInteraction;
 
+import org.w3c.dom.Text;
+
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -44,6 +46,12 @@ public class SummariesListAdapter extends RecyclerView.Adapter<SummariesListAdap
   public void onBindViewHolder(@NonNull SummariesListViewHolder summariesListViewHolder, final int i) {
     summariesList.get(i).updateTotals();
     summariesListViewHolder.txtWhKey.setText(summariesList.get(i).getWarehouseKey());
+    if(summariesList.get(i).getReady()==1) {
+      summariesListViewHolder.txtReady.setText("Ready");
+    } else {
+      summariesListViewHolder.txtReady.setText("Not Ready");
+      summariesListViewHolder.txtReady.setBackgroundColor(Color.parseColor("#e77fd5"));
+    }
     summariesListViewHolder.txtOrderTotal.setText(String.format("$ %.2f",summariesList.get(i).getTotal()));
     summariesListViewHolder.txtProfit.setText(String.format("$ %.2f",summariesList.get(i).getProfit()));
 
@@ -69,6 +77,7 @@ public class SummariesListAdapter extends RecyclerView.Adapter<SummariesListAdap
     TextView txtOrderTotal;
     TextView txtOrderTime;
     TextView txtProfit;
+    TextView txtReady;
     View view;
 
     public SummariesListViewHolder(@NonNull View itemView) {
@@ -76,6 +85,7 @@ public class SummariesListAdapter extends RecyclerView.Adapter<SummariesListAdap
       txtWhKey = itemView.findViewById(R.id.txtWhkey);
       txtOrderTime = itemView.findViewById(R.id.txtOrderTime);
       txtOrderTotal = itemView.findViewById(R.id.txtOrderTotal);
+      txtReady = itemView.findViewById(R.id.txtReady);
       txtProfit = itemView.findViewById(R.id.txtProfit);
       view = itemView;
     }

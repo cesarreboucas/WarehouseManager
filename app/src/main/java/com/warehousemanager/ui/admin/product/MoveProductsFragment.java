@@ -143,14 +143,14 @@ public class MoveProductsFragment extends Fragment implements View.OnClickListen
         int quantity = Integer.parseInt(Quantity.getText().toString());
 
         MovementOrder movementOrder = new MovementOrder();
-        movementOrder.setWarehouse_sender(senderWarehouse);
-        movementOrder.setWarehouse_receiver(receiverWarehouse);
-        movementOrder.setQuantity(quantity);
-        movementOrder.setProductKey(product.getBarcode());
-        movementOrder.setProductName(product.getName());
-        movementOrder.setError(false);
-        movementOrder.setSent(false);
-        movementOrder.setUser("");
+        //movementOrder.setWarehouse_sender(senderWarehouse);
+        //movementOrder.setWarehouse_receiver(receiverWarehouse);
+        //movementOrder.setQuantity(quantity);
+        //movementOrder.setProductKey(product.getBarcode());
+        //movementOrder.setProductName(product.getName());
+        //movementOrder.setError(false);
+        //movementOrder.setSent(false);
+        //movementOrder.setUser("");
 
         progressBar.setVisibility(View.VISIBLE);
         warehouseService.createMovementOrder(movementOrder).enqueue(new Callback<MovementOrder>() {

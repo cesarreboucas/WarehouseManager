@@ -38,7 +38,7 @@ public class WarehouseService {
                 .build();
 
         retrofit = new Retrofit.Builder()
-                .baseUrl(IPADDRESS_NODE)
+                .baseUrl(IPADDRESS)
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(client)
                 .build();
