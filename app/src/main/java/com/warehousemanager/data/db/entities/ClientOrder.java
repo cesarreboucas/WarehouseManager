@@ -25,6 +25,9 @@ public class ClientOrder implements Serializable
     private int done; // completed
     private int ready; // available
 
+    private transient double total = 0;
+    private transient double profit = 0;
+
     public ClientOrder(Long clientID, String warehouseKey, List<Product> products, String ordertime) {
         this.clientID = clientID;
         this.warehouseKey = warehouseKey;
