@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.warehousemanager.R;
 import com.warehousemanager.data.db.entities.ClientOrder;
 import com.warehousemanager.data.db.entities.Product;
+import com.warehousemanager.data.internal.What;
 import com.warehousemanager.ui.admin.FragmentInteraction;
 
 import java.text.DateFormat;
@@ -22,7 +23,7 @@ import java.util.List;
 
 public class OrdersListClientAdapter extends RecyclerView.Adapter<OrdersListClientAdapter.OrdersViewHolder> {
 
-    List<ClientOrder> clientOrders;
+    private List<ClientOrder> clientOrders;
     private Fragment context;
 
     public OrdersListClientAdapter(List<ClientOrder> clientOrders, Fragment context) {

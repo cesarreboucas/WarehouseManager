@@ -86,7 +86,6 @@ public class ProductsListClientFragment  extends Fragment implements FragmentInt
         Bundle bundle = new Bundle();
         bundle.putSerializable("product", product);
         fragmentManagerHelper.attach(ProductDetailClientFragment.class,bundle);
-
     }
 
     @Override

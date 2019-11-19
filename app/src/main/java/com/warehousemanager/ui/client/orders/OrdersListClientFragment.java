@@ -30,9 +30,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-/**
- * A simple {@link Fragment} subclass.
- */
+
 public class OrdersListClientFragment extends Fragment implements FragmentInteraction,
         SwipeRefreshLayout.OnRefreshListener {
 
@@ -71,22 +69,18 @@ public class OrdersListClientFragment extends Fragment implements FragmentIntera
 
     public void getData() {
         long userID = warehouseDatabase.userDao().getUser().getId();
-        Log.d("UserID", userID+"");
         warehouseService.getOrdersByUser(userID).enqueue(new Callback<List<ClientOrder>>() {
             @Override
             public void onResponse(Call<List<ClientOrder>> call, Response<List<ClientOrder>> response) {
-                Log.d("Uma mensagem ai", "Entrou");
                 if(response.isSuccessful()) {
                     clientOrders.clear();
                     clientOrders.addAll(response.body());
-                    Log.d("Bjeto", response.body().toString());
                     ordersListAdapter.notifyDataSetChanged();
                 }
             }
 
             @Override
             public void onFailure(Call<List<ClientOrder>> call, Throwable t) {
-                Log.d("Uma mensagem ai", "Deu pau");
             }
         });
     }
@@ -104,10 +98,10 @@ public class OrdersListClientFragment extends Fragment implements FragmentIntera
     @Override
     public void sendMessage(Message message) {
 
-        /*Product product = (Product) message.obj;
+        ClientOrder clientOrder = (ClientOrder) message.obj;
         Bundle bundle = new Bundle();
-        bundle.putSerializable("product", product);
-        fragmentManagerHelper.attach(ProductDetailClientFragment.class,bundle);*/
+        bundle.putSerializable("order", clientOrder);
+        fragmentManagerHelper.attach(OrderDetailClientFragment.class, bundle);
     }
 
     @Override
