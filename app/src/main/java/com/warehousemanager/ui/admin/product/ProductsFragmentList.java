@@ -9,6 +9,7 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -73,6 +74,7 @@ public class ProductsFragmentList extends Fragment implements FragmentInteractio
 
         getData();
         productsListRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        productsListRecyclerView.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
         productsListRecyclerView.setAdapter(productsListAdapter);
         return view;
     }

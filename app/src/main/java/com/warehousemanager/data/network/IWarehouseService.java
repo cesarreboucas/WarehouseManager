@@ -17,6 +17,7 @@ import retrofit2.http.Body;
 import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.HTTP;
+import retrofit2.http.PATCH;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 
@@ -60,15 +61,13 @@ public interface IWarehouseService {
     Call<User> createUser(@Body User user);
   
     @PUT("users")
-    Call<User> editUser(@Body User user);
+    Call editUserRole(@Body User user);
+
+    @PATCH("users")
+    Call editUserPassword(@Body User user);
 
     @HTTP(method = "DELETE", path = "users", hasBody = true)
     Call<User> deleteUser(@Body User user);
-
-
-    @GET("reports")
-    Call<List<Report>> getAllReports();
-
     // =========================
 
 
@@ -76,38 +75,27 @@ public interface IWarehouseService {
     @POST("orders")
     Call<List<Product>> createOrder(@Body ClientOrder clientOrder);
 
+
     @GET("orders")
     Call<List<ClientOrder>> getAllOrders();
     // =========================
 
+    // REPORTS ENDPOINTS
+    @GET("reports")
+    Call<List<Report>> getAllReports();
+
+    // =========================
+
 
     // MOVEMENTS ENDPOINTS
-    @POST("movementOrder")
-    Call<MovementOrder> createCompletedOrder(@Body MovementOrder movementOrder);
+    @POST("movorders")
+    Call<MovementOrder> createMovementOrder(@Body MovementOrder movementOrder);
 
-    @GET("movementOrder")
-    Call<List<MovementOrder>> getAllCompleteOrders();
+    @GET("movorders")
+    Call<List<MovementOrder>> getAllMovementOrders();
 
-    @DELETE("movementOrder")
-    Call<MovementOrder> deleteCompletedOrder(@Body int key);
-
-    @POST("movementOrder")
-    Call<MovementOrder> createPendingOrder(@Body MovementOrder movementOrder);
-
-    @GET("movementOrder")
-    Call<List<MovementOrder>> getAllPendingOrders();
-
-    @DELETE("movementOrder")
-    Call<MovementOrder> deletePendingOrder(@Body int key);
-
-    @POST("movementOrder")
-    Call<MovementOrder> createTodoOrder(@Body MovementOrder movementOrder);
-
-    @GET("movementOrder")
-    Call<List<MovementOrder>> getAllTodoOrders();
-
-    @DELETE("movementOrder")
-    Call<MovementOrder> deleteTodoOrder(@Body int key);
+    @PUT("movorders")
+    Call<MovementOrder> editMovementOrder();
     // =========================
 
 }

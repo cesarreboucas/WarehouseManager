@@ -1,5 +1,6 @@
 package com.warehousemanager.ui.admin.user;
 
+import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.Message;
@@ -8,8 +9,12 @@ import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -27,7 +32,6 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class UserListAdapter extends RecyclerView.Adapter<UserListAdapter.UserViewHolder>{
 
   private List<User> users;
-  private ImageHelper imageHelper = new ImageHelperImpl();
   private Fragment fragment;
 
   public UserListAdapter(List<User> users, Fragment fragment) {
@@ -45,14 +49,18 @@ public class UserListAdapter extends RecyclerView.Adapter<UserListAdapter.UserVi
     notifyDataSetChanged();
   }
 
-  public void refreshRemovedUser(String username) {
+  public void removeUser(int position) {
+    users.remove(position);
+    notifyItemRemoved(position);
+  }
+
+  public int getUserPostion(String username) {
     for (int i = 0; i < users.size(); i++) {
       if(users.get(i).getUsername().equals(username)) {
-        users.remove(i);
-        break;
+        return i;
       }
     }
-    notifyDataSetChanged();
+    return -1;
   }
 
   @NonNull
@@ -65,6 +73,7 @@ public class UserListAdapter extends RecyclerView.Adapter<UserListAdapter.UserVi
     return userViewHolder;
   }
 
+  @SuppressLint("ClickableViewAccessibility")
   @Override
   public void onBindViewHolder(@NonNull final UserViewHolder userViewHolder, int i) {
     final String username = users.get(i).getUsername();
@@ -89,40 +98,74 @@ public class UserListAdapter extends RecyclerView.Adapter<UserListAdapter.UserVi
       userViewHolder.profileImage.setImageResource(R.drawable.ic_person_black_24dp);
     }
 
-    userViewHolder.btnRemoveUser.setOnClickListener(new View.OnClickListener() {
+    userViewHolder.btnRemoveUser.setOnTouchListener(new View.OnTouchListener() {
       @Override
-      public void onClick(View v) {
-        User user = users.get(userViewHolder.getAdapterPosition());
-        Message m = new Message();
-        m.what = What.REMOVE;
-        Bundle bundle = new Bundle();
-        bundle.putString("USERNAME", user.getUsername());
-        m.obj = bundle;
-        ((FragmentInteraction)fragment).sendMessage(m);
+      public boolean onTouch(View v, MotionEvent event) {
+        switch (event.getAction()) {
+          case MotionEvent.ACTION_DOWN:
+            //v.setAnimation(AnimationUtils.loadAnimation(fragment.getContext(), R.anim.fade_in));
+            v.setAlpha(0.6F);
+            break;
+          case MotionEvent.ACTION_UP:
+            v.setAlpha(1F);
+            final User user = users.get(userViewHolder.getAdapterPosition());
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(fragment.getContext());
+            builder.setTitle("Are you sure you want to delete " + user.getUsername() + "?");
+            builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+              @Override
+              public void onClick(DialogInterface dialog, int which) {
+
+              }
+            });
+            builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+              @Override
+              public void onClick(DialogInterface dialog, int which) {
+                Message m = new Message();
+                m.what = What.REMOVE;
+                Bundle bundle = new Bundle();
+                bundle.putString("USERNAME", user.getUsername());
+                m.obj = bundle;
+                ((FragmentInteraction)fragment).sendMessage(m);
+              }
+            });
+            builder.show();
+            break;
+        }
+        return false;
       }
     });
 
-    userViewHolder.btnMoreOptions.setOnClickListener(new View.OnClickListener() {
+    userViewHolder.btnMoreOptions.setOnTouchListener(new View.OnTouchListener() {
       @Override
-      public void onClick(View v) {
-        final String[] roles = fragment.getResources().getStringArray(R.array.roles_entries);
+      public boolean onTouch(View v, MotionEvent event) {
+        switch (event.getAction()) {
+          case MotionEvent.ACTION_DOWN:
+            v.setAlpha(0.6F);
+            break;
+          case MotionEvent.ACTION_UP:
+            v.setAlpha(1F);
+            final String[] roles = fragment.getResources().getStringArray(R.array.roles_entries);
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(fragment.getContext());
-        builder.setTitle("Pick a role");
-        builder.setItems(roles, new DialogInterface.OnClickListener() {
-          @Override
-          public void onClick(DialogInterface dialog, int which) {
-            User user = users.get(userViewHolder.getAdapterPosition());
-            Message m = new Message();
-            m.what = What.UPDATE;
-            Bundle bundle = new Bundle();
-            bundle.putString("USERNAME", user.getUsername());
-            bundle.putString("ROLE", roles[which]);
-            m.obj = bundle;
-            ((FragmentInteraction)fragment).sendMessage(m);
-          }
-        });
-        builder.show();
+            AlertDialog.Builder builder = new AlertDialog.Builder(fragment.getContext());
+            builder.setTitle("Pick a role");
+            builder.setItems(roles, new DialogInterface.OnClickListener() {
+              @Override
+              public void onClick(DialogInterface dialog, int which) {
+                User user = users.get(userViewHolder.getAdapterPosition());
+                Message m = new Message();
+                m.what = What.UPDATE;
+                Bundle bundle = new Bundle();
+                bundle.putString("USERNAME", user.getUsername());
+                bundle.putString("ROLE", roles[which]);
+                m.obj = bundle;
+                ((FragmentInteraction)fragment).sendMessage(m);
+              }
+            });
+            builder.show();
+            break;
+        }
+        return false;
       }
     });
   }

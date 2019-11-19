@@ -23,7 +23,9 @@
         android:layout_height="match_parent"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+      android:paddingBottom="100dp"
+      android:clipToPadding="false"/>
   </android.support.v4.widget.SwipeRefreshLayout>
 
   <android.support.design.widget.FloatingActionButton
@@ -36,6 +38,6 @@
     android:layout_marginBottom="19dp"
     android:clickable="true"
     android:focusable="true"
-    android:src="@android:drawable/ic_input_add" />
+    android:src="@drawable/ic_add_white_24dp" />
 
 </RelativeLayout>

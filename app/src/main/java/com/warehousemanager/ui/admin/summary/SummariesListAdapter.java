@@ -15,6 +15,9 @@ import com.warehousemanager.R;
 import com.warehousemanager.data.db.entities.ClientOrder;
 import com.warehousemanager.ui.admin.FragmentInteraction;
 
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 public class SummariesListAdapter extends RecyclerView.Adapter<SummariesListAdapter.SummariesListViewHolder> {
@@ -41,13 +44,6 @@ public class SummariesListAdapter extends RecyclerView.Adapter<SummariesListAdap
   public void onBindViewHolder(@NonNull SummariesListViewHolder summariesListViewHolder, final int i) {
     summariesList.get(i).updateTotals();
     summariesListViewHolder.txtWhKey.setText(summariesList.get(i).getWarehouseKey());
-    if(summariesList.get(i).getReady()==0) {
-      summariesListViewHolder.txtOutofstock.setText("Out of Stock");
-      summariesListViewHolder.txtOutofstock.setBackgroundColor(Color.RED);
-    } else {
-      summariesListViewHolder.txtOutofstock.setText("Ready");
-      summariesListViewHolder.txtOutofstock.setBackgroundColor(Color.TRANSPARENT);
-    }
     summariesListViewHolder.txtOrderTotal.setText(String.format("$ %.2f",summariesList.get(i).getTotal()));
     summariesListViewHolder.txtProfit.setText(String.format("$ %.2f",summariesList.get(i).getProfit()));
 
@@ -70,15 +66,15 @@ public class SummariesListAdapter extends RecyclerView.Adapter<SummariesListAdap
 
   public class SummariesListViewHolder extends RecyclerView.ViewHolder {
     TextView txtWhKey;
-    TextView txtOutofstock;
     TextView txtOrderTotal;
+    TextView txtOrderTime;
     TextView txtProfit;
     View view;
 
     public SummariesListViewHolder(@NonNull View itemView) {
       super(itemView);
       txtWhKey = itemView.findViewById(R.id.txtWhkey);
-      txtOutofstock = itemView.findViewById(R.id.txtOutofstock);
+      txtOrderTime = itemView.findViewById(R.id.txtOrderTime);
       txtOrderTotal = itemView.findViewById(R.id.txtOrderTotal);
       txtProfit = itemView.findViewById(R.id.txtProfit);
       view = itemView;

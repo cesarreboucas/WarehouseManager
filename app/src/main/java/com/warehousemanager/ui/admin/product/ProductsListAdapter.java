@@ -1,12 +1,15 @@
 package com.warehousemanager.ui.admin.product;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Message;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
@@ -46,6 +49,7 @@ public class ProductsListAdapter extends RecyclerView.Adapter<ProductsListAdapte
         return productsViewHolder;
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     public void onBindViewHolder(@NonNull final ProductsViewHolder productsViewHolder, final int i) {
         productsViewHolder.name.setText(fitString(products.get(i).getName(),30));
@@ -64,13 +68,22 @@ public class ProductsListAdapter extends RecyclerView.Adapter<ProductsListAdapte
             }
         });
 
-        productsViewHolder.imgMove.setOnClickListener(new View.OnClickListener() {
+        productsViewHolder.imgMove.setOnTouchListener(new View.OnTouchListener() {
             @Override
-            public void onClick(View v) {
-                Message m = new Message();
-                m.what = 2;
-                m.obj = products.get(i);
-                ((FragmentInteraction)context).sendMessage(m);
+            public boolean onTouch(View v, MotionEvent event) {
+                switch (event.getAction()) {
+                    case MotionEvent.ACTION_DOWN:
+                        productsViewHolder.cardImgMove.setCardElevation(0F);
+                        break;
+                    case MotionEvent.ACTION_UP:
+                        productsViewHolder.cardImgMove.setCardElevation(10F);
+                        Message m = new Message();
+                        m.what = 2;
+                        m.obj = products.get(i);
+                        ((FragmentInteraction)context).sendMessage(m);
+                        break;
+                }
+                return false;
             }
         });
     }
@@ -92,6 +105,7 @@ public class ProductsListAdapter extends RecyclerView.Adapter<ProductsListAdapte
         CircleImageView picture;
         ImageButton imgMove;
         View view;
+        CardView cardImgMove;
 
         public ProductsViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -101,6 +115,7 @@ public class ProductsListAdapter extends RecyclerView.Adapter<ProductsListAdapte
             description = itemView.findViewById(R.id.description);
             cost = itemView.findViewById(R.id.cost);
             picture = itemView.findViewById(R.id.profile_image);
+            cardImgMove = itemView.findViewById(R.id.cardImgMove);
         }
     }
 
