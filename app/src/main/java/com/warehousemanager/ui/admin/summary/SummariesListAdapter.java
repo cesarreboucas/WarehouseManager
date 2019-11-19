@@ -8,18 +8,15 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.warehousemanager.R;
-import com.warehousemanager.data.db.entities.Order;
+import com.warehousemanager.data.db.entities.ClientOrder;
 
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 public class SummariesListAdapter extends RecyclerView.Adapter<SummariesListAdapter.SummariesListViewHolder> {
 
-  List<Order> summariesList;
+  List<ClientOrder> summariesList;
 
-  public SummariesListAdapter(List<Order> summariesList) {
+  public SummariesListAdapter(List<ClientOrder> summariesList) {
     this.summariesList = summariesList;
   }
 
@@ -35,11 +32,11 @@ public class SummariesListAdapter extends RecyclerView.Adapter<SummariesListAdap
 
   @Override
   public void onBindViewHolder(@NonNull SummariesListViewHolder summariesListViewHolder, int i) {
-    summariesList.get(i).updateTotals();
-    summariesListViewHolder.txtWhKey.setText(summariesList.get(i).getWarehouse_key());
-    summariesListViewHolder.txtOrderTime.setText(summariesList.get(i).getFormatedOrderTime().replace("-", "/"));
-    summariesListViewHolder.txtOrderTotal.setText(String.format("$ %.2f",summariesList.get(i).getTotal()));
-    summariesListViewHolder.txtProfit.setText(String.format("$ %.2f",summariesList.get(i).getProfit()));
+    //summariesList.get(i).updateTotals();
+    summariesListViewHolder.txtWhKey.setText(summariesList.get(i).getWarehouseKey());
+    summariesListViewHolder.txtOrderTime.setText(summariesList.get(i).getOrdertime());
+    //summariesListViewHolder.txtOrderTotal.setText(String.format("$ %.2f",summariesList.get(i).getTotal()));
+    //summariesListViewHolder.txtProfit.setText(String.format("$ %.2f",summariesList.get(i).getProfit()));
   }
 
   @Override

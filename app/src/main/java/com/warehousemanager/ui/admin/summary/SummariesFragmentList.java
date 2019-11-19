@@ -11,14 +11,13 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.warehousemanager.R;
-import com.warehousemanager.data.db.entities.Order;
+import com.warehousemanager.data.db.entities.ClientOrder;
 import com.warehousemanager.data.internal.FragmentManagerHelper;
 import com.warehousemanager.data.internal.IFragmentManagerHelper;
 import com.warehousemanager.data.network.IWarehouseService;
 import com.warehousemanager.data.network.WarehouseService;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import retrofit2.Call;
@@ -42,21 +41,20 @@ public class SummariesFragmentList extends Fragment {
 
     summariesList = view.findViewById(R.id.summariesList);
 
-    final List<Order> ordersList = new ArrayList<>();
+    final List<ClientOrder> ordersList = new ArrayList<>();
     final SummariesListAdapter summariesListAdapter = new SummariesListAdapter(ordersList);
 
     IWarehouseService warehouseService = new WarehouseService().getInstance().create(IWarehouseService.class);
 
-    warehouseService.getAllOrders().enqueue(new Callback<List<Order>>() {
+    warehouseService.getAllOrders().enqueue(new Callback<List<ClientOrder>>() {
       @Override
-      public void onResponse(Call<List<Order>> call, Response<List<Order>> response) {
+      public void onResponse(Call<List<ClientOrder>> call, Response<List<ClientOrder>> response) {
         ordersList.addAll(response.body());
         summariesListAdapter.notifyDataSetChanged();
-        Log.d("DBG", ordersList.size()+"");
       }
 
       @Override
-      public void onFailure(Call<List<Order>> call, Throwable t) {
+      public void onFailure(Call<List<ClientOrder>> call, Throwable t) {
 
       }
     });
