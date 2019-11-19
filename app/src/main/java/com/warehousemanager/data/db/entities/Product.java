@@ -13,16 +13,16 @@ public class Product implements Serializable {
 
     @NonNull
     @PrimaryKey
-    private String barcode;
+    private String barcode = "";
 
-    private String name;
-    private String description;
-    private double cost;
+    private String name = "";
+    private String description = "";
+    private double cost = 0;
 
     @SerializedName("sale_price")
-    private double salePrice;
-    private String picture;
-    private int quantity;
+    private double salePrice = 0;
+    private String picture = "";
+    private int quantity = 0;
 
     public String getName() {
         return name;

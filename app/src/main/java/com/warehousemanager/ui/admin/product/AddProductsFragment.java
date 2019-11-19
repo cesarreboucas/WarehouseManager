@@ -63,7 +63,7 @@ public class AddProductsFragment extends Fragment implements View.OnClickListene
 
         picture = view.findViewById(R.id.picture);
         txtName = view.findViewById(R.id.txtName);
-        txtDescription = view.findViewById(R.id.txtName);
+        txtDescription = view.findViewById(R.id.txtDescription);
         txtPrice = view.findViewById(R.id.txtPrice);
         txtCost = view.findViewById(R.id.txtCost);
         txtBarcode = view.findViewById(R.id.txtBarcode);
