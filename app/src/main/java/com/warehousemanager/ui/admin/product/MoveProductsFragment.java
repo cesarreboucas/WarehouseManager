@@ -143,7 +143,7 @@ public class MoveProductsFragment extends Fragment implements View.OnClickListen
         String receiverWarehouse = spnReceiverWarehouse.getSelectedItem().toString();
         int quantity = Integer.parseInt(Quantity.getText().toString());
 
-        MovementOrder movementOrder = new MovementOrder(0, receiverWarehouse, senderWarehouse,
+        MovementOrder movementOrder = new MovementOrder(receiverWarehouse, senderWarehouse,
                 product.getBarcode(), product.getName(), quantity, false, false,
                 new Date().getTime());
 

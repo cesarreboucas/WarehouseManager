@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 
 public class MovementOrder {
-    private int id;
+    private String id;
 
     @SerializedName("warehouse_receiver")
     private String warehouseReceiver;
@@ -25,8 +25,7 @@ public class MovementOrder {
 
     public MovementOrder(){}
 
-    public MovementOrder(int id, String warehouseReceiver, String warehouseSender, String barcode, String productName, int quantity, boolean sent, boolean received, long date) {
-        this.id = id;
+    public MovementOrder(String warehouseReceiver, String warehouseSender, String barcode, String productName, int quantity, boolean sent, boolean received, long date) {
         this.warehouseReceiver = warehouseReceiver;
         this.warehouseSender = warehouseSender;
         this.barcode = barcode;
@@ -37,11 +36,11 @@ public class MovementOrder {
         this.date = date;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
