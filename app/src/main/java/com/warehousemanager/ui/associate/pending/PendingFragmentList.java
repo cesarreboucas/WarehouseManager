@@ -77,7 +77,7 @@ public class PendingFragmentList extends Fragment
 
     private void getData() {
         progressBar.setVisibility(View.VISIBLE);
-        movementService.getAllPendingOrders().enqueue(new Callback<List<MovementOrder>>() {
+/*        movementService.getAllPendingOrders().enqueue(new Callback<List<MovementOrder>>() {
             @Override
             public void onResponse(Call<List<MovementOrder>> call, Response<List<MovementOrder>> response) {
                 if(response.body() != null) {
@@ -93,7 +93,7 @@ public class PendingFragmentList extends Fragment
                 Toast.makeText(getContext(), "Failed to reach the server", Toast.LENGTH_LONG).show();
                 Log.d("ERROR", t.getMessage());
             }
-        });
+        });*/
     }
 
     @Override
