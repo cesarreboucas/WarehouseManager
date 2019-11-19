@@ -57,7 +57,7 @@ public class SignInActivity extends AppCompatActivity {
         txtWarehouse.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                editUsername.setText("chancox9@google.pl");
+                editUsername.setText("hcastagne0@foxnews.com");
                 editPasssword.setText("1234");
             }
         });
@@ -86,6 +86,7 @@ public class SignInActivity extends AppCompatActivity {
         user.setUsername(username);
         user.setPassword(password);
 
+        warehouseDatabase.userDao().deleteAllUsers();
         warehouseService.authenticate(user).enqueue(new Callback<User>() {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {

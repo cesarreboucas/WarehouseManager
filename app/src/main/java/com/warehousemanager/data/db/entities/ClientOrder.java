@@ -19,16 +19,16 @@ public class ClientOrder implements Serializable
     private String warehouseKey;
     private List<Product> products;
     private String ordertime;
-    private boolean done; // completed
-    private boolean ready; // available
+    private int done; // completed
+    private int ready; // available
 
     public ClientOrder(Long clientID, String warehouseKey, List<Product> products, String ordertime) {
         this.clientID = clientID;
         this.warehouseKey = warehouseKey;
         this.products = products;
         this.ordertime = ordertime;
-        this.done = false;
-        this.ready = false;
+        this.done = 0;
+        this.ready = 0;
     }
 
     public int getId() {
@@ -71,19 +71,19 @@ public class ClientOrder implements Serializable
         this.ordertime = ordertime;
     }
 
-    public boolean isDone() {
+    public int isDone() {
         return done;
     }
 
-    public void setDone(boolean done) {
+    public void setDone(int done) {
         this.done = done;
     }
 
-    public boolean isReady() {
+    public int isReady() {
         return ready;
     }
 
-    public void setReady(boolean ready) {
+    public void setReady(int ready) {
         this.ready = ready;
     }
 }
