@@ -35,7 +35,6 @@
         <item>What was the first city outside my country that I visited?</item>
     </string-array>
 
-
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="summaryMenu">Summary</string>
@@ -70,4 +69,13 @@
     <string name="title_pending">Pending Orders</string>
     <string name="reportedBy">Report Sent By&#160;&#160; </string>
     <string name="title_todo">Todo Orders</string>
+
+    <string name="todo_menu">TaskList </string>
+    <string name="pending_menu">Pending </string>
+    <string name="completed_menu">Completed </string>
+    <string name="pickup_menu">Customer Pickup</string>
+
+    <string name="custname">Customer: </string>
+
+
 </resources>

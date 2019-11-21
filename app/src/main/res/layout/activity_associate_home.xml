@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".ui.associate.AssociateHomeActivity">
 
-
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/bottomNavigationView"
         android:layout_width="0dp"
