@@ -14,8 +14,6 @@ import com.warehousemanager.R;
 import com.warehousemanager.data.db.entities.User;
 import com.warehousemanager.data.network.IWarehouseService;
 import com.warehousemanager.data.network.WarehouseService;
-import com.warehousemanager.data.services.FirebaseService;
-import com.warehousemanager.data.services.FirebaseUserCallback;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -68,7 +66,7 @@ public class SignUpActivity extends AppCompatActivity{
     String answer = editAnswer.getText().toString();
 
     //TODO handle unassigned and noImage
-    User user = new User(name, username, password, "client", "unAssigned", question, answer, "NoImage");
+    User user = new User(name, username, password, "client", "unAssigned", question, answer, "NoImage", "");
     warehouseService.createUser(user).enqueue(new Callback<User>() {
       @Override
       public void onResponse(Call<User> call, Response<User> response) {

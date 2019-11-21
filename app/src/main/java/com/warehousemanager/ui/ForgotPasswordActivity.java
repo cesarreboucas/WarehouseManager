@@ -72,7 +72,7 @@ public class ForgotPasswordActivity extends AppCompatActivity {
       Toast.makeText(this, "The passwords doesn't match", Toast.LENGTH_SHORT).show();
     }
 
-    User user = new User("", username, password, "client", "", question, answer, "");
+    User user = new User("", username, password, "client", "", question, answer, "", "");
     progressBar.setVisibility(View.VISIBLE);
     warehouseService.editUserPassword(user).enqueue(new Callback() {
       @Override
