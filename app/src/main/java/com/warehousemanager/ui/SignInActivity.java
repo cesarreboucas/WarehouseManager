@@ -3,6 +3,7 @@ package com.warehousemanager.ui;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -13,7 +14,6 @@ import com.warehousemanager.data.db.WarehouseDatabase;
 import com.warehousemanager.data.db.entities.User;
 import com.warehousemanager.data.network.IWarehouseService;
 import com.warehousemanager.data.network.WarehouseService;
-import com.warehousemanager.data.services.FirebaseService;
 import com.warehousemanager.ui.admin.AdminHomeActivity;
 import com.warehousemanager.ui.associate.AssociateHomeActivity;
 import com.warehousemanager.ui.client.ClientHomeActivity;
@@ -23,7 +23,6 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class SignInActivity extends AppCompatActivity {
-    FirebaseService firebaseService;
 
     WarehouseDatabase warehouseDatabase;
     IWarehouseService warehouseService =
@@ -93,6 +92,7 @@ public class SignInActivity extends AppCompatActivity {
                 if(response.code() == 200) {
                     if(response.body() != null) {
                         User loggedUser = response.body();
+                        Log.d("DBX", loggedUser.getRole());
                         warehouseDatabase.userDao().insertUser(loggedUser);
                         WarehouseService.setCredentials(username, password);
                         if(loggedUser.getRole().equals("admin")) {
