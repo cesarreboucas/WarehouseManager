@@ -97,6 +97,15 @@ public interface IWarehouseService {
     @GET("movorders")
     Call<List<MovementOrder>> getAllMovementOrders();
 
+    @GET("movorders/{warehouse}/todo")
+    Call<List<MovementOrder>> getTodoOrders(@Path("warehouse") String warehouse);
+
+    @GET("movorders/{warehouse}/pending")
+    Call<List<MovementOrder>> getPendingOrders(@Path("warehouse") String warehouse);
+
+    @GET("movorders/{warehouse}/completed")
+    Call<List<MovementOrder>> getCompletedOrders(@Path("warehouse") String warehouse);
+
     @PUT("movorders")
     Call<MovementOrder> editMovementOrder();
     // =========================

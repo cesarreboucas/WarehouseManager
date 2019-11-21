@@ -82,7 +82,7 @@ public class SignInActivity extends AppCompatActivity {
         username = editUsername.getText().toString();
         password = editPasssword.getText().toString();
 
-        User user = new User();
+        final User user = new User();
         user.setUsername(username);
         user.setPassword(password);
 
@@ -100,6 +100,9 @@ public class SignInActivity extends AppCompatActivity {
                             startActivity(it);
                         } else if(loggedUser.getRole().equals("associate")) {
                             Intent it = new Intent(getBaseContext(), AssociateHomeActivity.class);
+                            Bundle b = new Bundle();
+                            b.putSerializable("user", loggedUser);
+                            it.putExtras(b);
                             startActivity(it);
                         } else {
                             Intent it = new Intent(getBaseContext(), ClientHomeActivity.class);

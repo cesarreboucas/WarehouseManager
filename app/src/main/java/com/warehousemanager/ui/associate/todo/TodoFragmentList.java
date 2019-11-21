@@ -74,7 +74,7 @@ public class TodoFragmentList extends Fragment
 
     private void getData() {
         progressBar.setVisibility(View.VISIBLE);
-        warehouseService.getAllMovementOrders().enqueue(new Callback<List<MovementOrder>>() {
+        warehouseService.getTodoOrders("VancouverDC").enqueue(new Callback<List<MovementOrder>>() {
             @Override
             public void onResponse(Call<List<MovementOrder>> call, Response<List<MovementOrder>> response) {
                 if(response.isSuccessful()) {
