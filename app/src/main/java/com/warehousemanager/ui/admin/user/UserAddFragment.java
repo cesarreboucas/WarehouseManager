@@ -118,6 +118,6 @@ public class UserAddFragment extends Fragment implements View.OnClickListener {
     String question = spinnerQuestions.getSelectedItem().toString();
     String answer = editAnswer.getText().toString();
 
-    return new User(name, username, password, role, "", question, answer, "");
+    return new User(name, username, password, role, "", question, answer, "", "");
   }
 }
