@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.warehousemanager.R;
@@ -98,8 +99,8 @@ public class TodoListAdapter extends RecyclerView.Adapter<TodoListAdapter.TodoLi
         TextView txtItemCount;
         TextView txtItemName;
 
-        Button btnReport;
-        Button btnScan;
+        ImageButton btnReport;
+        ImageButton btnScan;
 
         public TodoListViewHolder(@NonNull View itemView) {
             super(itemView);

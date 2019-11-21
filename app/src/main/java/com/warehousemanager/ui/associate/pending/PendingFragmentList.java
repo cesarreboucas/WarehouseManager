@@ -14,6 +14,7 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.warehousemanager.R;
+import com.warehousemanager.data.db.WarehouseDatabase;
 import com.warehousemanager.data.db.entities.MovementOrder;
 import com.warehousemanager.data.internal.FragmentManagerHelper;
 import com.warehousemanager.data.internal.IFragmentManagerHelper;
@@ -46,6 +47,8 @@ public class PendingFragmentList extends Fragment
     JsonReader jsonReader;
     IFragmentManagerHelper fragmentManagerHelper;
 
+    WarehouseDatabase warehouseDatabase;
+
     public PendingFragmentList() { }
 
     @Override
@@ -70,14 +73,16 @@ public class PendingFragmentList extends Fragment
 
         pendingList.setAdapter(pendingListAdapter);
 
-        getData();
+        warehouseDatabase = WarehouseDatabase.getAppDatabase(getActivity().getApplicationContext());
 
+        getData();
         return view;
     }
 
     private void getData() {
         progressBar.setVisibility(View.VISIBLE);
-        movementService.getPendingOrders("VancouverDC").enqueue(new Callback<List<MovementOrder>>() {
+        String wh = warehouseDatabase.userDao().getUser().getFavouriteWarehouse();
+        movementService.getPendingOrders(wh).enqueue(new Callback<List<MovementOrder>>() {
             @Override
             public void onResponse(Call<List<MovementOrder>> call, Response<List<MovementOrder>> response) {
                 if(response.body() != null) {

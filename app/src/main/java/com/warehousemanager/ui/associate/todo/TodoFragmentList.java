@@ -14,6 +14,7 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.warehousemanager.R;
+import com.warehousemanager.data.db.WarehouseDatabase;
 import com.warehousemanager.data.db.entities.MovementOrder;
 import com.warehousemanager.data.internal.FragmentManagerHelper;
 import com.warehousemanager.data.internal.IFragmentManagerHelper;
@@ -44,6 +45,8 @@ public class TodoFragmentList extends Fragment
 
     private IFragmentManagerHelper fragmentManagerHelper;
 
+    WarehouseDatabase warehouseDatabase;
+
     public TodoFragmentList() { }
 
     @Override
@@ -67,19 +70,24 @@ public class TodoFragmentList extends Fragment
 
         todoList.setAdapter(todoListAdapter);
 
-        getData();
+        warehouseDatabase = WarehouseDatabase.getAppDatabase(getActivity().getApplicationContext());warehouseDatabase = WarehouseDatabase.getAppDatabase(getActivity().getApplicationContext());
 
+        getData();
         return view;
     }
 
     private void getData() {
         progressBar.setVisibility(View.VISIBLE);
-        warehouseService.getTodoOrders("VancouverDC").enqueue(new Callback<List<MovementOrder>>() {
+        String wh = warehouseDatabase.userDao().getUser().getFavouriteWarehouse();
+        warehouseService.getTodoOrders(wh).enqueue(new Callback<List<MovementOrder>>() {
             @Override
             public void onResponse(Call<List<MovementOrder>> call, Response<List<MovementOrder>> response) {
                 if(response.isSuccessful()) {
+                    movementOrder.clear();
                     movementOrder.addAll(response.body());
                     todoListAdapter.notifyDataSetChanged();
+                    swipeRefreshLayout.setRefreshing(false);
+                    progressBar.setVisibility(View.INVISIBLE);
                 } else {
                     Toast.makeText(getContext(), "Failed to get the movement orders", Toast.LENGTH_SHORT).show();
                 }
