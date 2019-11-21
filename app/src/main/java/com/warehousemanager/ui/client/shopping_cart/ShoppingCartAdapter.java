@@ -4,13 +4,17 @@ import android.os.Message;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.warehousemanager.R;
 import com.warehousemanager.data.db.WarehouseDatabase;
@@ -45,7 +49,7 @@ public class ShoppingCartAdapter extends RecyclerView.Adapter<ShoppingCartAdapte
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ShoppingCartAdapter.ShoppingCartViewHolder shoppingCartViewHolder, final int i) {
+    public void onBindViewHolder(@NonNull final ShoppingCartAdapter.ShoppingCartViewHolder shoppingCartViewHolder, final int i) {
         shoppingCartViewHolder.name.setText(products.get(i).getName());
         shoppingCartViewHolder.total.setText(String.format("$%.2f",products.get(i).getTotal()));
         shoppingCartViewHolder.quantity.setText(String.valueOf(products.get(i).getQuantity()));
@@ -103,6 +107,56 @@ public class ShoppingCartAdapter extends RecyclerView.Adapter<ShoppingCartAdapte
                 notifyDataSetChanged();
             }
         });
+
+        shoppingCartViewHolder.quantity.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if ((event.getAction() == KeyEvent.ACTION_DOWN) &&
+                        (keyCode == KeyEvent.KEYCODE_ENTER)) {
+                    // Perform action on key press
+                    Product product = products.get(i);
+                    int quantity = 1;
+                    try {
+                        quantity = Integer.parseInt(shoppingCartViewHolder.quantity.getText().toString());
+                    } catch (Exception ex) {
+                        return false;
+                    }
+                    if(quantity > 0)
+                        product.setQuantity(quantity);
+                    else
+                        product.setQuantity(1);
+                    Message m = new Message();
+                    m.obj = product;
+                    m.what = What.UPDATE;
+                    ((FragmentInteraction)fragment).sendMessage(m);
+                    return true;
+                }
+                return false;
+            }
+        });
+
+/*        shoppingCartViewHolder.quantity.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if(!hasFocus) {
+                    Product product = products.get(i);
+                    int quantity = 1;
+                    try {
+                        quantity = Integer.parseInt(shoppingCartViewHolder.quantity.getText().toString());
+                    } catch (Exception ex) {
+                        return;
+                    }
+                    if(quantity > 0)
+                        product.setQuantity(quantity);
+                    else
+                        product.setQuantity(1);
+                Message m = new Message();
+                m.obj = product;
+                m.what = What.UPDATE;
+                ((FragmentInteraction)fragment).sendMessage(m);
+                }
+            }
+        });*/
     }
 
     @Override

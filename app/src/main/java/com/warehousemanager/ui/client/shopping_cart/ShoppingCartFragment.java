@@ -86,7 +86,6 @@ public class ShoppingCartFragment extends Fragment implements FragmentInteractio
             @Override
             public void onClick(View v) {
                 long userId = warehouseDatabase.userDao().getUser().getId();
-                Log.d("Userid", String.valueOf(userId));
                 String selectedWarehouse = spinnerWarehouses.getSelectedItem().toString();
                 List<Product> productList = warehouseDatabase.productDao().getProducts();
 
