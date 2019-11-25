@@ -13,12 +13,17 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
+import android.widget.TableLayout;
+import android.widget.TableRow;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.warehousemanager.R;
 import com.warehousemanager.data.db.entities.MovementOrder;
 import com.warehousemanager.data.db.entities.Product;
+import com.warehousemanager.data.db.entities.ProductHang;
 import com.warehousemanager.data.db.entities.Warehouse;
+import com.warehousemanager.data.db.entities.WarehouseHang;
 import com.warehousemanager.data.network.IWarehouseService;
 import com.warehousemanager.data.network.WarehouseService;
 
@@ -50,6 +55,8 @@ public class MoveProductsFragment extends Fragment implements View.OnClickListen
     EditText Quantity;
     Button btnMove;
 
+    TableLayout tableLayout;
+
     public MoveProductsFragment() { }
 
 
@@ -61,7 +68,7 @@ public class MoveProductsFragment extends Fragment implements View.OnClickListen
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_admin_move_products, container, false);
+        final View view = inflater.inflate(R.layout.fragment_admin_move_products, container, false);
 
         spnSenderWarehouse = view.findViewById(R.id.spnSenderWarehouse);
         spnSenderWarehouseAdapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_1, senderWarehouseList);
@@ -70,6 +77,8 @@ public class MoveProductsFragment extends Fragment implements View.OnClickListen
         spnReceiverWarehouse = view.findViewById(R.id.spnReceiverWarehouse);
         spnReceiverWarehouseAdapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_1, receiverWarehouseList);
         spnReceiverWarehouse.setAdapter(spnReceiverWarehouseAdapter);
+
+        tableLayout = view.findViewById(R.id.product_hangs_table);
 
         progressBar = new ProgressBar(getContext());
 
@@ -95,6 +104,43 @@ public class MoveProductsFragment extends Fragment implements View.OnClickListen
             @Override
             public void onFailure(Call<List<Warehouse>> call, Throwable t) {
                 Toast.makeText(getContext(), "There was a problem connecting to the server", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        warehouseService.getAllProductsHangs().enqueue(new Callback<List<ProductHang>>() {
+            @Override
+            public void onResponse(Call<List<ProductHang>> call, Response<List<ProductHang>> response) {
+                if(response.isSuccessful()) {
+                    ProductHang productHang = null;
+                    for (ProductHang tmpProductHang : response.body()) {
+                        if(product.getBarcode().equals(tmpProductHang.getBarcode())) {
+                            productHang = tmpProductHang;
+                            break;
+                        }
+                    }
+
+                    for (WarehouseHang tmpWarehouseHang : productHang.getWarehouses()) {
+                        LayoutInflater inflator = getLayoutInflater();
+                        TableRow tableRow = (TableRow) inflator.inflate(R.layout.product_hangs_table_row, null);
+                        TextView txtWarehouse = tableRow.findViewById(R.id.txtWarehouse);
+                        TextView txtSold = tableRow.findViewById(R.id.txtSold);
+                        TextView txtCompromised = tableRow.findViewById(R.id.txtCompromised);
+                        TextView txtFuture = tableRow.findViewById(R.id.txtFuture);
+                        TextView txtInStock = tableRow.findViewById(R.id.txtInStock);
+
+                        txtWarehouse.setText(tmpWarehouseHang.getWarehouse_key());
+                        txtSold.setText(tmpWarehouseHang.getQuantity_sold() + "");
+                        txtCompromised.setText(tmpWarehouseHang.getQuantity_compromised() + "");
+                        txtFuture.setText(tmpWarehouseHang.getQuantity_future_movs() + "");
+                        txtInStock.setText(tmpWarehouseHang.getQuantity_in_stock() + "");
+                        tableLayout.addView(tableRow);
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<ProductHang>> call, Throwable t) {
+
             }
         });
 
