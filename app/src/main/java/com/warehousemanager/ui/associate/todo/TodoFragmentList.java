@@ -21,6 +21,7 @@ import com.warehousemanager.data.internal.JsonReader;
 import com.warehousemanager.data.network.IWarehouseService;
 import com.warehousemanager.data.network.WarehouseService;
 import com.warehousemanager.ui.admin.FragmentInteraction;
+import com.warehousemanager.ui.scanner.BarcodeScannerFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -83,11 +84,13 @@ public class TodoFragmentList extends Fragment
                 } else {
                     Toast.makeText(getContext(), "Failed to get the movement orders", Toast.LENGTH_SHORT).show();
                 }
+                progressBar.setVisibility(View.INVISIBLE);
             }
 
             @Override
             public void onFailure(Call<List<MovementOrder>> call, Throwable t) {
                 Toast.makeText(getContext(), "There was a problem when trying to connect to the server", Toast.LENGTH_SHORT).show();
+                progressBar.setVisibility(View.INVISIBLE);
             }
         });
     }
@@ -110,7 +113,11 @@ public class TodoFragmentList extends Fragment
 
     @Override
     public void sendMessage(Message message) {
-
+        switch (message.what) {
+            case TodoListAdapter.SCAN_TODO:
+                fragmentManagerHelper.attach(BarcodeScannerFragment.class);
+                break;
+        }
     }
 
 }

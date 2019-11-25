@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.warehousemanager.R;
@@ -26,6 +27,27 @@ public class TodoListAdapter extends RecyclerView.Adapter<TodoListAdapter.TodoLi
     public static final int REPORT_TODO = 1;
     public static final int SCAN_TODO = 2;
 
+    public class TodoListViewHolder extends RecyclerView.ViewHolder {
+        TextView txtTransferType;
+        TextView txtItemCount;
+        TextView txtItemName;
+        TextView txtOrderNumber;
+
+        ImageButton btnReport;
+        ImageButton btnScan;
+
+        public TodoListViewHolder(@NonNull View itemView) {
+            super(itemView);
+            txtTransferType = itemView.findViewById(R.id.txtTransferType);
+            txtItemCount = itemView.findViewById(R.id.txtItemCount);
+            txtItemName = itemView.findViewById(R.id.txtItem);
+            txtOrderNumber = itemView.findViewById(R.id.txtOrderNumber);
+
+            btnReport = itemView.findViewById(R.id.btnReport);
+            btnScan = itemView.findViewById(R.id.btnScan);
+        }
+    }
+
     public TodoListAdapter(List<MovementOrder> todoList, Fragment fragment) {
         this.todoList = todoList;
         this.fragment = fragment;
@@ -37,6 +59,37 @@ public class TodoListAdapter extends RecyclerView.Adapter<TodoListAdapter.TodoLi
         View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.fragment_associate_todo_list_row, viewGroup, false);
         TodoListAdapter.TodoListViewHolder todoListViewHolder = new TodoListAdapter.TodoListViewHolder(view);
         return todoListViewHolder;
+    }
+
+    @Override
+    public void onBindViewHolder(@NonNull TodoListAdapter.TodoListViewHolder todoListViewHolder, int i) {
+        String transferType = "";
+        if(todoList.get(i).getWarehouseSender().isEmpty()) {
+            transferType = "Fulfillment";
+        } else {
+            transferType = "Transference";
+        }
+        String id = todoList.get(i).getId();
+        String itemName = todoList.get(i).getProductName();
+        if(itemName.length() > 10) {
+            itemName = itemName.substring(0, 9) + "...";
+        }
+        int itemCount = todoList.get(i).getQuantity();
+
+        todoListViewHolder.btnScan.setOnClickListener(this);
+        todoListViewHolder.btnScan.setTag(i);
+        todoListViewHolder.btnReport.setOnClickListener(this);
+        todoListViewHolder.btnReport.setTag(i);
+
+        todoListViewHolder.txtTransferType.setText(transferType);
+        todoListViewHolder.txtOrderNumber.setText(id);
+        todoListViewHolder.txtItemCount.setText(itemCount + "");
+        todoListViewHolder.txtItemName.setText(itemName);
+    }
+
+    @Override
+    public int getItemCount() {
+        return todoList.size();
     }
 
     @Override
@@ -67,48 +120,5 @@ public class TodoListAdapter extends RecyclerView.Adapter<TodoListAdapter.TodoLi
         m.obj = todoList.get(i);
         m.what = SCAN_TODO;
         ((FragmentInteraction)fragment).sendMessage(m);
-    }
-
-    @Override
-    public void onBindViewHolder(@NonNull TodoListAdapter.TodoListViewHolder todoListViewHolder, int i) {
-        /*
-        String transferType = todoList.get(i).getTransferType();
-        Product item = todoList.get(i).getItem();
-        String itemName = item.getName();
-        int itemCount = item.getQuantity();
-
-        todoListViewHolder.btnScan.setOnClickListener(this);
-        todoListViewHolder.btnScan.setTag(i);
-        todoListViewHolder.btnReport.setOnClickListener(this);
-        todoListViewHolder.btnReport.setTag(i);
-
-        todoListViewHolder.txtTransferType.setText(transferType);
-        todoListViewHolder.txtItemCount.setText(itemCount);
-        todoListViewHolder.txtItemName.setText(itemName);
-        */
-    }
-
-    @Override
-    public int getItemCount() {
-        return todoList.size();
-    }
-
-    public class TodoListViewHolder extends RecyclerView.ViewHolder {
-        TextView txtTransferType;
-        TextView txtItemCount;
-        TextView txtItemName;
-
-        Button btnReport;
-        Button btnScan;
-
-        public TodoListViewHolder(@NonNull View itemView) {
-            super(itemView);
-            txtTransferType = itemView.findViewById(R.id.txtTransferType);
-            txtItemCount = itemView.findViewById(R.id.txtItemCount);
-            txtItemName = itemView.findViewById(R.id.txtItem);
-
-            btnReport = itemView.findViewById(R.id.btnReport);
-            btnScan = itemView.findViewById(R.id.btnScan);
-        }
     }
 }

@@ -56,8 +56,13 @@
         android:layout_height="wrap_content"
         android:text="Create Move Order" />
 
-    <include
-        layout="@layout/product_hangs_table_row"
+    <TableLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:id="@+id/product_hangs_table">
+        <include
+            layout="@layout/product_hangs_table_row"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </TableLayout>
 </LinearLayout>
