@@ -71,7 +71,7 @@ public class TodoFragmentList extends Fragment
 
         todoList.setAdapter(todoListAdapter);
 
-        warehouseDatabase = WarehouseDatabase.getAppDatabase(getActivity().getApplicationContext());warehouseDatabase = WarehouseDatabase.getAppDatabase(getActivity().getApplicationContext());
+        warehouseDatabase = WarehouseDatabase.getAppDatabase(getActivity().getApplicationContext());
 
         getData();
         return view;
