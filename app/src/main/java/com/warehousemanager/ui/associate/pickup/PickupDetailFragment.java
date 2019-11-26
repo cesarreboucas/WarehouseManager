@@ -29,7 +29,7 @@ public class PickupDetailFragment
     IWarehouseService warehouseService = WarehouseService.getInstance().create(IWarehouseService.class);
 
     FragmentManagerHelper fragmentManagerHelper;
-
+/*
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -75,6 +75,6 @@ public class PickupDetailFragment
                 Toast.makeText(v.getContext(), "Error creating MovementOrder", Toast.LENGTH_SHORT).show();
             }
         });
-        */
-    }
+
+    }*/
 }

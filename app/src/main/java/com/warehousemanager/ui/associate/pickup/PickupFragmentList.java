@@ -14,7 +14,8 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.warehousemanager.R;
-import com.warehousemanager.data.db.entities.MovementOrder;
+import com.warehousemanager.data.db.entities.ClientOrder;
+import com.warehousemanager.data.db.entities.ClientOrder;
 import com.warehousemanager.data.internal.FragmentManagerHelper;
 import com.warehousemanager.data.internal.IFragmentManagerHelper;
 import com.warehousemanager.data.network.IWarehouseService;
@@ -34,7 +35,7 @@ public class PickupFragmentList extends Fragment
 
     IWarehouseService movementService = WarehouseService.getInstance().create(IWarehouseService.class);
 
-    List<MovementOrder> movementOrder;
+    List<ClientOrder> clientOrder;
 
     PickupListAdapter pickupListAdapter;
 
@@ -63,8 +64,8 @@ public class PickupFragmentList extends Fragment
         progressBar = view.findViewById(R.id.progress_loader);
 
         pickupList.setLayoutManager(new LinearLayoutManager(getContext()));
-        movementOrder = new ArrayList<>();
-        pickupListAdapter = new PickupListAdapter(movementOrder, this);
+        clientOrder = new ArrayList<>();
+        pickupListAdapter = new PickupListAdapter(clientOrder, this);
 
         pickupList.setAdapter(pickupListAdapter);
 
@@ -75,19 +76,19 @@ public class PickupFragmentList extends Fragment
 
     private void getData() {
         progressBar.setVisibility(View.VISIBLE);
-        movementService.getAllPickupOrders().enqueue(new Callback<List<MovementOrder>>() {
+        movementService.getAllOrders().enqueue(new Callback<List<ClientOrder>>() {
             @Override
-            public void onResponse(Call<List<MovementOrder>> call, Response<List<MovementOrder>> response) {
+            public void onResponse(Call<List<ClientOrder>> call, Response<List<ClientOrder>> response) {
                 if(response.body() != null) {
-                    movementOrder.clear();
-                    movementOrder.addAll(response.body());
+                    clientOrder.clear();
+                    clientOrder.addAll(response.body());
                     pickupListAdapter.notifyDataSetChanged();
                     swipeRefreshLayout.setRefreshing(false);
                     progressBar.setVisibility(View.INVISIBLE);
                 }
             }
             @Override
-            public void onFailure(Call<List<MovementOrder>> call, Throwable t) {
+            public void onFailure(Call<List<ClientOrder>> call, Throwable t) {
                 Toast.makeText(getContext(), "Failed to reach the server", Toast.LENGTH_LONG).show();
                 Log.d("ERROR", t.getMessage());
             }
@@ -97,7 +98,7 @@ public class PickupFragmentList extends Fragment
     @Override
     public void onResume() {
         super.onResume();
-        Log.d("MovementOrder", "RESUME");
+        Log.d("ClientOrder", "RESUME");
     }
 
     @Override

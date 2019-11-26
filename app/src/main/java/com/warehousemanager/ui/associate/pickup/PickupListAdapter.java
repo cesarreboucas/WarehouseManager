@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.warehousemanager.R;
+import com.warehousemanager.data.db.entities.ClientOrder;
 import com.warehousemanager.data.db.entities.MovementOrder;
 import com.warehousemanager.ui.admin.FragmentInteraction;
 
@@ -18,14 +19,14 @@ import java.util.List;
 
 public class PickupListAdapter extends RecyclerView.Adapter<PickupListAdapter.PickupListViewHolder> implements View.OnClickListener {
 
-    private List<MovementOrder> pickupList;
+    private List<ClientOrder> pickupList;
 
     private Fragment fragment;
 
     public static final int REPORT_pickup = 1;
     public static final int SCAN_pickup = 2;
 
-    public PickupListAdapter(List<MovementOrder> pickupList, Fragment fragment) {
+    public PickupListAdapter(List<ClientOrder> pickupList, Fragment fragment) {
         this.pickupList = pickupList;
         this.fragment = fragment;
     }
@@ -72,6 +73,7 @@ public class PickupListAdapter extends RecyclerView.Adapter<PickupListAdapter.Pi
     public void onBindViewHolder(@NonNull PickupListAdapter.PickupListViewHolder pickupListViewHolder, int i) {
         // pickup How do we get the associate's assigned warehouse to compare with warehouse_receiver? 
         //  String transferType = pickupList.get(i).getTransferType();
+/*
         String item = pickupList.get(i).getProductName();
         int quantity = pickupList.get(i).getQuantity();
 
@@ -83,6 +85,7 @@ public class PickupListAdapter extends RecyclerView.Adapter<PickupListAdapter.Pi
         //pickupListViewHolder.txtTransferType.setText(transferType);
         pickupListViewHolder.txtItemCount.setText(quantity);
         pickupListViewHolder.txtItemName.setText(item);
+*/
 
 
     }

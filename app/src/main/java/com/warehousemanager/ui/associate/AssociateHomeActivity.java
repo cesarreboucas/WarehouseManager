@@ -21,6 +21,7 @@ import com.warehousemanager.ui.admin.user.UserFragment;
 import com.warehousemanager.ui.admin.warehouse.WarehousesFragment;
 import com.warehousemanager.ui.associate.completed.CompletedFragment;
 import com.warehousemanager.ui.associate.pending.PendingFragment;
+import com.warehousemanager.ui.associate.pickup.PickupFragment;
 import com.warehousemanager.ui.associate.todo.TodoFragment;
 
 public class AssociateHomeActivity extends AppCompatActivity
@@ -58,14 +59,17 @@ public class AssociateHomeActivity extends AppCompatActivity
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         switch (menuItem.getItemId()) {
-            case R.id.userMenu:
+            case R.id.todoMenu:
                 fragmentManagerHelper.attach(TodoFragment.class);
                 break;
-            case R.id.warehouseMenu:
+            case R.id.pendingMenu:
+                fragmentManagerHelper.attach(PendingFragment.class);
+                break;
+            case R.id.completedMenu:
                 fragmentManagerHelper.attach(CompletedFragment.class);
                 break;
-            case R.id.productMenu:
-                fragmentManagerHelper.attach(PendingFragment.class);
+            case R.id.pickupMenu:
+                fragmentManagerHelper.attach(PickupFragment.class);
                 break;
         }
         return true;
