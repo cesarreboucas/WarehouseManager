@@ -1,6 +1,9 @@
 package com.warehousemanager.ui.associate.todo;
 
+import android.graphics.Color;
 import android.os.Message;
+import android.provider.CalendarContract;
+import android.support.annotation.ColorInt;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
@@ -71,9 +74,13 @@ public class TodoListAdapter extends RecyclerView.Adapter<TodoListAdapter.TodoLi
         String transferType = "";
         if(wh.equals(todoList.get(i).getWarehouseSender())) {
             transferType = "Recieving";
-            
+            if(todoList.get(i).getSentStatus())
+                todoListViewHolder.itemView.setBackgroundColor(Color.green());
+            else
+                todoListViewHolder.itemView.setBackgroundColor(Color.yellow());
         } else {
             transferType = "Sending";
+            todoListViewHolder.itemView.setBackgroundColor(Color.pink());
         }
         String id = todoList.get(i).getId();
         String itemName = todoList.get(i).getProductName();

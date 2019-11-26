@@ -8,4 +8,7 @@
     <color name="colorGradient2">#41B178</color>
     <color name="darkGray">#A9A9A9</color>
     <color name="colorToolbarBackground">#348D60</color>
+    <color name="green">#00cc00</color>
+    <color name="yellow">#ffcc00</color>
+    <color name="pink">#ff80bf</color>
 </resources>

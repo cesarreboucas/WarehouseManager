@@ -84,7 +84,7 @@ public class MovementOrder {
         this.quantity = quantity;
     }
 
-    public boolean isSent() {
+    public boolean getSentStatus() {
         return sent;
     }
 
@@ -92,7 +92,7 @@ public class MovementOrder {
         this.sent = sent;
     }
 
-    public boolean isReceived() {
+    public boolean getReceivedStatus() {
         return received;
     }
 
