@@ -14,11 +14,11 @@ import java.util.ArrayList;
 @Entity(tableName = "user_table")
 public class User implements Serializable {
 
-  private static final long CURRENT_USER = 0;
+  //private static final long CURRENT_USER = 0;
 
   @SerializedName("id")
   @PrimaryKey(autoGenerate = false)
-  private Long id = CURRENT_USER;
+  private Long id; // = CURRENT_USER;
 
   @SerializedName("name")
   private String name;
@@ -31,6 +31,9 @@ public class User implements Serializable {
 
   @SerializedName("role")
   private String role;
+
+  @SerializedName("favourite_warehouse")
+  private String favouriteWarehouse;
 
   //Warehouse Assigned to user, by warehouse name (If user is Worker/Admin)
   @SerializedName("assignment")
@@ -51,7 +54,9 @@ public class User implements Serializable {
   @Ignore
   public User() { }
 
-  public User(String name, String username, String password, String role, String assignment, String question, String answer, String profileImage, String favouriteWarehouse) {
+  public User(String name, String username, String password, String role, String assignment,
+              String question, String answer, String profileImage, String favouriteWarehouse) {
+
     this.name = name;
     this.username = username;
     this.password = password;
@@ -61,7 +66,6 @@ public class User implements Serializable {
     this.answer = answer;
     this.profileImage = profileImage;
     this.favouriteWarehouse = favouriteWarehouse;
-
   }
 
   public Long getId() {
@@ -119,6 +123,14 @@ public class User implements Serializable {
   public String getAnswer() { return answer; }
 
   public void setAnswer(String answer) { this.answer = answer; }
+
+  public String getFavouriteWarehouse() {
+    return favouriteWarehouse;
+  }
+
+  public void setFavouriteWarehouse(String favouriteWarehouse) {
+    this.favouriteWarehouse = favouriteWarehouse;
+  }
 
   public String getProfileImage() {
     return profileImage;

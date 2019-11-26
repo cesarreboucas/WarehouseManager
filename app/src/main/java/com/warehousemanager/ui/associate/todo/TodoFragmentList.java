@@ -14,6 +14,7 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.warehousemanager.R;
+import com.warehousemanager.data.db.WarehouseDatabase;
 import com.warehousemanager.data.db.entities.MovementOrder;
 import com.warehousemanager.data.internal.FragmentManagerHelper;
 import com.warehousemanager.data.internal.IFragmentManagerHelper;
@@ -32,18 +33,19 @@ import retrofit2.Response;
 public class TodoFragmentList extends Fragment
         implements View.OnClickListener,  SwipeRefreshLayout.OnRefreshListener, FragmentInteraction {
 
-    IWarehouseService movementService = WarehouseService.getInstance().create(IWarehouseService.class);
+    private IWarehouseService warehouseService = WarehouseService.getInstance().create(IWarehouseService.class);
 
-    List<MovementOrder> movementOrder;
-
-    TodoListAdapter todoListAdapter;
+    private List<MovementOrder> movementOrder;
 
     private RecyclerView todoList;
+    private TodoListAdapter todoListAdapter;
 
     private SwipeRefreshLayout swipeRefreshLayout;
     private ProgressBar progressBar;
 
-    IFragmentManagerHelper fragmentManagerHelper;
+    private IFragmentManagerHelper fragmentManagerHelper;
+
+    WarehouseDatabase warehouseDatabase;
 
     public TodoFragmentList() { }
 
@@ -68,28 +70,32 @@ public class TodoFragmentList extends Fragment
 
         todoList.setAdapter(todoListAdapter);
 
-        getData();
+        warehouseDatabase = WarehouseDatabase.getAppDatabase(getActivity().getApplicationContext());warehouseDatabase = WarehouseDatabase.getAppDatabase(getActivity().getApplicationContext());
 
+        getData();
         return view;
     }
 
     private void getData() {
         progressBar.setVisibility(View.VISIBLE);
-        movementService.getAllTodoOrders().enqueue(new Callback<List<MovementOrder>>() {
+        String wh = warehouseDatabase.userDao().getUser().getFavouriteWarehouse();
+        warehouseService.getTodoOrders(wh).enqueue(new Callback<List<MovementOrder>>() {
             @Override
             public void onResponse(Call<List<MovementOrder>> call, Response<List<MovementOrder>> response) {
-                if(response.body() != null) {
+                if(response.isSuccessful()) {
                     movementOrder.clear();
                     movementOrder.addAll(response.body());
                     todoListAdapter.notifyDataSetChanged();
                     swipeRefreshLayout.setRefreshing(false);
                     progressBar.setVisibility(View.INVISIBLE);
+                } else {
+                    Toast.makeText(getContext(), "Failed to get the movement orders", Toast.LENGTH_SHORT).show();
                 }
             }
+
             @Override
             public void onFailure(Call<List<MovementOrder>> call, Throwable t) {
-                Toast.makeText(getContext(), "Failed to reach the server", Toast.LENGTH_LONG).show();
-                Log.d("ERROR", t.getMessage());
+                Toast.makeText(getContext(), "There was a problem when trying to connect to the server", Toast.LENGTH_SHORT).show();
             }
         });
     }

@@ -5,10 +5,12 @@ import android.os.Message;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.MenuItem;
 
 import com.warehousemanager.R;
 import com.warehousemanager.data.db.WarehouseDatabase;
+import com.warehousemanager.data.db.entities.User;
 import com.warehousemanager.data.internal.BottomNavigatorManager;
 import com.warehousemanager.data.internal.IFragmentManagerHelper;
 import com.warehousemanager.ui.admin.FragmentInteraction;
@@ -26,7 +28,7 @@ public class AssociateHomeActivity extends AppCompatActivity
 
     WarehouseDatabase warehouseDatabase;
     IFragmentManagerHelper fragmentManagerHelper;
-
+    User user;
     BottomNavigationView bottomNavigationView;
 
     @Override
@@ -42,6 +44,10 @@ public class AssociateHomeActivity extends AppCompatActivity
 
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
         bottomNavigationView.setOnNavigationItemSelectedListener(this);
+
+        Bundle b = getIntent().getExtras();
+        user = (User) b.getSerializable("user");
+        Log.d("DBX", user.getName());
     }
 
     @Override

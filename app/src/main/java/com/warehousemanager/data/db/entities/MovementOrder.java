@@ -3,58 +3,69 @@ package com.warehousemanager.data.db.entities;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
 
+import com.google.gson.annotations.SerializedName;
+
+import java.sql.Timestamp;
 import java.util.ArrayList;
 
 
 public class MovementOrder {
-    private int ID;
+    private String id;
 
-    private String warehouse_receiver;
-    private String Warehouse_sender;
-    private String user;
-    private String productKey;
+    @SerializedName("warehouse_receiver")
+    private String warehouseReceiver;
+    @SerializedName("warehouse_sender")
+    private String warehouseSender;
+    private String barcode;
     private String productName;
-
     private int quantity;
-
     private boolean sent;
     private boolean received;
-    private boolean error;
+    private long date;
 
-    public int getID() {
-        return ID;
+    public MovementOrder(){}
+
+    public MovementOrder(String warehouseReceiver, String warehouseSender, String barcode, String productName, int quantity, boolean sent, boolean received, long date) {
+        this.warehouseReceiver = warehouseReceiver;
+        this.warehouseSender = warehouseSender;
+        this.barcode = barcode;
+        this.productName = productName;
+        this.quantity = quantity;
+        this.sent = sent;
+        this.received = received;
+        this.date = date;
     }
 
-    public String getWarehouse_receiver() {
-        return warehouse_receiver;
+    public String getId() {
+        return id;
     }
 
-    public void setWarehouse_receiver(String warehouse_receiver) {
-        this.warehouse_receiver = warehouse_receiver;
+    public void setId(String id) {
+        this.id = id;
     }
 
-    public String getWarehouse_sender() {
-        return Warehouse_sender;
+    public String getWarehouseReceiver() {
+        return warehouseReceiver;
     }
 
-    public void setWarehouse_sender(String warehouse_sender) {
-        Warehouse_sender = warehouse_sender;
+    public void setWarehouseReceiver(String warehouseReceiver) {
+        this.warehouseReceiver = warehouseReceiver;
     }
 
-    public String getUser() {
-        return user;
+    public String getWarehouseSender() {
+        return warehouseSender;
     }
 
-    public void setUser(String user) {
-        this.user = user;
+    public void setWarehouseSender(String warehouseSender) {
+        this.warehouseSender = warehouseSender;
     }
 
-    public String getProductKey() {
-        return productKey;
+    public String getBarcode() {
+        return barcode;
     }
 
-    public void setProductKey(String productKey) {
-        this.productKey = productKey;
+    public void setBarcode(String barcode) {
+        this.barcode = barcode;
     }
 
     public String getProductName() {
@@ -89,11 +100,11 @@ public class MovementOrder {
         this.received = received;
     }
 
-    public boolean isError() {
-        return error;
+    public long getDate() {
+        return date;
     }
 
-    public void setError(boolean error) {
-        this.error = error;
+    public void setDate(long date) {
+        this.date = date;
     }
 }

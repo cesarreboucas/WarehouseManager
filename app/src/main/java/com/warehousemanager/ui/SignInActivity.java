@@ -3,6 +3,7 @@ package com.warehousemanager.ui;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -13,7 +14,6 @@ import com.warehousemanager.data.db.WarehouseDatabase;
 import com.warehousemanager.data.db.entities.User;
 import com.warehousemanager.data.network.IWarehouseService;
 import com.warehousemanager.data.network.WarehouseService;
-import com.warehousemanager.data.services.FirebaseService;
 import com.warehousemanager.ui.admin.AdminHomeActivity;
 import com.warehousemanager.ui.associate.AssociateHomeActivity;
 import com.warehousemanager.ui.client.ClientHomeActivity;
@@ -23,7 +23,6 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class SignInActivity extends AppCompatActivity {
-    FirebaseService firebaseService;
 
     WarehouseDatabase warehouseDatabase;
     IWarehouseService warehouseService =
@@ -57,7 +56,7 @@ public class SignInActivity extends AppCompatActivity {
         txtWarehouse.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                editUsername.setText("chancox9@google.pl");
+                editUsername.setText("hcastagne0@foxnews.com");
                 editPasssword.setText("1234");
             }
         });
@@ -82,22 +81,28 @@ public class SignInActivity extends AppCompatActivity {
         username = editUsername.getText().toString();
         password = editPasssword.getText().toString();
 
-        User user = new User();
+        final User user = new User();
         user.setUsername(username);
         user.setPassword(password);
 
+        warehouseDatabase.userDao().deleteAllUsers();
         warehouseService.authenticate(user).enqueue(new Callback<User>() {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
                 if(response.code() == 200) {
                     if(response.body() != null) {
                         User loggedUser = response.body();
+                        Log.d("DBX", loggedUser.getRole());
+                        warehouseDatabase.userDao().insertUser(loggedUser);
                         WarehouseService.setCredentials(username, password);
                         if(loggedUser.getRole().equals("admin")) {
                             Intent it = new Intent(getBaseContext(), AdminHomeActivity.class);
                             startActivity(it);
                         } else if(loggedUser.getRole().equals("associate")) {
                             Intent it = new Intent(getBaseContext(), AssociateHomeActivity.class);
+                            Bundle b = new Bundle();
+                            b.putSerializable("user", loggedUser);
+                            it.putExtras(b);
                             startActivity(it);
                         } else {
                             Intent it = new Intent(getBaseContext(), ClientHomeActivity.class);

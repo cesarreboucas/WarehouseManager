@@ -63,7 +63,7 @@ public class AddProductsFragment extends Fragment implements View.OnClickListene
 
         picture = view.findViewById(R.id.picture);
         txtName = view.findViewById(R.id.txtName);
-        txtDescription = view.findViewById(R.id.txtName);
+        txtDescription = view.findViewById(R.id.txtDescription);
         txtPrice = view.findViewById(R.id.txtPrice);
         txtCost = view.findViewById(R.id.txtCost);
         txtBarcode = view.findViewById(R.id.txtBarcode);
@@ -74,7 +74,7 @@ public class AddProductsFragment extends Fragment implements View.OnClickListene
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        if(product.getBarcode()!="") {
+        if(product.getBarcode()!=null) {
             txtName.setText(product.getName());
             txtDescription.setText(product.getDescription());
             txtPrice.setText(String.valueOf(product.getSalePrice()));

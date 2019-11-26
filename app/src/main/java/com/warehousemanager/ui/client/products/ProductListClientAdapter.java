@@ -34,7 +34,7 @@ public class ProductListClientAdapter extends RecyclerView.Adapter<ProductListCl
     @Override
     public ProductListClientAdapter.ProductsViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View view = LayoutInflater.from(viewGroup.getContext())
-                .inflate(R.layout.fragment_admin_products_list_row, viewGroup, false);
+                .inflate(R.layout.fragment_client_products_list_row, viewGroup, false);
         ProductListClientAdapter.ProductsViewHolder productsViewHolder = new ProductListClientAdapter.ProductsViewHolder(view);
         return productsViewHolder;
     }

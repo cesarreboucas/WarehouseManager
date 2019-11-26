@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.warehousemanager.R;
@@ -69,19 +70,32 @@ public class TodoListAdapter extends RecyclerView.Adapter<TodoListAdapter.TodoLi
 
     @Override
     public void onBindViewHolder(@NonNull TodoListAdapter.TodoListViewHolder todoListViewHolder, int i) {
+
         // TODO How do we get the associate's assigned warehouse to compare with warehouse_receiver?
         //  String transferType = todoList.get(i).getTransferType();
-        String item = todoList.get(i).getProductName();
+        /*String item = todoList.get(i).getProductName();
         int quantity = todoList.get(i).getQuantity();
+
+        String transferType = todoList.get(i).getTransferType();
+        Product item = todoList.get(i).getItem();
+        String itemName = item.getName();
+        int itemCount = item.getQuantity();
 
         todoListViewHolder.btnScan.setOnClickListener(this);
         todoListViewHolder.btnScan.setTag(i);
         todoListViewHolder.btnReport.setOnClickListener(this);
         todoListViewHolder.btnReport.setTag(i);
 
+
         //todoListViewHolder.txtTransferType.setText(transferType);
         todoListViewHolder.txtItemCount.setText(quantity);
         todoListViewHolder.txtItemName.setText(item);
+
+        todoListViewHolder.txtTransferType.setText(transferType);
+        todoListViewHolder.txtItemCount.setText(itemCount);
+        todoListViewHolder.txtItemName.setText(itemName);
+        */
+
     }
 
     @Override
@@ -94,8 +108,8 @@ public class TodoListAdapter extends RecyclerView.Adapter<TodoListAdapter.TodoLi
         TextView txtItemCount;
         TextView txtItemName;
 
-        Button btnReport;
-        Button btnScan;
+        ImageButton btnReport;
+        ImageButton btnScan;
 
         public TodoListViewHolder(@NonNull View itemView) {
             super(itemView);

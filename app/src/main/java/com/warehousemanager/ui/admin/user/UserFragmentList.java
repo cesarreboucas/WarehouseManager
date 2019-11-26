@@ -1,6 +1,7 @@
 package com.warehousemanager.ui.admin.user;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.Message;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
@@ -13,7 +14,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.warehousemanager.R;
@@ -160,8 +164,14 @@ public class UserFragmentList extends Fragment
         warehouseService.deleteUser(user).enqueue(new Callback<User>() {
           @Override
           public void onResponse(Call<User> call, Response<User> response) {
-            progressBar.setVisibility(View.INVISIBLE);
-            usersListAdapter.refreshRemovedUser(user.getUsername());
+            if(response.code() == 200) {
+              deleteItem(user);
+            } else {
+              progressBar.setVisibility(View.INVISIBLE);
+              Toast.makeText(getContext(), "Failed to remove " + username,
+                Toast.LENGTH_LONG).show();
+            }
+
           }
 
           @Override
@@ -182,15 +192,15 @@ public class UserFragmentList extends Fragment
 
         user.setRole(role);
         user.setUsername(username);
-        warehouseService.editUser(user).enqueue(new Callback<User>() {
+        warehouseService.editUserRole(user).enqueue(new Callback() {
           @Override
-          public void onResponse(Call<User> call, Response<User> response) {
+          public void onResponse(Call call, Response response) {
             progressBar.setVisibility(View.INVISIBLE);
             usersListAdapter.refreshUserRole(user.getRole(), user.getUsername());
           }
 
           @Override
-          public void onFailure(Call<User> call, Throwable t) {
+          public void onFailure(Call call, Throwable t) {
             progressBar.setVisibility(View.INVISIBLE);
             Toast.makeText(getContext(), "Failed to edit " + username + " role",
                     Toast.LENGTH_LONG).show();
@@ -198,5 +208,38 @@ public class UserFragmentList extends Fragment
         });
         break;
     }
+  }
+
+  private void deleteItem(final User user) {
+    final int position = usersListAdapter.getUserPostion(user.getUsername());
+    View rowView = null;
+    for (int i = 0; i < usersList.getChildCount(); i++) {
+      View v = usersList.getChildAt(i);
+      TextView username = v.findViewById(R.id.txtUsername);
+      if(username.getText().toString().equals(user.getUsername())) {
+        rowView = v;
+        break;
+      }
+    }
+
+    if(rowView == null) {
+      Toast.makeText(getContext(), user.getUsername() + "removed successfully!",
+        Toast.LENGTH_LONG).show();
+      return;
+    }
+
+    Animation anim = AnimationUtils.loadAnimation(requireContext(),
+      android.R.anim.slide_out_right);
+    anim.setDuration(300);
+    rowView.startAnimation(anim);
+    new Handler().postDelayed(new Runnable() {
+      public void run() {
+        usersListAdapter.removeUser(position);
+        progressBar.setVisibility(View.INVISIBLE);
+        Toast.makeText(getContext(), user.getUsername() + "removed successfully!",
+          Toast.LENGTH_LONG).show();
+      }
+
+    }, anim.getDuration());
   }
 }

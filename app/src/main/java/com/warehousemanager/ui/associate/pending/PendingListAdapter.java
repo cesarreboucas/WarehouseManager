@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.warehousemanager.R;
@@ -59,6 +60,7 @@ public class PendingListAdapter extends RecyclerView.Adapter<PendingListAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull PendingListViewHolder pendingListViewHolder, int i) {
+        /*
         String transferType = pendingList.get(i).getTransferType();
         Product item = pendingList.get(i).getItem();
         String itemName = item.getName();
@@ -74,6 +76,7 @@ public class PendingListAdapter extends RecyclerView.Adapter<PendingListAdapter.
         pendingListViewHolder.txtItemName.setText(itemName);
         pendingListViewHolder.txtReportType.setText(reportType);
         pendingListViewHolder.txtUser.setText(user);
+        */
     }
 
     @Override
@@ -88,7 +91,7 @@ public class PendingListAdapter extends RecyclerView.Adapter<PendingListAdapter.
         TextView txtReportType;
         TextView txtUser;
 
-        Button btnViewReport;
+        ImageButton btnViewReport;
 
         public PendingListViewHolder(@NonNull View itemView) {
             super(itemView);

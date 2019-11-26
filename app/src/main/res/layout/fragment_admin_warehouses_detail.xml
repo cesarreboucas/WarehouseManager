@@ -70,16 +70,16 @@
             android:textColor="@color/colorPrimaryDark" />
 
         <Button
-            android:id="@+id/btnEditWarehouse"
-            android:layout_width="325dp"
-            android:layout_height="52dp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginStart="50dp"
-            android:layout_marginTop="525dp"
-            android:background="@color/colorPrimaryDark"
-            android:text="@string/btnEditWarehouse"
-            android:textColor="@android:color/white" />
+          android:id="@+id/btnEditWarehouse"
+          android:layout_width="325dp"
+          android:layout_height="52dp"
+          android:layout_alignParentStart="true"
+          android:layout_alignParentTop="true"
+          android:layout_marginStart="52dp"
+          android:layout_marginTop="334dp"
+          android:background="@color/colorPrimaryDark"
+          android:text="@string/btnEditWarehouse"
+          android:textColor="@android:color/white" />
 
         <TextView
             android:id="@+id/txtCapacity_add"
@@ -90,7 +90,8 @@
             android:layout_marginStart="50dp"
             android:layout_marginTop="186dp"
             android:text="@string/txtCapacity"
-            android:textColor="@color/colorPrimaryDark" />
+            android:textColor="@color/colorPrimaryDark"
+            android:fontFamily="@font/montserrat"/>
 
         <EditText
             android:id="@+id/editCapacity"
@@ -109,16 +110,16 @@
             android:textColor="@color/colorPrimaryDark" />
 
         <Button
-            android:id="@+id/btnRemoveWarehouse"
-            android:layout_width="325dp"
-            android:layout_height="52dp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginStart="50dp"
-            android:layout_marginTop="587dp"
-            android:background="@color/colorPrimaryDark"
-            android:text="@string/btnRemoveWarehouse"
-            android:textColor="@android:color/white" />
+          android:id="@+id/btnRemoveWarehouse"
+          android:layout_width="325dp"
+          android:layout_height="52dp"
+          android:layout_alignParentStart="true"
+          android:layout_alignParentTop="true"
+          android:layout_marginStart="52dp"
+          android:layout_marginTop="397dp"
+          android:background="@color/colorPrimaryDark"
+          android:text="@string/btnRemoveWarehouse"
+          android:textColor="@android:color/white" />
 
 
     </RelativeLayout>

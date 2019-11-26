@@ -16,11 +16,8 @@ import android.widget.Toast;
 
 import com.warehousemanager.R;
 import com.warehousemanager.data.db.entities.MovementOrder;
-import com.warehousemanager.data.db.entities.Warehouse;
 import com.warehousemanager.data.internal.FragmentManagerHelper;
-import com.warehousemanager.data.network.IMovementService;
 import com.warehousemanager.data.network.IWarehouseService;
-import com.warehousemanager.data.network.MovementService;
 import com.warehousemanager.data.network.WarehouseService;
 
 import retrofit2.Call;
@@ -34,6 +31,8 @@ public class TodoReportFragment extends Fragment implements View.OnClickListener
     TextView txtOrderNumber;
     Spinner spnReason;
     EditText editReason;
+
+    IWarehouseService warehouseService = WarehouseService.getInstance().create(IWarehouseService.class);
 
     FragmentManagerHelper fragmentManagerHelper;
 
@@ -61,16 +60,16 @@ public class TodoReportFragment extends Fragment implements View.OnClickListener
     @Override
     public void onClick(final View v) {
         try{
-            movementOrder.setReportType(spnReason.getSelectedItem().toString());
-            movementOrder.setProblem(editReason.getText().toString());
+            // TODO The movements endpoints
+            //warehouseService.setReportType(spnReason.getSelectedItem().toString());
+            //warehouseService.setProblem(editReason.getText().toString());
 
         } catch (Exception e) {
             Log.d("ERROR", e.getMessage());
         }
-
-        IMovementService movementService = MovementService.getInstance()
-                .create(IWarehouseService.class);
-        movementService.createMovementOrder(movementOrder).enqueue(new Callback<MovementOrder>() {
+        // TODO The movements endpoints
+        /*
+        warehouseService.createMovementOrder(movementOrder).enqueue(new Callback<MovementOrder>() {
             @Override
             public void onResponse(Call<MovementOrder> call, Response<MovementOrder> response) {
                 Toast.makeText(v.getContext(), "MovementOrder Created", Toast.LENGTH_SHORT).show();
@@ -82,5 +81,6 @@ public class TodoReportFragment extends Fragment implements View.OnClickListener
                 Toast.makeText(v.getContext(), "Error creating MovementOrder", Toast.LENGTH_SHORT).show();
             }
         });
+        */
     }
 }

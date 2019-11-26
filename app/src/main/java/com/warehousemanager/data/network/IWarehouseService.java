@@ -1,7 +1,12 @@
 package com.warehousemanager.data.network;
 
+
+import com.warehousemanager.data.db.entities.ClientOrder;
 import com.warehousemanager.data.db.entities.MovementOrder;
+
 import com.warehousemanager.data.db.entities.Product;
+import com.warehousemanager.data.db.entities.ProductHang;
+import com.warehousemanager.data.db.entities.Report;
 import com.warehousemanager.data.db.entities.Warehouse;
 import com.warehousemanager.data.db.entities.User;
 
@@ -12,20 +17,30 @@ import retrofit2.http.Body;
 import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.HTTP;
+import retrofit2.http.PATCH;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
+import retrofit2.http.Path;
 
 public interface IWarehouseService {
 
+    // PRODUCTS ENDPOINTS
     @POST("products")
     Call<Product> createProduct(@Body Product product);
 
     @GET("products")
     Call<List<Product>> getAllProducts();
 
+    @GET("products/hangs")
+    Call<List<ProductHang>> getAllProductsHangs();
+
+
     @DELETE("products")
     Call<Product> deleteProduct(@Body String barcode);
-  
+     //=========================
+
+
+    // WAREHOUSES ENDPOINTS
     @POST("warehouses")
     Call<Warehouse> createWarehouse(@Body Warehouse warehouse);
 
@@ -34,7 +49,10 @@ public interface IWarehouseService {
 
     @DELETE("warehouses")
     Call<Warehouse> deleteWarehouse(@Body String warehouseName);
+    // =========================
 
+
+    // USERS ENDPOINTS
     @POST("users/auth")
     Call<User> authenticate(@Body User user);
   
@@ -45,35 +63,51 @@ public interface IWarehouseService {
     Call<User> createUser(@Body User user);
   
     @PUT("users")
-    Call<User> editUser(@Body User user);
+    Call editUserRole(@Body User user);
+
+    @PATCH("users")
+    Call editUserPassword(@Body User user);
 
     @HTTP(method = "DELETE", path = "users", hasBody = true)
     Call<User> deleteUser(@Body User user);
+    // =========================
 
-    @POST("movementOrder")
-    Call<MovementOrder> createCompletedOrder(@Body MovementOrder movementOrder);
 
-    @GET("movementOrder")
-    Call<List<MovementOrder>> getAllCompleteOrders();
+    // ORDERS ENDPOINTS
+    @POST("orders")
+    Call<List<Product>> createOrder(@Body ClientOrder clientOrder);
 
-    @DELETE("movementOrder")
-    Call<MovementOrder> deleteCompletedOrder(@Body int key);
+    @GET("orders")
+    Call<List<ClientOrder>> getAllOrders();
 
-    @POST("movementOrder")
-    Call<MovementOrder> createPendingOrder(@Body MovementOrder movementOrder);
+    @GET("orders/user/{id}")
+    Call<List<ClientOrder>> getOrdersByUser(@Path("id") long id);
 
-    @GET("movementOrder")
-    Call<List<MovementOrder>> getAllPendingOrders();
+    // REPORTS ENDPOINTS
+    @GET("reports")
+    Call<List<Report>> getAllReports();
 
-    @DELETE("movementOrder")
-    Call<MovementOrder> deletePendingOrder(@Body int key);
+    // =========================
 
-    @POST("movementOrder")
-    Call<MovementOrder> createTodoOrder(@Body MovementOrder movementOrder);
 
-    @GET("movementOrder")
-    Call<List<MovementOrder>> getAllTodoOrders();
+    // MOVEMENTS ENDPOINTS
+    @POST("movorders")
+    Call<MovementOrder> createMovementOrder(@Body MovementOrder movementOrder);
 
-    @DELETE("movementOrder")
-    Call<MovementOrder> deleteTodoOrder(@Body int key);
+    @GET("movorders")
+    Call<List<MovementOrder>> getAllMovementOrders();
+
+    @GET("movorders/{warehouse}/todo")
+    Call<List<MovementOrder>> getTodoOrders(@Path("warehouse") String warehouse);
+
+    @GET("movorders/{warehouse}/pending")
+    Call<List<MovementOrder>> getPendingOrders(@Path("warehouse") String warehouse);
+
+    @GET("movorders/{warehouse}/completed")
+    Call<List<MovementOrder>> getCompletedOrders(@Path("warehouse") String warehouse);
+
+    @PUT("movorders")
+    Call<MovementOrder> editMovementOrder();
+    // =========================
+
 }

@@ -6,6 +6,7 @@ import android.os.Message;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -72,6 +73,7 @@ public class WarehousesFragmentList extends Fragment
     progressBar = view.findViewById(R.id.progress_loader);
 
     warehousesList.setLayoutManager(new LinearLayoutManager(getContext()));
+    warehousesList.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
     warehouses = new ArrayList<>();
     warehouseListAdapter = new WarehousesListAdapter(warehouses, this);
 

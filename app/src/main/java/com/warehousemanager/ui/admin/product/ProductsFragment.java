@@ -1,15 +1,18 @@
 package com.warehousemanager.ui.admin.product;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.os.Bundle;
 import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.warehousemanager.R;
+import com.warehousemanager.data.db.entities.Product;
 import com.warehousemanager.data.internal.FragmentManagerHelper;
 import com.warehousemanager.data.internal.IFragmentManagerHelper;
 import com.warehousemanager.ui.admin.FragmentInteraction;
@@ -38,6 +41,26 @@ public class ProductsFragment extends Fragment implements FragmentInteraction {
             }
         });
         return view;
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+    }
+
+    @Override
+    public void onStart() {
+        Bundle bundle = getArguments();
+        try {
+            String tag = bundle.getString("summary", "");
+            if(tag.equals("showmovs")) {
+                Product product = (Product) bundle.getSerializable("product");
+                fragmentManagerHelper.attach(MoveProductsFragment.class, bundle);
+            }
+        } catch (Exception ex) {
+
+        }
+        super.onStart();
     }
 
     @Override

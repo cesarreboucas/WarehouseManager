@@ -11,9 +11,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class WarehouseService {
 
-
-
-    final static String IPADDRESS = "http://140.161.87.6:8000";
+    //final static String IPADDRESS = "http://140.161.215.16:8000";
+    final static String IPADDRESS = "http://10.0.2.2:8000"; // This IP address doesn't change
 
     public static Retrofit retrofit;
 
@@ -40,11 +39,9 @@ public class WarehouseService {
 
         retrofit = new Retrofit.Builder()
                 .baseUrl(IPADDRESS)
-                //.baseUrl("http://140.161.82.15:8000")
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(client)
                 .build();
         return retrofit;
     }
-
 }

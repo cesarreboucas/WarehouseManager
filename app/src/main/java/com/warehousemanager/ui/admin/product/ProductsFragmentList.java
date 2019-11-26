@@ -9,6 +9,7 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -64,15 +65,16 @@ public class ProductsFragmentList extends Fragment implements FragmentInteractio
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                fragmentManagerHelper.attach(AddProductsFragment.class);
+                Product product = new Product();
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("product", product);
+                fragmentManagerHelper.attach(AddProductsFragment.class,bundle);
             }
         });
 
-        //JsonReader jsonReader = new JsonReader(getContext());
-        //products = jsonReader.getProducts();
-
         getData();
         productsListRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        productsListRecyclerView.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
         productsListRecyclerView.setAdapter(productsListAdapter);
         return view;
     }
@@ -100,7 +102,15 @@ public class ProductsFragmentList extends Fragment implements FragmentInteractio
         Product product = (Product) message.obj;
         Bundle bundle = new Bundle();
         bundle.putSerializable("product", product);
-        fragmentManagerHelper.attach(AddProductsFragment.class,bundle);
+        switch (message.what) {
+            case 1: // Add/Edit Product
+                fragmentManagerHelper.attach(AddProductsFragment.class,bundle);
+                break;
+            case 2:
+                fragmentManagerHelper.attach(MoveProductsFragment.class,bundle);
+                break;
+        }
+
 
     }
 
