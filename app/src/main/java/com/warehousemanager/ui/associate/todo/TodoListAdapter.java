@@ -13,9 +13,7 @@ import android.widget.TextView;
 
 import com.warehousemanager.R;
 import com.warehousemanager.data.db.entities.MovementOrder;
-import com.warehousemanager.data.db.entities.Product;
 import com.warehousemanager.ui.admin.FragmentInteraction;
-import com.warehousemanager.ui.associate.pending.PendingListAdapter;
 
 import java.util.List;
 
@@ -43,7 +41,7 @@ public class TodoListAdapter extends RecyclerView.Adapter<TodoListAdapter.TodoLi
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.btnReport:
+            case R.id.btnDetailedReport:
                 onBtnReportClicked(v);
                 break;
             case R.id.btnScan:
@@ -72,7 +70,12 @@ public class TodoListAdapter extends RecyclerView.Adapter<TodoListAdapter.TodoLi
 
     @Override
     public void onBindViewHolder(@NonNull TodoListAdapter.TodoListViewHolder todoListViewHolder, int i) {
-        /*
+
+        // TODO How do we get the associate's assigned warehouse to compare with warehouse_receiver?
+        //  String transferType = todoList.get(i).getTransferType();
+        /*String item = todoList.get(i).getProductName();
+        int quantity = todoList.get(i).getQuantity();
+
         String transferType = todoList.get(i).getTransferType();
         Product item = todoList.get(i).getItem();
         String itemName = item.getName();
@@ -83,10 +86,16 @@ public class TodoListAdapter extends RecyclerView.Adapter<TodoListAdapter.TodoLi
         todoListViewHolder.btnReport.setOnClickListener(this);
         todoListViewHolder.btnReport.setTag(i);
 
+
+        //todoListViewHolder.txtTransferType.setText(transferType);
+        todoListViewHolder.txtItemCount.setText(quantity);
+        todoListViewHolder.txtItemName.setText(item);
+
         todoListViewHolder.txtTransferType.setText(transferType);
         todoListViewHolder.txtItemCount.setText(itemCount);
         todoListViewHolder.txtItemName.setText(itemName);
         */
+
     }
 
     @Override
@@ -108,7 +117,7 @@ public class TodoListAdapter extends RecyclerView.Adapter<TodoListAdapter.TodoLi
             txtItemCount = itemView.findViewById(R.id.txtItemCount);
             txtItemName = itemView.findViewById(R.id.txtItem);
 
-            btnReport = itemView.findViewById(R.id.btnReport);
+            btnReport = itemView.findViewById(R.id.btnDetailedReport);
             btnScan = itemView.findViewById(R.id.btnScan);
         }
     }

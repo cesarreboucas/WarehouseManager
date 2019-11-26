@@ -20,7 +20,6 @@
 
     <string name="summaryMenu">Summary</string>
 
-
     <!-- TODO: Remove or change this placeholder text -->
     <string name="txtAnswer">A n s w e r</string>
     <string name="load_picture">LOAD PICTURE</string>
@@ -53,6 +52,14 @@
     <string name="title_pending">Pending Orders</string>
     <string name="reportedBy">Report Sent By&#160;&#160; </string>
     <string name="title_todo">Todo Orders</string>
+
+    <string name="todo_menu">TaskList </string>
+    <string name="pending_menu">Pending </string>
+    <string name="completed_menu">Completed </string>
+    <string name="pickup_menu">Customer Pickup</string>
+
+    <string name="custname">Customer: </string>
+
     <string-array name="roles_entries">
         <item>admin</item>
         <item>associate</item>

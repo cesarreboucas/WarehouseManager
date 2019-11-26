@@ -48,11 +48,15 @@ public class User implements Serializable {
   @SerializedName("image")
   private String profileImage;
 
+  @SerializedName("favourite_warehouse")
+  private String favouriteWarehouse;
+
   @Ignore
   public User() { }
 
   public User(String name, String username, String password, String role, String assignment,
               String question, String answer, String profileImage, String favouriteWarehouse) {
+
     this.name = name;
     this.username = username;
     this.password = password;
@@ -134,6 +138,14 @@ public class User implements Serializable {
 
   public void setProfileImage(String profileImage) {
     this.profileImage = profileImage;
+  }
+
+  public String getFavouriteWarehouse() {
+    return favouriteWarehouse;
+  }
+
+  public void setFavouriteWarehouse(String favouriteWarehouse) {
+    this.favouriteWarehouse = favouriteWarehouse;
   }
 
   @NonNull
