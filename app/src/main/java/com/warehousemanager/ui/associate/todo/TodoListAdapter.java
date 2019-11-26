@@ -1,5 +1,6 @@
 package com.warehousemanager.ui.associate.todo;
 
+import android.graphics.Color;
 import android.os.Message;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
@@ -26,20 +27,22 @@ public class TodoListAdapter extends RecyclerView.Adapter<TodoListAdapter.TodoLi
     public static final int SCAN_TODO = 2;
 
     public class TodoListViewHolder extends RecyclerView.ViewHolder {
-        TextView txtTransferType;
         TextView txtItemCount;
         TextView txtItemName;
         TextView txtOrderNumber;
+        TextView txtWarehouseSender;
+        TextView txtWarehouseReceiver;
 
         ImageButton btnReport;
         ImageButton btnScan;
 
         public TodoListViewHolder(@NonNull View itemView) {
             super(itemView);
-            txtTransferType = itemView.findViewById(R.id.txtTransferType);
             txtItemCount = itemView.findViewById(R.id.txtItemCount);
             txtItemName = itemView.findViewById(R.id.txtItem);
             txtOrderNumber = itemView.findViewById(R.id.txtOrderNumber);
+            txtWarehouseSender = itemView.findViewById(R.id.txtWarehouseSender);
+            txtWarehouseReceiver = itemView.findViewById(R.id.txtWarehouseReceiver);
 
             btnReport = itemView.findViewById(R.id.btnReport);
             btnScan = itemView.findViewById(R.id.btnScan);
@@ -61,12 +64,19 @@ public class TodoListAdapter extends RecyclerView.Adapter<TodoListAdapter.TodoLi
 
     @Override
     public void onBindViewHolder(@NonNull TodoListAdapter.TodoListViewHolder todoListViewHolder, int i) {
-        String transferType = "";
-        if(todoList.get(i).getWarehouseSender().isEmpty()) {
-            transferType = "Fulfillment";
+        int color;
+        boolean isSent = todoList.get(i).getSent();
+        boolean isReceived = todoList.get(i).getReceived();
+        if(todoList.get(i).getReceived()) {
+            color = Color.parseColor("#77dd77");
+        } else if(todoList.get(i).getSent()) {
+            color = Color.parseColor("#ff6961");
         } else {
-            transferType = "Transference";
+            color = Color.LTGRAY;
         }
+
+        String warehouseReceiver = todoList.get(i).getWarehouseReceiver();
+        String warehouseSender = todoList.get(i).getWarehouseSender();
         String id = todoList.get(i).getId();
         String itemName = todoList.get(i).getProductName();
         if(itemName.length() > 10) {
@@ -74,12 +84,15 @@ public class TodoListAdapter extends RecyclerView.Adapter<TodoListAdapter.TodoLi
         }
         int itemCount = todoList.get(i).getQuantity();
 
+        todoListViewHolder.itemView.setBackgroundColor(color);
+
         todoListViewHolder.btnScan.setOnClickListener(this);
         todoListViewHolder.btnScan.setTag(i);
         todoListViewHolder.btnReport.setOnClickListener(this);
         todoListViewHolder.btnReport.setTag(i);
 
-        todoListViewHolder.txtTransferType.setText(transferType);
+        todoListViewHolder.txtWarehouseReceiver.setText(warehouseReceiver);
+        todoListViewHolder.txtWarehouseSender.setText(warehouseSender);
         todoListViewHolder.txtOrderNumber.setText(id);
         todoListViewHolder.txtItemCount.setText(itemCount + "");
         todoListViewHolder.txtItemName.setText(itemName);

@@ -11,8 +11,10 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.warehousemanager.R;
+import com.warehousemanager.data.db.WarehouseDatabase;
 import com.warehousemanager.data.db.entities.MovementOrder;
 import com.warehousemanager.data.db.entities.Product;
+import com.warehousemanager.data.db.entities.User;
 import com.warehousemanager.data.db.entities.Warehouse;
 import com.warehousemanager.ui.admin.FragmentInteraction;
 import com.warehousemanager.ui.admin.warehouse.WarehousesListAdapter;
@@ -24,11 +26,15 @@ public class CompletedListAdapter extends RecyclerView.Adapter<CompletedListAdap
     private List<MovementOrder> completedList;
     private Fragment fragment;
 
+    WarehouseDatabase warehouseDatabase;
+
     public static final int EDIT_COMPLETED = 1;
 
     public CompletedListAdapter(List<MovementOrder> completedList, Fragment fragment) {
         this.completedList = completedList;
         this.fragment = fragment;
+
+        warehouseDatabase = WarehouseDatabase.getAppDatabase(fragment.getActivity().getApplicationContext());
     }
 
     @NonNull
@@ -46,18 +52,25 @@ public class CompletedListAdapter extends RecyclerView.Adapter<CompletedListAdap
 
     @Override
     public void onBindViewHolder(@NonNull CompletedListViewHolder completedListViewHolder, int i) {
-        /*
-        String transferType = completedList.get(i).getTransferType();
-        Product item = completedList.get(i).getItem();
-        String itemName = item.getName();
-        int itemCount = item.getQuantity();
-        String user = completedList.get(i).getUsername().toString();
+        String transferType = "";
+        if(completedList.get(i).getWarehouseSender().isEmpty()) {
+            transferType = "Fulfillment";
+        } else {
+            transferType = "Transference";
+        }
+        String id = completedList.get(i).getId();
+        String itemName = completedList.get(i).getProductName();
+        if(itemName.length() > 10) {
+            itemName = itemName.substring(0, 9) + "...";
+        }
+        int itemCount = completedList.get(i).getQuantity();
+        User user = warehouseDatabase.userDao().getUser();
 
         completedListViewHolder.txtTransferType.setText(transferType);
-        completedListViewHolder.txtItemCount.setText(itemCount);
+        completedListViewHolder.txtOrderNumber.setText(id);
+        completedListViewHolder.txtItemCount.setText(itemCount + "");
         completedListViewHolder.txtItemName.setText(itemName);
-        completedListViewHolder.txtUser.setText(user);
-        */
+        completedListViewHolder.txtUser.setText(user.getName());
     }
 
     @Override
@@ -69,6 +82,7 @@ public class CompletedListAdapter extends RecyclerView.Adapter<CompletedListAdap
         TextView txtTransferType;
         TextView txtItemCount;
         TextView txtItemName;
+        TextView txtOrderNumber;
         TextView txtUser;
 
         public CompletedListViewHolder(@NonNull View itemView) {
@@ -77,7 +91,7 @@ public class CompletedListAdapter extends RecyclerView.Adapter<CompletedListAdap
             txtItemCount = itemView.findViewById(R.id.txtItemCount);
             txtItemName = itemView.findViewById(R.id.txtItem);
             txtUser = itemView.findViewById(R.id.txtUser);
-
+            txtOrderNumber = itemView.findViewById(R.id.txtOrderNumber);
         }
     }
 }

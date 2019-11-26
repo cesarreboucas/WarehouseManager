@@ -123,7 +123,10 @@ public class TodoFragmentList extends Fragment
     public void sendMessage(Message message) {
         switch (message.what) {
             case TodoListAdapter.SCAN_TODO:
-                fragmentManagerHelper.attach(BarcodeScannerFragment.class);
+                MovementOrder movementOrder = (MovementOrder) message.obj;
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("MOVEMENT_ORDER", movementOrder);
+                fragmentManagerHelper.attach(BarcodeScannerFragment.class, bundle);
                 break;
         }
     }
