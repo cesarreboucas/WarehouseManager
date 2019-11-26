@@ -10,9 +10,7 @@ import com.warehousemanager.data.db.dao.UserDao;
 import com.warehousemanager.data.db.entities.Product;
 import com.warehousemanager.data.db.entities.User;
 
-import javax.inject.Singleton;
 
-@Singleton
 @Database(entities = {
   User.class,
   Product.class

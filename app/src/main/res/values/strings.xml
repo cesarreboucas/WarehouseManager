@@ -1,24 +1,25 @@
 <resources>
-    <string name="app_name">WarehouseManager</string>
-    <string name="storeimg">StoreImg</string>
-    <string name="signInWarehouse">Warehouses</string>
-    <string name="signInManager">M A N A G E R</string>
-    <string name="txtUsername">U s e r n a m e</string>
-    <string name="txtPassword">P a s s w o r d</string>
-    <string name="btnSignIn">S I G N&#160;&#160;I N</string>
-    <string name="btnSignUp">S I G N&#160;&#160;U P</string>
-    <string name="btnForgotPassword">F O R G O T&#160;&#160;P A S S W O R D</string>
-    <string name="txtRepeatPassword">R e p e a t&#160;&#160;P a s s w o r d</string>
-    <string name="txtName">N a m e</string>
-    <string name="btnResetPassword">R E S E T&#160;&#160;P A S S W O R D</string>
-    <string name="products_menu">Products</string>
-    <string name="users_menu">Users</string>
-    <string name="home_menu">Home</string>
-    <string name="txtQuestion">S e l e c t&#160;&#160;a&#160;&#160;S e c u r i t y&#160;&#160;Q u e s t i o n</string>
+  <string name="app_name">WarehouseManager</string>
+  <string name="storeimg">StoreImg</string>
+  <string name="signInWarehouse">Warehouses</string>
+  <string name="signInManager">M A N A G E R</string>
+  <string name="txtUsername">U s e r n a m e</string>
+  <string name="txtPassword">P a s s w o r d</string>
+  <string name="btnSignIn">S I G N&#160;&#160;I N</string>
+  <string name="btnSignUp">S I G N&#160;&#160;U P</string>
+  <string name="btnForgotPassword">F O R G O T&#160;&#160;P A S S W O R D</string>
+  <string name="txtRepeatPassword">R e p e a t&#160;&#160;P a s s w o r d</string>
+  <string name="txtName">N a m e</string>
+  <string name="btnResetPassword">R E S E T&#160;&#160;P A S S W O R D</string>
+  <string name="products_menu">Products</string>
+  <string name="users_menu">Users</string>
+  <string name="home_menu">Home</string>
+  <string name="txtQuestion">S e l e c t&#160;&#160;a&#160;&#160;S e c u r i t y&#160;&#160;Q u e s t i o n</string>
 
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+  <string name="hello_blank_fragment">Hello blank fragment</string>
 
-    <string name="summaryMenu">Summary</string>
+  <string name="summaryMenu">Summary</string>
+
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="txtAnswer">A n s w e r</string>
@@ -34,16 +35,16 @@
     <string name="client_user_menu">Account</string>
     <string name="client_orders">Orders</string>
 
-    <string name="client_shoppingCart">Shopping Cart</string>
-    <string name="btnAddToCart">A D D&#160;&#160;T O&#160;&#160;C A R T</string>
-    <string name="btnPlaceOrder">P L A C E&#160;&#160;O R D E R</string>
-    <string name="txtLocation">Location</string>
-    <string name="txtCapacity">Capacity</string>
+  <string name="client_shoppingCart">Shopping Cart</string>
+  <string name="btnAddToCart">A D D&#160;&#160;T O&#160;&#160;C A R T</string>
+  <string name="btnPlaceOrder">P L A C E&#160;&#160;O R D E R</string>
+  <string name="txtLocation">Location</string>
+  <string name="txtCapacity">Capacity</string>
 
-    <string name="btnEditWarehouse">E D I T&#160;&#160;W A R E H O U S E</string>
-    <string name="btnRemoveWarehouse">R E M O V E&#160;&#160;W A R E H O U S E</string>
-    <string name="title_completed">Completed Orders</string>
-    <string name="order_number">Order Number&#160;&#160; </string>
+  <string name="btnEditWarehouse">E D I T&#160;&#160;W A R E H O U S E</string>
+  <string name="btnRemoveWarehouse">R E M O V E&#160;&#160;W A R E H O U S E</string>
+  <string name="title_completed">Completed Orders</string>
+  <string name="order_number">Order Number&#160;&#160; </string>
 
     <string name="description">Description&#160;&#160;</string>
     <string name="reason">Reason&#160;&#160;</string>
@@ -65,6 +66,7 @@
         <item>associate</item>
         <item>client</item>
     </string-array>
+
     <string-array name="questions_entries">
         <item>What was my first pet&#96;s name?</item>
         <item>What make of car did I first drive?</item>
@@ -77,4 +79,5 @@
         <item>What was the first organization I worked for?</item>
         <item>What was the first city outside my country that I visited?</item>
     </string-array>
+
 </resources>
