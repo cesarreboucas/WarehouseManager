@@ -113,13 +113,11 @@ public class ShoppingCartListFragment extends Fragment implements FragmentIntera
     public void onResume() {
         super.onResume();
         getData();
-        Toast.makeText(getContext(), "STARTEI", Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void onHiddenChanged(boolean hidden) {
         super.onHiddenChanged(hidden);
-        Log.d("TESTE", "HIDDEN");
         if(!hidden) {
             getData();
         }

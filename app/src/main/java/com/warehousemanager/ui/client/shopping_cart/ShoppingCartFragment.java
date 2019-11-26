@@ -48,14 +48,12 @@ public class ShoppingCartFragment extends Fragment implements FragmentInteractio
     public ShoppingCartFragment() { }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(final LayoutInflater inflater, final ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_client_shopping_cart, container, false);
         fragmentManagerHelper= new FragmentManagerHelper(getChildFragmentManager(), R.id.shoppingCartContainer);
-        Bundle bundle = new Bundle();
-        bundle.putString("test", "Testando arguments");
-        fragmentManagerHelper.attach(ShoppingCartListFragment.class, bundle);
+        fragmentManagerHelper.attach(ShoppingCartListFragment.class);
         warehouseDatabase  = WarehouseDatabase.getAppDatabase(getActivity().getApplicationContext());
         txtTotals = view.findViewById(R.id.txtTotals);
 
@@ -86,7 +84,6 @@ public class ShoppingCartFragment extends Fragment implements FragmentInteractio
             @Override
             public void onClick(View v) {
                 long userId = warehouseDatabase.userDao().getUser().getId();
-                Log.d("Userid", String.valueOf(userId));
                 String selectedWarehouse = spinnerWarehouses.getSelectedItem().toString();
                 List<Product> productList = warehouseDatabase.productDao().getProducts();
 
@@ -94,17 +91,20 @@ public class ShoppingCartFragment extends Fragment implements FragmentInteractio
                 String currentDateTime = dateFormat.format(new Date());
 
                 ClientOrder clientOrder = new ClientOrder(userId, selectedWarehouse, productList, currentDateTime);
-                warehouseService.createOrder(clientOrder).enqueue(new Callback<List<Product>>() {
+                warehouseService.createOrder(clientOrder).enqueue(new Callback<ClientOrder>() {
                     @Override
-                    public void onResponse(Call<List<Product>> call, Response<List<Product>> response) {
+                    public void onResponse(Call<ClientOrder> call, Response<ClientOrder> response) {
                         if(response.isSuccessful()) {
                             Toast.makeText(getContext() , "Order placed", Toast.LENGTH_SHORT).show();
                             warehouseDatabase.productDao().deleteAllProducts();
+                            View view = inflater.inflate(R.layout.fragment_client_shopping_cart, container, false);
+                            fragmentManagerHelper= new FragmentManagerHelper(getChildFragmentManager(), R.id.shoppingCartContainer);
+                            fragmentManagerHelper.attach(ShoppingCartListFragment.class);
                         }
                     }
 
                     @Override
-                    public void onFailure(Call<List<Product>> call, Throwable t) {
+                    public void onFailure(Call<ClientOrder> call, Throwable t) {
                     }
                 });
             }

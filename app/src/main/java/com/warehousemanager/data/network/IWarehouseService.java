@@ -75,7 +75,7 @@ public interface IWarehouseService {
 
     // ORDERS ENDPOINTS
     @POST("orders")
-    Call<List<Product>> createOrder(@Body ClientOrder clientOrder);
+    Call<ClientOrder> createOrder(@Body ClientOrder clientOrder);
 
     @GET("orders")
     Call<List<ClientOrder>> getAllOrders();
