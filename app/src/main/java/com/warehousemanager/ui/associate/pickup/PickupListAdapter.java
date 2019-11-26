@@ -83,6 +83,8 @@ public class PickupListAdapter extends RecyclerView.Adapter<PickupListAdapter.Pi
         //pickupListViewHolder.txtTransferType.setText(transferType);
         pickupListViewHolder.txtItemCount.setText(quantity);
         pickupListViewHolder.txtItemName.setText(item);
+
+
     }
 
     @Override

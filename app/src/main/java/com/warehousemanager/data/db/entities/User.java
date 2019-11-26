@@ -48,9 +48,6 @@ public class User implements Serializable {
   @SerializedName("image")
   private String profileImage;
 
-  @SerializedName("favourite_warehouse")
-  private String favouriteWarehouse;
-
   @Ignore
   public User() { }
 
@@ -123,14 +120,6 @@ public class User implements Serializable {
   public String getAnswer() { return answer; }
 
   public void setAnswer(String answer) { this.answer = answer; }
-
-  public String getFavouriteWarehouse() {
-    return favouriteWarehouse;
-  }
-
-  public void setFavouriteWarehouse(String favouriteWarehouse) {
-    this.favouriteWarehouse = favouriteWarehouse;
-  }
 
   public String getProfileImage() {
     return profileImage;
