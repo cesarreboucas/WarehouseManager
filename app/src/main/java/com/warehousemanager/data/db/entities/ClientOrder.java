@@ -24,6 +24,7 @@ public class ClientOrder implements Serializable
     private String ordertime;
     private int done; // completed
     private int ready; // available
+    private int pickedUp; // Client picked up order
 
     private transient double total = 0;
     private transient double profit = 0;

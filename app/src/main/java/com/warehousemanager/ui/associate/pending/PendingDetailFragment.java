@@ -1,4 +1,6 @@
 package com.warehousemanager.ui.associate.pending;
 
-public class PendingDetailFragment {
+import android.support.v4.app.Fragment;
+
+public class PendingDetailFragment extends Fragment {
 }

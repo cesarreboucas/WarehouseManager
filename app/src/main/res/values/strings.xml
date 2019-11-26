@@ -63,8 +63,9 @@
   <string name="ok_button">OK</string>
   <string name="cancel_button">CANCEL</string>
   <string name="choose_formats">Choose Formats</string>
+    <string name="btnComplete">COMPLETE</string>
 
-  <string-array name="roles_entries">
+    <string-array name="roles_entries">
         <item>admin</item>
         <item>associate</item>
         <item>client</item>

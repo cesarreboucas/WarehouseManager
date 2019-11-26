@@ -12,6 +12,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.warehousemanager.R;
+import com.warehousemanager.data.db.WarehouseDatabase;
 import com.warehousemanager.data.db.entities.MovementOrder;
 import com.warehousemanager.ui.admin.FragmentInteraction;
 
@@ -24,6 +25,8 @@ public class TodoListAdapter extends RecyclerView.Adapter<TodoListAdapter.TodoLi
 
     public static final int REPORT_TODO = 1;
     public static final int SCAN_TODO = 2;
+
+    WarehouseDatabase warehouseDatabase;
 
     public class TodoListViewHolder extends RecyclerView.ViewHolder {
         TextView txtTransferType;
@@ -49,6 +52,8 @@ public class TodoListAdapter extends RecyclerView.Adapter<TodoListAdapter.TodoLi
     public TodoListAdapter(List<MovementOrder> todoList, Fragment fragment) {
         this.todoList = todoList;
         this.fragment = fragment;
+
+        warehouseDatabase = WarehouseDatabase.getAppDatabase(fragment.getActivity().getApplicationContext());
     }
 
     @NonNull
@@ -61,11 +66,14 @@ public class TodoListAdapter extends RecyclerView.Adapter<TodoListAdapter.TodoLi
 
     @Override
     public void onBindViewHolder(@NonNull TodoListAdapter.TodoListViewHolder todoListViewHolder, int i) {
+
+        String wh = warehouseDatabase.userDao().getUser().getFavouriteWarehouse();
         String transferType = "";
-        if(todoList.get(i).getWarehouseSender().isEmpty()) {
-            transferType = "Fulfillment";
+        if(wh.equals(todoList.get(i).getWarehouseSender())) {
+            transferType = "Recieving";
+            
         } else {
-            transferType = "Transference";
+            transferType = "Sending";
         }
         String id = todoList.get(i).getId();
         String itemName = todoList.get(i).getProductName();

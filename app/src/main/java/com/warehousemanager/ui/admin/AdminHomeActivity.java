@@ -50,7 +50,7 @@ public class AdminHomeActivity extends AppCompatActivity
   public void sendMessage(Message message) {
       switch (message.what) {
         case 2:
-          Log.d("TESTE", "MESSAGE ACTIVITY");
+          Log.d("TEST", "MESSAGE ACTIVITY");
           Bundle bundle = new Bundle();
           bundle.putSerializable("product", (Product) message.obj);
           bundle.putString("summary", "showmovs");

@@ -125,6 +125,9 @@ public class TodoFragmentList extends Fragment
             case TodoListAdapter.SCAN_TODO:
                 fragmentManagerHelper.attach(BarcodeScannerFragment.class);
                 break;
+            case TodoListAdapter.REPORT_TODO:
+                fragmentManagerHelper.attach(TodoReportFragment.class);
+                break;
         }
     }
 

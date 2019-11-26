@@ -4,6 +4,7 @@ import android.os.Message;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,7 +24,7 @@ public class PickupListAdapter extends RecyclerView.Adapter<PickupListAdapter.Pi
 
     private Fragment fragment;
 
-    public static final int REPORT_pickup = 1;
+    public static final int ROW_Pickup = 1;
     public static final int SCAN_pickup = 2;
 
     public PickupListAdapter(List<ClientOrder> pickupList, Fragment fragment) {
@@ -40,53 +41,35 @@ public class PickupListAdapter extends RecyclerView.Adapter<PickupListAdapter.Pi
     }
 
     @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.btnDetailedReport:
-                onBtnReportClicked(v);
-                break;
-            case R.id.btnCompleteTransaction:
-                onBtnCompleteTransactionClicked(v);
-                break;
-        }
+    public void onClick(View c)
+    {
+
     }
 
-    private void onBtnReportClicked(View v){
+    private void onRowClick(View v){
         int i = (int) v.getTag();
 
         Message m = new Message();
         m.obj = pickupList.get(i);
-        m.what = REPORT_pickup;
-        ((FragmentInteraction)fragment).sendMessage(m);
-    }
-
-    private void onBtnCompleteTransactionClicked(View v){
-        int i = (int) v.getTag();
-
-        Message m = new Message();
-        m.obj = pickupList.get(i);
-        m.what = SCAN_pickup;
+        m.what = ROW_Pickup;
         ((FragmentInteraction)fragment).sendMessage(m);
     }
 
     @Override
     public void onBindViewHolder(@NonNull PickupListAdapter.PickupListViewHolder pickupListViewHolder, int i) {
-        // pickup How do we get the associate's assigned warehouse to compare with warehouse_receiver? 
-        //  String transferType = pickupList.get(i).getTransferType();
-/*
-        String item = pickupList.get(i).getProductName();
-        int quantity = pickupList.get(i).getQuantity();
+        // TODO set row to onclick show details
+        String orderNumber = String.valueOf(pickupList.get(i).getId());
+        String clientID = String.valueOf(pickupList.get(i).getClientID());
 
-        pickupListViewHolder.btnScan.setOnClickListener(this);
-        pickupListViewHolder.btnScan.setTag(i);
-        pickupListViewHolder.btnReport.setOnClickListener(this);
-        pickupListViewHolder.btnReport.setTag(i);
+        pickupListViewHolder.txtOrderNumber.setText(orderNumber);
+        pickupListViewHolder.txtCustName.setText(clientID);
 
-        //pickupListViewHolder.txtTransferType.setText(transferType);
-        pickupListViewHolder.txtItemCount.setText(quantity);
-        pickupListViewHolder.txtItemName.setText(item);
-*/
-
+        pickupListViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onRowClick(v);
+            }
+        });
 
     }
 
@@ -96,21 +79,18 @@ public class PickupListAdapter extends RecyclerView.Adapter<PickupListAdapter.Pi
     }
 
     public class PickupListViewHolder extends RecyclerView.ViewHolder {
-        TextView txtTransferType;
-        TextView txtItemCount;
-        TextView txtItemName;
 
-        Button btnReport;
-        Button btnScan;
+        TextView txtOrderNumber;
+        TextView txtCustName;
+
+        //Button btnScan;
 
         public PickupListViewHolder(@NonNull View itemView) {
             super(itemView);
-            txtTransferType = itemView.findViewById(R.id.txtTransferType);
-            txtItemCount = itemView.findViewById(R.id.txtItemCount);
-            txtItemName = itemView.findViewById(R.id.txtItem);
+            txtOrderNumber = itemView.findViewById(R.id.txtOrderNumber);
+            txtCustName = itemView.findViewById(R.id.txtCustName);
 
-            btnReport = itemView.findViewById(R.id.btnDetailedReport);
-            btnScan = itemView.findViewById(R.id.btnScan);
+            //btnScan = itemView.findViewById(R.id.btnScan);
         }
     }
 }

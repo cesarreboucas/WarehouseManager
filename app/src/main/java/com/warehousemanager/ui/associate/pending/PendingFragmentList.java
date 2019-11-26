@@ -22,6 +22,8 @@ import com.warehousemanager.data.internal.JsonReader;
 import com.warehousemanager.data.network.IWarehouseService;
 import com.warehousemanager.data.network.WarehouseService;
 import com.warehousemanager.ui.admin.FragmentInteraction;
+import com.warehousemanager.ui.associate.todo.TodoListAdapter;
+import com.warehousemanager.ui.scanner.BarcodeScannerFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -119,7 +121,11 @@ public class PendingFragmentList extends Fragment
 
     @Override
     public void sendMessage(Message message) {
-
+        switch (message.what) {
+            case PendingListAdapter.VIEW_REPORT:
+                fragmentManagerHelper.attach(PendingDetailFragment.class);
+                break;
+        }
     }
 
 }

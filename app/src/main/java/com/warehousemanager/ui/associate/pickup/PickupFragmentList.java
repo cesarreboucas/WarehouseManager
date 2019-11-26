@@ -22,6 +22,8 @@ import com.warehousemanager.data.network.IWarehouseService;
 import com.warehousemanager.data.network.WarehouseService;
 import com.warehousemanager.ui.admin.FragmentInteraction;
 import com.warehousemanager.ui.associate.pickup.PickupListAdapter;
+import com.warehousemanager.ui.associate.todo.TodoListAdapter;
+import com.warehousemanager.ui.scanner.BarcodeScannerFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -113,6 +115,13 @@ public class PickupFragmentList extends Fragment
 
     @Override
     public void sendMessage(Message message) {
-
+        switch (message.what) {
+            case PickupListAdapter.ROW_Pickup:
+                ClientOrder clientOrder = (ClientOrder) message.obj;
+                Bundle b = new Bundle();
+                b.putSerializable("CLIENT_ORDER", clientOrder);
+                fragmentManagerHelper.attach(PickupDetailFragment.class, b);
+                break;
+        }
     }
 }

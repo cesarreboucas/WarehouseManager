@@ -80,6 +80,9 @@ public interface IWarehouseService {
     @GET("orders")
     Call<List<ClientOrder>> getAllOrders();
 
+    @PUT
+    Call editClientOrder(@Body ClientOrder clientOrder);
+
     @GET("orders/user/{id}")
     Call<List<ClientOrder>> getOrdersByUser(@Path("id") long id);
 
@@ -93,6 +96,9 @@ public interface IWarehouseService {
     // MOVEMENTS ENDPOINTS
     @POST("movorders")
     Call<MovementOrder> createMovementOrder(@Body MovementOrder movementOrder);
+
+    @PUT("movorders") //TODO
+    Call editMovementOrder(@Body MovementOrder movementOrder);
 
     @GET("movorders")
     Call<List<MovementOrder>> getAllMovementOrders();
