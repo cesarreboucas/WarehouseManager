@@ -1,6 +1,10 @@
 package com.warehousemanager.ui;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -17,6 +21,7 @@ import com.warehousemanager.data.network.WarehouseService;
 import com.warehousemanager.ui.admin.AdminHomeActivity;
 import com.warehousemanager.ui.associate.AssociateHomeActivity;
 import com.warehousemanager.ui.client.ClientHomeActivity;
+import com.warehousemanager.ui.scanner.BarcodeScannerFragment;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -39,6 +44,11 @@ public class SignInActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
         warehouseDatabase = WarehouseDatabase.getAppDatabase(this.getApplicationContext());
+
+        if (ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.CAMERA)
+          == PackageManager.PERMISSION_DENIED) {
+            ActivityCompat.requestPermissions(SignInActivity.this, new String[] {Manifest.permission.CAMERA}, BarcodeScannerFragment.mCameraId);
+        }
 
         editUsername = findViewById(R.id.editUsername);
         editPasssword = findViewById(R.id.editPassword);
