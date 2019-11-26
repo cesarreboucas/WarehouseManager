@@ -20,20 +20,20 @@
 
   <string name="summaryMenu">Summary</string>
 
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="txtAnswer">A n s w e r</string>
+    <string name="load_picture">LOAD PICTURE</string>
+    <string name="add">ADD</string>
+    <string name="title_warehouses">Warehouses</string>
+    <string name="title_summary">Summary</string>
+    <string name="title_reports">Reports</string>
+    <string name="txtUserRole">S e l e c t&#160;&#160;t h e&#160;&#160;u s e r&#160;&#160;r o l e</string>
+    <string name="btnCreateUser">C R E A T E&#160;&#160;U S E R</string>
+    <string name="btnEditUser">E D I T&#160;&#160;U S E R</string>
+    <string name="btnRemoveUser">R E M O V E&#160;&#160;U S E R</string>
+    <string name="client_user_menu">Account</string>
+    <string name="client_orders">Orders</string>
 
-  <!-- TODO: Remove or change this placeholder text -->
-  <string name="txtAnswer">A n s w e r</string>
-  <string name="load_picture">LOAD PICTURE</string>
-  <string name="add">ADD</string>
-  <string name="title_warehouses">Warehouses</string>
-  <string name="title_summary">Summary</string>
-  <string name="title_reports">Reports</string>
-  <string name="txtUserRole">S e l e c t&#160;&#160;t h e&#160;&#160;u s e r&#160;&#160;r o l e</string>
-  <string name="btnCreateUser">C R E A T E&#160;&#160;U S E R</string>
-  <string name="btnEditUser">E D I T&#160;&#160;U S E R</string>
-  <string name="btnRemoveUser">R E M O V E&#160;&#160;U S E R</string>
-  <string name="client_user_menu">Account</string>
-  <string name="client_orders">Orders</string>
 
   <string name="client_shoppingCart">Shopping Cart</string>
   <string name="btnAddToCart">A D D&#160;&#160;T O&#160;&#160;C A R T</string>
@@ -45,33 +45,42 @@
   <string name="btnRemoveWarehouse">R E M O V E&#160;&#160;W A R E H O U S E</string>
   <string name="title_completed">Completed Orders</string>
   <string name="order_number">Order Number&#160;&#160; </string>
+    <string name="description">Description&#160;&#160;</string>
+    <string name="reason">Reason&#160;&#160;</string>
+    <string name="btnsubmit">S U B M I T</string>
+    <string name="completedBy">Order Completed By&#160;&#160;  </string>
+    <string name="title_pending">Pending Orders</string>
+    <string name="reportedBy">Report Sent By&#160;&#160; </string>
+    <string name="title_todo">Todo Orders</string>
 
-  <string name="description">Description&#160;&#160;</string>
-  <string name="reason">Reason&#160;&#160;</string>
-  <string name="btnsubmit">S U B M I T</string>
-  <string name="completedBy">Order Completed By&#160;&#160;  </string>
-  <string name="title_pending">Pending Orders</string>
-  <string name="reportedBy">Report Sent By&#160;&#160; </string>
-  <string name="title_todo">Todo Orders</string>
-  <string name="choose_formats">Choose the scanner format</string>
+    <string name="todo_menu">TaskList </string>
+    <string name="pending_menu">Pending </string>
+    <string name="completed_menu">Completed </string>
+    <string name="pickup_menu">Customer Pickup</string>
+
+    <string name="custname">Customer: </string>
+  <string name="select_camera">Select Camera</string>
   <string name="ok_button">OK</string>
   <string name="cancel_button">CANCEL</string>
-  <string name="select_camera">Select the type of camera</string>
+  <string name="choose_formats">Choose Formats</string>
+
   <string-array name="roles_entries">
-    <item>admin</item>
-    <item>associate</item>
-    <item>client</item>
-  </string-array>
-  <string-array name="questions_entries">
-    <item>What was my first pet&#96;s name?</item>
-    <item>What make of car did I first drive?</item>
-    <item>What was my favorite toy as a child?</item>
-    <item>What was my favorite game as a child?</item>
-    <item>What was the last name of my childhood best friend?</item>
-    <item>Where did I first meet my significant other?</item>
-    <item>Who was my most memorable school teacher?</item>
-    <item>What was my favorite subject in school?</item>
-    <item>What was the first organization I worked for?</item>
-    <item>What was the first city outside my country that I visited?</item>
-  </string-array>
+        <item>admin</item>
+        <item>associate</item>
+        <item>client</item>
+    </string-array>
+
+    <string-array name="questions_entries">
+        <item>What was my first pet&#96;s name?</item>
+        <item>What make of car did I first drive?</item>
+        <item>What was my favorite toy as a child?</item>
+        <item>What was my favorite game as a child?</item>
+        <item>What was the last name of my childhood best friend?</item>
+        <item>Where did I first meet my significant other?</item>
+        <item>Who was my most memorable school teacher?</item>
+        <item>What was my favorite subject in school?</item>
+        <item>What was the first organization I worked for?</item>
+        <item>What was the first city outside my country that I visited?</item>
+    </string-array>
+
 </resources>

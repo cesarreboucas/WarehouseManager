@@ -5,11 +5,12 @@ import android.arch.persistence.room.PrimaryKey;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 
 
-public class MovementOrder {
+public class MovementOrder implements Serializable {
     private String id;
 
     @SerializedName("warehouse_receiver")
@@ -84,7 +85,7 @@ public class MovementOrder {
         this.quantity = quantity;
     }
 
-    public boolean isSent() {
+    public boolean getSent() {
         return sent;
     }
 
@@ -92,7 +93,7 @@ public class MovementOrder {
         this.sent = sent;
     }
 
-    public boolean isReceived() {
+    public boolean getReceived() {
         return received;
     }
 

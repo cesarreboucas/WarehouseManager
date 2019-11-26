@@ -53,6 +53,7 @@ public class User implements Serializable {
 
   public User(String name, String username, String password, String role, String assignment,
               String question, String answer, String profileImage, String favouriteWarehouse) {
+
     this.name = name;
     this.username = username;
     this.password = password;
@@ -120,20 +121,20 @@ public class User implements Serializable {
 
   public void setAnswer(String answer) { this.answer = answer; }
 
-  public String getFavouriteWarehouse() {
-    return favouriteWarehouse;
-  }
-
-  public void setFavouriteWarehouse(String favouriteWarehouse) {
-    this.favouriteWarehouse = favouriteWarehouse;
-  }
-
   public String getProfileImage() {
     return profileImage;
   }
 
   public void setProfileImage(String profileImage) {
     this.profileImage = profileImage;
+  }
+
+  public String getFavouriteWarehouse() {
+    return favouriteWarehouse;
+  }
+
+  public void setFavouriteWarehouse(String favouriteWarehouse) {
+    this.favouriteWarehouse = favouriteWarehouse;
   }
 
   @NonNull

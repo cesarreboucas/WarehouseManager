@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.warehousemanager.R;
@@ -90,7 +91,7 @@ public class PendingListAdapter extends RecyclerView.Adapter<PendingListAdapter.
         TextView txtReportType;
         TextView txtUser;
 
-        Button btnViewReport;
+        ImageButton btnViewReport;
 
         public PendingListViewHolder(@NonNull View itemView) {
             super(itemView);

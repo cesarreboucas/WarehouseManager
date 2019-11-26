@@ -1,4 +1,4 @@
-package com.warehousemanager.ui.associate.completed;
+package com.warehousemanager.ui.associate.pickup;
 
 import android.os.Bundle;
 import android.os.Message;
@@ -14,14 +14,14 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.warehousemanager.R;
-import com.warehousemanager.data.db.WarehouseDatabase;
-import com.warehousemanager.data.db.entities.MovementOrder;
+import com.warehousemanager.data.db.entities.ClientOrder;
+import com.warehousemanager.data.db.entities.ClientOrder;
 import com.warehousemanager.data.internal.FragmentManagerHelper;
 import com.warehousemanager.data.internal.IFragmentManagerHelper;
-import com.warehousemanager.data.internal.JsonReader;
 import com.warehousemanager.data.network.IWarehouseService;
 import com.warehousemanager.data.network.WarehouseService;
 import com.warehousemanager.ui.admin.FragmentInteraction;
+import com.warehousemanager.ui.associate.pickup.PickupListAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,71 +30,65 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class CompletedFragmentList extends Fragment
+public class PickupFragmentList extends Fragment
         implements View.OnClickListener,  SwipeRefreshLayout.OnRefreshListener, FragmentInteraction {
 
     IWarehouseService movementService = WarehouseService.getInstance().create(IWarehouseService.class);
 
-    List<MovementOrder> movementOrder;
+    List<ClientOrder> clientOrder;
 
-    CompletedListAdapter completedListAdapter;
+    PickupListAdapter pickupListAdapter;
 
-    private RecyclerView completedList;
+    private RecyclerView pickupList;
 
     private SwipeRefreshLayout swipeRefreshLayout;
     private ProgressBar progressBar;
 
-    JsonReader jsonReader;
     IFragmentManagerHelper fragmentManagerHelper;
 
-    WarehouseDatabase warehouseDatabase;
-
-    public CompletedFragmentList() { }
+    public PickupFragmentList() { }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_associate_completed_list, container, false);
-        jsonReader = new JsonReader(getContext());
-        completedList = view.findViewById(R.id.completedList);
+        View view = inflater.inflate(R.layout.fragment_associate_pickup_list, container, false);
+        pickupList = view.findViewById(R.id.pickupList);
 
         fragmentManagerHelper = new FragmentManagerHelper(
-                getFragmentManager(), R.id.completedFragmentContainer);
+                getFragmentManager(), R.id.pickupFragmentContainer);
 
-        swipeRefreshLayout = view.findViewById(R.id.completedListRefresh);
+        swipeRefreshLayout = view.findViewById(R.id.pickupListRefresh);
         swipeRefreshLayout.setOnRefreshListener(this);
 
         progressBar = view.findViewById(R.id.progress_loader);
 
-        completedList.setLayoutManager(new LinearLayoutManager(getContext()));
-        movementOrder = new ArrayList<>();
-        completedListAdapter = new CompletedListAdapter(movementOrder, this);
+        pickupList.setLayoutManager(new LinearLayoutManager(getContext()));
+        clientOrder = new ArrayList<>();
+        pickupListAdapter = new PickupListAdapter(clientOrder, this);
 
-        completedList.setAdapter(completedListAdapter);
-
-        warehouseDatabase = WarehouseDatabase.getAppDatabase(getActivity().getApplicationContext());
+        pickupList.setAdapter(pickupListAdapter);
 
         getData();
+
         return view;
     }
 
     private void getData() {
         progressBar.setVisibility(View.VISIBLE);
-        String wh = warehouseDatabase.userDao().getUser().getFavouriteWarehouse();
-        movementService.getCompletedOrders(wh).enqueue(new Callback<List<MovementOrder>>() {
+        movementService.getAllOrders().enqueue(new Callback<List<ClientOrder>>() {
             @Override
-            public void onResponse(Call<List<MovementOrder>> call, Response<List<MovementOrder>> response) {
+            public void onResponse(Call<List<ClientOrder>> call, Response<List<ClientOrder>> response) {
                 if(response.body() != null) {
-                    movementOrder.clear();
-                    movementOrder.addAll(response.body());
-                    completedListAdapter.notifyDataSetChanged();
+                    clientOrder.clear();
+                    clientOrder.addAll(response.body());
+                    pickupListAdapter.notifyDataSetChanged();
                     swipeRefreshLayout.setRefreshing(false);
                     progressBar.setVisibility(View.INVISIBLE);
                 }
             }
             @Override
-            public void onFailure(Call<List<MovementOrder>> call, Throwable t) {
+            public void onFailure(Call<List<ClientOrder>> call, Throwable t) {
                 Toast.makeText(getContext(), "Failed to reach the server", Toast.LENGTH_LONG).show();
                 Log.d("ERROR", t.getMessage());
             }
@@ -104,7 +98,7 @@ public class CompletedFragmentList extends Fragment
     @Override
     public void onResume() {
         super.onResume();
-        Log.d("MovementOrder", "RESUME");
+        Log.d("ClientOrder", "RESUME");
     }
 
     @Override
