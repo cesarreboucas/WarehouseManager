@@ -22,6 +22,7 @@ import com.warehousemanager.R;
 import com.warehousemanager.data.db.entities.MovementOrder;
 import com.warehousemanager.data.db.entities.Product;
 import com.warehousemanager.data.db.entities.ProductHang;
+import com.warehousemanager.data.db.entities.User;
 import com.warehousemanager.data.db.entities.Warehouse;
 import com.warehousemanager.data.db.entities.WarehouseHang;
 import com.warehousemanager.data.network.IWarehouseService;
@@ -42,6 +43,8 @@ public class MoveProductsFragment extends Fragment implements View.OnClickListen
     Product product;
     List<String> warehouseList = new ArrayList<>();
 
+    ProgressBar progressBar;
+
     Spinner spnSenderWarehouse;
     ArrayAdapter<String> spnSenderWarehouseAdapter;
     List<String> senderWarehouseList = new ArrayList<>();
@@ -50,7 +53,13 @@ public class MoveProductsFragment extends Fragment implements View.OnClickListen
     ArrayAdapter<String> spnReceiverWarehouseAdapter;
     List<String> receiverWarehouseList = new ArrayList<>();
 
-    ProgressBar progressBar;
+    Spinner spnAssociates;
+    ArrayAdapter<String> spnAssociatesAdapter;
+    List<String> associateList = new ArrayList<>();
+
+    boolean warehousesFlag = false;
+    boolean associatesFlag = false;
+    boolean productsHangsFlag = false;
 
     EditText Quantity;
     Button btnMove;
@@ -78,10 +87,17 @@ public class MoveProductsFragment extends Fragment implements View.OnClickListen
         spnReceiverWarehouseAdapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_1, receiverWarehouseList);
         spnReceiverWarehouse.setAdapter(spnReceiverWarehouseAdapter);
 
+        spnAssociates = view.findViewById(R.id.spnAssociates);
+        spnAssociatesAdapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_1, associateList);
+        spnAssociates.setAdapter(spnAssociatesAdapter);
+
+        progressBar = view.findViewById(R.id.progressBar);
+
         tableLayout = view.findViewById(R.id.product_hangs_table);
 
         progressBar = new ProgressBar(getContext());
 
+        progressBar.setVisibility(View.VISIBLE);
         warehouseService.getAllWarehouse().enqueue(new Callback<List<Warehouse>>() {
             @Override
             public void onResponse(Call<List<Warehouse>> call, Response<List<Warehouse>> response) {
@@ -99,11 +115,19 @@ public class MoveProductsFragment extends Fragment implements View.OnClickListen
                 } else {
                     Toast.makeText(getContext(), "There was a problem gathering the warehouses", Toast.LENGTH_SHORT).show();
                 }
+                warehousesFlag = true;
+                if(warehousesFlag && associatesFlag && productsHangsFlag) {
+                    progressBar.setVisibility(View.INVISIBLE);
+                }
             }
 
             @Override
             public void onFailure(Call<List<Warehouse>> call, Throwable t) {
                 Toast.makeText(getContext(), "There was a problem connecting to the server", Toast.LENGTH_SHORT).show();
+                warehousesFlag = true;
+                if(warehousesFlag && associatesFlag && productsHangsFlag) {
+                    progressBar.setVisibility(View.INVISIBLE);
+                }
             }
         });
 
@@ -136,11 +160,45 @@ public class MoveProductsFragment extends Fragment implements View.OnClickListen
                         tableLayout.addView(tableRow);
                     }
                 }
+                productsHangsFlag = true;
+                if(warehousesFlag && associatesFlag && productsHangsFlag) {
+                    progressBar.setVisibility(View.INVISIBLE);
+                }
             }
 
             @Override
             public void onFailure(Call<List<ProductHang>> call, Throwable t) {
+                Toast.makeText(getContext(), "There was a problem connecting to the server", Toast.LENGTH_SHORT).show();
+                productsHangsFlag = true;
+                if(warehousesFlag && associatesFlag && productsHangsFlag) {
+                    progressBar.setVisibility(View.INVISIBLE);
+                }
+            }
+        });
 
+        warehouseService.getAssociates().enqueue(new Callback<List<User>>() {
+            @Override
+            public void onResponse(Call<List<User>> call, Response<List<User>> response) {
+                if(response.isSuccessful()) {
+                    for (User user : response.body()) {
+                        associateList.add(user.getUsername());
+                    }
+                    spnAssociatesAdapter.notifyDataSetChanged();
+                } else {
+                    Toast.makeText(getContext(), "Couldn`t get the associates", Toast.LENGTH_SHORT).show();
+                }
+                associatesFlag = true;
+                if(warehousesFlag && associatesFlag && productsHangsFlag) {
+                    progressBar.setVisibility(View.INVISIBLE);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<User>> call, Throwable t) {
+                associatesFlag = true;
+                if(warehousesFlag && associatesFlag && productsHangsFlag) {
+                    progressBar.setVisibility(View.INVISIBLE);
+                }
             }
         });
 
