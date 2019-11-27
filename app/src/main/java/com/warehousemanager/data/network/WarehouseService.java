@@ -12,7 +12,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class WarehouseService {
 
     //final static String IPADDRESS = "http://140.161.215.16:8000";
-    final static String IPADDRESS = "http://140.161.215.91:8000"; // This IP address doesn't change
+    final static String IPADDRESS = "http://ec2-3-87-64-207.compute-1.amazonaws.com:8000"; // This IP address doesn't change
 
     public static Retrofit retrofit;
 
