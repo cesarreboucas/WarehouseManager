@@ -2,26 +2,22 @@ package com.warehousemanager.ui.client.orders;
 
 
 import android.os.Bundle;
-import android.os.Message;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.warehousemanager.R;
-import com.warehousemanager.data.db.WarehouseDatabase;
 import com.warehousemanager.data.db.entities.ClientOrder;
 import com.warehousemanager.data.db.entities.Product;
 import com.warehousemanager.data.internal.FragmentManagerHelper;
 import com.warehousemanager.data.internal.IFragmentManagerHelper;
-import com.warehousemanager.ui.admin.FragmentInteraction;
 
 import java.text.DateFormat;
 import java.text.ParseException;

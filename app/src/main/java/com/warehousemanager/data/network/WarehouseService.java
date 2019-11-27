@@ -1,18 +1,13 @@
 package com.warehousemanager.data.network;
 
-import com.warehousemanager.data.db.entities.Product;
-
 import okhttp3.OkHttpClient;
-import okhttp3.Route;
-import okhttp3.logging.HttpLoggingInterceptor;
-import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class WarehouseService {
 
     //final static String IPADDRESS = "http://140.161.215.16:8000"; // Change this
-    final static String IPADDRESS = "http://10.0.2.2:8000"; // IP for Node, please don't change it.
+    final static String IPADDRESS = "http://10.0.2.2:8000"; // IP for Node, please don't change it
 
     public static Retrofit retrofit;
 
