@@ -73,6 +73,9 @@ public interface IWarehouseService {
     @PATCH("users")
     Call editUserPassword(@Body User user);
 
+    @GET("users/associates")
+    Call<List<User>> getAssociates();
+
     @HTTP(method = "DELETE", path = "users", hasBody = true)
     Call<User> deleteUser(@Body User user);
     // =========================
