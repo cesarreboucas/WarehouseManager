@@ -83,9 +83,12 @@
 
             <Button
                 android:id="@+id/buttonLoadPicture"
-                android:layout_width="wrap_content"
+                android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:background="@color/colorPrimaryDark"
+                android:fontFamily="@font/montserrat"
+                android:textColor="@android:color/white"
                 android:text="@string/load_picture"></Button>
 
             <Button

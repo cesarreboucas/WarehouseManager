@@ -142,11 +142,14 @@
 
     <Button
         android:id="@+id/btnCheckout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="325dp"
+        android:layout_height="52dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="528dp"
         android:layout_marginEnd="8dp"
+        android:background="@color/colorPrimaryDark"
+        android:fontFamily="@font/montserrat"
+        android:textColor="@android:color/white"
         android:text="CHECKOUT"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.511"

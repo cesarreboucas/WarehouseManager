@@ -70,6 +70,8 @@
             android:layout_marginStart="50dp"
             android:layout_marginTop="500dp"
             android:background="@color/colorPrimaryDark"
+            android:fontFamily="@font/montserrat"
+            android:textColor="@android:color/white"
             android:text="@string/btnsubmit" />
             android:textColor="@android:color/white" />
     </RelativeLayout>
