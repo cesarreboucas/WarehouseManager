@@ -9,7 +9,7 @@ import android.util.Log;
 import java.lang.reflect.Constructor;
 import java.util.List;
 
-public class FragmentManagerHelper implements IFragmentManagerHelper {
+public class FragmentManagerHelper implements IFragmentManagerHelper{
 
     private FragmentManager fragmentManager;
     private int fragmentContainer;
@@ -80,5 +80,4 @@ public class FragmentManagerHelper implements IFragmentManagerHelper {
         }
         fragmentTransaction.commit();
     }
-
 }

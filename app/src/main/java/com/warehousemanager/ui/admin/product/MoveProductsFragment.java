@@ -25,6 +25,7 @@ import com.warehousemanager.data.db.entities.ProductHang;
 import com.warehousemanager.data.db.entities.User;
 import com.warehousemanager.data.db.entities.Warehouse;
 import com.warehousemanager.data.db.entities.WarehouseHang;
+import com.warehousemanager.data.internal.FragmentManagerHelper;
 import com.warehousemanager.data.network.IWarehouseService;
 import com.warehousemanager.data.network.WarehouseService;
 
@@ -60,6 +61,8 @@ public class MoveProductsFragment extends Fragment implements View.OnClickListen
     boolean warehousesFlag = false;
     boolean productsHangsFlag = false;
 
+    FragmentManagerHelper fragmentManagerHelper;
+
     EditText Quantity;
     Button btnMove;
 
@@ -81,6 +84,8 @@ public class MoveProductsFragment extends Fragment implements View.OnClickListen
         spnSenderWarehouse = view.findViewById(R.id.spnSenderWarehouse);
         spnSenderWarehouseAdapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_1, senderWarehouseList);
         spnSenderWarehouse.setAdapter(spnSenderWarehouseAdapter);
+
+        fragmentManagerHelper = new FragmentManagerHelper(getFragmentManager(), R.id.productsFragmentContainer);
 
         spnReceiverWarehouse = view.findViewById(R.id.spnReceiverWarehouse);
         spnReceiverWarehouseAdapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_1, receiverWarehouseList);
@@ -172,6 +177,10 @@ public class MoveProductsFragment extends Fragment implements View.OnClickListen
                             productHang = tmpProductHang;
                             break;
                         }
+                    }
+                    if(productHang == null) {
+                        tableLayout.setVisibility(View.INVISIBLE);
+                        return;
                     }
 
                     for (WarehouseHang tmpWarehouseHang : productHang.getWarehouses()) {
@@ -266,6 +275,7 @@ public class MoveProductsFragment extends Fragment implements View.OnClickListen
             public void onResponse(Call<MovementOrder> call, Response<MovementOrder> response) {
                 if(response.isSuccessful()) {
                     Toast.makeText(getContext(), "Movement order create successfully", Toast.LENGTH_SHORT).show();
+                    fragmentManagerHelper.goBack();
                 } else {
                     Toast.makeText(getContext(), "There was a problem when  trying to create a movement order", Toast.LENGTH_SHORT).show();
                 }
