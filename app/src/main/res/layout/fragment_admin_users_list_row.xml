@@ -24,6 +24,7 @@
       android:layout_marginStart="118dp"
       android:layout_marginTop="25dp"
       android:fontFamily="@font/montserrat"
+      android:textColor="@color/colorAccent"
       android:text="something@something.com" />
 
   <TextView
@@ -35,6 +36,7 @@
       android:layout_marginStart="117dp"
       android:layout_marginBottom="65dp"
       android:fontFamily="@font/montserrat"
+      android:textColor="@color/colorAccent"
       android:text="Something Anything"
       android:textSize="20sp" />
 
@@ -59,6 +61,7 @@
       android:layout_marginStart="116dp"
       android:layout_marginTop="101dp"
       android:fontFamily="@font/montserrat"
+      android:textColor="@color/colorAccent"
       android:textSize="14sp"
       android:text="Role" />
 

@@ -22,10 +22,10 @@
             android:background="@drawable/edit_background_dark"
             android:ems="10"
             android:fontFamily="@font/montserrat"
+            android:textColor="@color/colorAccent"
             android:inputType="textPersonName"
             android:paddingStart="@dimen/editPaddingLeftRightIcon"
-            android:paddingEnd="@dimen/editPaddingLeftRightIcon"
-            android:textColor="@color/colorPrimaryDark" />
+            android:paddingEnd="@dimen/editPaddingLeftRightIcon" />
 
         <FrameLayout
             android:layout_width="320dp"

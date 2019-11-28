@@ -12,6 +12,8 @@
       android:layout_height="wrap_content"
       android:layout_marginStart="20dp"
       android:layout_marginTop="10dp"
+        android:fontFamily="@font/montserrat"
+        android:textColor="@color/colorAccent"
       android:text="@string/order_number"
       android:textSize="12sp"
       android:textStyle="bold"
@@ -24,6 +26,8 @@
       android:layout_height="wrap_content"
       android:layout_marginStart="10dp"
       android:layout_marginTop="10dp"
+        android:fontFamily="@font/montserrat"
+        android:textColor="@color/colorAccent"
       android:text="txtOrderNumber"
       android:textSize="12sp"
       app:layout_constraintStart_toEndOf="@+id/finalTxtOrder"
@@ -35,6 +39,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginBottom="44dp"
+        android:fontFamily="@font/montserrat"
+        android:textColor="@color/colorAccent"
         android:text="txtItemCount"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView13" />
@@ -45,6 +51,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
         android:layout_marginBottom="16dp"
+        android:fontFamily="@font/montserrat"
+        android:textColor="@color/colorAccent"
         android:text="txtItem"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView14"
@@ -52,24 +60,28 @@
         app:layout_constraintVertical_bias="1.0" />
 
     <ImageButton
-      android:id="@+id/btnScan"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_marginTop="36dp"
-      android:layout_marginEnd="24dp"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintTop_toTopOf="parent"
-      app:srcCompat="@drawable/camera" />
+        android:id="@+id/btnScan"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="44dp"
+        android:layout_marginEnd="28dp"
+        android:background="@android:color/transparent"
+        android:scaleType="fitCenter"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/camera" />
 
     <ImageButton
-      android:id="@+id/btnReport"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_marginTop="36dp"
-      android:layout_marginEnd="24dp"
-      app:layout_constraintEnd_toStartOf="@+id/btnScan"
-      app:layout_constraintTop_toTopOf="parent"
-      app:srcCompat="@android:drawable/ic_dialog_alert" />
+        android:id="@+id/btnReport"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="44dp"
+        android:layout_marginEnd="28dp"
+        android:background="@android:color/transparent"
+        android:scaleType="fitCenter"
+        app:layout_constraintEnd_toStartOf="@+id/btnScan"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_warning_24dp" />
 
     <TextView
         android:id="@+id/textView13"
@@ -77,6 +89,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginBottom="44dp"
+        android:fontFamily="@font/montserrat"
+        android:textColor="@color/colorAccent"
         android:text="Quantity:"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -88,6 +102,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginBottom="16dp"
+        android:fontFamily="@font/montserrat"
+        android:textColor="@color/colorAccent"
         android:text="Product name"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -101,6 +117,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="36dp"
+        android:fontFamily="@font/montserrat"
+        android:textColor="@color/colorAccent"
         android:text="Sender"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
@@ -112,6 +130,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="36dp"
+        android:fontFamily="@font/montserrat"
+        android:textColor="@color/colorAccent"
         app:layout_constraintStart_toEndOf="@+id/txtWarehouseSenderLabel"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -121,6 +141,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="64dp"
+        android:fontFamily="@font/montserrat"
+        android:textColor="@color/colorAccent"
         android:text="Receiver"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
@@ -132,6 +154,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="64dp"
+        android:fontFamily="@font/montserrat"
+        android:textColor="@color/colorAccent"
         app:layout_constraintStart_toEndOf="@+id/txtWarehouseReceiverLabel"
         app:layout_constraintTop_toTopOf="parent" />
 

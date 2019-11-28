@@ -17,6 +17,8 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="50dp"
             android:layout_marginTop="50dp"
+            android:fontFamily="@font/montserrat"
+            android:textColor="@color/colorAccent"
             android:text="@string/order_number" />
 
         <TextView
@@ -25,6 +27,8 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="155dp"
             android:layout_marginTop="50dp"
+            android:fontFamily="@font/montserrat"
+            android:textColor="@color/colorAccent"
             android:text="txtOrderNumber" />
 
         <TextView
@@ -33,6 +37,8 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="50dp"
             android:layout_marginTop="100dp"
+            android:fontFamily="@font/montserrat"
+            android:textColor="@color/colorAccent"
             android:text="@string/reason" />
 
         <Spinner
@@ -48,6 +54,8 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="50dp"
             android:layout_marginTop="150dp"
+            android:fontFamily="@font/montserrat"
+            android:textColor="@color/colorAccent"
             android:text="@string/description" />
 
         <EditText
@@ -56,6 +64,8 @@
             android:layout_height="300dp"
             android:layout_marginStart="50dp"
             android:layout_marginTop="180dp"
+            android:fontFamily="@font/montserrat"
+            android:textColor="@color/colorAccent"
             android:ems="10"
             android:gravity="start|top"
             android:hint="What Could Have Possibly Gone Wrong?"

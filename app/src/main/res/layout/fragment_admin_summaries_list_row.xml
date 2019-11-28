@@ -52,7 +52,8 @@
     android:layout_height="wrap_content"
     android:layout_marginStart="16dp"
     android:layout_marginBottom="16dp"
-    android:fontFamily="@font/montserrat"
+      android:fontFamily="@font/montserrat"
+      android:textColor="@color/colorAccent"
     android:text="TextView"
     app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintStart_toEndOf="@+id/textView7" />
@@ -64,7 +65,8 @@
     android:layout_height="wrap_content"
     android:layout_marginStart="12dp"
     android:layout_marginTop="60dp"
-    android:fontFamily="@font/montserrat"
+      android:fontFamily="@font/montserrat"
+      android:textColor="@color/colorAccent"
     android:text="TextView"
     app:layout_constraintStart_toEndOf="@+id/textView6"
     app:layout_constraintTop_toTopOf="parent" />
@@ -100,6 +102,8 @@
     android:layout_height="wrap_content"
     android:layout_marginTop="5dp"
     android:layout_marginEnd="28dp"
+      android:fontFamily="@font/montserrat"
+      android:textColor="@color/colorAccent"
     app:layout_constraintTop_toBottomOf="@id/txtOrderTime"
     app:layout_constraintRight_toRightOf="parent"
     />

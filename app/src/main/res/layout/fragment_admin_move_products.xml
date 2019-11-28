@@ -15,7 +15,7 @@
         android:layout_height="wrap_content"
         android:padding="10dp"
         android:fontFamily="@font/montserrat"
-        android:textColor="@android:color/black"
+        android:textColor="@color/colorAccent"
         android:text="Sender Warehouse" />
 
     <Spinner
@@ -30,7 +30,7 @@
         android:layout_height="wrap_content"
         android:padding="10dp"
         android:fontFamily="@font/montserrat"
-        android:textColor="@android:color/black"
+        android:textColor="@color/colorAccent"
         android:text="Receiver Warehouse" />
 
     <Spinner
@@ -45,7 +45,7 @@
         android:layout_height="wrap_content"
         android:padding="10dp"
         android:fontFamily="@font/montserrat"
-        android:textColor="@android:color/black"
+        android:textColor="@color/colorAccent"
         android:text="Quantity" />
 
     <EditText
@@ -55,7 +55,7 @@
         android:ems="10"
         android:inputType="number"
         android:fontFamily="@font/montserrat"
-        android:textColor="@android:color/black"
+        android:textColor="@color/colorAccent"
         android:padding="10dp" />
 
     <Button
