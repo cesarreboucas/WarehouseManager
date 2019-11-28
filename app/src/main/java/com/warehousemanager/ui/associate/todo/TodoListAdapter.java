@@ -90,7 +90,7 @@ public class TodoListAdapter extends RecyclerView.Adapter<TodoListAdapter.TodoLi
                 warehouseSender = " RECEIVE";
                 warehouseReceiverLbl = "Receiving From: ";
                 warehouseReceiver = todoList.get(i).getWarehouseSender();
-                if(warehouseReceiver.trim() == null);
+                if(warehouseReceiver.trim().equals(""))
                     warehouseReceiver = "Outside Source";
             }
         } else {

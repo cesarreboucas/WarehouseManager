@@ -57,10 +57,10 @@ public class SignInActivity extends AppCompatActivity {
         txtView2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(editUsername.getText().toString().equals("mgalbraethe@purevolume.com")) {
-                    editUsername.setText("sbagenalm@wunderground.com");
+                if(editUsername.getText().toString().equals("mgalbraethe@newvolume.com")) {
+                    editUsername.setText("sbagenalm@sunderground.com");
                 } else {
-                    editUsername.setText("mgalbraethe@purevolume.com");
+                    editUsername.setText("mgalbraethe@newvolume.com");
                 }
                 editPasssword.setText("1234");
             }
