@@ -104,7 +104,7 @@ public class PickupListAdapter extends RecyclerView.Adapter<PickupListAdapter.Pi
             }
         });
 
-        pickupListViewHolder.itemView.setBackgroundColor(Color.CYAN);
+        pickupListViewHolder.itemView.setBackgroundColor(Color.parseColor("#dff6f0"));
 
     }
 

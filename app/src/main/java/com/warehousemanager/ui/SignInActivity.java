@@ -57,7 +57,11 @@ public class SignInActivity extends AppCompatActivity {
         txtView2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                editUsername.setText("mgalbraethe@purevolume.com");
+                if(editUsername.getText().toString().equals("mgalbraethe@purevolume.com")) {
+                    editUsername.setText("sbagenalm@wunderground.com");
+                } else {
+                    editUsername.setText("mgalbraethe@purevolume.com");
+                }
                 editPasssword.setText("1234");
             }
         });

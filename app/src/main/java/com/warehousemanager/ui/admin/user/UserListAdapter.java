@@ -207,7 +207,7 @@ public class UserListAdapter extends RecyclerView.Adapter<UserListAdapter.UserVi
           public void onClick(DialogInterface dialog, int which) {
             User user = users.get(userViewHolder.getAdapterPosition());
             Message m = new Message();
-            m.what = What.UPDATE;
+            m.what = What.ROLE_UPDATE;
             Bundle bundle = new Bundle();
             bundle.putString("USERNAME", user.getUsername());
             bundle.putString("ROLE", roles[which]);

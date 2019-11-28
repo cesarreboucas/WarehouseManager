@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -68,6 +69,9 @@ public class TodoFragmentList extends Fragment
         todoList.setLayoutManager(new LinearLayoutManager(getContext()));
         movementOrder = new ArrayList<>();
         todoListAdapter = new TodoListAdapter(movementOrder, this);
+        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(todoList.getContext(),
+                LinearLayoutManager.VERTICAL);
+        todoList.addItemDecoration(dividerItemDecoration);
 
         todoList.setAdapter(todoListAdapter);
 

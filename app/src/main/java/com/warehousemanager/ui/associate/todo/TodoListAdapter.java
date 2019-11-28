@@ -82,12 +82,12 @@ public class TodoListAdapter extends RecyclerView.Adapter<TodoListAdapter.TodoLi
         {
             if(todoList.get(i).getReceived()) {
                 color = Color.LTGRAY;
-                warehouseSender = "COMPLETED";
+                warehouseSender = " COMPLETED";
                 warehouseReceiverLbl = todoList.get(i).getWarehouseSender() + " > ";
                 warehouseReceiver = todoList.get(i).getWarehouseReceiver();
             } else {
-                color = Color.parseColor("#77dd77");
-                warehouseSender = "RECEIVE";
+                color = Color.parseColor("#e25822");
+                warehouseSender = " RECEIVE";
                 warehouseReceiverLbl = "Receiving From: ";
                 warehouseReceiver = todoList.get(i).getWarehouseSender();
                 if(warehouseReceiver.trim() == null);
@@ -96,12 +96,12 @@ public class TodoListAdapter extends RecyclerView.Adapter<TodoListAdapter.TodoLi
         } else {
             if(todoList.get(i).getSent()) {
                 color = Color.LTGRAY;
-                warehouseSender = "COMPLETED";
+                warehouseSender = " COMPLETED";
                 warehouseReceiverLbl = todoList.get(i).getWarehouseSender() + " > ";
                 warehouseReceiver = todoList.get(i).getWarehouseReceiver();
             } else {
-                color = Color.parseColor("#ff6961");
-                warehouseSender = "SEND";
+                color = Color.parseColor("#ececeb");
+                warehouseSender = " SEND";
                 warehouseReceiverLbl = "Sending To: ";
                 warehouseReceiver = todoList.get(i).getWarehouseReceiver();
             }

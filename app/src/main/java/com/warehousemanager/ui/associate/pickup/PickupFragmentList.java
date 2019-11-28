@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -74,6 +75,9 @@ public class PickupFragmentList extends Fragment
         pickupListAdapter = new PickupListAdapter(clientOrder, this);
 
         pickupList.setAdapter(pickupListAdapter);
+        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(pickupList.getContext(),
+                LinearLayoutManager.VERTICAL);
+        pickupList.addItemDecoration(dividerItemDecoration);
 
         warehouseDatabase = WarehouseDatabase.getAppDatabase(getActivity().getApplicationContext());
 
