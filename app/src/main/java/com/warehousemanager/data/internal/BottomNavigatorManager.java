@@ -47,6 +47,7 @@ public class BottomNavigatorManager implements IFragmentManagerHelper {
       FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
       if(searchFragment == null) {
         fragmentTransaction.add(fragmentContainer, newFragment, fragment.getName());
+        newFragment.setArguments(bundle);
       } else {
         fragmentTransaction.attach(searchFragment);
         searchFragment.setArguments(bundle);

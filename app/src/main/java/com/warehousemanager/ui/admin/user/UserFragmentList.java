@@ -182,9 +182,7 @@ public class UserFragmentList extends Fragment
           }
         });
         break;
-      case What.CREATE:
-        break;
-      case What.UPDATE:
+      case What.ROLE_UPDATE:
         bundle = (Bundle) message.obj;
         user = new User();
         username = bundle.getString("USERNAME");
@@ -192,17 +190,40 @@ public class UserFragmentList extends Fragment
 
         user.setRole(role);
         user.setUsername(username);
-        warehouseService.editUserRole(user).enqueue(new Callback() {
+        warehouseService.editUserRole(user).enqueue(new Callback<Void>() {
           @Override
-          public void onResponse(Call call, Response response) {
+          public void onResponse(Call<Void> call, Response<Void> response) {
             progressBar.setVisibility(View.INVISIBLE);
             usersListAdapter.refreshUserRole(user.getRole(), user.getUsername());
           }
 
           @Override
-          public void onFailure(Call call, Throwable t) {
+          public void onFailure(Call<Void> call, Throwable t) {
             progressBar.setVisibility(View.INVISIBLE);
             Toast.makeText(getContext(), "Failed to edit " + username + " role",
+                    Toast.LENGTH_LONG).show();
+          }
+        });
+        break;
+      case What.WAREHOUSE_UPDATE:
+        bundle = (Bundle) message.obj;
+        user = new User();
+        username = bundle.getString("USERNAME");
+        String warehouse = bundle.getString("WAREHOUSE");
+
+        user.setFavouriteWarehouse(warehouse);
+        user.setUsername(username);
+        warehouseService.editUserFavouriteWarehouse(user).enqueue(new Callback<Void>() {
+          @Override
+          public void onResponse(Call<Void> call, Response<Void> response) {
+            progressBar.setVisibility(View.INVISIBLE);
+            usersListAdapter.refreshUserFavouriteWarehouse(user.getFavouriteWarehouse(), user.getUsername());
+          }
+
+          @Override
+          public void onFailure(Call<Void> call, Throwable t) {
+            progressBar.setVisibility(View.INVISIBLE);
+            Toast.makeText(getContext(), "Failed to edit " + username + " favourite warehouse",
                     Toast.LENGTH_LONG).show();
           }
         });

@@ -56,7 +56,9 @@ public class AdminHomeActivity extends AppCompatActivity
           bundle.putString("summary", "showmovs");
           fragmentManagerHelper.attach(ProductsFragment.class, bundle);
           List<Fragment> fragments = getSupportFragmentManager().getFragments();
+          bottomNavigationView.setOnNavigationItemSelectedListener(null);
           bottomNavigationView.setSelectedItemId(R.id.productMenu);
+          bottomNavigationView.setOnNavigationItemSelectedListener(this);
           String oi = "";
           //Fragment fragment  = getSupportFragmentManager().findFragmentByTag(ProductsFragment.class.getName());
           break;
@@ -66,7 +68,7 @@ public class AdminHomeActivity extends AppCompatActivity
   @Override
   public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
     switch (menuItem.getItemId()) {
-      case R.id.summaryMenu:
+      case R.id.ordersMenu:
         fragmentManagerHelper.attach(SummariesFragment.class);
         break;
       case R.id.userMenu:
@@ -77,9 +79,6 @@ public class AdminHomeActivity extends AppCompatActivity
         break;
       case R.id.warehouseMenu:
         fragmentManagerHelper.attach(WarehousesFragment.class);
-        break;
-      case R.id.reportsMenu:
-        fragmentManagerHelper.attach(ReportsFragment.class);
         break;
     }
     return true;

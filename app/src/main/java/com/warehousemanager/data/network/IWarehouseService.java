@@ -67,11 +67,14 @@ public interface IWarehouseService {
     @POST("users")
     Call<User> createUser(@Body User user);
   
-    @PUT("users")
-    Call editUserRole(@Body User user);
+    @POST("users/role")
+    Call<Void> editUserRole(@Body User user);
+
+    @POST("users/favourite_warehouse")
+    Call<Void> editUserFavouriteWarehouse(@Body User user);
 
     @PATCH("users")
-    Call editUserPassword(@Body User user);
+    Call<Void> editUserPassword(@Body User user);
 
     @GET("users/{favouriteWarehouse}/associates")
     Call<List<User>> getAssociates(@Path("favouriteWarehouse") String favouriteWarehouse);
