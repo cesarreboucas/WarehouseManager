@@ -1,109 +1,114 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/frameLayout"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#00FFFFFF"
-    android:orientation="vertical"
-    tools:context=".ui.admin.product.MoveProductsFragment" >
-
-    <TextView
-        android:id="@+id/txtSenderWarehouse"
+    android:background="@android:color/white">
+    <LinearLayout
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/frameLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:fontFamily="@font/montserrat"
-        android:textColor="@color/colorAccent"
-        android:text="Sender Warehouse" />
+        android:layout_height="match_parent"
+        android:background="@android:color/white"
+        android:orientation="vertical"
+        tools:context=".ui.admin.product.MoveProductsFragment" >
 
-    <Spinner
-        android:id="@+id/spnSenderWarehouse"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/montserrat"
-        android:textColor="@color/colorAccent"
-        android:padding="10dp" />
+        <TextView
+            android:id="@+id/txtSenderWarehouse"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:fontFamily="@font/montserrat"
+            android:textColor="@color/colorAccent"
+            android:text="Sender Warehouse" />
 
-    <TextView
-        android:id="@+id/txtReceiverWarehouse"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:fontFamily="@font/montserrat"
-        android:textColor="@color/colorAccent"
-        android:text="Receiver Warehouse" />
+        <Spinner
+            android:id="@+id/spnSenderWarehouse"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/montserrat"
+            android:textColor="@color/colorAccent"
+            android:padding="10dp" />
 
-    <Spinner
-        android:id="@+id/spnReceiverWarehouse"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="10dp" />
+        <TextView
+            android:id="@+id/txtReceiverWarehouse"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:fontFamily="@font/montserrat"
+            android:textColor="@color/colorAccent"
+            android:text="Receiver Warehouse" />
 
-    <TextView
-        android:id="@+id/txtAssociate"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:fontFamily="@font/montserrat"
-        android:textColor="@color/colorAccent"
-        android:text="Select and associate" />
+        <Spinner
+            android:id="@+id/spnReceiverWarehouse"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp" />
 
-    <Spinner
-        android:id="@+id/spnAssociates"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:padding="10dp" />
+        <TextView
+            android:id="@+id/txtAssociate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:fontFamily="@font/montserrat"
+            android:textColor="@color/colorAccent"
+            android:text="Select an associate" />
 
-    <TextView
-        android:id="@+id/txtQuantity"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:fontFamily="@font/montserrat"
-        android:textColor="@color/colorAccent"
-        android:text="Quantity" />
+        <Spinner
+            android:id="@+id/spnAssociates"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:padding="10dp" />
+        <TextView
+            android:id="@+id/txtQuantity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:fontFamily="@font/montserrat"
+            android:textColor="@color/colorAccent"
+            android:text="Quantity" />
 
-    <EditText
-        android:id="@+id/Quantity"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="number"
-        android:padding="10dp"
-        android:layout_marginBottom="10dp"/>
+        <EditText
+            android:id="@+id/Quantity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="number"
+            android:padding="10dp"
+            android:layout_marginBottom="10dp"/>
 
     <Button
         android:id="@+id/btnMove"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@android:color/white"
-        android:background="@color/colorAccent"
         android:layout_margin="10dp"
-        android:text="Create Move Order" />
+        android:text="Create Move Order"
+        android:background="@color/colorPrimaryDark"
+        android:fontFamily="@font/montserrat"
+        android:textColor="@android:color/white"/>
 
-    <TableLayout
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="5dp"
-        android:layout_marginStart="5dp"
-        android:layout_marginRight="5dp"
-        android:layout_marginEnd="5dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/product_hangs_table">
-        <include
-            layout="@layout/product_hangs_table_row"
+        <TableLayout
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginEnd="5dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-    </TableLayout>
+            android:layout_height="wrap_content"
+            android:id="@+id/product_hangs_table">
+            <include
+                layout="@layout/product_hangs_table_row"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </TableLayout>
 
-    <ProgressBar
-        android:id="@+id/progressBar"
-        style="?android:attr/progressBarStyle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:visibility="invisible"/>
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="invisible"/>
 
-</LinearLayout>
+    </LinearLayout>
+</ScrollView>

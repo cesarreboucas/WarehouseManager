@@ -11,18 +11,13 @@ import android.widget.TextView;
 
 import com.warehousemanager.R;
 import com.warehousemanager.data.db.entities.Product;
-import com.warehousemanager.data.internal.ImageHelper;
-import com.warehousemanager.data.internal.ImageHelperImpl;
 import com.warehousemanager.ui.admin.FragmentInteraction;
-import com.warehousemanager.ui.client.products.ProductListClientAdapter;
 
 import java.util.List;
 
-import de.hdodenhof.circleimageview.CircleImageView;
-
 public class OrderProductListDetailClientAdapter extends RecyclerView.Adapter<OrderProductListDetailClientAdapter.OrderProductsViewHolder> {
 
-    List<Product> products;
+    private List<Product> products;
     private Fragment context;
 
     public OrderProductListDetailClientAdapter(List<Product> products, Fragment context) {

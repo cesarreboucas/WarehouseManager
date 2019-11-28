@@ -3,7 +3,7 @@
   xmlns:android="http://schemas.android.com/apk/res/android"
   xmlns:app="http://schemas.android.com/apk/res-auto"
   android:layout_width="match_parent"
-  android:layout_height="150dp">
+  android:layout_height="160dp">
 
   <de.hdodenhof.circleimageview.CircleImageView
     android:id="@+id/profile_image"
@@ -24,6 +24,7 @@
       android:layout_marginStart="118dp"
       android:layout_marginTop="25dp"
       android:fontFamily="@font/montserrat"
+      android:textColor="@color/colorAccent"
       android:text="something@something.com" />
 
   <TextView
@@ -35,20 +36,29 @@
       android:layout_marginStart="117dp"
       android:layout_marginBottom="65dp"
       android:fontFamily="@font/montserrat"
+      android:textColor="@color/colorAccent"
       android:text="Something Anything"
       android:textSize="20sp" />
 
-  <ImageButton
-      android:id="@+id/btnMoreOptions"
-      android:layout_width="50dp"
-      android:layout_height="50dp"
+  <android.support.v7.widget.CardView
+      android:id="@+id/cardImgMove2"
+      android:layout_width="30dp"
+      android:layout_height="30dp"
       android:layout_alignParentTop="true"
       android:layout_alignParentEnd="true"
       android:layout_marginTop="12dp"
       android:layout_marginEnd="15dp"
-      android:background="@android:color/transparent"
-      android:scaleType="fitXY"
-      app:srcCompat="@drawable/ic_more_vert_black_24dp" />
+      android:shape="ring"
+      app:cardElevation="5dp"
+      app:cardCornerRadius="15dp">
+        <ImageButton
+            android:id="@+id/btnMoreOptions"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/transparent"
+            android:scaleType="fitXY"
+            app:srcCompat="@drawable/ic_more_vert_black_24dp" />
+  </android.support.v7.widget.CardView>
 
   <TextView
       android:id="@+id/txtRole"
@@ -59,21 +69,63 @@
       android:layout_marginStart="116dp"
       android:layout_marginTop="101dp"
       android:fontFamily="@font/montserrat"
+      android:textColor="@color/colorAccent"
       android:textSize="14sp"
       android:text="Role" />
 
-  <ImageButton
-      android:id="@+id/btnRemoveUser"
-      android:layout_width="50dp"
-      android:layout_height="50dp"
-      android:layout_alignParentStart="true"
+  <android.support.v7.widget.CardView
+      android:id="@+id/cardImgMove"
+      android:layout_width="30dp"
+      android:layout_height="30dp"
       android:layout_alignParentTop="true"
       android:layout_alignParentEnd="true"
-      android:layout_marginStart="349dp"
-      android:layout_marginTop="77dp"
-      android:layout_marginEnd="14dp"
-      android:background="@android:color/transparent"
-      android:scaleType="fitCenter"
-      app:srcCompat="@drawable/ic_delete_black_24dp" />
+      android:layout_marginTop="60dp"
+      android:layout_marginEnd="16dp"
+      android:shape="ring"
+      app:cardElevation="5dp"
+      app:cardCornerRadius="15dp">
+
+      <ImageButton
+          android:id="@+id/btnRemoveUser"
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:background="@android:color/transparent"
+          android:scaleType="fitCenter"
+          app:srcCompat="@drawable/ic_delete_black_24dp" />
+  </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/cardEditFavouriteWh"
+        android:visibility="invisible"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="108dp"
+        android:layout_marginEnd="15dp"
+        android:shape="ring"
+        app:cardElevation="5dp"
+        app:cardCornerRadius="15dp">
+
+        <ImageButton
+            android:id="@+id/btnEditFavoriteWh"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/transparent"
+            android:scaleType="fitCenter"
+            app:srcCompat="@drawable/ic_store_mall_directory_black_24dp" />
+    </android.support.v7.widget.CardView>
+
+    <TextView
+        android:visibility="invisible"
+        android:id="@+id/txtFavoriteWh"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="115dp"
+        android:layout_marginBottom="3dp"
+        android:fontFamily="@font/montserrat"
+        android:text="Favorite Warehouse" />
 
 </RelativeLayout>

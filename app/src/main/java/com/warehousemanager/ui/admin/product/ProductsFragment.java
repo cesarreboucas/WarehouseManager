@@ -31,6 +31,7 @@ public class ProductsFragment extends Fragment implements FragmentInteraction {
         fragmentManagerHelper = new FragmentManagerHelper(getChildFragmentManager(), R.id.productsFragmentContainer);
         Bundle bundle = new Bundle();
         bundle.putString("test", "Testando arguments");
+        Log.d("START", "ON_CREATE");
         fragmentManagerHelper.attach(ProductsFragmentList.class, bundle);
 
         Toolbar toolbar = view.findViewById(R.id.toolbarProdMain);
@@ -51,6 +52,7 @@ public class ProductsFragment extends Fragment implements FragmentInteraction {
     @Override
     public void onStart() {
         Bundle bundle = getArguments();
+        Log.d("START", "ON_START");
         try {
             String tag = bundle.getString("summary", "");
             if(tag.equals("showmovs")) {

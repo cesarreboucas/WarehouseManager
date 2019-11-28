@@ -24,6 +24,8 @@
                     android:id="@+id/txtName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/montserrat"
+                    android:textColor="@color/colorAccent"
                     android:hint="Name" />
             </android.support.design.widget.TextInputLayout>
 
@@ -36,6 +38,8 @@
                     android:id="@+id/txtDescription"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/montserrat"
+                    android:textColor="@color/colorAccent"
                     android:hint="Description" />
             </android.support.design.widget.TextInputLayout>
 
@@ -48,6 +52,8 @@
                     android:id="@+id/txtCost"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/montserrat"
+                    android:textColor="@color/colorAccent"
                     android:hint="Cost" />
             </android.support.design.widget.TextInputLayout>
 
@@ -60,6 +66,8 @@
                     android:id="@+id/txtPrice"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/montserrat"
+                    android:textColor="@color/colorAccent"
                     android:hint="Price" />
             </android.support.design.widget.TextInputLayout>
 
@@ -72,6 +80,8 @@
                     android:id="@+id/txtBarcode"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/montserrat"
+                    android:textColor="@color/colorAccent"
                     android:hint="Bar Code" />
             </android.support.design.widget.TextInputLayout>
 
@@ -83,9 +93,12 @@
 
             <Button
                 android:id="@+id/buttonLoadPicture"
-                android:layout_width="wrap_content"
+                android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:background="@color/colorPrimaryDark"
+                android:fontFamily="@font/montserrat"
+                android:textColor="@android:color/white"
                 android:text="@string/load_picture"></Button>
 
             <Button
@@ -96,7 +109,8 @@
                 android:layout_marginTop="15dp"
                 android:background="@color/colorPrimaryDark"
                 android:text="@string/add"
-                android:textColor="@android:color/white" />
+                android:textColor="@android:color/white"
+                android:fontFamily="@font/montserrat" />
 
 
         </LinearLayout>

@@ -74,9 +74,9 @@ public class ForgotPasswordActivity extends AppCompatActivity {
 
     User user = new User("", username, password, "client", "", question, answer, "", "");
     progressBar.setVisibility(View.VISIBLE);
-    warehouseService.editUserPassword(user).enqueue(new Callback() {
+    warehouseService.editUserPassword(user).enqueue(new Callback<Void>() {
       @Override
-      public void onResponse(Call call, Response response) {
+      public void onResponse(Call<Void> call, Response<Void> response) {
         if(response.isSuccessful()) {
           Snackbar.make(
             findViewById(android.R.id.content),
@@ -90,7 +90,7 @@ public class ForgotPasswordActivity extends AppCompatActivity {
       }
 
       @Override
-      public void onFailure(Call call, Throwable t) {
+      public void onFailure(Call<Void> call, Throwable t) {
         Toast.makeText(ForgotPasswordActivity.this, "Failed to contact the server", Toast.LENGTH_SHORT).show();
         progressBar.setVisibility(View.INVISIBLE);
       }
