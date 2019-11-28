@@ -1,15 +1,11 @@
 package com.warehousemanager.ui.admin.summary;
 
-import android.content.Context;
 import android.graphics.Color;
-import android.graphics.drawable.Drawable;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.Message;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -29,7 +25,6 @@ import com.warehousemanager.data.internal.IFragmentManagerHelper;
 import com.warehousemanager.data.network.IWarehouseService;
 import com.warehousemanager.data.network.WarehouseService;
 import com.warehousemanager.ui.admin.FragmentInteraction;
-import com.warehousemanager.ui.admin.product.ProductsFragment;
 
 import java.util.List;
 
@@ -161,7 +156,7 @@ public class OrderDatail extends Fragment {
         TextView tv = new TextView(getContext());
         tv.setGravity(Gravity.CENTER);
         tv.setTextSize(18);
-        tv.setBackground(getResources().getDrawable(R.drawable.border));
+        tv.setBackground(getResources().getDrawable(R.drawable.inset_border));
         tv.setTextColor(Color.BLACK);
         tv.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT,size));
         tv.setText(content);
