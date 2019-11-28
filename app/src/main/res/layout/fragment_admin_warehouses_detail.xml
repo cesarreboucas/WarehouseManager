@@ -78,6 +78,7 @@
           android:layout_marginStart="52dp"
           android:layout_marginTop="334dp"
           android:background="@color/colorPrimaryDark"
+            android:fontFamily="@font/montserrat"
           android:text="@string/btnEditWarehouse"
           android:textColor="@android:color/white" />
 
@@ -118,6 +119,7 @@
           android:layout_marginStart="52dp"
           android:layout_marginTop="397dp"
           android:background="@color/colorPrimaryDark"
+            android:fontFamily="@font/montserrat"
           android:text="@string/btnRemoveWarehouse"
           android:textColor="@android:color/white" />
 

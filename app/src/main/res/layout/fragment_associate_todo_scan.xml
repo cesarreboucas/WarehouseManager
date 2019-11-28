@@ -22,10 +22,10 @@
             android:background="@drawable/edit_background_dark"
             android:ems="10"
             android:fontFamily="@font/montserrat"
+            android:textColor="@color/colorAccent"
             android:inputType="textPersonName"
             android:paddingStart="@dimen/editPaddingLeftRightIcon"
-            android:paddingEnd="@dimen/editPaddingLeftRightIcon"
-            android:textColor="@color/colorPrimaryDark" />
+            android:paddingEnd="@dimen/editPaddingLeftRightIcon" />
 
         <FrameLayout
             android:layout_width="320dp"
@@ -35,25 +35,47 @@
 
         </FrameLayout>
 
+        <!--<android.support.v7.widget.CardView
+        android:id="@+id/cardImgMove"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="44dp"
+        android:layout_marginEnd="28dp"
+        app:layout_constraintEnd_toStartOf="@+id/cardImgMove2"
+        app:layout_constraintTop_toTopOf="parent"
+        android:shape="ring"
+        app:cardElevation="5dp"
+        app:cardCornerRadius="20dp">
+        <ImageButton
+            android:id="@+id/btnReport"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:scaleType="fitXY"
+            android:layout_gravity="center"
+            android:background="@android:color/transparent"
+            app:srcCompat="@drawable/ic_warning_24dp" />
+    </android.support.v7.widget.CardView> -->
+
         <ImageButton
             android:id="@+id/btnSend"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="275dp"
+            android:layout_marginStart="250dp"
             android:layout_marginTop="555dp"
-            android:scaleX="3"
-            android:scaleY="3"
-            app:srcCompat="@android:drawable/ic_menu_send" />
+            android:scaleX="2"
+            android:scaleY="2"
+            app:srcCompat="@drawable/ic_send_24dp" />
 
         <ImageButton
             android:id="@+id/btnCancel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="75dp"
+            android:layout_marginStart="100dp"
             android:layout_marginTop="555dp"
-            android:scaleX="3"
-            android:scaleY="3"
-            app:srcCompat="@android:drawable/ic_menu_close_clear_cancel" />
+
+            android:scaleX="2"
+            android:scaleY="2"
+            app:srcCompat="@drawable/ic_clear_24dp" />
 
     </RelativeLayout>
 </ScrollView>

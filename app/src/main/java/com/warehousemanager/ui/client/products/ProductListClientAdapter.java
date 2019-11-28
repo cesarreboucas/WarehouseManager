@@ -21,8 +21,8 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class ProductListClientAdapter extends RecyclerView.Adapter<ProductListClientAdapter.ProductsViewHolder> {
 
-    List<Product> products;
-    ImageHelper imageHelper = new ImageHelperImpl();
+    private List<Product> products;
+    private ImageHelper imageHelper = new ImageHelperImpl();
     private Fragment context;
 
     public ProductListClientAdapter(List<Product> products, Fragment context) {
