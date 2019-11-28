@@ -168,7 +168,7 @@ public class MoveProductsFragment extends Fragment implements View.OnClickListen
 
             @Override
             public void onFailure(Call<List<ProductHang>> call, Throwable t) {
-                Toast.makeText(getContext(), "There was a problem connecting to the server", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "There was a problem connecting to the server", Toast.LENGTH_LONG).show();
                 productsHangsFlag = true;
                 if(warehousesFlag && associatesFlag && productsHangsFlag) {
                     progressBar.setVisibility(View.INVISIBLE);
@@ -185,7 +185,7 @@ public class MoveProductsFragment extends Fragment implements View.OnClickListen
                     }
                     spnAssociatesAdapter.notifyDataSetChanged();
                 } else {
-                    Toast.makeText(getContext(), "Couldn`t get the associates", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "Couldn`t get the associates", Toast.LENGTH_LONG).show();
                 }
                 associatesFlag = true;
                 if(warehousesFlag && associatesFlag && productsHangsFlag) {
@@ -195,6 +195,7 @@ public class MoveProductsFragment extends Fragment implements View.OnClickListen
 
             @Override
             public void onFailure(Call<List<User>> call, Throwable t) {
+                Toast.makeText(getContext(), "There was a problem connecting to the server", Toast.LENGTH_LONG).show();
                 associatesFlag = true;
                 if(warehousesFlag && associatesFlag && productsHangsFlag) {
                     progressBar.setVisibility(View.INVISIBLE);

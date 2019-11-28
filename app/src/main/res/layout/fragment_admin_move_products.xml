@@ -14,12 +14,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="10dp"
+        android:fontFamily="@font/montserrat"
+        android:textColor="@color/colorAccent"
         android:text="Sender Warehouse" />
 
     <Spinner
         android:id="@+id/spnSenderWarehouse"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/montserrat"
+        android:textColor="@color/colorAccent"
         android:padding="10dp" />
 
     <TextView
@@ -27,6 +31,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="10dp"
+        android:fontFamily="@font/montserrat"
+        android:textColor="@color/colorAccent"
         android:text="Receiver Warehouse" />
 
     <Spinner
@@ -36,10 +42,28 @@
         android:padding="10dp" />
 
     <TextView
+        android:id="@+id/txtAssociate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:fontFamily="@font/montserrat"
+        android:textColor="@color/colorAccent"
+        android:text="Select and associate" />
+
+    <Spinner
+        android:id="@+id/spnAssociates"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:padding="10dp" />
+
+    <TextView
         android:id="@+id/txtQuantity"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="10dp"
+        android:fontFamily="@font/montserrat"
+        android:textColor="@color/colorAccent"
         android:text="Quantity" />
 
     <EditText
@@ -48,18 +72,6 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="number"
-        android:padding="10dp" />
-
-    <TextView
-        android:id="@+id/textView15"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Select and associate" />
-
-    <Spinner
-        android:id="@+id/spnAssociates"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:padding="10dp"
         android:layout_marginBottom="10dp"/>
 
@@ -67,9 +79,17 @@
         android:id="@+id/btnMove"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textColor="@android:color/white"
+        android:background="@color/colorAccent"
+        android:layout_margin="10dp"
         android:text="Create Move Order" />
 
     <TableLayout
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginEnd="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/product_hangs_table">

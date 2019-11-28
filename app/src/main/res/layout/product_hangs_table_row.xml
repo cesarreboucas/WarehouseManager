@@ -4,36 +4,46 @@
     android:id="@+id/product_hangs_row"
     android:layout_height="match_parent"
     android:layout_width="match_parent"
-    android:background="@drawable/border"
+    android:background="@drawable/inset_border"
     >
     <TextView
         android:id="@+id/txtWarehouse"
-        android:layout_weight="1"
+        android:fontFamily="@font/montserrat"
+        android:textColor="@color/colorAccent"
+        android:layout_weight="0.9"
         android:text="Warehouse"
         android:gravity="center"
-        android:background="@drawable/border"/>
+        android:background="@drawable/inset_border"/>
     <TextView
         android:id="@+id/txtSold"
+        android:fontFamily="@font/montserrat"
+        android:textColor="@color/colorAccent"
         android:layout_weight="1"
         android:text="Sold"
         android:gravity="center"
-        android:background="@drawable/border"/>
+        android:background="@drawable/inset_border_3"/>
     <TextView
         android:id="@+id/txtCompromised"
-        android:layout_weight="1"
+        android:fontFamily="@font/montserrat"
+        android:textColor="@color/colorAccent"
+        android:layout_weight="0.9"
         android:text="Compromised"
         android:gravity="center"
-        android:background="@drawable/border"/>
+        android:background="@drawable/inset_border_3"/>
     <TextView
         android:id="@+id/txtFuture"
+        android:fontFamily="@font/montserrat"
+        android:textColor="@color/colorAccent"
         android:layout_weight="1"
         android:text="Future"
         android:gravity="center"
-        android:background="@drawable/border"/>
+        android:background="@drawable/inset_border_3"/>
     <TextView
         android:id="@+id/txtInStock"
+        android:fontFamily="@font/montserrat"
+        android:textColor="@color/colorAccent"
         android:layout_weight="1"
         android:gravity="center"
         android:text="In stock"
-        android:background="@drawable/border"/>
+        android:background="@drawable/inset_border_3"/>
 </TableRow>
