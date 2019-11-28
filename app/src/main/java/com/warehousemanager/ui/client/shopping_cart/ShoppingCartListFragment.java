@@ -1,23 +1,18 @@
 package com.warehousemanager.ui.client.shopping_cart;
 
 
-import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.AttributeSet;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.warehousemanager.R;
 import com.warehousemanager.data.db.WarehouseDatabase;
@@ -25,29 +20,20 @@ import com.warehousemanager.data.db.entities.Product;
 import com.warehousemanager.data.internal.FragmentManagerHelper;
 import com.warehousemanager.data.internal.IFragmentManagerHelper;
 import com.warehousemanager.data.internal.What;
-import com.warehousemanager.data.network.IWarehouseService;
-import com.warehousemanager.data.network.WarehouseService;
 import com.warehousemanager.ui.admin.FragmentInteraction;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-
 public class ShoppingCartListFragment extends Fragment implements FragmentInteraction,
         SwipeRefreshLayout.OnRefreshListener{
 
-    RecyclerView shoppingCartRecyclerView;
-    IFragmentManagerHelper fragmentManagerHelper;
-    private FloatingActionButton floatingActionButton;
-    List<Product> products = new ArrayList<>();
-    SwipeRefreshLayout swipeRefreshLayout;
-    final ShoppingCartAdapter shoppingCartAdapter = new ShoppingCartAdapter(products, this);
-    IWarehouseService warehouseService = WarehouseService.getInstance()
-            .create(IWarehouseService.class);
-    WarehouseDatabase warehouseDatabase;
+    private RecyclerView shoppingCartRecyclerView;
+    private IFragmentManagerHelper fragmentManagerHelper;
+    private List<Product> products = new ArrayList<>();
+    private SwipeRefreshLayout swipeRefreshLayout;
+    private final ShoppingCartAdapter shoppingCartAdapter = new ShoppingCartAdapter(products, this);
+    private WarehouseDatabase warehouseDatabase;
 
     @Nullable
     @Override

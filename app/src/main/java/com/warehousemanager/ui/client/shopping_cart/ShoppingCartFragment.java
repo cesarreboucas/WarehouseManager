@@ -4,7 +4,6 @@ import android.content.Context;
 import android.os.Bundle;
 import android.os.Message;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -50,7 +49,6 @@ public class ShoppingCartFragment extends Fragment implements FragmentInteractio
     @Override
     public View onCreateView(final LayoutInflater inflater, final ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_client_shopping_cart, container, false);
         fragmentManagerHelper= new FragmentManagerHelper(getChildFragmentManager(), R.id.shoppingCartContainer);
         fragmentManagerHelper.attach(ShoppingCartListFragment.class);

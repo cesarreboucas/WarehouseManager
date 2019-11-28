@@ -72,17 +72,20 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="number"
-        android:padding="10dp"
-        android:layout_marginBottom="10dp"/>
+        android:layout_marginBottom="10dp"
+        android:fontFamily="@font/montserrat"
+        android:textColor="@color/colorAccent"
+        android:padding="10dp" />
 
     <Button
         android:id="@+id/btnMove"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@android:color/white"
-        android:background="@color/colorAccent"
         android:layout_margin="10dp"
-        android:text="Create Move Order" />
+        android:text="Create Move Order"
+        android:background="@color/colorPrimaryDark"
+        android:fontFamily="@font/montserrat"
+        android:textColor="@android:color/white"/>
 
     <TableLayout
         android:layout_marginTop="10dp"
