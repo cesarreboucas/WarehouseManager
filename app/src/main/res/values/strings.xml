@@ -63,6 +63,9 @@
   <string name="ok_button">OK</string>
   <string name="cancel_button">CANCEL</string>
   <string name="choose_formats">Choose Formats</string>
+    <string name="title_pickup">Pick Orders</string>
+    <string name="items">Item Cart: </string>
+  <string name="btnClose">C L O S E</string>
 
   <string-array name="roles_entries">
         <item>admin</item>

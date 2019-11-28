@@ -15,7 +15,7 @@
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
         app:navigationIcon="@drawable/back_arrow_clipart"
-        app:title="@string/title_todo"
+        app:title="@string/title_pickup"
         app:titleTextAppearance="@style/ActionBar.nameText"/>
 
     <FrameLayout

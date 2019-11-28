@@ -88,12 +88,18 @@ public interface IWarehouseService {
     @GET("orders")
     Call<List<ClientOrder>> getAllOrders();
 
+    @GET("orders/warehouse/{warehouse}")
+    Call<List<ClientOrder>> getOrderByWarehouse(@Path("warehouse") String warehouse);
+
     @GET("orders/user/{id}")
     Call<List<ClientOrder>> getOrdersByUser(@Path("id") long id);
 
     // REPORTS ENDPOINTS
     @GET("reports")
     Call<List<Report>> getAllReports();
+
+    @PATCH ("orders")
+    Call<Void> setOrderComplete(@Body ClientOrder clientOrder);
 
     // =========================
 

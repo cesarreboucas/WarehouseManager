@@ -1,30 +1,43 @@
 package com.warehousemanager.ui.associate.pickup;
 
+import android.content.Context;
+import android.graphics.Color;
 import android.os.Message;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.warehousemanager.R;
 import com.warehousemanager.data.db.entities.ClientOrder;
 import com.warehousemanager.data.db.entities.MovementOrder;
+import com.warehousemanager.data.network.IWarehouseService;
+import com.warehousemanager.data.network.WarehouseService;
 import com.warehousemanager.ui.admin.FragmentInteraction;
 
 import java.util.List;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class PickupListAdapter extends RecyclerView.Adapter<PickupListAdapter.PickupListViewHolder> implements View.OnClickListener {
+
+    private IWarehouseService warehouseService = WarehouseService.getInstance().create(IWarehouseService.class);
 
     private List<ClientOrder> pickupList;
 
     private Fragment fragment;
 
     public static final int REPORT_pickup = 1;
-    public static final int SCAN_pickup = 2;
+    public static final int COMPLETE_pickup = 2;
 
     public PickupListAdapter(List<ClientOrder> pickupList, Fragment fragment) {
         this.pickupList = pickupList;
@@ -44,49 +57,54 @@ public class PickupListAdapter extends RecyclerView.Adapter<PickupListAdapter.Pi
         switch (v.getId()) {
             case R.id.btnDetailedReport:
                 onBtnReportClicked(v);
-                break;
-            case R.id.btnCompleteTransaction:
-                onBtnCompleteTransactionClicked(v);
+                Log.d("BtnReportClicked", "Clicked");
                 break;
         }
     }
 
     private void onBtnReportClicked(View v){
         int i = (int) v.getTag();
-
         Message m = new Message();
         m.obj = pickupList.get(i);
         m.what = REPORT_pickup;
         ((FragmentInteraction)fragment).sendMessage(m);
     }
 
-    private void onBtnCompleteTransactionClicked(View v){
-        int i = (int) v.getTag();
-
-        Message m = new Message();
-        m.obj = pickupList.get(i);
-        m.what = SCAN_pickup;
-        ((FragmentInteraction)fragment).sendMessage(m);
-    }
-
     @Override
-    public void onBindViewHolder(@NonNull PickupListAdapter.PickupListViewHolder pickupListViewHolder, int i) {
-        // pickup How do we get the associate's assigned warehouse to compare with warehouse_receiver? 
-        //  String transferType = pickupList.get(i).getTransferType();
-/*
-        String item = pickupList.get(i).getProductName();
-        int quantity = pickupList.get(i).getQuantity();
+    public void onBindViewHolder(@NonNull PickupListAdapter.PickupListViewHolder pickupListViewHolder, final int i) {
+        int orderNum = pickupList.get(i).getId();
+        long custName = pickupList.get(i).getClientID();
 
-        pickupListViewHolder.btnScan.setOnClickListener(this);
-        pickupListViewHolder.btnScan.setTag(i);
-        pickupListViewHolder.btnReport.setOnClickListener(this);
-        pickupListViewHolder.btnReport.setTag(i);
+        pickupListViewHolder.txtOrderNumber.setText(String.valueOf(orderNum));
+        pickupListViewHolder.txtCustName.setText(String.valueOf(custName));
+        pickupListViewHolder.btnDetailedReport.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Message m = new Message();
+                m.obj = pickupList.get(i);
+                m.what = REPORT_pickup;
+                ((FragmentInteraction)fragment).sendMessage(m);
+            }
+        });
+        pickupListViewHolder.btnCompleteTransaction.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                pickupList.get(i).setDone(1);
+                warehouseService.setOrderComplete(pickupList.get(i)).enqueue(new Callback<Void>() {
+                    @Override
+                    public void onResponse(Call<Void> call, Response<Void> response) {
+                        Toast.makeText(fragment.getContext(), "Pickup Completed", Toast.LENGTH_SHORT).show();
+                    }
 
-        //pickupListViewHolder.txtTransferType.setText(transferType);
-        pickupListViewHolder.txtItemCount.setText(quantity);
-        pickupListViewHolder.txtItemName.setText(item);
-*/
+                    @Override
+                    public void onFailure(Call<Void> call, Throwable t) {
 
+                    }
+                });
+            }
+        });
+
+        pickupListViewHolder.itemView.setBackgroundColor(Color.CYAN);
 
     }
 
@@ -96,21 +114,19 @@ public class PickupListAdapter extends RecyclerView.Adapter<PickupListAdapter.Pi
     }
 
     public class PickupListViewHolder extends RecyclerView.ViewHolder {
-        TextView txtTransferType;
-        TextView txtItemCount;
-        TextView txtItemName;
+        TextView txtOrderNumber;
+        TextView txtCustName;
 
-        Button btnReport;
-        Button btnScan;
+        ImageButton btnDetailedReport;
+        ImageButton btnCompleteTransaction;
 
         public PickupListViewHolder(@NonNull View itemView) {
             super(itemView);
-            txtTransferType = itemView.findViewById(R.id.txtTransferType);
-            txtItemCount = itemView.findViewById(R.id.txtItemCount);
-            txtItemName = itemView.findViewById(R.id.txtItem);
+            txtOrderNumber = itemView.findViewById(R.id.txtOrderNumber);
+            txtCustName = itemView.findViewById(R.id.txtCustName);
 
-            btnReport = itemView.findViewById(R.id.btnDetailedReport);
-            btnScan = itemView.findViewById(R.id.btnScan);
+            btnDetailedReport = itemView.findViewById(R.id.btnDetailedReport);
+            btnCompleteTransaction = itemView.findViewById(R.id.btnCompleteTransaction);
         }
     }
 }

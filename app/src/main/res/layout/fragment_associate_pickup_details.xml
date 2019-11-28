@@ -1,6 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@android:color/white">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="700dp"
+        tools:context=".ui.admin.user.WarehouseDetailFragment">
 
-</android.support.constraint.ConstraintLayout>
+        <TextView
+            android:id="@+id/finalTxtOrder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="50dp"
+            android:text="@string/order_number" />
+
+        <TextView
+            android:id="@+id/txtOrderNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="155dp"
+            android:layout_marginTop="50dp"
+            android:text="txtOrderNumber" />
+
+        <TextView
+            android:id="@+id/finalTxtDescription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="100dp"
+            android:text="@string/items" />
+
+        <ListView
+            android:id="@+id/itemListView"
+            android:layout_width="349dp"
+            android:layout_height="350dp"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="150dp"
+            android:layout_marginRight="25dp" /><![CDATA[
+
+        android:textColor="@android:color/white" />
+    ]]>
+    </RelativeLayout>
+</ScrollView>

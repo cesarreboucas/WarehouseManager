@@ -13,6 +13,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.warehousemanager.R;
+import com.warehousemanager.data.db.WarehouseDatabase;
 import com.warehousemanager.data.db.entities.MovementOrder;
 import com.warehousemanager.ui.admin.FragmentInteraction;
 
@@ -23,6 +24,8 @@ public class TodoListAdapter extends RecyclerView.Adapter<TodoListAdapter.TodoLi
     private List<MovementOrder> todoList;
     private Fragment fragment;
 
+    WarehouseDatabase warehouseDatabase;
+
     public static final int REPORT_TODO = 1;
     public static final int SCAN_TODO = 2;
 
@@ -31,6 +34,7 @@ public class TodoListAdapter extends RecyclerView.Adapter<TodoListAdapter.TodoLi
         TextView txtItemName;
         TextView txtOrderNumber;
         TextView txtWarehouseSender;
+        TextView txtWarehouseReceiverLabel;
         TextView txtWarehouseReceiver;
 
         ImageButton btnReport;
@@ -42,6 +46,7 @@ public class TodoListAdapter extends RecyclerView.Adapter<TodoListAdapter.TodoLi
             txtItemName = itemView.findViewById(R.id.txtItem);
             txtOrderNumber = itemView.findViewById(R.id.txtOrderNumber);
             txtWarehouseSender = itemView.findViewById(R.id.txtWarehouseSender);
+            txtWarehouseReceiverLabel = itemView.findViewById(R.id.txtWarehouseReceiverLabel);
             txtWarehouseReceiver = itemView.findViewById(R.id.txtWarehouseReceiver);
 
             btnReport = itemView.findViewById(R.id.btnReport);
@@ -52,6 +57,8 @@ public class TodoListAdapter extends RecyclerView.Adapter<TodoListAdapter.TodoLi
     public TodoListAdapter(List<MovementOrder> todoList, Fragment fragment) {
         this.todoList = todoList;
         this.fragment = fragment;
+
+        warehouseDatabase = WarehouseDatabase.getAppDatabase(fragment.getActivity().getApplicationContext());
     }
 
     @NonNull
@@ -65,18 +72,42 @@ public class TodoListAdapter extends RecyclerView.Adapter<TodoListAdapter.TodoLi
     @Override
     public void onBindViewHolder(@NonNull TodoListAdapter.TodoListViewHolder todoListViewHolder, int i) {
         int color;
-        boolean isSent = todoList.get(i).getSent();
-        boolean isReceived = todoList.get(i).getReceived();
-        if(todoList.get(i).getReceived()) {
-            color = Color.parseColor("#77dd77");
-        } else if(todoList.get(i).getSent()) {
-            color = Color.parseColor("#ff6961");
+        String warehouseSender = " ";
+        String warehouseReceiverLbl = " ";
+        String warehouseReceiver = "  ";
+
+        String wh = warehouseDatabase.userDao().getUser().getFavouriteWarehouse();
+
+        if(wh.equals(todoList.get(i).getWarehouseReceiver()))
+        {
+            if(todoList.get(i).getReceived()) {
+                color = Color.LTGRAY;
+                warehouseSender = "COMPLETED";
+                warehouseReceiverLbl = todoList.get(i).getWarehouseSender() + " > ";
+                warehouseReceiver = todoList.get(i).getWarehouseReceiver();
+            } else {
+                color = Color.parseColor("#77dd77");
+                warehouseSender = "RECEIVE";
+                warehouseReceiverLbl = "Receiving From: ";
+                warehouseReceiver = todoList.get(i).getWarehouseSender();
+                if(warehouseReceiver.trim() == null);
+                    warehouseReceiver = "Outside Source";
+            }
         } else {
-            color = Color.LTGRAY;
+            if(todoList.get(i).getSent()) {
+                color = Color.LTGRAY;
+                warehouseSender = "COMPLETED";
+                warehouseReceiverLbl = todoList.get(i).getWarehouseSender() + " > ";
+                warehouseReceiver = todoList.get(i).getWarehouseReceiver();
+            } else {
+                color = Color.parseColor("#ff6961");
+                warehouseSender = "SEND";
+                warehouseReceiverLbl = "Sending To: ";
+                warehouseReceiver = todoList.get(i).getWarehouseReceiver();
+            }
         }
 
-        String warehouseReceiver = todoList.get(i).getWarehouseReceiver();
-        String warehouseSender = todoList.get(i).getWarehouseSender();
+
         String id = todoList.get(i).getId();
         String itemName = todoList.get(i).getProductName();
         if(itemName.length() > 10) {
@@ -91,6 +122,7 @@ public class TodoListAdapter extends RecyclerView.Adapter<TodoListAdapter.TodoLi
         todoListViewHolder.btnReport.setOnClickListener(this);
         todoListViewHolder.btnReport.setTag(i);
 
+        todoListViewHolder.txtWarehouseReceiverLabel.setText(warehouseReceiverLbl);
         todoListViewHolder.txtWarehouseReceiver.setText(warehouseReceiver);
         todoListViewHolder.txtWarehouseSender.setText(warehouseSender);
         todoListViewHolder.txtOrderNumber.setText(id);

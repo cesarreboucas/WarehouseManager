@@ -7,14 +7,6 @@
         android:icon="@drawable/ic_box"
         android:title="@string/todo_menu" />
     <item
-        android:id="@+id/pendingMenu"
-        android:icon="@drawable/ic_warning_black_24dp"
-        android:title="@string/pending_menu" />
-    <item
-        android:id="@+id/completedMenu"
-        android:icon="@drawable/ic_store_mall_directory_black_24dp"
-        android:title="@string/completed_menu" />
-    <item
         android:id="@+id/pickupMenu"
         android:icon="@drawable/ic_local_shipping_black_24dp"
         android:title="@string/pickup_menu" />
