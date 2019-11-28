@@ -9,7 +9,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,19 +33,17 @@ import retrofit2.Response;
 public class OrdersListClientFragment extends Fragment implements FragmentInteraction,
         SwipeRefreshLayout.OnRefreshListener {
 
-    RecyclerView ordersListRecyclerView;
-    IFragmentManagerHelper fragmentManagerHelper;
-    FloatingActionButton floatingActionButton;
-    List<ClientOrder> clientOrders = new ArrayList<>();
-    SwipeRefreshLayout swipeRefreshLayout;
-    OrdersListClientAdapter ordersListAdapter;
-    IWarehouseService warehouseService = WarehouseService.getInstance().create(IWarehouseService.class);
-    WarehouseDatabase warehouseDatabase;
+    private RecyclerView ordersListRecyclerView;
+    private IFragmentManagerHelper fragmentManagerHelper;
+    private FloatingActionButton floatingActionButton;
+    private List<ClientOrder> clientOrders = new ArrayList<>();
+    private SwipeRefreshLayout swipeRefreshLayout;
+    private OrdersListClientAdapter ordersListAdapter;
+    private IWarehouseService warehouseService = WarehouseService.getInstance().create(IWarehouseService.class);
+    private WarehouseDatabase warehouseDatabase;
 
 
-    public OrdersListClientFragment() {
-        // Required empty public constructor
-    }
+    public OrdersListClientFragment() { }
 
 
     @Override

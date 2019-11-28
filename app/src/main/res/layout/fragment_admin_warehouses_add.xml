@@ -22,6 +22,8 @@
                     android:id="@+id/txtWarehouseName_add"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/montserrat"
+                    android:textColor="@color/colorAccent"
                     android:hint="Name" />
             </android.support.design.widget.TextInputLayout>
 
@@ -34,6 +36,8 @@
                     android:id="@+id/txtWarehouseGeo_add"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/montserrat"
+                    android:textColor="@color/colorAccent"
                     android:hint="Coordinates" />
             </android.support.design.widget.TextInputLayout>
 
@@ -46,6 +50,8 @@
                     android:id="@+id/txtWorkerCount_add"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/montserrat"
+                    android:textColor="@color/colorAccent"
                     android:editable="false"
                     android:hint="Worker Count : 0" />
             </android.support.design.widget.TextInputLayout>
@@ -59,6 +65,8 @@
                     android:id="@+id/txtCapacity_add"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/montserrat"
+                    android:textColor="@color/colorAccent"
                     android:hint="Storage Capacity" />
             </android.support.design.widget.TextInputLayout>
 
@@ -74,6 +82,7 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="15dp"
                 android:background="@color/colorPrimaryDark"
+                android:fontFamily="@font/montserrat"
                 android:text="@string/add"
                 android:textColor="@android:color/white" />
 

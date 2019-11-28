@@ -22,20 +22,19 @@ import com.warehousemanager.data.internal.ImageHelper;
 import com.warehousemanager.data.internal.ImageHelperImpl;
 
 
-
 public class ProductDetailClientFragment extends Fragment {
 
     private static int RESULT_LOAD_IMAGE = 1;
-    Product product = new Product();
+    private Product product = new Product();
 
-    ImageView picture;
-    TextView txtName;
-    TextView txtDescription;
-    TextView txtPrice;
-    Button btnAddToCart;
-    FragmentManagerHelper fragmentManagerHelper;
+    private ImageView picture;
+    private TextView txtName;
+    private TextView txtDescription;
+    private TextView txtPrice;
+    private Button btnAddToCart;
+    private FragmentManagerHelper fragmentManagerHelper;
 
-    WarehouseDatabase warehouseDatabase;
+    private WarehouseDatabase warehouseDatabase;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {

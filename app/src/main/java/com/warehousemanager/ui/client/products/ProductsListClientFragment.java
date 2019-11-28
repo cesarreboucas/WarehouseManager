@@ -6,7 +6,6 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
@@ -35,13 +34,12 @@ import retrofit2.Response;
 public class ProductsListClientFragment  extends Fragment implements FragmentInteraction,
         SwipeRefreshLayout.OnRefreshListener{
 
-    RecyclerView productsListRecyclerView;
-    IFragmentManagerHelper fragmentManagerHelper;
-    private FloatingActionButton floatingActionButton;
-    List<Product> products = new ArrayList<>();
-    SwipeRefreshLayout swipeRefreshLayout;
-    final ProductListClientAdapter productsListAdapter = new ProductListClientAdapter(products, this);
-    IWarehouseService warehouseService = WarehouseService.getInstance()
+    private RecyclerView productsListRecyclerView;
+    private IFragmentManagerHelper fragmentManagerHelper;
+    private List<Product> products = new ArrayList<>();
+    private SwipeRefreshLayout swipeRefreshLayout;
+    private final ProductListClientAdapter productsListAdapter = new ProductListClientAdapter(products, this);
+    private IWarehouseService warehouseService = WarehouseService.getInstance()
             .create(IWarehouseService.class);
 
 

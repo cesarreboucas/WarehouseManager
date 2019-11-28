@@ -4,9 +4,6 @@ import android.os.Message;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,10 +11,8 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.warehousemanager.R;
-import com.warehousemanager.data.db.WarehouseDatabase;
 import com.warehousemanager.data.db.entities.Product;
 import com.warehousemanager.data.internal.ImageHelper;
 import com.warehousemanager.data.internal.ImageHelperImpl;
@@ -30,8 +25,8 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class ShoppingCartAdapter extends RecyclerView.Adapter<ShoppingCartAdapter.ShoppingCartViewHolder> {
 
-    List<Product> products;
-    ImageHelper imageHelper = new ImageHelperImpl();
+    private List<Product> products;
+    private ImageHelper imageHelper = new ImageHelperImpl();
     private Fragment fragment;
 
     public ShoppingCartAdapter(List<Product> products, Fragment context) {

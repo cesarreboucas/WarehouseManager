@@ -60,33 +60,26 @@
             android:layout_marginBottom="10dp"
             android:padding="10dp" />
 
-        <TextView
-            android:id="@+id/txtQuantity"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:fontFamily="@font/montserrat"
-            android:textColor="@color/colorAccent"
-            android:text="Quantity" />
+    <EditText
+        android:id="@+id/Quantity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="number"
+        android:layout_marginBottom="10dp"
+        android:fontFamily="@font/montserrat"
+        android:textColor="@color/colorAccent"
+        android:padding="10dp" />
 
-        <EditText
-            android:id="@+id/Quantity"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="number"
-            android:padding="10dp"
-            android:layout_marginBottom="10dp"/>
-
-        <Button
-            android:id="@+id/btnMove"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="@android:color/white"
-            android:background="@color/colorPrimaryDark"
-            android:fontFamily="@font/montserrat"
-            android:layout_margin="10dp"
-            android:text="Create Movement Order" />
+    <Button
+        android:id="@+id/btnMove"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="Create Move Order"
+        android:background="@color/colorPrimaryDark"
+        android:fontFamily="@font/montserrat"
+        android:textColor="@android:color/white"/>
 
         <TableLayout
             android:layout_marginTop="10dp"
