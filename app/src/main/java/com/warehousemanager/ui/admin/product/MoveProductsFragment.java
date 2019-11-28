@@ -1,7 +1,7 @@
 package com.warehousemanager.ui.admin.product;
 
 import android.content.Context;
-import android.net.Uri;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -58,7 +58,6 @@ public class MoveProductsFragment extends Fragment implements View.OnClickListen
     List<String> associateList = new ArrayList<>();
 
     boolean warehousesFlag = false;
-    boolean associatesFlag = false;
     boolean productsHangsFlag = false;
 
     EditText Quantity;
@@ -86,6 +85,38 @@ public class MoveProductsFragment extends Fragment implements View.OnClickListen
         spnReceiverWarehouse = view.findViewById(R.id.spnReceiverWarehouse);
         spnReceiverWarehouseAdapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_1, receiverWarehouseList);
         spnReceiverWarehouse.setAdapter(spnReceiverWarehouseAdapter);
+        spnReceiverWarehouse.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                progressBar.setVisibility(View.VISIBLE);
+                String warehouseReceiver = receiverWarehouseList.get(position);
+                warehouseService.getAssociates(warehouseReceiver).enqueue(new Callback<List<User>>() {
+                    @Override
+                    public void onResponse(Call<List<User>> call, Response<List<User>> response) {
+                        if(response.isSuccessful()) {
+                            for (User user : response.body()) {
+                                associateList.add(user.getUsername());
+                            }
+                            spnAssociatesAdapter.notifyDataSetChanged();
+                        } else {
+                            Toast.makeText(getContext(), "Couldn`t get the associates", Toast.LENGTH_LONG).show();
+                        }
+                        progressBar.setVisibility(View.INVISIBLE);
+                    }
+
+                    @Override
+                    public void onFailure(Call<List<User>> call, Throwable t) {
+                        Toast.makeText(getContext(), "There was a problem connecting to the server", Toast.LENGTH_LONG).show();
+                        progressBar.setVisibility(View.INVISIBLE);
+                    }
+                });
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
 
         spnAssociates = view.findViewById(R.id.spnAssociates);
         spnAssociatesAdapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_1, associateList);
@@ -102,12 +133,12 @@ public class MoveProductsFragment extends Fragment implements View.OnClickListen
             @Override
             public void onResponse(Call<List<Warehouse>> call, Response<List<Warehouse>> response) {
                 if(response.isSuccessful()) {
-                    Toast.makeText(getContext(), "Warehouse gathered", Toast.LENGTH_SHORT).show();
                     List<String> strWarehouseList = new ArrayList<>();
                     for (Warehouse w : response.body()) {
                         strWarehouseList.add(w.getName());
                     }
                     warehouseList.addAll(strWarehouseList);
+                    senderWarehouseList.add("");
                     senderWarehouseList.addAll(strWarehouseList);
                     receiverWarehouseList.addAll(strWarehouseList);
                     spnReceiverWarehouseAdapter.notifyDataSetChanged();
@@ -116,7 +147,7 @@ public class MoveProductsFragment extends Fragment implements View.OnClickListen
                     Toast.makeText(getContext(), "There was a problem gathering the warehouses", Toast.LENGTH_SHORT).show();
                 }
                 warehousesFlag = true;
-                if(warehousesFlag && associatesFlag && productsHangsFlag) {
+                if(warehousesFlag && productsHangsFlag) {
                     progressBar.setVisibility(View.INVISIBLE);
                 }
             }
@@ -125,7 +156,7 @@ public class MoveProductsFragment extends Fragment implements View.OnClickListen
             public void onFailure(Call<List<Warehouse>> call, Throwable t) {
                 Toast.makeText(getContext(), "There was a problem connecting to the server", Toast.LENGTH_SHORT).show();
                 warehousesFlag = true;
-                if(warehousesFlag && associatesFlag && productsHangsFlag) {
+                if(warehousesFlag && productsHangsFlag) {
                     progressBar.setVisibility(View.INVISIBLE);
                 }
             }
@@ -146,6 +177,10 @@ public class MoveProductsFragment extends Fragment implements View.OnClickListen
                     for (WarehouseHang tmpWarehouseHang : productHang.getWarehouses()) {
                         LayoutInflater inflator = getLayoutInflater();
                         TableRow tableRow = (TableRow) inflator.inflate(R.layout.product_hangs_table_row, null);
+                        for (int i = 0; i < tableRow.getChildCount(); i++) {
+                            TextView textView = (TextView) tableRow.getChildAt(i);
+                            textView.setTextColor(Color.BLACK);
+                        }
                         TextView txtWarehouse = tableRow.findViewById(R.id.txtWarehouse);
                         TextView txtSold = tableRow.findViewById(R.id.txtSold);
                         TextView txtCompromised = tableRow.findViewById(R.id.txtCompromised);
@@ -161,7 +196,7 @@ public class MoveProductsFragment extends Fragment implements View.OnClickListen
                     }
                 }
                 productsHangsFlag = true;
-                if(warehousesFlag && associatesFlag && productsHangsFlag) {
+                if(warehousesFlag && productsHangsFlag) {
                     progressBar.setVisibility(View.INVISIBLE);
                 }
             }
@@ -170,34 +205,7 @@ public class MoveProductsFragment extends Fragment implements View.OnClickListen
             public void onFailure(Call<List<ProductHang>> call, Throwable t) {
                 Toast.makeText(getContext(), "There was a problem connecting to the server", Toast.LENGTH_LONG).show();
                 productsHangsFlag = true;
-                if(warehousesFlag && associatesFlag && productsHangsFlag) {
-                    progressBar.setVisibility(View.INVISIBLE);
-                }
-            }
-        });
-
-        warehouseService.getAssociates().enqueue(new Callback<List<User>>() {
-            @Override
-            public void onResponse(Call<List<User>> call, Response<List<User>> response) {
-                if(response.isSuccessful()) {
-                    for (User user : response.body()) {
-                        associateList.add(user.getUsername());
-                    }
-                    spnAssociatesAdapter.notifyDataSetChanged();
-                } else {
-                    Toast.makeText(getContext(), "Couldn`t get the associates", Toast.LENGTH_LONG).show();
-                }
-                associatesFlag = true;
-                if(warehousesFlag && associatesFlag && productsHangsFlag) {
-                    progressBar.setVisibility(View.INVISIBLE);
-                }
-            }
-
-            @Override
-            public void onFailure(Call<List<User>> call, Throwable t) {
-                Toast.makeText(getContext(), "There was a problem connecting to the server", Toast.LENGTH_LONG).show();
-                associatesFlag = true;
-                if(warehousesFlag && associatesFlag && productsHangsFlag) {
+                if(warehousesFlag && productsHangsFlag) {
                     progressBar.setVisibility(View.INVISIBLE);
                 }
             }
