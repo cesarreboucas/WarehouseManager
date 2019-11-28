@@ -70,7 +70,7 @@ public class SignInActivity extends AppCompatActivity {
         txtWarehouse.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                editUsername.setText("hcastagne0@foxnews.com");
+                editUsername.setText("yde2@businesswire.com");
                 editPasssword.setText("1234");
             }
         });
