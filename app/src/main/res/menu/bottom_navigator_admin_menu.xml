@@ -15,11 +15,7 @@
         android:icon="@drawable/ic_store_mall_directory_black_24dp"
         android:title="@string/signInWarehouse" />
     <item
-        android:id="@+id/summaryMenu"
+        android:id="@+id/ordersMenu"
         android:icon="@drawable/ic_attach_money_black_24dp"
         android:title="@string/summaryMenu" />
-    <item
-        android:title="Reports"
-        android:id="@+id/reportsMenu"
-        android:icon="@drawable/ic_warning_black_24dp" />
 </menu>

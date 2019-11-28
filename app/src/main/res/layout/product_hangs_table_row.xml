@@ -21,7 +21,7 @@
         android:layout_weight="1"
         android:text="Sold"
         android:gravity="center"
-        android:background="@drawable/inset_border_3"/>
+        android:background="@drawable/inset_left_border"/>
     <TextView
         android:id="@+id/txtCompromised"
         android:fontFamily="@font/montserrat"
@@ -29,7 +29,7 @@
         android:layout_weight="0.9"
         android:text="Compromised"
         android:gravity="center"
-        android:background="@drawable/inset_border_3"/>
+        android:background="@drawable/inset_left_border"/>
     <TextView
         android:id="@+id/txtFuture"
         android:fontFamily="@font/montserrat"
@@ -37,7 +37,7 @@
         android:layout_weight="1"
         android:text="Future"
         android:gravity="center"
-        android:background="@drawable/inset_border_3"/>
+        android:background="@drawable/inset_left_border"/>
     <TextView
         android:id="@+id/txtInStock"
         android:fontFamily="@font/montserrat"
@@ -45,5 +45,5 @@
         android:layout_weight="1"
         android:gravity="center"
         android:text="In stock"
-        android:background="@drawable/inset_border_3"/>
+        android:background="@drawable/inset_left_border"/>
 </TableRow>
